@@ -1,0 +1,45 @@
+name: Deploy GSSG to Cloudflare Pages
+
+on:
+  repository_dispatch:
+
+concurrency:
+  group: ghost-deploy
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install GSSG
+        run: npm install -g ghost-static-site-generator
+
+      - name: Generate static site
+        run: |
+          rm -rf out
+          mkdir out
+          gssg build --domain=https://${{ secrets.URL_DEV }} --url=https://${{ secrets.URL_PROD }}   --dest=out
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "${{ secrets.GIT_USERNAME }}"
+          git config user.email "${{ secrets.GIT_EMAIL }}"
+
+          cp -r out/* .
+
+          git add .
+          git commit -m "chore: update static site from Ghost $(date)" || echo "No changes to commit"
+          git push origin HEAD || echo "No changes pushed"
+
+      - name: Trigger deploy 
+        run: |
+          curl -d "" "${{ secrets.WEBHOOK_CLOUDFLARE}}"
