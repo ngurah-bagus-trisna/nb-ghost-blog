@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 
-    <title>Setup RKE-2 HA</title>
+    <title>cert-manager k8s</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -48,33 +48,65 @@
         document.documentElement.className = `has-${textColor}-text`;
     </script>
 
-    <meta name="description" content="Jadi di lab kubernetes saya pribadi menggunakan rke2/rke-goverment sebagai cluster utama. Alasan dipilihnya rke2 karena kemudahanya provisioning, dan tidak perlu banyak setup">
     <link rel="icon" href="https://twnb.nbtrisna.my.id/content/images/size/w256h256/2023/12/Logo-CHannel-1.png" type="image/png">
-    <link rel="canonical" href="https://twnb.nbtrisna.my.id/setup-rke-2-ha-2/">
+    <link rel="canonical" href="https://twnb.nbtrisna.my.id/cert-manager-k8s/">
     <meta name="referrer" content="no-referrer-when-downgrade">
     
     <meta property="og:site_name" content="twnb">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Setup RKE-2 HA">
-    <meta property="og:description" content="Jadi di lab kubernetes saya pribadi menggunakan rke2/rke-goverment sebagai cluster utama. Alasan dipilihnya rke2 karena kemudahanya provisioning, dan tidak perlu banyak setup">
-    <meta property="og:url" content="https://twnb.nbtrisna.my.id/setup-rke-2-ha-2/">
-    <meta property="og:image" content="https://twnb.nbtrisna.my.id/content/images/2025/01/RKE-twnb.png">
-    <meta property="article:published_time" content="2025-01-02T04:18:03.000Z">
-    <meta property="article:modified_time" content="2025-06-18T19:52:04.000Z">
-    <meta property="article:tag" content="About">
-    <meta property="article:tag" content="Linux">
+    <meta property="og:title" content="cert-manager k8s">
+    <meta property="og:description" content="Refrensi :
+
+ * https://cert-manager.io/docs/installation
+
+Install Step
+
+If using helm
+
+# add repo
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
+
+# install crd first
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.0/cert-manager.crds.yaml
+
+helm install \
+  cert-manager jetstack/cert-manager \
+  --namespace cert-manager">
+    <meta property="og:url" content="https://twnb.nbtrisna.my.id/cert-manager-k8s/">
+    <meta property="og:image" content="https://s3.nbtrisna.my.id/random-photo/4b9457ba-d83b-4916-8389-ec0abaedb943.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T150533Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;add1999e620d5bcb842943030847b0c79074bfc0819aa9356e883f4fdff794d4">
+    <meta property="article:published_time" content="2025-06-20T15:06:42.000Z">
+    <meta property="article:modified_time" content="2025-06-20T15:08:25.000Z">
+    <meta property="article:tag" content="catatan">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Setup RKE-2 HA">
-    <meta name="twitter:description" content="Jadi di lab kubernetes saya pribadi menggunakan rke2/rke-goverment sebagai cluster utama. Alasan dipilihnya rke2 karena kemudahanya provisioning, dan tidak perlu banyak setup">
-    <meta name="twitter:url" content="https://twnb.nbtrisna.my.id/setup-rke-2-ha-2/">
-    <meta name="twitter:image" content="https://twnb.nbtrisna.my.id/content/images/2025/01/RKE-twnb.png">
+    <meta name="twitter:title" content="cert-manager k8s">
+    <meta name="twitter:description" content="Refrensi :
+
+ * https://cert-manager.io/docs/installation
+
+Install Step
+
+If using helm
+
+# add repo
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
+
+# install crd first
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.0/cert-manager.crds.yaml
+
+helm install \
+  cert-manager jetstack/cert-manager \
+  --namespace cert-manager">
+    <meta name="twitter:url" content="https://twnb.nbtrisna.my.id/cert-manager-k8s/">
+    <meta name="twitter:image" content="https://s3.nbtrisna.my.id/random-photo/4b9457ba-d83b-4916-8389-ec0abaedb943.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T150533Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;add1999e620d5bcb842943030847b0c79074bfc0819aa9356e883f4fdff794d4">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="I Gusti Ngurah Bagus Trisna Andika">
     <meta name="twitter:label2" content="Filed under">
-    <meta name="twitter:data2" content="About, Linux">
+    <meta name="twitter:data2" content="catatan">
     <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="617">
+    <meta property="og:image:height" content="800">
     
     <script type="application/ld+json">
 {
@@ -101,19 +133,19 @@
         "url": "https://twnb.nbtrisna.my.id/author/ngurah/",
         "sameAs": []
     },
-    "headline": "Setup RKE-2 HA",
-    "url": "https://twnb.nbtrisna.my.id/setup-rke-2-ha-2/",
-    "datePublished": "2025-01-02T04:18:03.000Z",
-    "dateModified": "2025-06-18T19:52:04.000Z",
+    "headline": "cert-manager k8s",
+    "url": "https://twnb.nbtrisna.my.id/cert-manager-k8s/",
+    "datePublished": "2025-06-20T15:06:42.000Z",
+    "dateModified": "2025-06-20T15:08:25.000Z",
     "image": {
         "@type": "ImageObject",
-        "url": "https://twnb.nbtrisna.my.id/content/images/2025/01/RKE-twnb.png",
+        "url": "https://s3.nbtrisna.my.id/random-photo/4b9457ba-d83b-4916-8389-ec0abaedb943.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250620T150533Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=add1999e620d5bcb842943030847b0c79074bfc0819aa9356e883f4fdff794d4",
         "width": 1200,
-        "height": 617
+        "height": 800
     },
-    "keywords": "About, Linux",
-    "description": "Jadi di lab kubernetes saya pribadi menggunakan rke2/rke-goverment sebagai cluster utama. Alasan dipilihnya rke2 karena kemudahanya provisioning, dan tidak perlu banyak setup",
-    "mainEntityOfPage": "https://twnb.nbtrisna.my.id/setup-rke-2-ha-2/"
+    "keywords": "catatan",
+    "description": "Refrensi :\n\n * https://cert-manager.io/docs/installation\n\nInstall Step\n\nIf using helm\n\n# add repo\nhelm repo add jetstack https://charts.jetstack.io\nhelm repo update\n\n# install crd first\nkubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.0/cert-manager.crds.yaml\n\nhelm install \\\n  cert-manager jetstack/cert-manager \\\n  --namespace cert-manager \\\n  --create-namespace \\\n  --version v1.12.0\n\n\nIf using static manifest\n\nkubectl apply -f https://github.com/cert-manager",
+    "mainEntityOfPage": "https://twnb.nbtrisna.my.id/cert-manager-k8s/"
 }
     </script>
 
@@ -311,7 +343,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net"><link rel="stylesheet" href="https://fonts.bunny.net/css?family=noto-sans:400,700|space-mono:400,700"><style>:root {--gh-font-heading: Noto Sans;--gh-font-body: Space Mono;}</style>
 
 </head>
-<body class="post-template tag-about tag-linux gh-font-heading-noto-sans gh-font-body-space-mono has-sans-title has-sans-body">
+<body class="post-template tag-catatan gh-font-heading-noto-sans gh-font-body-space-mono has-sans-title has-sans-body">
 
 <div class="gh-viewport">
     
@@ -348,121 +380,90 @@
 
 <main class="gh-main">
 
-    <article class="gh-article post tag-about tag-linux">
+    <article class="gh-article post tag-catatan">
 
         <header class="gh-article-header gh-canvas">
 
-                <a class="gh-article-tag" href="https://twnb.nbtrisna.my.id/tag/about/">About</a>
-            <h1 class="gh-article-title is-title">Setup RKE-2 HA</h1>
-                <p class="gh-article-excerpt is-body">Jadi di lab kubernetes saya pribadi menggunakan rke2/rke-goverment sebagai cluster utama. Alasan dipilihnya rke2 karena kemudahanya provisioning, dan tidak perlu banyak setup</p>
+                <a class="gh-article-tag" href="https://twnb.nbtrisna.my.id/tag/catatan/">catatan</a>
+            <h1 class="gh-article-title is-title">cert-manager k8s</h1>
 
 
                 <figure class="gh-article-image">
         <img
-            srcset="/content/images/size/w320/2025/01/RKE-twnb.png 320w,
-                    /content/images/size/w600/2025/01/RKE-twnb.png 600w,
-                    /content/images/size/w960/2025/01/RKE-twnb.png 960w,
-                    /content/images/size/w1200/2025/01/RKE-twnb.png 1200w,
-                    /content/images/size/w2000/2025/01/RKE-twnb.png 2000w"
+            srcset="https://s3.nbtrisna.my.id/random-photo/4b9457ba-d83b-4916-8389-ec0abaedb943.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T150533Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;add1999e620d5bcb842943030847b0c79074bfc0819aa9356e883f4fdff794d4 320w,
+                    https://s3.nbtrisna.my.id/random-photo/4b9457ba-d83b-4916-8389-ec0abaedb943.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T150533Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;add1999e620d5bcb842943030847b0c79074bfc0819aa9356e883f4fdff794d4 600w,
+                    https://s3.nbtrisna.my.id/random-photo/4b9457ba-d83b-4916-8389-ec0abaedb943.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T150533Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;add1999e620d5bcb842943030847b0c79074bfc0819aa9356e883f4fdff794d4 960w,
+                    https://s3.nbtrisna.my.id/random-photo/4b9457ba-d83b-4916-8389-ec0abaedb943.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T150533Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;add1999e620d5bcb842943030847b0c79074bfc0819aa9356e883f4fdff794d4 1200w,
+                    https://s3.nbtrisna.my.id/random-photo/4b9457ba-d83b-4916-8389-ec0abaedb943.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T150533Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;add1999e620d5bcb842943030847b0c79074bfc0819aa9356e883f4fdff794d4 2000w"
             sizes="(max-width: 1200px) 100vw, 1120px"
-            src="/content/images/size/w1200/2025/01/RKE-twnb.png"
-            alt="Setup RKE-2 HA"
+            src="https://s3.nbtrisna.my.id/random-photo/4b9457ba-d83b-4916-8389-ec0abaedb943.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T150533Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;add1999e620d5bcb842943030847b0c79074bfc0819aa9356e883f4fdff794d4"
+            alt="cert-manager k8s"
         >
+            <figcaption><b><strong style="white-space: pre-wrap;">Photo by nbtrisna</strong></b><span style="white-space: pre-wrap;"> Delicate white blooms among vibrant green.</span></figcaption>
     </figure>
 
         </header>
 
         <section class="gh-content gh-canvas is-body">
-            <p>Jadi di lab kubernetes saya pribadi menggunakan <code>rke2/rke-goverment</code> sebagai cluster utama. Alasan dipilihnya <code>rke2</code> karena kemudahanya provisioning, dan tidak perlu banyak setup. Selain itu, <strong>RKE2</strong> (Rancher Kubernetes Engine 2) dirancang untuk memenuhi kebutuhan Kubernetes di lingkungan produksi dengan fokus pada keamanan dan kinerja. Proses instalasinya cukup sederhana dan kompatibel dengan berbagai distribusi Linux, seperti Ubuntu, CentOS, maupun RHEL.</p><p>Saya menggunakaan <code>lxc</code> untuk mengatur virtual machine dalam lab. Untuk file provisioning automation vm di lxd dengan <code>opentofu</code>, dapat melihat github saya di tautan berikut,</p><p>https://github.com/ngurah-bagus-trisna/rke2-lxc-tf-provisioning</p><p>Hasil dari provisioning</p><pre><code class="language-sh">shezen@nb-ubuntu-desk:~/lab/tf-coreos-lxd$ lxc list rke
-+---------------+---------+-----------------------+------+-----------------+-----------+
-|     NAME      |  STATE  |         IPV4          | IPV6 |      TYPE       | SNAPSHOTS |
-+---------------+---------+-----------------------+------+-----------------+-----------+
-| rke-master-01 | RUNNING | 10.10.214.10 (enp5s0) |      | VIRTUAL-MACHINE | 0         |
-+---------------+---------+-----------------------+------+-----------------+-----------+
-| rke-master-02 | RUNNING | 10.10.214.11 (enp5s0) |      | VIRTUAL-MACHINE | 0         |
-+---------------+---------+-----------------------+------+-----------------+-----------+
-| rke-master-03 | RUNNING | 10.10.214.12 (enp5s0) |      | VIRTUAL-MACHINE | 0         |
-+---------------+---------+-----------------------+------+-----------------+-----------+
-| rke-worker-01 | RUNNING | 10.10.214.21 (enp5s0) |      | VIRTUAL-MACHINE | 0         |
-+---------------+---------+-----------------------+------+-----------------+-----------+
-| rke-worker-02 | RUNNING | 10.10.214.22 (enp5s0) |      | VIRTUAL-MACHINE | 0         |
-+---------------+---------+-----------------------+------+-----------------+-----------+
-</code></pre><h2 id="installing-rke2">Installing RKE2</h2><p>Refrensi : https://docs.rke2.io/install/quickstart</p><p>Setelah vm sudah siap, lanjut install rke2 binary dan service.</p><blockquote>Eksekusi kode dengan sudo/root permission Secara otomatis jika tidak memilih versi akan terinstall versi latest. Untuk memilih spesifik versi dari RKE2, bisa menambahkan variable <code>INSTALL_RKE2_CHANNEL=&lt;versi&gt;</code>.</blockquote><h4 id="mastercontrol-plane-node">Master/control-plane node</h4><pre><code class="language-sh">curl -sfL https://get.rke2.io | sh -
-</code></pre><h4 id="worker-node">Worker node</h4><pre><code class="language-sh">curl -sfL https://get.rke2.io | INSTALL_RKE2_TYPE="agent" sh -
-</code></pre><p>Setelah binary &amp; service sudah terinstall, selanjutnya kita setup HA dengan menggunakan daemonset <code>kube-vip</code>.</p><h2 id="setup-cluster">Setup Cluster</h2><p>Refrensi : https://docs.rke2.io/install/ha</p><h2 id="all-node">all node</h2><ol><li>Konfigurasi <code>/etc/hosts</code>. Tambahkan <code>rke-vrrp</code> dengan ip yang nantinya digunakan sebagai virtualip</li></ol><pre><code class="language-sh">sudo vim /etc/hosts
----
-10.10.214.5 rke-vrrp
-</code></pre><h3 id="first-mastercontrol-plane">First Master/Control-Plane</h3><ol><li>Mengaktifkan <code>rke-master-01</code> terlebih dahulu sebagai server node pertama</li></ol><pre><code class="language-sh">mkdir -p /etc/rancher/rke2/
-cat &lt;&lt; EOF | tee /etc/rancher/rke2/config.yaml 
-tls-san:  
-- rke-vrrp
-- 10.10.214.5
-node-taint:  
-- "CriticalAddonsOnly=true:NoExecute"
-EOF
-</code></pre><blockquote>node-taint berfungsi jika objek deployment/daemonset/pod tidak memiliki toleration yang tepat, objek tersebut tidak akan tersechedule ke node tersebut.</blockquote><ol start="2"><li>Start service <code>rke-server.service</code></li></ol><pre><code class="language-sh">systemctl enable --now rke2-server.service
-</code></pre><blockquote>KUBECONFIG akan tertulis di <code>/etc/rancher/rke2/rke2.yaml</code></blockquote><ol start="3"><li>Verifikasi bahwa <code>rke-master-01</code> sudah aktif</li></ol><pre><code class="language-sh">/var/lib/rancher/rke2/bin/kubectl get pod -A --kubeconfig=/etc/rancher/rke2/rke2.yaml
-</code></pre><pre><code>root@rke-master-01:~# /var/lib/rancher/rke2/bin/kubectl get node --kubeconfig=/etc/rancher/rke2/rke2.yaml
-NAME            STATUS   ROLES                       AGE     VERSION
-rke-master-01   Ready    control-plane,etcd,master   3m13s   v1.31.4+rke2r1
-</code></pre><ol start="4"><li>Installasi <code>kube-vip</code> sebagai service yang ekspos virtual ip <code>10.10.214.5</code>. Nantinya kube-vip secara otomatis terdeploy di master node dengan menggunakan daemonset.</li></ol><p>Refrensi : https://kube-vip.io/docs/installation/daemonset/</p><p>Install RBAC</p><pre><code class="language-sh">kubectl apply -f https://kube-vip.io/manifests/rbac.yaml
-</code></pre><p>Gunakan <a href="https://kube-vip.io/docs/installation/daemonset/?ref=dev.nbtrisna.my.id#example-arp-manifest">refrensi berikut</a> untuk membuat manifest daemonset <code>kube-vip</code>. Sesuaikan,</p><ul><li><code>vip_interface</code> : Gunakan interface yang dapat terhubung ke node lain. Dalam lab saya, menggunakan interface <code>enp5s0</code></li><li><code>address</code> : Gunakan ip yang akan di ekspos sebagai virtual ip. Dalam lab saya, menggunakan alamat <code>10.10.214.5</code></li></ul><ol start="5"><li>Verifikasi <code>kube-vip</code>. Pastikan pod running, dan virtual IP sudah terdapat di interface yang kita assign</li></ol><pre><code class="language-sh">root@rke-master-01:~# kubectl  get pod -n kube-system
-NAME                                                    READY   STATUS      RESTARTS   AGE
-cloud-controller-manager-rke-master-01                  1/1     Running     0          10m
-etcd-rke-master-01                                      1/1     Running     0          10m
-helm-install-rke2-canal-sd92c                           0/1     Completed   0          10m
-helm-install-rke2-coredns-jn9f6                         0/1     Completed   0          10m
-helm-install-rke2-ingress-nginx-4bkrz                   0/1     Pending     0          10m
-helm-install-rke2-metrics-server-ddnwc                  0/1     Pending     0          10m
-helm-install-rke2-snapshot-controller-crd-fzfpb         0/1     Pending     0          10m
-helm-install-rke2-snapshot-controller-nrc7w             0/1     Pending     0          10m
-helm-install-rke2-snapshot-validation-webhook-9szsl     0/1     Pending     0          10m
-kube-apiserver-rke-master-01                            1/1     Running     0          10m
-kube-controller-manager-rke-master-01                   1/1     Running     0          10m
-kube-proxy-rke-master-01                                1/1     Running     0          9m53s
-kube-scheduler-rke-master-01                            1/1     Running     0          10m
-kube-vip-ds-f6dsn                                       1/1     Running     0          29s
-rke2-canal-cbtpp                                        2/2     Running     0          10m
-rke2-coredns-rke2-coredns-55bdf87668-vswvg              1/1     Running     0          10m
-rke2-coredns-rke2-coredns-autoscaler-65c8c6bd64-5bq6j   0/1     Pending     0          10m
+            <p>Refrensi :</p><ul><li>https://cert-manager.io/docs/installation</li></ul><h4 id="install-step">Install Step</h4><blockquote>If using helm</blockquote><pre><code class="language-sh"># add repo
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
 
-root@rke-master-01:~# ip a show enp5s0
-2: enp5s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP group default qlen 1000
-    link/ether 00:16:3e:d9:e7:e7 brd ff:ff:ff:ff:ff:ff
-    inet 10.10.214.10/24 metric 100 brd 10.10.214.255 scope global dynamic enp5s0
-       valid_lft 2299sec preferred_lft 2299sec
-    inet 10.10.214.5/32 scope global enp5s0
-       valid_lft forever preferred_lft forever
-    inet6 fe80::216:3eff:fed9:e7e7/64 scope link
-       valid_lft forever preferred_lft forever
-root@rke-master-01:~#
-</code></pre><p>Pastikan VIP dapat diakses disemua node</p><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2025/01/image.png" class="kg-image" alt="" loading="lazy" width="1918" height="772" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2025/01/image.png 600w, https://twnb.nbtrisna.my.id/content/images/size/w1000/2025/01/image.png 1000w, https://twnb.nbtrisna.my.id/content/images/size/w1600/2025/01/image.png 1600w, https://twnb.nbtrisna.my.id/content/images/2025/01/image.png 1918w" sizes="(min-width: 720px) 720px"></figure><h2 id="join-control-plane-lain">Join Control-plane lain.</h2><p>Untuk menambahkan master/control-plane lain, berikut stepnya.</p><ol><li>Mendapatkan token dari control-plane pertama</li></ol><blockquote>Eksekusi di node master yang sudah up.</blockquote><pre><code class="language-sh">cat /var/lib/rancher/rke2/server/node-token
-</code></pre><ol start="2"><li>Membuat konfigurasi</li></ol><blockquote>Eksekusi command di control-plane/master node yang akan dijoinkan.</blockquote><pre><code class="language-sh">mkdir -p /etc/rancher/rke2/
+# install crd first
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.0/cert-manager.crds.yaml
 
-cat &lt;&lt; EOF | tee /etc/rancher/rke2/config.yaml 
----
-server: https://rke-vrrp:9345
-token: &lt;token-first-master-node&gt;
-tls-san:  
-- rke-vrrp
-- 10.10.214.5
-node-taint:  
-- "CriticalAddonsOnly=true:NoExecute"
-EOF
-</code></pre><ol start="3"><li>Start &amp; enable <code>rke2-service</code></li></ol><pre><code class="language-sh">sudo systemctl enable --now rke2-server.service
-</code></pre><ol start="4"><li>Verifikasi</li></ol><pre><code class="language-sh">root@rke-master-01:~# kubectl  get node
-NAME            STATUS   ROLES                       AGE     VERSION
-rke-master-01   Ready    control-plane,etcd,master   61m     v1.31.4+rke2r1
-rke-master-02   Ready    control-plane,etcd,master   2m37s   v1.31.4+rke2r1
-rke-master-03   Ready    control-plane,etcd,master   2m9s    v1.31.4+rke2r1
-</code></pre><h2 id="join-worker-lain">Join worker lain.</h2><p>Untuk menambahkan worker ke cluster, bisa mengikuti step berikut</p><ol><li>Buat konfigurasi</li></ol><pre><code class="language-sh">mkdir -p /etc/rancher/rke2/
-cat &lt;&lt; EOF | tee /etc/rancher/rke2/config.yaml 
----
-server: https://rke-vrrp:9345
-token: &lt;token-first-master-node&gt;
-EOF
-</code></pre><ol start="2"><li>Enable &amp; start <code>rke2-agent</code></li></ol><pre><code class="language-sh">systemctl enable --now rke2-agent.service
-</code></pre><h2 id="verifikasi">Verifikasi</h2><ol><li>Pastikan seluruh node dalam keadaan <code>Ready</code></li></ol><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2025/01/image-1.png" class="kg-image" alt="" loading="lazy" width="1425" height="151" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2025/01/image-1.png 600w, https://twnb.nbtrisna.my.id/content/images/size/w1000/2025/01/image-1.png 1000w, https://twnb.nbtrisna.my.id/content/images/2025/01/image-1.png 1425w" sizes="(min-width: 720px) 720px"></figure><ol><li>Pastikan seluruh pod dalam keadaan <code>Running</code></li></ol><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2025/01/image-2.png" class="kg-image" alt="" loading="lazy" width="930" height="830" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2025/01/image-2.png 600w, https://twnb.nbtrisna.my.id/content/images/2025/01/image-2.png 930w" sizes="(min-width: 720px) 720px"></figure><h2 id="refrensi-selengkapnya">Refrensi Selengkapnya</h2><ul><li>https://docs.rke2.io/</li><li>https://kubernetes.io/</li><li>https://kube-vip.io/docs/</li></ul>
+helm install \
+  cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --create-namespace \
+  --version v1.12.0
+</code></pre><blockquote>If using static manifest</blockquote><pre><code class="language-sh">kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.0/cert-manager.yaml
+</code></pre><h2 id="usecase">Use - case</h2><p>Refrensi : https://cert-manager.io/docs/configuration/</p><h3 id="certificate-authority">Certificate Authority</h3><p>Create secret dari ca.crt, dan juga ca.key</p><pre><code class="language-yaml">kubectl create secret -n cert-manager ca-key-pair --cert xx.crt --key xx.key
+</code></pre><p>Create cluster-issuer</p><pre><code class="language-yaml">apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: ca-issuer
+spec:
+  ca:
+    secretName: ca-key-pair
+</code></pre><h4 id="acme-dns-01-using-cloudflare">ACME dns-01 using cloudflare</h4><p>Create secret, for api-token cloudflare</p><pre><code class="language-yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: cloudflare-api-token-secret
+type: Opaque
+stringData:
+  api-token: &lt;API Token&gt;
+</code></pre><p>Create cluster-issuer</p><pre><code class="language-yaml">apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: cloudflare-issuer
+spec:
+  acme:
+    ...
+    solvers:
+    - dns01:
+        cloudflare:
+          apiTokenSecretRef:
+            name: cloudflare-api-token-secret
+            key: api-token
+</code></pre><h2 id="usage">Usage</h2><h4 id="using-virtual-server-nginx-upstream">Using virtual-server nginx-upstream</h4><p>Refrensi : https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#virtualservertlscertmanager</p><p>Create virtual-server</p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: prometheus-ingress
+  namespace: monitoring
+spec:
+  tls:
+    cluster-issuer: &lt;issuer-name&gt;
+  host: prometheus.nb.lab
+  upstreams:
+  - name: prometheus-upstream
+    service: nb-kube-prometheus-stack-prometheus
+    port: 9090
+  routes:
+  - path: /
+    action:
+      pass: prometheus-upstream
+</code></pre>
         </section>
 
     </article>
@@ -475,52 +476,6 @@ EOF
                 <div class="gh-container-inner gh-inner">
                     <h2 class="gh-container-title">Read more</h2>
                     <div class="gh-feed">
-                            <article class="gh-card post">
-    <a class="gh-card-link" href="/cert-manager-k8s/">
-            <figure class="gh-card-image">
-                <img
-                    srcset="https://s3.nbtrisna.my.id/random-photo/4b9457ba-d83b-4916-8389-ec0abaedb943.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T150533Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;add1999e620d5bcb842943030847b0c79074bfc0819aa9356e883f4fdff794d4 160w,
-                            https://s3.nbtrisna.my.id/random-photo/4b9457ba-d83b-4916-8389-ec0abaedb943.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T150533Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;add1999e620d5bcb842943030847b0c79074bfc0819aa9356e883f4fdff794d4 320w,
-                            https://s3.nbtrisna.my.id/random-photo/4b9457ba-d83b-4916-8389-ec0abaedb943.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T150533Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;add1999e620d5bcb842943030847b0c79074bfc0819aa9356e883f4fdff794d4 600w,
-                            https://s3.nbtrisna.my.id/random-photo/4b9457ba-d83b-4916-8389-ec0abaedb943.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T150533Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;add1999e620d5bcb842943030847b0c79074bfc0819aa9356e883f4fdff794d4 960w,
-                            https://s3.nbtrisna.my.id/random-photo/4b9457ba-d83b-4916-8389-ec0abaedb943.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T150533Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;add1999e620d5bcb842943030847b0c79074bfc0819aa9356e883f4fdff794d4 1200w,
-                            https://s3.nbtrisna.my.id/random-photo/4b9457ba-d83b-4916-8389-ec0abaedb943.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T150533Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;add1999e620d5bcb842943030847b0c79074bfc0819aa9356e883f4fdff794d4 2000w"
-                    sizes="320px"
-                    src="https://s3.nbtrisna.my.id/random-photo/4b9457ba-d83b-4916-8389-ec0abaedb943.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T150533Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;add1999e620d5bcb842943030847b0c79074bfc0819aa9356e883f4fdff794d4"
-                    alt="cert-manager k8s"
-                    loading="lazy"
-                >
-            </figure>
-        <div class="gh-card-wrapper">
-            <h3 class="gh-card-title is-title">cert-manager k8s</h3>
-                    <p class="gh-card-excerpt is-body">Refrensi :
-
- * https://cert-manager.io/docs/installation
-
-Install Step
-
-If using helm
-
-# add repo
-helm repo add jetstack https://charts.jetstack.io
-helm repo update
-
-# install crd first
-kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.0/cert-manager.crds.yaml
-
-helm install \
-  cert-manager jetstack/cert-manager \
-  --namespace cert-manager</p>
-            <footer class="gh-card-meta">
-<!--
-             -->
-                    <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
-                    <time class="gh-card-date" datetime="2025-06-20">20 Jun 2025</time>
-                <!--
-         --></footer>
-        </div>
-    </a>
-</article>
                             <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-20-2/">
             <figure class="gh-card-image">
@@ -603,6 +558,35 @@ helm install \
              -->
                     <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
                     <time class="gh-card-date" datetime="2025-06-18">18 Jun 2025</time>
+                <!--
+         --></footer>
+        </div>
+    </a>
+</article>
+                            <article class="gh-card post">
+    <a class="gh-card-link" href="/2025-06-17/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://s3.nbtrisna.my.id/random-photo/a27c850e-689a-4c48-b15e-7504df17b4e6.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013448Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;e1ca73e77f0f3d94f8033781c122061290c70b68648d3a588c4bc45cddd03c52 160w,
+                            https://s3.nbtrisna.my.id/random-photo/a27c850e-689a-4c48-b15e-7504df17b4e6.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013448Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;e1ca73e77f0f3d94f8033781c122061290c70b68648d3a588c4bc45cddd03c52 320w,
+                            https://s3.nbtrisna.my.id/random-photo/a27c850e-689a-4c48-b15e-7504df17b4e6.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013448Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;e1ca73e77f0f3d94f8033781c122061290c70b68648d3a588c4bc45cddd03c52 600w,
+                            https://s3.nbtrisna.my.id/random-photo/a27c850e-689a-4c48-b15e-7504df17b4e6.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013448Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;e1ca73e77f0f3d94f8033781c122061290c70b68648d3a588c4bc45cddd03c52 960w,
+                            https://s3.nbtrisna.my.id/random-photo/a27c850e-689a-4c48-b15e-7504df17b4e6.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013448Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;e1ca73e77f0f3d94f8033781c122061290c70b68648d3a588c4bc45cddd03c52 1200w,
+                            https://s3.nbtrisna.my.id/random-photo/a27c850e-689a-4c48-b15e-7504df17b4e6.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013448Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;e1ca73e77f0f3d94f8033781c122061290c70b68648d3a588c4bc45cddd03c52 2000w"
+                    sizes="320px"
+                    src="https://s3.nbtrisna.my.id/random-photo/a27c850e-689a-4c48-b15e-7504df17b4e6.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013448Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;e1ca73e77f0f3d94f8033781c122061290c70b68648d3a588c4bc45cddd03c52"
+                    alt="2025-06-17"
+                    loading="lazy"
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+            <h3 class="gh-card-title is-title">2025-06-17</h3>
+                <p class="gh-card-excerpt is-body">Infrasturtucre testing in ci/cd makesure to running smoothly provisioning using terraform work realy well as expected.</p>
+            <footer class="gh-card-meta">
+<!--
+             -->
+                    <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
+                    <time class="gh-card-date" datetime="2025-06-17">17 Jun 2025</time>
                 <!--
          --></footer>
         </div>
