@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+    <title>daily-notes - twnb</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preload" as="style" href="/assets/built/screen.css?v=8299a990da">
+    <link rel="preload" as="script" href="/assets/built/source.js?v=8299a990da">
+    
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-roman.woff2?v=8299a990da" crossorigin="anonymous">
+<style>
+    @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: optional;
+        src: url(/assets/fonts/inter-roman.woff2?v=8299a990da) format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+</style>
+
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=8299a990da">
+
+    <style>
+        :root {
+            --background-color: #171717
+        }
+    </style>
+
+    <script>
+        /* The script for calculating the color contrast has been taken from
+        https://gomakethings.com/dynamically-changing-the-text-color-based-on-background-color-contrast-with-vanilla-js/ */
+        var accentColor = getComputedStyle(document.documentElement).getPropertyValue('--background-color');
+        accentColor = accentColor.trim().slice(1);
+
+        if (accentColor.length === 3) {
+            accentColor = accentColor[0] + accentColor[0] + accentColor[1] + accentColor[1] + accentColor[2] + accentColor[2];
+        }
+
+        var r = parseInt(accentColor.substr(0, 2), 16);
+        var g = parseInt(accentColor.substr(2, 2), 16);
+        var b = parseInt(accentColor.substr(4, 2), 16);
+        var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+        var textColor = (yiq >= 128) ? 'dark' : 'light';
+
+        document.documentElement.className = `has-${textColor}-text`;
+    </script>
+
+    <meta name="description" content="everyday - consistent">
+    <link rel="icon" href="https://twnb.nbtrisna.my.id/content/images/size/w256h256/2023/12/Logo-CHannel-1.png" type="image/png">
+    <link rel="canonical" href="https://twnb.nbtrisna.my.id/tag/daily-notes/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="twnb">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="daily-notes - twnb">
+    <meta property="og:description" content="everyday - consistent">
+    <meta property="og:url" content="https://twnb.nbtrisna.my.id/tag/daily-notes/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="daily-notes - twnb">
+    <meta name="twitter:description" content="everyday - consistent">
+    <meta name="twitter:url" content="https://twnb.nbtrisna.my.id/tag/daily-notes/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Series",
+    "publisher": {
+        "@type": "Organization",
+        "name": "twnb",
+        "url": "https://twnb.nbtrisna.my.id/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://twnb.nbtrisna.my.id/content/images/2024/08/logo-Primary-1.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "url": "https://twnb.nbtrisna.my.id/tag/daily-notes/",
+    "name": "daily-notes",
+    "mainEntityOfPage": "https://twnb.nbtrisna.my.id/tag/daily-notes/",
+    "description": "everyday - consistent"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.125">
+    <link rel="alternate" type="application/rss+xml" title="twnb" href="https://twnb.nbtrisna.my.id/rss/">
+    
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.5/umd/sodo-search.min.js" data-key="d8018a425f7cfc3913d46bfa03" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.5/umd/main.css" data-sodo-search="https://twnb.nbtrisna.my.id/" data-locale="id" crossorigin="anonymous"></script>
+    
+    <link href="https://twnb.nbtrisna.my.id/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=8299a990da"></script><style>:root {--ghost-accent-color: #b6bdff;}</style>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=8299a990da">
+    <meta name="google-site-verification" content="aJn625qTdbOQcWo6rLrtjWcfkTE6RlP1zdyLCECipdQ" />
+<!-- Dracula Theme for Prism (Unpkg) -->
+<link rel="stylesheet" href="https://unpkg.com/dracula-prism/dist/css/dracula-prism.css">
+
+<!-- Line Numbers Plugin CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.css">
+
+<!-- Toolbar & Copy Button CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/toolbar/prism-toolbar.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.css">
+
+<!-- Fira Code Font -->
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+
+<style>
+  /* ── Wrapper & Terminal Chrome ───────────────────────────────────────── */
+  .code-block-wrapper {
+    position: relative;
+    background: #282a36;
+    border-radius: 6px;
+    margin: 1.5rem 0;
+    font-family: 'Fira Code', monospace;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  }
+
+  /* Title bar */
+  .code-block-wrapper .title-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 1.8rem;
+    padding: 1.5rem 1rem;
+    background: #21222c;
+    color: #f8f8f2;
+    font-size: 0.85rem;
+    font-weight: 500;
+    user-select: none;
+  }
+  
+  /* MacOS style dots */
+  .code-block-wrapper .title-bar .dots {
+    display: flex;
+    gap: 6px;
+  }
+  .code-block-wrapper .title-bar .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .code-block-wrapper .title-bar .dot-red {
+    background: #ff5f56;
+  }
+  .code-block-wrapper .title-bar .dot-yellow {
+    background: #ffbd2e;
+  }
+  .code-block-wrapper .title-bar .dot-green {
+    background: #27c93f;
+  }
+
+  /* File name styling */
+  .code-block-wrapper .file-name {
+    color: #bd93f9;
+    font-weight: normal;
+    margin-left: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 50%;
+  }
+
+  /* Hide default toolbar */
+  .code-block-wrapper .code-toolbar > .toolbar {
+    display: none !important;
+  }
+
+  /* Custom copy button - hidden by default */
+  .code-block-wrapper .custom-copy-btn {
+    position: absolute;
+    top: 3rem;
+    right: 0rem;
+    background: rgba(40, 42, 54, 0.7);
+    border: 1px solid #6272a4;
+    border-radius: 3px;
+    color: #f8f8f2;
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 10;
+    font-family: 'Fira Code', monospace;
+  }
+  
+  /* Show copy button on hover */
+  .code-block-wrapper:hover .custom-copy-btn {
+    opacity: 1;
+  }
+  
+  .code-block-wrapper .custom-copy-btn:hover {
+    background: rgba(68, 71, 90, 0.7);
+  }
+
+  /* Line numbers adjustments */
+  pre.line-numbers {
+    margin: 0;
+    padding-top: 2.2rem !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  /* Dynamic padding for line numbers */
+  pre.line-numbers[data-line] {
+    padding-left: 3.5rem !important; /* Default for 1-9 lines */
+  }
+  
+  pre.line-numbers[data-line="10"] {
+    padding-left: 3.8rem !important; /* 10-99 lines */
+  }
+  
+  pre.line-numbers[data-line="100"] {
+    padding-left: 4.2rem !important; /* 100-999 lines */
+  }
+  
+  /* Adjust line numbers position */
+  .line-numbers .line-numbers-rows {
+    top: 2.2rem !important;
+    width: auto !important;
+    padding: 0 0.5rem;
+    background: rgba(40, 42, 54, 0.5);
+  }
+  
+  /* Adjust code padding */
+  pre[class*="language-"] {
+    padding-top: 2.2rem !important;
+    padding-bottom: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Better line number visibility */
+  .line-numbers .line-numbers-rows > span:before {
+    color: #6272a4 !important;
+    padding-right: 1rem;
+  }
+
+
+    /* BEGIN IMAGE POST EDIT */
+  .gh-article-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+  
+  /* Gambar */
+  .gh-article-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 6px;
+  }
+  
+  /* Figcaption normal di bawah */
+  .gh-article-image figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    font-style: italic;
+    line-height: 1.5;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    backdrop-filter: blur(2px);
+    z-index: 1;
+  }
+
+</style>
+    <style>
+.gh-archive-inner {
+  position: relative;
+  background-image: url('https://s3.nbtrisna.my.id/random-photo/8de3429f-c728-4cbb-992e-4a53fc1d4244.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250618T173031Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=5a11ab71ebf5882d0ec8afb648e1aaa42a003e5f84738f1e27b2fa4e9cad6840');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 8rem 2rem;
+  overflow: hidden;
+  border: none;          /* pastiin ga ada border */
+  outline: none;         /* pastiin ga ada outline */
+  box-shadow: none;      /* ilangin shadow aneh */
+}
+
+.gh-archive-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0; /* full cover */
+  background: black;
+  opacity: 0.4;
+  z-index: 0;
+  pointer-events: none;
+  border: none;
+}
+
+.gh-archive-wrapper {
+  position: relative;
+  z-index: 1;
+}
+</style>
+    <link rel="preconnect" href="https://fonts.bunny.net"><link rel="stylesheet" href="https://fonts.bunny.net/css?family=noto-sans:400,700|space-mono:400,700"><style>:root {--gh-font-heading: Noto Sans;--gh-font-body: Space Mono;}</style>
+
+</head>
+<body class="tag-template tag-daily-notes gh-font-heading-noto-sans gh-font-body-space-mono has-sans-title has-sans-body">
+
+<div class="gh-viewport">
+    
+    <header id="gh-navigation" class="gh-navigation is-left-logo gh-outer">
+    <div class="gh-navigation-inner gh-inner">
+
+        <div class="gh-navigation-brand">
+            <a class="gh-navigation-logo is-title" href="https://twnb.nbtrisna.my.id">
+                    <img src="https://twnb.nbtrisna.my.id/content/images/2024/08/logo-Primary-1.png" alt="twnb">
+            </a>
+            <button class="gh-search gh-icon-button" aria-label="Search this site" data-ghost-search>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>            <button class="gh-burger gh-icon-button" aria-label="Menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path></svg>                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg>            </button>
+        </div>
+
+        <nav class="gh-navigation-menu">
+            <ul class="nav">
+    <li class="nav-home"><a href="https://twnb.nbtrisna.my.id/">Home</a></li>
+    <li class="nav-daily-notes nav-current"><a href="https://twnb.nbtrisna.my.id/tag/daily-notes/">Daily Notes</a></li>
+    <li class="nav-blog"><a href="https://twnb.nbtrisna.my.id/tag/catatan/">Blog</a></li>
+    <li class="nav-about"><a href="https://twnb.nbtrisna.my.id/about/">About</a></li>
+</ul>
+
+        </nav>
+
+        <div class="gh-navigation-actions">
+                    <button class="gh-search gh-icon-button" aria-label="Search this site" data-ghost-search>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>        </div>
+
+    </div>
+</header>
+
+    
+<main class="gh-main gh-outer">
+
+        <section class="gh-archive gh-inner">
+            <div class="gh-archive-inner">
+                <header class="gh-archive-wrapper">
+                    <h1 class="gh-article-title is-title">daily-notes</h1>
+                        <p class="gh-article-excerpt">everyday - consistent</p>
+                </header>
+                            </div>
+        </section>
+
+    
+<section class="gh-container is-grid no-image gh-outer">
+    <div class="gh-container-inner gh-inner">
+        
+
+        <main class="gh-main">
+            <div class="gh-feed">
+
+
+
+                        <article class="gh-card post tag-daily-notes tag-aws no-image">
+    <a class="gh-card-link" href="/2025-06-20-2/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://s3.nbtrisna.my.id/random-photo/c013051c-eacc-4e5b-aad0-b7d24254512c.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T030430Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;690ee3d6e37101ceffee4d1b4f27dde92ec65fc9e1df40793aa6f21759f9e423 160w,
+                            https://s3.nbtrisna.my.id/random-photo/c013051c-eacc-4e5b-aad0-b7d24254512c.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T030430Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;690ee3d6e37101ceffee4d1b4f27dde92ec65fc9e1df40793aa6f21759f9e423 320w,
+                            https://s3.nbtrisna.my.id/random-photo/c013051c-eacc-4e5b-aad0-b7d24254512c.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T030430Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;690ee3d6e37101ceffee4d1b4f27dde92ec65fc9e1df40793aa6f21759f9e423 600w,
+                            https://s3.nbtrisna.my.id/random-photo/c013051c-eacc-4e5b-aad0-b7d24254512c.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T030430Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;690ee3d6e37101ceffee4d1b4f27dde92ec65fc9e1df40793aa6f21759f9e423 960w,
+                            https://s3.nbtrisna.my.id/random-photo/c013051c-eacc-4e5b-aad0-b7d24254512c.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T030430Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;690ee3d6e37101ceffee4d1b4f27dde92ec65fc9e1df40793aa6f21759f9e423 1200w,
+                            https://s3.nbtrisna.my.id/random-photo/c013051c-eacc-4e5b-aad0-b7d24254512c.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T030430Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;690ee3d6e37101ceffee4d1b4f27dde92ec65fc9e1df40793aa6f21759f9e423 2000w"
+                    sizes="320px"
+                    src="https://s3.nbtrisna.my.id/random-photo/c013051c-eacc-4e5b-aad0-b7d24254512c.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250620T030430Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;690ee3d6e37101ceffee4d1b4f27dde92ec65fc9e1df40793aa6f21759f9e423"
+                    alt="2025-06-20"
+                    loading="lazy"
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+                <p class="gh-card-tag">daily-notes</p>
+            <h3 class="gh-card-title is-title">2025-06-20</h3>
+                <p class="gh-card-excerpt is-body">Learn about basic VPC, subnet, IGW (Internet Gateway), SG (Security Group), and EC2 using AWS Free Tier.</p>
+            <footer class="gh-card-meta">
+<!--
+             -->
+                    <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
+                    <time class="gh-card-date" datetime="2025-06-20">20 Jun 2025</time>
+                <!--
+         --></footer>
+        </div>
+    </a>
+</article>
+                        <article class="gh-card post tag-daily-notes no-image">
+    <a class="gh-card-link" href="/2025-06-19/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://s3.nbtrisna.my.id/random-photo/4f5ccae1-9f93-412d-ae30-0e17ff29fd77.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T171340Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;dc854b2a76577fac2b7585d0f4d23062752e75bbfc9226b7ea9b035462bcb62d 160w,
+                            https://s3.nbtrisna.my.id/random-photo/4f5ccae1-9f93-412d-ae30-0e17ff29fd77.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T171340Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;dc854b2a76577fac2b7585d0f4d23062752e75bbfc9226b7ea9b035462bcb62d 320w,
+                            https://s3.nbtrisna.my.id/random-photo/4f5ccae1-9f93-412d-ae30-0e17ff29fd77.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T171340Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;dc854b2a76577fac2b7585d0f4d23062752e75bbfc9226b7ea9b035462bcb62d 600w,
+                            https://s3.nbtrisna.my.id/random-photo/4f5ccae1-9f93-412d-ae30-0e17ff29fd77.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T171340Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;dc854b2a76577fac2b7585d0f4d23062752e75bbfc9226b7ea9b035462bcb62d 960w,
+                            https://s3.nbtrisna.my.id/random-photo/4f5ccae1-9f93-412d-ae30-0e17ff29fd77.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T171340Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;dc854b2a76577fac2b7585d0f4d23062752e75bbfc9226b7ea9b035462bcb62d 1200w,
+                            https://s3.nbtrisna.my.id/random-photo/4f5ccae1-9f93-412d-ae30-0e17ff29fd77.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T171340Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;dc854b2a76577fac2b7585d0f4d23062752e75bbfc9226b7ea9b035462bcb62d 2000w"
+                    sizes="320px"
+                    src="https://s3.nbtrisna.my.id/random-photo/4f5ccae1-9f93-412d-ae30-0e17ff29fd77.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T171340Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;dc854b2a76577fac2b7585d0f4d23062752e75bbfc9226b7ea9b035462bcb62d"
+                    alt="2025-06-19"
+                    loading="lazy"
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+                <p class="gh-card-tag">daily-notes</p>
+            <h3 class="gh-card-title is-title">2025-06-19</h3>
+                <p class="gh-card-excerpt is-body">Create pipeline with lint &amp; unit test, terraform, iaac testing (using &#x60;terratest&#x60;), Docker Build &amp; Security Scan (Trivy), Deploy and Smoke Test</p>
+            <footer class="gh-card-meta">
+<!--
+             -->
+                    <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
+                    <time class="gh-card-date" datetime="2025-06-19">19 Jun 2025</time>
+                <!--
+         --></footer>
+        </div>
+    </a>
+</article>
+                        <article class="gh-card post tag-daily-notes no-image">
+    <a class="gh-card-link" href="/2025-06-18/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://s3.nbtrisna.my.id/random-photo/1216a7b4-9740-4b62-88ff-9d3d1ca8fbe7.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013523Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;8bf71c10f8af55cfe1a3593324d965a61b052286e2c9b8a4f1eaec0d74e02672 160w,
+                            https://s3.nbtrisna.my.id/random-photo/1216a7b4-9740-4b62-88ff-9d3d1ca8fbe7.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013523Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;8bf71c10f8af55cfe1a3593324d965a61b052286e2c9b8a4f1eaec0d74e02672 320w,
+                            https://s3.nbtrisna.my.id/random-photo/1216a7b4-9740-4b62-88ff-9d3d1ca8fbe7.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013523Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;8bf71c10f8af55cfe1a3593324d965a61b052286e2c9b8a4f1eaec0d74e02672 600w,
+                            https://s3.nbtrisna.my.id/random-photo/1216a7b4-9740-4b62-88ff-9d3d1ca8fbe7.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013523Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;8bf71c10f8af55cfe1a3593324d965a61b052286e2c9b8a4f1eaec0d74e02672 960w,
+                            https://s3.nbtrisna.my.id/random-photo/1216a7b4-9740-4b62-88ff-9d3d1ca8fbe7.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013523Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;8bf71c10f8af55cfe1a3593324d965a61b052286e2c9b8a4f1eaec0d74e02672 1200w,
+                            https://s3.nbtrisna.my.id/random-photo/1216a7b4-9740-4b62-88ff-9d3d1ca8fbe7.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013523Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;8bf71c10f8af55cfe1a3593324d965a61b052286e2c9b8a4f1eaec0d74e02672 2000w"
+                    sizes="320px"
+                    src="https://s3.nbtrisna.my.id/random-photo/1216a7b4-9740-4b62-88ff-9d3d1ca8fbe7.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013523Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;8bf71c10f8af55cfe1a3593324d965a61b052286e2c9b8a4f1eaec0d74e02672"
+                    alt="2025-06-18"
+                    loading="lazy"
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+                <p class="gh-card-tag">daily-notes</p>
+            <h3 class="gh-card-title is-title">2025-06-18</h3>
+                <p class="gh-card-excerpt is-body">Performance optimization in ci/cd pipeline focus on faster build &amp; test for example using feature like caching, and pararel jobs</p>
+            <footer class="gh-card-meta">
+<!--
+             -->
+                    <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
+                    <time class="gh-card-date" datetime="2025-06-18">18 Jun 2025</time>
+                <!--
+         --></footer>
+        </div>
+    </a>
+</article>
+                        <article class="gh-card post tag-daily-notes no-image">
+    <a class="gh-card-link" href="/2025-06-17/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://s3.nbtrisna.my.id/random-photo/a27c850e-689a-4c48-b15e-7504df17b4e6.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013448Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;e1ca73e77f0f3d94f8033781c122061290c70b68648d3a588c4bc45cddd03c52 160w,
+                            https://s3.nbtrisna.my.id/random-photo/a27c850e-689a-4c48-b15e-7504df17b4e6.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013448Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;e1ca73e77f0f3d94f8033781c122061290c70b68648d3a588c4bc45cddd03c52 320w,
+                            https://s3.nbtrisna.my.id/random-photo/a27c850e-689a-4c48-b15e-7504df17b4e6.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013448Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;e1ca73e77f0f3d94f8033781c122061290c70b68648d3a588c4bc45cddd03c52 600w,
+                            https://s3.nbtrisna.my.id/random-photo/a27c850e-689a-4c48-b15e-7504df17b4e6.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013448Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;e1ca73e77f0f3d94f8033781c122061290c70b68648d3a588c4bc45cddd03c52 960w,
+                            https://s3.nbtrisna.my.id/random-photo/a27c850e-689a-4c48-b15e-7504df17b4e6.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013448Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;e1ca73e77f0f3d94f8033781c122061290c70b68648d3a588c4bc45cddd03c52 1200w,
+                            https://s3.nbtrisna.my.id/random-photo/a27c850e-689a-4c48-b15e-7504df17b4e6.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013448Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;e1ca73e77f0f3d94f8033781c122061290c70b68648d3a588c4bc45cddd03c52 2000w"
+                    sizes="320px"
+                    src="https://s3.nbtrisna.my.id/random-photo/a27c850e-689a-4c48-b15e-7504df17b4e6.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013448Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;e1ca73e77f0f3d94f8033781c122061290c70b68648d3a588c4bc45cddd03c52"
+                    alt="2025-06-17"
+                    loading="lazy"
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+                <p class="gh-card-tag">daily-notes</p>
+            <h3 class="gh-card-title is-title">2025-06-17</h3>
+                <p class="gh-card-excerpt is-body">Infrasturtucre testing in ci/cd makesure to running smoothly provisioning using terraform work realy well as expected.</p>
+            <footer class="gh-card-meta">
+<!--
+             -->
+                    <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
+                    <time class="gh-card-date" datetime="2025-06-17">17 Jun 2025</time>
+                <!--
+         --></footer>
+        </div>
+    </a>
+</article>
+                        <article class="gh-card post tag-daily-notes no-image">
+    <a class="gh-card-link" href="/2025-06-16/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://s3.nbtrisna.my.id/random-photo/f084ad03-08df-451f-b94a-f1c574092fd5.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013425Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;7def8d535af3c3e0c1de34ee4e5408c2ce6b0fee7b8dac498aba45d81d190f25 160w,
+                            https://s3.nbtrisna.my.id/random-photo/f084ad03-08df-451f-b94a-f1c574092fd5.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013425Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;7def8d535af3c3e0c1de34ee4e5408c2ce6b0fee7b8dac498aba45d81d190f25 320w,
+                            https://s3.nbtrisna.my.id/random-photo/f084ad03-08df-451f-b94a-f1c574092fd5.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013425Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;7def8d535af3c3e0c1de34ee4e5408c2ce6b0fee7b8dac498aba45d81d190f25 600w,
+                            https://s3.nbtrisna.my.id/random-photo/f084ad03-08df-451f-b94a-f1c574092fd5.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013425Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;7def8d535af3c3e0c1de34ee4e5408c2ce6b0fee7b8dac498aba45d81d190f25 960w,
+                            https://s3.nbtrisna.my.id/random-photo/f084ad03-08df-451f-b94a-f1c574092fd5.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013425Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;7def8d535af3c3e0c1de34ee4e5408c2ce6b0fee7b8dac498aba45d81d190f25 1200w,
+                            https://s3.nbtrisna.my.id/random-photo/f084ad03-08df-451f-b94a-f1c574092fd5.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013425Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;7def8d535af3c3e0c1de34ee4e5408c2ce6b0fee7b8dac498aba45d81d190f25 2000w"
+                    sizes="320px"
+                    src="https://s3.nbtrisna.my.id/random-photo/f084ad03-08df-451f-b94a-f1c574092fd5.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013425Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;7def8d535af3c3e0c1de34ee4e5408c2ce6b0fee7b8dac498aba45d81d190f25"
+                    alt="2025-06-16"
+                    loading="lazy"
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+                <p class="gh-card-tag">daily-notes</p>
+            <h3 class="gh-card-title is-title">2025-06-16</h3>
+                <p class="gh-card-excerpt is-body">Observability &amp; monitoring is key to understand about application and infrastructure healty in real-time</p>
+            <footer class="gh-card-meta">
+<!--
+             -->
+                    <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
+                    <time class="gh-card-date" datetime="2025-06-16">16 Jun 2025</time>
+                <!--
+         --></footer>
+        </div>
+    </a>
+</article>
+                        <article class="gh-card post tag-daily-notes no-image">
+    <a class="gh-card-link" href="/2025-06-15/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://s3.nbtrisna.my.id/random-photo/33007585-d26e-4531-bb9f-b536e99fc1ed.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013352Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;9ad68c8a59611b1a5f79809f19228cc9f03f1d814f82458f46fe271605ff1595 160w,
+                            https://s3.nbtrisna.my.id/random-photo/33007585-d26e-4531-bb9f-b536e99fc1ed.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013352Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;9ad68c8a59611b1a5f79809f19228cc9f03f1d814f82458f46fe271605ff1595 320w,
+                            https://s3.nbtrisna.my.id/random-photo/33007585-d26e-4531-bb9f-b536e99fc1ed.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013352Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;9ad68c8a59611b1a5f79809f19228cc9f03f1d814f82458f46fe271605ff1595 600w,
+                            https://s3.nbtrisna.my.id/random-photo/33007585-d26e-4531-bb9f-b536e99fc1ed.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013352Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;9ad68c8a59611b1a5f79809f19228cc9f03f1d814f82458f46fe271605ff1595 960w,
+                            https://s3.nbtrisna.my.id/random-photo/33007585-d26e-4531-bb9f-b536e99fc1ed.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013352Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;9ad68c8a59611b1a5f79809f19228cc9f03f1d814f82458f46fe271605ff1595 1200w,
+                            https://s3.nbtrisna.my.id/random-photo/33007585-d26e-4531-bb9f-b536e99fc1ed.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013352Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;9ad68c8a59611b1a5f79809f19228cc9f03f1d814f82458f46fe271605ff1595 2000w"
+                    sizes="320px"
+                    src="https://s3.nbtrisna.my.id/random-photo/33007585-d26e-4531-bb9f-b536e99fc1ed.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013352Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;9ad68c8a59611b1a5f79809f19228cc9f03f1d814f82458f46fe271605ff1595"
+                    alt="2025-06-15"
+                    loading="lazy"
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+                <p class="gh-card-tag">daily-notes</p>
+            <h3 class="gh-card-title is-title">2025-06-15</h3>
+                <p class="gh-card-excerpt is-body">Github actions, you can configure your workflows to run when spesific activity on github happens, schedule thime, or when event outside github occurs</p>
+            <footer class="gh-card-meta">
+<!--
+             -->
+                    <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
+                    <time class="gh-card-date" datetime="2025-06-15">15 Jun 2025</time>
+                <!--
+         --></footer>
+        </div>
+    </a>
+</article>
+                        <article class="gh-card post tag-daily-notes no-image">
+    <a class="gh-card-link" href="/2025-06-14/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://s3.nbtrisna.my.id/random-photo/7e387b5f-4aaf-40ab-be51-201d9d13b758.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013308Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;7d423c8c13c196fca211bcf2645d5b4e02d162ef935425bf2b7e4d52a0de1e02 160w,
+                            https://s3.nbtrisna.my.id/random-photo/7e387b5f-4aaf-40ab-be51-201d9d13b758.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013308Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;7d423c8c13c196fca211bcf2645d5b4e02d162ef935425bf2b7e4d52a0de1e02 320w,
+                            https://s3.nbtrisna.my.id/random-photo/7e387b5f-4aaf-40ab-be51-201d9d13b758.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013308Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;7d423c8c13c196fca211bcf2645d5b4e02d162ef935425bf2b7e4d52a0de1e02 600w,
+                            https://s3.nbtrisna.my.id/random-photo/7e387b5f-4aaf-40ab-be51-201d9d13b758.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013308Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;7d423c8c13c196fca211bcf2645d5b4e02d162ef935425bf2b7e4d52a0de1e02 960w,
+                            https://s3.nbtrisna.my.id/random-photo/7e387b5f-4aaf-40ab-be51-201d9d13b758.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013308Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;7d423c8c13c196fca211bcf2645d5b4e02d162ef935425bf2b7e4d52a0de1e02 1200w,
+                            https://s3.nbtrisna.my.id/random-photo/7e387b5f-4aaf-40ab-be51-201d9d13b758.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013308Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;7d423c8c13c196fca211bcf2645d5b4e02d162ef935425bf2b7e4d52a0de1e02 2000w"
+                    sizes="320px"
+                    src="https://s3.nbtrisna.my.id/random-photo/7e387b5f-4aaf-40ab-be51-201d9d13b758.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013308Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;7d423c8c13c196fca211bcf2645d5b4e02d162ef935425bf2b7e4d52a0de1e02"
+                    alt="2025-06-14"
+                    loading="lazy"
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+                <p class="gh-card-tag">daily-notes</p>
+            <h3 class="gh-card-title is-title">2025-06-14</h3>
+                <p class="gh-card-excerpt is-body">Workflow running jobs parrarel by default. To run jobs sequentially, you need to define other jobs using the jobs.&lt;job_id&gt;.needs keyword</p>
+            <footer class="gh-card-meta">
+<!--
+             -->
+                    <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
+                    <time class="gh-card-date" datetime="2025-06-14">14 Jun 2025</time>
+                <!--
+         --></footer>
+        </div>
+    </a>
+</article>
+                        <article class="gh-card post tag-daily-notes no-image">
+    <a class="gh-card-link" href="/2025-06-18-2/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://s3.nbtrisna.my.id/random-photo/a65b6633-4d49-45a4-a74b-9de577e4b16f.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013237Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;dbb60c8d4ae44012f57732bbf3e132a56db359f38b4e9e83158e18d4930f3d46 160w,
+                            https://s3.nbtrisna.my.id/random-photo/a65b6633-4d49-45a4-a74b-9de577e4b16f.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013237Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;dbb60c8d4ae44012f57732bbf3e132a56db359f38b4e9e83158e18d4930f3d46 320w,
+                            https://s3.nbtrisna.my.id/random-photo/a65b6633-4d49-45a4-a74b-9de577e4b16f.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013237Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;dbb60c8d4ae44012f57732bbf3e132a56db359f38b4e9e83158e18d4930f3d46 600w,
+                            https://s3.nbtrisna.my.id/random-photo/a65b6633-4d49-45a4-a74b-9de577e4b16f.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013237Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;dbb60c8d4ae44012f57732bbf3e132a56db359f38b4e9e83158e18d4930f3d46 960w,
+                            https://s3.nbtrisna.my.id/random-photo/a65b6633-4d49-45a4-a74b-9de577e4b16f.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013237Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;dbb60c8d4ae44012f57732bbf3e132a56db359f38b4e9e83158e18d4930f3d46 1200w,
+                            https://s3.nbtrisna.my.id/random-photo/a65b6633-4d49-45a4-a74b-9de577e4b16f.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013237Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;dbb60c8d4ae44012f57732bbf3e132a56db359f38b4e9e83158e18d4930f3d46 2000w"
+                    sizes="320px"
+                    src="https://s3.nbtrisna.my.id/random-photo/a65b6633-4d49-45a4-a74b-9de577e4b16f.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013237Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;dbb60c8d4ae44012f57732bbf3e132a56db359f38b4e9e83158e18d4930f3d46"
+                    alt="2025-06-13"
+                    loading="lazy"
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+                <p class="gh-card-tag">daily-notes</p>
+            <h3 class="gh-card-title is-title">2025-06-13</h3>
+                <p class="gh-card-excerpt is-body">In CI/CD world, environment variables and secret is key to storing value without writing directly to yaml files. It&#x27;s possible to manage credentials, versioning, and configure build according to the needs</p>
+            <footer class="gh-card-meta">
+<!--
+             -->
+                    <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
+                    <time class="gh-card-date" datetime="2025-06-13">13 Jun 2025</time>
+                <!--
+         --></footer>
+        </div>
+    </a>
+</article>
+                        <article class="gh-card post tag-daily-notes no-image">
+    <a class="gh-card-link" href="/2025-06-12/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://s3.nbtrisna.my.id/random-photo/0bed499d-a9ba-4c97-8426-b0c3546b9103.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013155Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;aa5dc519e1f8fb7a956a8c8ec208e2185d2d337d06c5a3bee75b7097bcc3825a 160w,
+                            https://s3.nbtrisna.my.id/random-photo/0bed499d-a9ba-4c97-8426-b0c3546b9103.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013155Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;aa5dc519e1f8fb7a956a8c8ec208e2185d2d337d06c5a3bee75b7097bcc3825a 320w,
+                            https://s3.nbtrisna.my.id/random-photo/0bed499d-a9ba-4c97-8426-b0c3546b9103.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013155Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;aa5dc519e1f8fb7a956a8c8ec208e2185d2d337d06c5a3bee75b7097bcc3825a 600w,
+                            https://s3.nbtrisna.my.id/random-photo/0bed499d-a9ba-4c97-8426-b0c3546b9103.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013155Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;aa5dc519e1f8fb7a956a8c8ec208e2185d2d337d06c5a3bee75b7097bcc3825a 960w,
+                            https://s3.nbtrisna.my.id/random-photo/0bed499d-a9ba-4c97-8426-b0c3546b9103.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013155Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;aa5dc519e1f8fb7a956a8c8ec208e2185d2d337d06c5a3bee75b7097bcc3825a 1200w,
+                            https://s3.nbtrisna.my.id/random-photo/0bed499d-a9ba-4c97-8426-b0c3546b9103.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013155Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;aa5dc519e1f8fb7a956a8c8ec208e2185d2d337d06c5a3bee75b7097bcc3825a 2000w"
+                    sizes="320px"
+                    src="https://s3.nbtrisna.my.id/random-photo/0bed499d-a9ba-4c97-8426-b0c3546b9103.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T013155Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;aa5dc519e1f8fb7a956a8c8ec208e2185d2d337d06c5a3bee75b7097bcc3825a"
+                    alt="2025-06-12"
+                    loading="lazy"
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+                <p class="gh-card-tag">daily-notes</p>
+            <h3 class="gh-card-title is-title">2025-06-12</h3>
+                <p class="gh-card-excerpt is-body">OpenTofu is fork from opensource terraform tool for infrastructure as a code. This tool allow to define infrastructure to human readable file .tf so you can manage consistant infrastructure throught lifesycle.</p>
+            <footer class="gh-card-meta">
+<!--
+             -->
+                    <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
+                    <time class="gh-card-date" datetime="2025-06-12">12 Jun 2025</time>
+                <!--
+         --></footer>
+        </div>
+    </a>
+</article>
+
+            </div>
+
+        </main>
+
+
+    </div>
+</section>
+</main>
+    
+    <footer class="gh-footer gh-outer">
+    <div class="gh-footer-inner gh-inner">
+
+        <div class="gh-footer-bar">
+            <span class="gh-footer-logo is-title">
+                    <img src="https://twnb.nbtrisna.my.id/content/images/2024/08/logo-Primary-1.png" alt="twnb">
+            </span>
+            <nav class="gh-footer-menu">
+                
+            </nav>
+            <div class="gh-footer-copyright">
+                Powered by <a href="https://ghost.org/" target="_blank" rel="noopener">Ghost</a>
+            </div>
+        </div>
+
+
+    </div>
+</footer>    
+</div>
+
+
+<script src="/assets/built/source.js?v=8299a990da"></script>
+
+<!-- Prism Core & Components -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-yaml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-json.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-typescript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-docker.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("pre").forEach(pre => {
+    const code = pre.querySelector("code");
+    if (!code) return;
+
+    // 1) Ensure line-numbers
+    pre.classList.add("line-numbers");
+
+    // 2) Wrap with terminal chrome
+    const wrapper = document.createElement("div");
+    wrapper.className = "code-block-wrapper";
+    pre.parentNode.insertBefore(wrapper, pre);
+    wrapper.appendChild(pre);
+
+    // 3) Extract file name from class
+    let fileName = null;
+    const fileNameMatch = code.className.match(/file:([^\s]+)/);
+    if (fileNameMatch) {
+      fileName = fileNameMatch[1];
+      // Remove file class to prevent conflicts
+      code.className = code.className.replace(fileNameMatch[0], "");
+    }
+
+    // 4) Get language
+    const langMatch = code.className.match(/language-([a-zA-Z0-9]+)/);
+    const lang = langMatch ? langMatch[1].toUpperCase() : "CODE";
+    
+    // Create custom copy button
+    const copyBtn = document.createElement("button");
+    copyBtn.className = "custom-copy-btn";
+    copyBtn.textContent = "Copy";
+    copyBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      navigator.clipboard.writeText(code.textContent);
+      const originalText = copyBtn.textContent;
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => {
+        copyBtn.textContent = originalText;
+      }, 2000);
+    });
+
+    // Create title bar with MacOS style dots
+    const bar = document.createElement("div");
+    bar.className = "title-bar";
+    
+    // Add file name if exists
+    let titleContent = `
+      <div class="dots">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+      </div>
+      <span class="name">${lang}</span>
+    `;
+    
+    if (fileName) {
+      titleContent += `<span class="file-name">${fileName}</span>`;
+    }
+    
+    bar.innerHTML = titleContent;
+    
+    wrapper.insertBefore(bar, pre);
+    wrapper.appendChild(copyBtn);
+    
+    // Add data-line attribute for dynamic padding
+    const lineCount = pre.textContent.split('\n').length;
+    pre.setAttribute('data-line', lineCount);
+  });
+
+  Prism.highlightAll();
+  
+  // Adjust line numbers after highlighting
+  setTimeout(() => {
+    document.querySelectorAll('pre.line-numbers').forEach(pre => {
+      const lineNumbers = pre.querySelector('.line-numbers-rows');
+      if (lineNumbers) {
+        // Set dynamic width based on line count
+        const lines = pre.textContent.split('\n').length;
+        const digits = Math.floor(Math.log10(lines)) + 1;
+        lineNumbers.style.width = `${digits * 0.8 + 2}em`;
+      }
+    });
+  }, 100);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const footer = document.querySelector('.gh-footer-copyright');
+  if (footer) {
+    footer.textContent = '© 2025 TWNB. All rights reserved.';
+  }
+});
+</script>
+
+</body>
+</html>

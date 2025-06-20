@@ -1,0 +1,1651 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[twnb]]></title><description><![CDATA[Tech with Ngurah Bagus]]></description><link>https://twnb.nbtrisna.my.id/</link><image><url>https://twnb.nbtrisna.my.id/favicon.png</url><title>twnb</title><link>https://twnb.nbtrisna.my.id/</link></image><generator>Ghost 5.125</generator><lastBuildDate>Fri, 20 Jun 2025 11:35:50 GMT</lastBuildDate><atom:link href="https://twnb.nbtrisna.my.id/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[2025-06-20]]></title><description><![CDATA[Learn about basic VPC, subnet, IGW (Internet Gateway), SG (Security Group), and EC2 using AWS Free Tier.]]></description><link>https://twnb.nbtrisna.my.id/2025-06-20-2/</link><guid isPermaLink="false">68553175aadfe60001337503</guid><category><![CDATA[daily-notes]]></category><category><![CDATA[aws]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Fri, 20 Jun 2025 10:02:01 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/c013051c-eacc-4e5b-aad0-b7d24254512c.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250620T030430Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=690ee3d6e37101ceffee4d1b4f27dde92ec65fc9e1df40793aa6f21759f9e423" medium="image"/><content:encoded><![CDATA[<h3 id="learn-aws-vpc">Learn AWS VPC</h3><img src="https://s3.nbtrisna.my.id/random-photo/c013051c-eacc-4e5b-aad0-b7d24254512c.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250620%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250620T030430Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=690ee3d6e37101ceffee4d1b4f27dde92ec65fc9e1df40793aa6f21759f9e423" alt="2025-06-20"><p><em>With amazon <code>virtual private cloud (VPC)</code>, you can launch aws resources in logicaly. isolated virtual network</em></p><p>Reference :</p><ul><li><a href="https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html?ref=twnb.nbtrisna.my.id">What is Amazon VPC?</a></li></ul><figure class="kg-card kg-image-card"><img src="https://docs.aws.amazon.com/images/vpc/latest/userguide/images/how-it-works.png" class="kg-image" alt="2025-06-20" loading="lazy" width="521" height="311"></figure><p><strong>Explanation</strong> :</p><ul><li><strong>VPC</strong> : isolated private network, that closely resembles a traditional network that you&apos;d operate in own data center.</li><li><strong>Subnet</strong> : After create <code>VPC</code>, then we can set range of IP Address in your VPC. A subnet must reside in single <code>Availibilty Zone</code>. After youadd subnets, you can deploy AWS resources in VPC.</li><li><strong>Internet Gateway</strong> : Gateway connect vpc to another network, for example if you want to connect all resources in VPC to internet, you nedd a <code>internet-gateway</code></li><li><strong>Route Tables</strong> : Route table containts set of rules, called route. That are used to determine where network from your VPC is directed.</li></ul><h2 id="daily-quest-1-aws-free-tier-kickoff">Daily Quest #1: AWS Free Tier Kickoff</h2><blockquote>Learn about basic VPC, subnet, IGW (Internet Gateway), SG (Security Group), and EC2 using AWS Free Tier. Because i don&apos;t have AWS account, i need to <a href="https://signin.aws.amazon.com/signup?request_type=register&amp;ref=twnb.nbtrisna.my.id">sign up</a> After login to account, makesure to enable 2FA for security reason.</blockquote><p>Reference :</p><ul><li>https://docs.aws.amazon.com/location/latest/developerguide/set-up.html</li></ul><h3 id="setup-iam-user">Setup IAM User</h3><blockquote>Instead login using <code>root_user</code>, AWS recomend to login using IAM user.</blockquote><p>I want to setup <em>IAM user</em> first, navigate to <code>Menu &gt; Security, Identitiy &amp; Compliance &gt; IAM</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620143242.png" class="kg-image" alt="2025-06-20" loading="lazy" width="1154" height="971"></figure><p>in IAM Dashboard, navigate to <code>User &gt; Create User</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620143708.png" class="kg-image" alt="2025-06-20" loading="lazy" width="1877" height="537"></figure><p>Then follow the step to create new IAM User. After all user details correct, click next</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620144230.png" class="kg-image" alt="2025-06-20" loading="lazy" width="1708" height="866"></figure><p>I think i don&apos;t need to create new group for my aws account, so i prefer to attach policy directly to <code>AdministratorAccess</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620144403.png" class="kg-image" alt="2025-06-20" loading="lazy" width="1716" height="661"></figure><p>After creating new IAM user, next login makesure to login using IAM user.</p><h3 id="aws-cli">AWS CLI</h3><blockquote>command line interface to manage all AWS Resources.</blockquote><p>Reference :</p><ul><li>https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html</li></ul><p>Installing on macOs</p><pre><code class="language-sh">curl &quot;https://awscli.amazonaws.com/AWSCLIV2.pkg&quot; -o &quot;AWSCLIV2.pkg&quot;
+sudo installer -pkg AWSCLIV2.pkg -target /
+
+# Setup auto complate
+vim ~/.zshrc
+---
+# Endfile
+autoload bashcompinit &amp;&amp; bashcompinit
+autoload -Uz compinit &amp;&amp; compinit
+complete -C &apos;/usr/local/bin/aws_completer&apos; aws
+</code></pre><p>Next create access key. Navigate to <code>IAM &gt; Users</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620153259.png" class="kg-image" alt="2025-06-20" loading="lazy" width="1123" height="223"></figure><p>Then select your user, <code>Security Credentials &gt; Create Access Key</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620153509.png" class="kg-image" alt="2025-06-20" loading="lazy" width="1536" height="831"></figure><p>Then select <code>Command Line Interface (CLI)</code> and makesure you backup <code>aws_access_key_id</code> and <code>aws_secret_access</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620153556.png" class="kg-image" alt="2025-06-20" loading="lazy" width="1293" height="807"></figure><p>To login, exec below in terminal</p><pre><code class="language-sh">aws configure
+</code></pre><blockquote>You need to input <code>aws_access_key_id</code> and <code>aws_secret_access</code> previously you generate.</blockquote><h3 id="setup-vpc">Setup VPC</h3><p>So first i want to create testing virtual machine, but before we provisioning VM (EC2), we need to setup VPC.</p><ol><li>Create VPC with <code>10.0.0.0/16</code></li></ol><blockquote>VPC is your private network. It&apos;s isolated from anything network or internet</blockquote><pre><code class="language-sh">VPC_ID=$(aws ec2 create-vpc --cidr-block 10.0.0.0/16 --query &apos;Vpc.VpcId&apos; --output text)
+
+# check 
+echo $VPC_ID
+</code></pre><p>Result, Navigate to <code>VPC &gt; Your VPCs</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620155752.png" class="kg-image" alt="2025-06-20" loading="lazy" width="1659" height="237"></figure><ol start="2"><li>Create public subnet</li></ol><blockquote>Subnet is your IP Address range can be used on EC2 Vm/Instances</blockquote><pre><code class="language-sh">SUBNET_ID=$(aws ec2 create-subnet --vpc-id $VPC_ID --cidr-block 10.0.1.0/24 --query &apos;Subnet.SubnetId&apos; --output text)
+
+# check
+echo $SUBNET_ID
+</code></pre><p>Result, <code>VPC &gt; Subnets</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620155816.png" class="kg-image" alt="2025-06-20" loading="lazy" width="1660" height="289"></figure><ol start="3"><li>Create &amp; Attach Interent gateway</li></ol><blockquote>Attach internet gateway to makesure your vpc network can accessing internet</blockquote><pre><code class="language-sh">IGW_ID=$(aws ec2 create-internet-gateway --query &apos;InternetGateway.InternetGatewayId&apos; --output text)
+
+# Check 
+echo $IGW_ID
+
+# Attach to VPC
+aws ec2 attach-internet-gateway --vpc-id $VPC_ID --internet-gateway-id $IGW_ID
+</code></pre><p>Result, <code>VPC &gt; Internet Gateways</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620155846.png" class="kg-image" alt="2025-06-20" loading="lazy" width="1656" height="194"></figure><ol start="4"><li>Setup Route Table &amp; Associate</li></ol><blockquote>Route table containts route, where network traffic from subnets/gateway directed</blockquote><pre><code class="language-sh">RTB_ID=$(aws ec2 create-route-table --vpc-id $VPC_ID --query &apos;RouteTable.RouteTableId&apos; --output text)
+
+#check 
+echo $RTB_ID
+
+# next create route to internet, gateway using $IGW_ID
+aws ec2 create-route --route-table-id $RTB_ID --destination-cidr-block 0.0.0.0/0 --gateway-id $IGW_ID
+
+# next associate route table to subnet
+aws ec2 associate-route-table --route-table-id $RTB_ID --subnet-id $SUBNET_ID
+</code></pre><p>Check if route table to interet exists. <code>VPC &gt; Route Tables &gt; Select $RTB_ID</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620160607.png" class="kg-image" alt="2025-06-20" loading="lazy" width="1852" height="551"></figure><p>Check if route table already associated to subnets <code>VPC &gt; Subnetes &gt; Select $SUB_ID &gt; Route Table</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620160902.png" class="kg-image" alt="2025-06-20" loading="lazy" width="1824" height="751"></figure><ol start="5"><li>Create Security group &amp; Assign SSH Rule</li></ol><blockquote>A security group acts as a virtual firewall that controls the traffic for one or more instances.</blockquote><pre><code class="language-sh">SG_ID=$(aws ec2 create-security-group --group-name dev-sg --vpc-id $VPC_ID --query &apos;GroupId&apos; --output text --description &quot;Dev SG&quot;)
+
+# check
+$echo $SG_ID
+
+# Assign security rule to allow ssh only from my public ip
+aws ec2 authorize-security-group-ingress --group-id $SG_ID --protocol tcp --port 22 --cidr $(curl -s ifconfig.me)/32
+</code></pre><p>Result,</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620161806.png" class="kg-image" alt="2025-06-20" loading="lazy" width="910" height="333"></figure><p>Check if security group created <code>VPC &gt; Security Groups</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620161918.png" class="kg-image" alt="2025-06-20" loading="lazy" width="1665" height="290"></figure><p>Check if security group rule created <code>VPC &gt; Security Groups &gt; $SG_ID</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620162013.png" class="kg-image" alt="2025-06-20" loading="lazy" width="1511" height="447"></figure><ol start="6"><li>Launch EC2 Instance</li></ol><pre><code class="language-sh">INSTANCE_ID=$(aws ec2 run-instances --image-id ami-02c7683e4ca3ebf58 --instance-type t2.micro --subnet-id $SUBNET_ID --associate-public-ip-address --security-group-ids $SG_ID --key-name nb-key --query &apos;Instances[0].InstanceId&apos; --output text)
+
+# check 
+echo $INSTANCE_ID
+
+# Get Public IP
+PUB_IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query &apos;Reservations[0].Instances[0].PublicIpAddress&apos; --output text)
+
+</code></pre><p>Result, navigate to <code>EC2 &gt; Instances</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620162830.png" class="kg-image" alt="2025-06-20" loading="lazy" width="1875" height="443"></figure><p>Access instance</p><pre><code class="language-sh">ssh -i ~/.ssh/&lt;YourKeyPair&gt;.pem ubuntu@$PUB_IP 
+
+</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250620165529.png" class="kg-image" alt="2025-06-20" loading="lazy" width="894" height="739"></figure><p><strong>Question</strong></p><ul><li>Mengapa kita perlu <strong>subnet publik + IGW</strong> daripada langsung &#x201C;internet-enabled&#x201D;?</li><li>Apa risiko membuka port 22 untuk publik dan bagaimana <strong>mitigasinya</strong> (hint: jump host)?</li></ul><p><strong>Answer</strong></p><ul><li>Karena secara default, VPC dalam aws itu tidak dapat mengakses keluar. Jadi disini kita perlu membuat sebuah subnet yang diarahkan routingnya ke gateway</li><li>Semua orang dapat mengakses, ini akan menjadikan kerentanan jika orang tidak bertanggung jawab bisa mengakses port SSH. Dan juga kadang SSH itu lawan di bruteforce</li></ul>]]></content:encoded></item><item><title><![CDATA[2025-06-19]]></title><description><![CDATA[Create pipeline with lint & unit test, terraform, iaac testing (using `terratest`), Docker Build & Security Scan (Trivy), Deploy and Smoke Test]]></description><link>https://twnb.nbtrisna.my.id/2025-06-19/</link><guid isPermaLink="false">6853fd82aadfe6000133747e</guid><category><![CDATA[daily-notes]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Thu, 19 Jun 2025 12:08:47 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/4f5ccae1-9f93-412d-ae30-0e17ff29fd77.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T171340Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=dc854b2a76577fac2b7585d0f4d23062752e75bbfc9226b7ea9b035462bcb62d" medium="image"/><content:encoded><![CDATA[<h2 id="archon-quest-realm-of-cicd">Archon Quest: Realm of CI/CD</h2><img src="https://s3.nbtrisna.my.id/random-photo/4f5ccae1-9f93-412d-ae30-0e17ff29fd77.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T171340Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=dc854b2a76577fac2b7585d0f4d23062752e75bbfc9226b7ea9b035462bcb62d" alt="2025-06-19"><p><em>Create pipeline with lint &amp; unit test, terraform, iaac testing (using <code>terratest</code>), Docker Build &amp; Security Scan (Trivy), Deploy, Smoke Test &amp; Metrics Scrape, Cleanup &amp; Notification</em></p><p><strong>Objective</strong></p><ul><li><strong>Lint &amp; Unit Test</strong> for both Node.js &amp; Go using a <strong>matrix</strong> strategy.</li><li><strong>Terraform Plan &amp; Apply</strong> on <code>main</code> branch (dev environment).</li><li><strong>Infrastructure Testing</strong> with Terratest.</li><li><strong>Docker Build &amp; Security Scan</strong> (Trivy).</li><li><strong>Deploy to Staging</strong> (auto) then <strong>Production</strong> (manual approvals).</li><li><strong>Smoke Tests &amp; Metrics Scrape</strong> (Prometheus).</li><li><strong>Cleanup &amp; Notification</strong>.</li></ul><h3 id="action">Action!</h3><p>Repository : https://github.com/ngurah-bagus-trisna/realm-of-cicd</p><ol><li>Define three environments in repo Settings: dev, staging, production (Add required reviewers in production)</li></ol><p>Create new repository first called <code>realm-of-cicd</code>, after that creating new environment by accesing <code>Settings &gt; Environment &gt; New Environmet</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250619031254.png" class="kg-image" alt="2025-06-19" loading="lazy" width="1838" height="1544"></figure><p>Result</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250619031818.png" class="kg-image" alt="2025-06-19" loading="lazy" width="1862" height="1022"></figure><ol start="2"><li>Setup linter for <code>nodejs-apps</code></li></ol><p>Reference :</p><ul><li>https://medium.com/opportunities-in-the-world-of-tech/how-i-set-up-ci-cd-for-a-node-js-app-with-eslint-jest-and-docker-hub-7d3cacf7add8</li></ul><pre><code class="language-js ">npm init -y  
+npm install express
+
+npm install --save-dev jest supertest
+npx eslint --init
+</code></pre><p>Create basic <code>helloWorld</code> node-js apps using express js.</p><pre><code class="language-js file:index.js">const express = require(&apos;express&apos;)
+const app = express()
+
+app.get(&apos;/&apos;, (req, res) =&gt; {
+  res.send(&apos;Hello World!&apos;)
+})
+
+module.exports = app; 
+</code></pre><pre><code class="language-js file:server.js">const app = require(&apos;./index&apos;);
+const port = 8080;
+
+app.listen(port, () =&gt; {
+  console.log(`Example app listening on port ${port}`);
+});
+</code></pre><p>Create test unit using <code>jest</code></p><pre><code class="language-js file:tests/app.test.js">const request = require(&apos;supertest&apos;);
+const app = require(&apos;../&apos;); 
+
+describe(&apos;GET /&apos;, () =&gt; {
+  it(&apos;responds with hello message&apos;, async () =&gt; {
+    const res = await request(app).get(&apos;/&apos;);
+    expect(res.statusCode).toEqual(200);
+    expect(res.text).toContain(`Hello World!`);
+  });
+});
+</code></pre><p>Configure <code>eslint.config.mjs</code> for lint <code>jest</code></p><pre><code class="language-js file:eslint.config.mjs">import js from &quot;@eslint/js&quot;;
+import globals from &quot;globals&quot;;
+import { defineConfig } from &quot;eslint/config&quot;;
+
+
+export default defineConfig([
+  { 
+    files: [&quot;**/*.{js,mjs,cjs}&quot;], 
+    plugins: { js }, 
+    extends: [&quot;js/recommended&quot;] 
+  },
+  { 
+    files: [&quot;**/*.{js,mjs,cjs}&quot;], 
+    languageOptions: { 
+      globals: globals.node 
+    } 
+  },
+  { 
+    files: [&quot;**/*.test.{js,mjs,cjs}&quot;], 
+    languageOptions: { 
+      globals: globals.jest  
+    } 
+  }
+]);
+</code></pre><p>Configure <code>package.json</code>, add script for <code>lint,test and dev</code></p><pre><code class="language-json file:package.json">  &quot;scripts&quot;: {
+    &quot;lint&quot;: &quot;npx eslint .&quot;,
+    &quot;test&quot;: &quot;jest&quot;,
+    &quot;dev&quot;: &quot;node server.js&quot;
+  },
+</code></pre><p>Try to run first in terminal, makesure all passed.</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250619183255.png" class="kg-image" alt="2025-06-19" loading="lazy" width="422" height="346"></figure><ol start="3"><li>In quest, need to plan <code>main.tf</code> to create <code>hello.txt</code>.</li></ol><p>Create <code>main.tf</code></p><pre><code class="language-tf file:main.tf">terraform {
+  required_providers {
+    local = {
+      source  = &quot;hashicorp/local&quot;
+      version = &quot;~&gt; 2.0&quot;
+    }
+  }
+
+  required_version = &quot;&gt;= 1.0&quot;
+}
+
+provider &quot;local&quot; {
+  # No configuration needed for local provider
+  
+}
+
+resource &quot;local_file&quot; &quot;hello_world&quot; {
+  content  = &quot;Hello, OpenTofu!&quot;
+  filename = &quot;${path.module}/test/hello.txt&quot;
+  
+}
+</code></pre><blockquote>It will create a text file with the content <code>Hello, Opentofu!</code></blockquote><p>Create terratest to makesure terraform can apply <code>main.tf</code></p><pre><code class="language-go file:tests/terraform_hello_test.go">package test
+
+import (
+	&quot;testing&quot;
+
+	&quot;github.com/gruntwork-io/terratest/modules/terraform&quot;
+	&quot;github.com/stretchr/testify/assert&quot;
+	&quot;os&quot;
+)
+
+func TestHelloFile(t *testing.T) {
+	// retryable errors in terraform testing.
+	terraformOptions := terraform.WithDefaultRetryableErrors(t, &amp;terraform.Options{
+		TerraformDir: &quot;../&quot;,
+	})
+
+	defer terraform.Destroy(t, terraformOptions)
+
+	terraform.InitAndApply(t, terraformOptions)
+	
+	content, err := os.ReadFile(&quot;hello.txt&quot;)
+	assert.NoError(t, err)
+	assert.Contains(t, string(content), &quot;Hello, OpenTofu!&quot;)
+}	
+</code></pre><blockquote>It will apply <code>main.tf</code>, and destroy after the check finished</blockquote><p>Init go modules &amp; install modules</p><pre><code class="language-sh">go mod init helo_test
+go mod tidy
+
+go test
+</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250619184125.png" class="kg-image" alt="2025-06-19" loading="lazy" width="677" height="224"></figure><ol start="4"><li>Create github workflows <code>.github/workflows/archon-ci.yml</code></li></ol><pre><code class="language-yaml file:.github/workflows/archon-ci.yml">name: Archon CI
+on:
+  push:
+    branches: [main]
+jobs:
+  lint-test:
+    strategy:
+      matrix:
+        language: [node, go]
+        node-version: [20, 18]
+        go-version: [&quot;1.20&quot;, &quot;1.21&quot;]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        if: matrix.language == &apos;node&apos;
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}       
+
+      - name: Run lint and unit tests on nodejs
+        if: matrix.language == &apos;node&apos;
+        run: |
+          npm install
+          npm run lint
+          npm run test
+
+  IaC-apply:
+    needs: lint-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.1
+
+      - name: Configure terraform plugin cache
+        run: |
+          echo &quot;TF_PLUGIN_CACHE_DIR=$HOME/.terraform.d/plugin-cache&quot; &gt;&gt;&quot;$GITHUB_ENV&quot;
+          mkdir -p $HOME/.terraform.d/plugin-cache
+
+      - name: Caching terraform providers
+        uses: actions/cache@v4
+        with:
+          key: terraform-${{ runner.os }}-${{ hashFiles(&apos;**/.terraform.lock.hcl&apos;) }}
+          path: |
+            $HOME/.terraform.d/plugin-cache
+          restore-keys: |
+            terraform-${{ runner.os }}-
+
+      - name: Apply terraform
+        run: |
+          terraform init 
+          terraform apply -auto-approve
+
+      - name: Export to artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Output files
+          path: |
+            tests/hello.txt
+  
+  build-image:
+    needs: lint-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+    
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build docker image with layer cache
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/archon-image:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+        
+      - name: Pull image
+        run: |
+          docker pull ${{ secrets.DOCKER_USERNAME }}/archon-image:latest
+
+      - name: Scan docker image
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: ${{ secrets.DOCKER_USERNAME }}/archon-image:latest
+          format: &apos;table&apos;
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          exit-code: 1
+
+      - name: Push docker image sha
+        run: |
+          # Add your docker push commands here, e.g.:
+          docker tag ${{ secrets.DOCKER_USERNAME }}/archon-image:latest ${{ secrets.DOCKER_USERNAME }}/archon-image:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/archon-image:${{ github.sha }}
+
+  deploy-development:
+    needs: [build-image, IaC-apply]
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      environment: Development
+
+  deploy-staging:
+    needs: [deploy-development]
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      environment: Staging
+
+  deploy-production:
+    needs: [deploy-staging]
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      environment: Production
+
+</code></pre><blockquote>Explanation : This workflow automates linting, testing, infrastructure deployment, Docker image building, and multi-environment deployments using a matrix strategy and job dependencies.</blockquote><p>Next create reusable workflow <code>deploy.yml</code></p><pre><code class="language-yaml file:.github/workflows/deploy.yml">name: Deploy Workflow
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: &apos;The environment to deploy to&apos;
+        required: true
+        type: string
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Deploy to ${{ inputs.environment }}
+      run: |
+        echo &quot;Deploy to ${{ inputs.environment }}&quot;
+        docker run -d --name archon-${{ inputs.environment}} -p 8080:8080 ngurahbagustrisna/archon-image:latest
+    
+    - name: Wait for service to be ready
+      run: |
+        echo &quot;Waiting for service to be ready&quot;
+        sleep 20  # Adjust the sleep time as necessary
+
+    - name: Testing to hit using smoke tests on environment ${{ inputs.environment }}
+      run: |
+        echo &quot;Running smoke tests&quot;
+        # Add your smoke test commands here, e.g.:
+        chmod +x ./tests/smoke_test
+        bash ./tests/smoke_test
+        echo &quot;Finished deploy to ${{ inputs.environment }}&quot;
+        docker rm -f archon-${{ inputs.environment}} || true
+</code></pre><p>Push to github repository, and makesure all job passed.</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250619184844.png" class="kg-image" alt="2025-06-19" loading="lazy" width="1863" height="570"></figure>]]></content:encoded></item><item><title><![CDATA[2025-06-18]]></title><description><![CDATA[Performance optimization in ci/cd pipeline focus on faster build & test for example using feature like caching, and pararel jobs]]></description><link>https://twnb.nbtrisna.my.id/2025-06-18/</link><guid isPermaLink="false">68531750aadfe600013373d2</guid><category><![CDATA[daily-notes]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Wed, 18 Jun 2025 12:45:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/1216a7b4-9740-4b62-88ff-9d3d1ca8fbe7.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T013523Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=8bf71c10f8af55cfe1a3593324d965a61b052286e2c9b8a4f1eaec0d74e02672" medium="image"/><content:encoded><![CDATA[<h2 id="daily-quest-15-performance-optimization">Daily Quest #15: Performance Optimization</h2><img src="https://s3.nbtrisna.my.id/random-photo/1216a7b4-9740-4b62-88ff-9d3d1ca8fbe7.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T013523Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=8bf71c10f8af55cfe1a3593324d965a61b052286e2c9b8a4f1eaec0d74e02672" alt="2025-06-18"><p><em>Performance optimization in ci/cd pipeline focus on faster build &amp; test for example using feature like caching, and pararel jobs</em> </p><p><strong>Reference</strong> :</p><ul><li>https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows</li><li>https://github.com/docker/build-push-action</li></ul><blockquote><strong>Real world usecase :</strong> Instead to runing <code>terraform init</code> to re-download all provider, we can using <code>caching</code> in <code>.terraform/plugins</code>. An then <code>init</code> only check if update available.</blockquote><p><strong>Skenario</strong> : Using caching for terraform providers, node modules, docker layers and build pararel jobs in github actions for faster pipeline</p><ol><li>Create new workflow <code>.github/workflows/performance-opt.yml</code></li></ol><pre><code class="language-yaml file:.github/workflows/performance-opt.yml">name: Performance optimization
+on:
+  push:
+    branches:
+    - main
+jobs:
+  infra-cache:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Cache terraform providers
+      uses: actions/cache@v4
+      with:
+        path: .terrafrom/plugins
+        key: ${{ runner.os }}-terraform-${{ hashFiles(&apos;**/*.tf&apos;) }}
+        restore-keys: |
+          ${{ runner.os }}-terraform-
+    
+    - name: Setup terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: 1.7.2
+
+    - name: Terraform init &amp; Apply
+      run: |
+        terraform init 
+        terraform plan -out=tfplan.out
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: setup buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Cache node modules
+      uses: actions/cache@v4
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles(&apos;**/package-lock.json&apos;) }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - name: Build docker image with layer cache
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: Dockerfile
+        push: false
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        tags: ci-cd-demo:latest
+</code></pre><ol start="2"><li>Result running</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250619023125.png" class="kg-image" alt="2025-06-18" loading="lazy" width="1856" height="1358"></figure><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250619023802.png" class="kg-image" alt="2025-06-18" loading="lazy" width="1358" height="802"></figure><p><strong>Question</strong> :</p><ul><li>Bagaimana <strong>caching</strong> folder <code>.terraform/plugins</code> mempercepat <code>terraform init</code>?</li><li>Jelaskan cara kerja opsi <code>cache-from</code> dan <code>cache-to</code> di <code>docker/build-push-action</code>.</li></ul><p><strong>Answer</strong> :</p><ol><li>Dalam terraform init diperlukan caching agar tidak perlu mendownload depedency kembali ketika menjalankan terraform init. Ini akan mempersingkat waktu berjalanya workflow serta menghemat bandwith unduhan</li><li><code>cache-from</code> merupakan spesifik tempat dimana cache sebelumnya ditaruh. Dan cache-to adalah tempat dimana export build terbaru cache layer dimana mengizinkan untuk build dan menggunakan kembali cache tersebut.</li></ol>]]></content:encoded></item><item><title><![CDATA[2025-06-17]]></title><description><![CDATA[Infrasturtucre testing in ci/cd makesure to running smoothly provisioning using terraform work realy well as expected.]]></description><link>https://twnb.nbtrisna.my.id/2025-06-17/</link><guid isPermaLink="false">68523331aadfe60001337339</guid><category><![CDATA[daily-notes]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Tue, 17 Jun 2025 03:32:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/a27c850e-689a-4c48-b15e-7504df17b4e6.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T013448Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=e1ca73e77f0f3d94f8033781c122061290c70b68648d3a588c4bc45cddd03c52" medium="image"/><content:encoded><![CDATA[<h2 id="daily-quest-13-infrastructure-testing">Daily Quest #13: Infrastructure Testing</h2><img src="https://s3.nbtrisna.my.id/random-photo/a27c850e-689a-4c48-b15e-7504df17b4e6.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T013448Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=e1ca73e77f0f3d94f8033781c122061290c70b68648d3a588c4bc45cddd03c52" alt="2025-06-17"><p><em>Infrasturtucre testing in <code>ci/cd</code> makesure to running smoothly provisioning using terraform work realy well as expected.</em> </p><p>Reference :</p><ul><li>https://terratest.gruntwork.io/</li><li>https://github.com/hashicorp/setup-terraform</li></ul><p>With <code>terratest</code> or kitchen-terraform you can write automate test with :</p><ul><li><code>terraform init </code>&amp; <code>apply</code> in temporarry workspace</li><li>Verify resource exsist and right configuration</li><li>Cleanup <code>destroy</code> after test complated</li></ul><blockquote><strong>Realworld Usecase :</strong> You have terraform module to create bucket in s3 storage. Terratest will apply that module, check that bucket created, and destroy resources.</blockquote><p><strong>Skenario</strong> : Integrate <code>terratest</code> to github actions for validate live infrasturcture post-apply and pre-merge</p><blockquote>makesure installing go first</blockquote><ol><li>Create directory <code>test/</code> and install go module ond <code>test/</code></li></ol><pre><code class="language-sh">mdkir test &amp;&amp; cd test
+go mod init ci_cd_demo_test
+got get github.com/gruntwork-io/terratest/modules/terraform
+</code></pre><p>Create <code>text/terraform_hello_test.go</code></p><pre><code class="language-go">package test
+
+import (
+	&quot;testing&quot;
+
+	&quot;github.com/gruntwork-io/terratest/modules/terraform&quot;
+	&quot;github.com/stretchr/testify/assert&quot;
+	&quot;io/ioutil&quot;
+)
+
+func TestHelloFile(t *testing.T) {
+	// retryable errors in terraform testing.
+	terraformOptions := terraform.WithDefaultRetryableErrors(t, &amp;terraform.Options{
+		TerraformDir: &quot;../&quot;,
+	})
+
+	defer terraform.Destroy(t, terraformOptions)
+
+	terraform.InitAndApply(t, terraformOptions)
+	
+	content, err := ioutil.ReadFile(&quot;hello.txt&quot;)
+	assert.NoError(t, err)
+	assert.Contains(t, string(content), &quot;Hello, OpenTofu!&quot;)
+}	
+</code></pre><p>Create <code>main.tf</code></p><pre><code class="language-terraform">terraform {
+  required_providers {
+    local = {
+      source  = &quot;hashicorp/local&quot;
+      version = &quot;~&gt; 2.0&quot;
+    }
+  }
+
+  required_version = &quot;&gt;= 1.0&quot;
+}
+
+provider &quot;local&quot; {
+  # No configuration needed for local provider
+  
+}
+
+resource &quot;local_file&quot; &quot;hello_world&quot; {
+  content  = &quot;Hello, OpenTofu!&quot;
+  filename = &quot;${path.module}/test/hello.txt&quot;
+  
+}
+</code></pre><p>Create workflow files <code>.github/workflows/infra-test.yml</code></p><pre><code class="language-yaml">name: Infrastructure as Code (IaC) testing
+on:
+  push:
+jobs:
+  test-iac:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.3
+      
+      - name: Setup terratest
+        uses: actions/setup-go@v5
+        with:
+          go-version: &apos;1.24&apos;
+      
+      - name: Run terratest
+        working-directory: test
+        run: |
+          go test -v
+</code></pre><ol start="2"><li>Push &amp; test passed</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250617111609.png" class="kg-image" alt="2025-06-17" loading="lazy" width="1022" height="1006"></figure><p><strong>Answer</strong> :</p><ol><li>Instead using <code>teraform plan/validate</code> using terratest we can makes it easier to write automated tests for your infrastructure code. It provides a variety of helper functions and patterns for common infrastructure testing tasks</li><li>Kitchen terraform using <code>ruby</code> language. (jelaskan)</li></ol><p><strong>Refleksi Jawaban</strong></p><ol><li><strong>Mengapa Terratest vs <code>terraform plan</code>/<code>validate</code>?</strong><ul><li><strong><code>plan</code>/<code>validate</code></strong> hanya melakukan <em>static</em> pemeriksaan konfigurasi Terraform, tanpa menjalankan resource.</li><li><strong>Terratest</strong> melakukan <strong>live <code>init</code> &amp; <code>apply</code></strong>, lalu menjalankan pemeriksaan di runtime (misal membaca file, mengecek resource eksis), dan akhirnya <strong><code>destroy</code></strong>. Ini menangkap bug yang hanya muncul saat provisioning nyata&#x2014;misal kesalahan permission, path, atau ketergantungan environment.</li></ul></li><li><strong>Kenapa/Bagaimana Kitchen-Terraform menggunakan Ruby?</strong><ul><li><strong>Kitchen-Terraform</strong> adalah plugin untuk <strong>Test Kitchen</strong>, framework testing infrastruktur berbasis <strong>Ruby</strong>.</li><li>Kamu mendefinisikan <strong><code>platforms</code></strong>, <strong><code>provisioner</code></strong>, dan <code><strong>verifier</strong></code> (biasanya InSpec) di file <code>.kitchen.yml</code>.</li><li>Saat dijalankan, Test Kitchen (<code>kitchen converge</code>) akan apply Terraform, lalu InSpec (<code>kitchen verify</code>) menjalankan tes compliance/functional yang ditulis dalam Ruby DSL.</li><li>Ini cocok jika kamu tim yang sudah familier dengan ekosistem Ruby/Test Kitchen atau butuh <strong>InSpec</strong> untuk security/compliance testing.</li></ul></li></ol><hr><h2 id="daily-quest-14-cleanup-maintenance">Daily Quest #14: Cleanup &amp; Maintenance</h2><p><em>Makesure environment clean, build, and resource runner eficient</em> Reference :</p><ul><li>https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#scheduled-events</li><li>https://docs.docker.com/reference/cli/docker/system/prune/</li><li>https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/storing-and-sharing-data-from-a-workflow#setting-retention-period</li></ul><blockquote><strong>Real world case</strong> : Devops team running <code>self-hosted</code> runner only have 50GB disk, so in end-of-day, need to run <code>prune</code> image.</blockquote><p><strong>Skenario</strong> : Create workflows action to clean docker resource, volume and set artifact retention</p><ol><li>Create <code>cleanup-workflow.yml</code></li></ol><pre><code class="language-yaml">name: Cleanup &amp; maintenance
+on:
+  push:
+    branches:
+    - main
+  schedule:
+    - cron: &apos;0 0 * * *&apos; # Every Sunday at midnight
+jobs:
+  maintenance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cleanup old branches
+        run: |
+          docker system prune -a -f
+          docker volume prune -f 
+      - name: Cleanuup old terraform state files
+        run: |
+          find ${{ github.workspace }}/test -name &quot;*.tfstate&quot; -mtime +7 -delete
+      - name: cleanup temporary workspace
+        run: |
+          rm -rf ${{ github.workspace }}/tmp/* || true
+      - name: Generate report
+        run: |
+          echo &quot;Cleanup completed successfully on $(date)&quot; &gt; ${{ github.workspace }}/cleanup_report.txt
+          cat ${{ github.workspace }}/cleanup_report.txt
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: cleanup-report
+          path: ${{ github.workspace }}/cleanup_report.txt
+
+
+</code></pre><blockquote>Workflow run every push to branch main &amp; scheduled using cron every sunday midnight.</blockquote><ol start="2"><li>Push &amp; Result</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250617122501.png" class="kg-image" alt="2025-06-17" loading="lazy" width="1032" height="917"></figure><p><strong>Answer</strong> :</p><ol><li>Scheduling cleanup after off-peak hours is important to makesure not inffected production environment.</li><li>Retention-days make efficient storage and audit because deleted unused old resources.</li></ol><p><strong>&#x1F9E0; Refleksi Jawaban</strong></p><ol><li><strong>Mengapa schedule di off-peak hours penting?</strong><br>Menjalankan cleanup saat traffic rendah (off-peak) mengurangi risiko mengganggu job produksi dan menghindari bottleneck I/O di runner.</li><li><strong>Bagaimana <code>retention-days</code> bantu storage &amp; audit?</strong><br>Dengan membatasi umur artefak, kita mencegah penumpukan file usang&#x2014;menghemat storage dan memudahkan audit karena hanya artefak relevan yang tersimpan.</li></ol>]]></content:encoded></item><item><title><![CDATA[2025-06-16]]></title><description><![CDATA[Observability & monitoring is key to understand about application and infrastructure healty in real-time]]></description><link>https://twnb.nbtrisna.my.id/2025-06-16/</link><guid isPermaLink="false">685232efaadfe60001337329</guid><category><![CDATA[daily-notes]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Mon, 16 Jun 2025 03:31:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/f084ad03-08df-451f-b94a-f1c574092fd5.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T013425Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=7def8d535af3c3e0c1de34ee4e5408c2ce6b0fee7b8dac498aba45d81d190f25" medium="image"/><content:encoded><![CDATA[<h1 id="daily-quest-12-observability-monitoring"><strong>Daily Quest #12: Observability &amp; Monitoring</strong></h1><img src="https://s3.nbtrisna.my.id/random-photo/f084ad03-08df-451f-b94a-f1c574092fd5.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T013425Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=7def8d535af3c3e0c1de34ee4e5408c2ce6b0fee7b8dac498aba45d81d190f25" alt="2025-06-16"><p><em>Observability &amp; monitoring is key to understand about application and infrastructure healty in real-time</em></p><p>Reference :</p><ul><li>https://docs.github.com/en/actions/use-cases-and-examples/using-containerized-services/about-service-containers</li></ul><blockquote><strong>Real world usecase</strong> : Before deploying application in production, devops team scrape request latency and error rate in 30Second. if error rate &gt; 1% deployment canceled</blockquote><p>We use feature on github workflows called <code>service_containers</code>, you can use other tools using docker container that provide a simple and portable way for you to host services you might need to test or operate your application in a workflow.</p><blockquote><strong>Skenario</strong> : Integrate prometheus service in github actions, scrape basic metrics, and save snapshot using artefacts</blockquote><ol><li>Create folder <code>/monitoring</code> with <code>prometheus.yml</code> and <code>docker-compose.yaml</code></li></ol><pre><code class="language-yaml">global:
+  scrape_interval: 5s
+scrape_configs:
+  - job_name: &apos;ci-cd-demo&apos;
+    static_configs:
+    - targets:
+      - &apos;localhost:9090&apos;
+</code></pre><pre><code class="language-yaml">name: Observability &amp; monitoring
+on:
+  push:
+jobs:
+  observe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Running prometheus container
+        run: |
+          docker run -d \
+            --name prometheus \
+            -p 9090:9090 \
+            -v ${{ github.workspace }}/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml \
+            prom/prometheus:latest \
+            --config.file=/etc/prometheus/prometheus.yml \
+            --web.listen-address=:9090
+      - name: Wait prometheus to be ready
+        run: |
+          echo &quot;Waiting for Prometheus to be ready...&quot;
+          sleep 30s
+          docker logs prometheus
+          echo &quot;Prometheus should be ready now.&quot;
+
+      - name: Run Prometheus
+        run: |
+          echo &quot;scrape metrics&quot;
+          curl http://localhost:9090/metrics | head -n 10 &gt; prometheus_metrics.txt
+
+      - name: Upload metrics to artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: prometheus-metrics
+          path: prometheus_metrics.txt 
+</code></pre><ol start="2"><li>Push and see result</li></ol><figure class="kg-card kg-image-card"><img src="Pasted%20image%2020250616170324.png" class="kg-image" alt="2025-06-16" loading="lazy"></figure><pre><code class="language-sh"># HELP go_gc_cycles_automatic_gc_cycles_total Count of completed GC cycles generated by the Go runtime. Sourced from /gc/cycles/automatic:gc-cycles.
+# TYPE go_gc_cycles_automatic_gc_cycles_total counter
+go_gc_cycles_automatic_gc_cycles_total 6
+# HELP go_gc_cycles_forced_gc_cycles_total Count of completed GC cycles forced by the application. Sourced from /gc/cycles/forced:gc-cycles.
+# TYPE go_gc_cycles_forced_gc_cycles_total counter
+go_gc_cycles_forced_gc_cycles_total 0
+# HELP go_gc_cycles_total_gc_cycles_total Count of all completed GC cycles. Sourced from /gc/cycles/total:gc-cycles.
+# TYPE go_gc_cycles_total_gc_cycles_total counter
+go_gc_cycles_total_gc_cycles_total 6
+# HELP go_gc_duration_seconds A summary of the wall-time pause (stop-the-world) duration in garbage collection cycles.
+
+</code></pre><p><strong>Answer</strong> (jelaskan dong):</p><ol><li>Scrape lebih unggul untuk mendapatkan data dari hal yang dimonitoring</li><li>Snapshot metrik dapat digunakan sebagai acuan dalam mendesign grafana dashboard</li></ol><hr>]]></content:encoded></item><item><title><![CDATA[2025-06-15]]></title><description><![CDATA[Github actions, you can configure your workflows to run when spesific activity on github happens, schedule thime, or when event outside github occurs]]></description><link>https://twnb.nbtrisna.my.id/2025-06-15/</link><guid isPermaLink="false">685232acaadfe6000133731a</guid><category><![CDATA[daily-notes]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Sun, 15 Jun 2025 03:30:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/33007585-d26e-4531-bb9f-b536e99fc1ed.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T013352Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=9ad68c8a59611b1a5f79809f19228cc9f03f1d814f82458f46fe271605ff1595" medium="image"/><content:encoded><![CDATA[<h2 id="daily-quest-7-workflow-triggers"><strong>Daily Quest #7: Workflow Triggers</strong></h2><img src="https://s3.nbtrisna.my.id/random-photo/33007585-d26e-4531-bb9f-b536e99fc1ed.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T013352Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=9ad68c8a59611b1a5f79809f19228cc9f03f1d814f82458f46fe271605ff1595" alt="2025-06-15"><p><em>Github actions, you can configure your workflows to run when spesific activity on github happens, schedule thime, or when event outside github occurs</em> Workflow triggers are events that cause a worflow to run. Example you want to run job when somone push to main branch using <code>push</code> trigger, or <code>pull_request</code> when running job about validation to code before merge to main.</p><ol><li>Create <code>triggers-workflow.yml</code></li></ol><pre><code class="language-yaml">name: artifacts-workflows
+on: 
+  push:
+  pull_request:
+  schedule:
+    - cron: &apos;0 0 * * *&apos; # Every day at midnight
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+        - name: Get event
+          run: |
+            echo &quot;Report at $(date)&quot; &gt; report.txt
+            echo &quot;Triggered by ${{ github.event_name }}&quot; &gt;&gt; report.txt
+        - name: Upload report
+          uses: actions/upload-artifact@v4
+          with:
+            name: report
+            path: report.txt
+</code></pre><blockquote>explanation : This workflow running when push, pull_request, schedule on every midnight</blockquote><ol start="2"><li>Push, and result</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615071106.png" class="kg-image" alt="2025-06-15" loading="lazy" width="1950" height="1906"></figure><p>Workflow triggered by push to main branch</p><p><strong>Answer</strong> :</p><ol><li>Schedule akan dipilih ketika ingin membuat workflow berjalan pada waktu tertentu secara otomatis. Sedangkan <code>workflow_dispatch</code> dipilih jika ingin workflow tersebut berjalan manual</li><li>Hak akses harus diperhatikan ketika menggunakan manual trigger seperti <code>workflow_dispatch</code>. Mengantisipasi orang yang tidak bertanggung jawab menjalankan workflow</li></ol><hr><h2 id="daily-quest-8-parameterization-reuse"><strong>Daily Quest #8: Parameterization &amp; Reuse</strong></h2><p><em>Sometimes a complex workflow need value to adjust like environment name, script or flag build without duplicate a lot code in yaml workflow file. In github_actions, you can reuse wofklows so you and anyone. with access reusable workflow can call reusable workflow from another workflow</em></p><figure class="kg-card kg-image-card"><img src="https://docs.github.com/assets/cb-34427/images/help/actions/reusable-workflows-ci-cd.png" class="kg-image" alt="2025-06-15" loading="lazy" width="1896" height="596"></figure><blockquote><strong>Real world case</strong> : If you have same deploy job for stg, QA, and production, you need one reusable workflow <code>deploy.yml</code>. And then call iit with input <code>env_stg</code>, or <code>env_prod</code> value.</blockquote><ol><li>Create <code>reusable.yml</code> workflow</li></ol><pre><code class="language-yaml">name: Reusable Template
+on: 
+  workflow_call:
+    inputs:
+      env_name:
+        required: true
+        type: string
+      script_path:
+        required: true
+        type: string
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Echo parameters
+        run: |
+          echo &quot;Running script in environment: ${{ inputs.env_name }}&quot;
+          echo &quot;Script path: ${{ inputs.script_path }}&quot;
+      - name: Run script
+        run: |
+          bash ${{ inputs.script_path }}
+</code></pre><ol start="2"><li>Create another workflow to call reusable, for this i called reusable to using <code>stg</code> path</li></ol><pre><code class="language-yaml">name: Call Reusable
+on: 
+  workflow_dispatch:
+
+jobs:
+  invoke:
+    uses: ./.github/workflows/reusable.yaml
+    with:
+      env_name: staging
+      script_path: ./script/staging.sh
+</code></pre><ol start="3"><li>Push and see result</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615074948.png" class="kg-image" alt="2025-06-15" loading="lazy" width="1906" height="870"></figure><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615075012.png" class="kg-image" alt="2025-06-15" loading="lazy" width="1924" height="1378"></figure><p><strong>Answer</strong> :</p><ol><li>Dengan menggunakan reusable workflow, kita dapat menggunakan satu workflow berkali&quot; tanpa menulis satu workflow di berbagai environment</li><li>Saya tidak akan menggunakan reusable workflows jika hanya menggunakan satu workflows saja.</li></ol><hr><h2 id="daily-quest-9-conditional-execution"><strong>Daily Quest #9: Conditional Execution</strong></h2><p><em>You can use expressions to programmatically set environment variables in workflows files and access contexts. Expression are commonly used with the conditional if keyword in a worflow file to determine whether a step should run. when an <code>if</code> conditional is <code>true</code>, the step will run</em></p><p>Reference :</p><ul><li>https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/evaluate-expressions-in-workflows-and-actions</li><li>https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idif</li></ul><p>Using <code>if</code> expression in github action for running spesific job/step when an if conditional matches for saving resources and make pipeline more efficient.</p><ol><li>Create <code>conditional-workflow.yaml</code></li></ol><pre><code class="language-yaml">name: Conditional Workflow
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run tests
+        if: github.ref == &apos;refs/heads/main&apos;
+        run: |
+          echo &quot;Running tests on main branch&quot;
+      - name: Lint JS files
+        if: contains(join(github.event.head_commit.modified, &apos;,&apos;), &apos;.js&apos;)
+        run: |
+          echo &quot;Linting JavaScript files&quot;
+</code></pre><ol start="2"><li>Push and see result</li></ol><blockquote>Makesure lint js skipped (because in repository jo js file found)</blockquote><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615101508.png" class="kg-image" alt="2025-06-15" loading="lazy" width="1922" height="986"></figure><p><strong>Answer</strong></p><ol><li>Kondisi di level jobs diperlukan ketika kondisi tersebut dilakukan untuk berbagai step kedepanya. (tolong jelasin lebih dibagian ini)</li><li>Kondisi terlalu komplex akan menyebabkan kesulitan saat membaca / maintain untuk yaml filesnya. Mitigasinya yaitu mengefisienkan js filesnya.</li></ol><p><strong>Reflection answer</strong></p><ol><li>Using <code>if</code> statement in jobs level if all job need to run or skipped based on condition. Example to run all lint or deploy job only on branch main. It will be clean than writing if in every job.</li><li>mitigation expresion to complex, first you can split condition to reusable workflows or composite actions to isolate the logic. Second you can using external script (JS/TS) to check condition,then call using <code>if</code> statement on workflows.</li></ol><hr><h2 id="daily-quest-10-security-scanning"><strong>Daily Quest #10: Security Scanning</strong></h2><p><em>Security is most important when we want to deploy our application to production. In pipeline devops, security scanning help to detect vulnerapility in source code or depedencies before deploy to production. Using tools like <code>trivy (container &amp; image scan)</code>, <code>sonarcube</code>, <code>dependabot</code>, can integrate to workflows. It&apos;s important so devops team can prevent security issues.</em> Reference :</p><ul><li>http://trivy.dev/latest/docs/</li><li>https://github.com/aquasecurity/trivy-action</li></ul><p><strong>Skenario</strong> : Creating actions to scan Dockerfile using trivy</p><ol><li>Create workflow <code>security-scan.yaml</code></li></ol><pre><code class="language-yaml">name: Security Scanning
+on: 
+  - push
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build docker
+        uses: docker/build-push-action@v2
+      - name: Build docker image
+        run: |
+          echo &quot;Building Docker image...&quot;
+          docker build -t ${{github.repository}}:latest .
+          echo &quot;Docker image built successfully.&quot;
+      - name: Run trivy scan scan
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: ${{github.repository}}:latest
+          format: table
+          exit-code: 1
+          vuln-type: os,library
+          severity: CRITICAL,HIGH,MEDIUM
+</code></pre><ol start="2"><li>Create simple dockerfile</li></ol><pre><code class="language-dockerfile">FROM ubuntu:20.04
+</code></pre><ol start="3"><li>Push &amp; see results</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615231139.png" class="kg-image" alt="2025-06-15" loading="lazy" width="768" height="708"></figure><blockquote>Found medium vulnerablity.</blockquote><p><strong>Answer</strong> :</p><ol><li>Set to exited code when found critical/high severity vulnerablitiy is for cancel workflows running further and notify dev have a vulnerability in image docker</li><li>We need to makesure severity beetwen production and development can passed for security</li></ol><hr><h2 id="daily-quest-11-concurrency-cancellation"><strong>Daily Quest #11: Concurrency &amp; Cancellation</strong></h2><p><em>In ci/cd, concurrency makesure only one workflow run in group session (like branch/or workflow.</em> Reference :</p><ul><li>https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#concurrency</li></ul><blockquote><strong>real world usecase</strong> : When all dev repetitivly commit and push hotfix to main branch, if another job or workflow using the same concurrency group in the repository is in progress, the queued job or workflow will be pending</blockquote><p><strong>Skenario</strong> : Create concurency workflow, only run when latest update. And when another concurency running, just cancel. Only running latest push</p><ol><li>Create <code>concurrency-workflow.yaml</code></li></ol><pre><code class="language-yaml">name: Concurency workflows
+on: 
+  - push
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  concurrency-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run concurrency workflow
+        run: echo &quot;This is a concurrency workflow that will run only once per branch.&quot;
+
+      - name: Show run number
+        run: |
+          echo &quot;Run number: ${{ github.run_number }} on ref ${{ github.ref }}&quot;
+      - name: Simulate work
+        run: |
+          echo &quot;Simulating work...&quot;
+          sleep 30
+          echo &quot;Work done!&quot; 
+        
+</code></pre><ol start="2"><li>Push, &amp; result.</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615235146.png" class="kg-image" alt="2025-06-15" loading="lazy" width="1105" height="454"></figure><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615235151.png" class="kg-image" alt="2025-06-15" loading="lazy" width="1128" height="712"></figure><blockquote>Workflow canceled because have higher priority on latest update on repository.</blockquote><p><strong>Answer</strong></p><ol><li><code>group</code> and <code>cancel-in-progress</code> can cancle running workflow when have a condiiton same group running workflow with higher priority (like latest update on repository)</li><li>Skenario when need to push another version (Tolong jelaskan)</li></ol>]]></content:encoded></item><item><title><![CDATA[2025-06-14]]></title><description><![CDATA[Workflow running jobs parrarel by default. To run jobs sequentially, you need to define other jobs using the jobs.<job_id>.needs keyword]]></description><link>https://twnb.nbtrisna.my.id/2025-06-14/</link><guid isPermaLink="false">68523209aadfe600013372f4</guid><category><![CDATA[daily-notes]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Sat, 14 Jun 2025 03:28:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/7e387b5f-4aaf-40ab-be51-201d9d13b758.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T013308Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=7d423c8c13c196fca211bcf2645d5b4e02d162ef935425bf2b7e4d52a0de1e02" medium="image"/><content:encoded><![CDATA[<h3 id="daily-quest-5-job-dependencies"><strong>Daily Quest #5: Job Dependencies</strong></h3><img src="https://s3.nbtrisna.my.id/random-photo/7e387b5f-4aaf-40ab-be51-201d9d13b758.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T013308Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=7d423c8c13c196fca211bcf2645d5b4e02d162ef935425bf2b7e4d52a0de1e02" alt="2025-06-14"><p><em>Workflow running jobs parrarel by default. To run jobs sequentially, you need to define other jobs using the <code>jobs.&lt;job_id&gt;.needs</code> keyword</em></p><ol><li>Add new workflows <code>needs-workflows.yaml</code></li></ol><pre><code class="language-yaml">name: Needs worflows
+on: 
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+        - name: Build stage
+          run: |
+            echo &quot;Hello from CI/CD!&quot;
+            echo &quot;Running on build job&quot;
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+        - name: Greeting from variable
+          run: echo &quot;Hello from ${{ env.GREETING }}&quot;
+        - name: Echo secret
+          run: echo &quot;Secret is ${{ secrets.SECRET_MSG }}&quot;
+        - name: Test stage
+          run: |
+            echo &quot;Running on test job&quot;
+            echo &quot;This job depends on the build job&quot;
+</code></pre><p>Push, and result</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250614042555.png" class="kg-image" alt="2025-06-14" loading="lazy" width="898" height="870"></figure><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250614042607.png" class="kg-image" alt="2025-06-14" loading="lazy" width="893" height="439"></figure><p><strong>Answer</strong> :</p><ol><li>Dengan menjalankan job satu persatu, workflows dapat membuat efisien task hanya di satu jobs terlebih dahulu.</li><li>Job akan gagal dan di skip ke next jobs (jika memenuhi peraturan).</li></ol><h2 id="daily-quest-6-artifact-management"><strong>Daily Quest #6: Artifact Management</strong></h2><p>Referensi : https://docs.github.com/actions/using-workflows/storing-workflow-data-as-artifacts <em>Artifacts allow you to persist data after job has completed, and share that data with another job in the same workflows.</em> Artifacts is file/collection of files produced during workflow run. For example, you can use artifacts to save your build &amp; test output after a workflow run has ended. <strong>How to use</strong> You can use <code>actions/upload-artifact</code> to save files on artifacts.</p><pre><code class="language-yaml">      - name: Archive code coverage results
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-report
+          path: output/test/code-coverage.html
+</code></pre><p>Explanation :</p><ul><li><code>name</code> : name artifacts</li><li><code>path</code> : path file for upload to artifacts</li></ul><p>To download file from artifacts, you can use <code>actions/download-artifact</code> action to download artifacts that were previously uploaded in the same workflow run.</p><pre><code class="language-yaml">- name: Download a single artifact
+  uses: actions/download-artifact@v4
+  with:
+    name: my-artifact
+</code></pre><p>Explanation :</p><ul><li><code>name</code> : name previously uploaded artifacts</li></ul><ol><li>Create new workflows <code>artifact-workflow.yml</code></li></ol><pre><code class="language-yaml">name: artifacts-workflows
+on: 
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+        - name: Create report
+          run: |
+            echo &quot;Report at $date&quot; &gt; report.txt
+        - name: upload artifacts
+          uses: actions/upload-artifact@v4
+          with:
+            name: my-report
+            path: report.txt
+  consume:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: consume artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: my-report
+      - name: show report
+        run: |
+          cat report.txt
+          echo &quot;Report consumed successfully&quot;
+</code></pre><p>Result :</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250614205521.png" class="kg-image" alt="2025-06-14" loading="lazy" width="1104" height="1002"></figure><ol><li>Saya akan menggunakan artifact ketika ingin export hasil dari job yang sudah running. Sedangkan cache hanya untuk depedencies aplikasi yang digunakan berulang setiap kali jobs running</li><li>Artifacts membantu untuk menggungah/mengunduh file di tiap job yang berjalan.</li></ol>]]></content:encoded></item><item><title><![CDATA[2025-06-13]]></title><description><![CDATA[In CI/CD world, environment variables and secret is key to storing value without writing directly to yaml files. It's possible to manage credentials, versioning, and configure build according to the needs]]></description><link>https://twnb.nbtrisna.my.id/2025-06-18-2/</link><guid isPermaLink="false">685217483eb49b0001caa6ca</guid><category><![CDATA[daily-notes]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Fri, 13 Jun 2025 01:45:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/a65b6633-4d49-45a4-a74b-9de577e4b16f.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T013237Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=dbb60c8d4ae44012f57732bbf3e132a56db359f38b4e9e83158e18d4930f3d46" medium="image"/><content:encoded><![CDATA[<h2 id="daily-quest-2-secrets-environment-variables"><strong>Daily Quest #2: Secrets &amp; Environment Variables</strong></h2><img src="https://s3.nbtrisna.my.id/random-photo/a65b6633-4d49-45a4-a74b-9de577e4b16f.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T013237Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=dbb60c8d4ae44012f57732bbf3e132a56db359f38b4e9e83158e18d4930f3d46" alt="2025-06-13"><p><em>In CI/CD world, environment variables and secret is key to storing value without writing directly to yaml files. It&apos;s possible to manage credentials, versioning, and configure build according to the needs</em></p><p><strong>Skenario</strong> : Understand how to use <code>env</code> and <code>secret</code> in github actions for flexible and secure workflow.</p><ol><li>In existing repository, reconfigure <code>first-workflows.yaml</code>.</li></ol><pre><code class="language-yaml">name: Hello CI
+on: 
+    - push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+        - name: say hello
+          run: echo &quot;Hello from CI/CD!&quot;
+        - name: Greeting from variable
+          run: echo &quot;Hello from ${{ env.GREETING }}&quot;
+        - name: Echo secret
+          run: echo &quot;Secret is ${{ secrets.SECRET_MSG }}&quot;
+</code></pre><ol start="2"><li>Create secrets on github. Navigate to <code>Settings &gt; Secrets and variables &gt; Actions</code></li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615135106.png" class="kg-image" alt="2025-06-13" loading="lazy" width="961" height="929"></figure><p><br>3. Create secrets &amp; variable, makesure name of variable/secret correct</p><p>Result</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615135035.png" class="kg-image" alt="2025-06-13" loading="lazy" width="955" height="907"></figure><p><br>Answer :</p><ol><li>Penggunaan secrets digunakan untuk store data penting seperti password. Ketika digunakan dalam workflows, akan di samarkan dengan <code>**</code>. Untuk variable, biasanya digunakan untuk menyimpan config, dll. Yang sifatnya general</li><li>Github workflow memask secret agar isi dari secret tidak terlihat. Karena biasanya data yang tersimpan dalam secrets adalah data rahasia.</li></ol><h2 id="daily-quest-3-matrix-mastery"><strong>Daily Quest #3: Matrix Mastery</strong></h2><p><em>In github workflows, we can use <code>matrix strategies</code> for create multiple job runs using a single jobs variable definition like job running pararalel simultaneously. For example like you can configure your ci to run build in 3 different os/arch</em></p><p>Referensi : <a href="https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow?ref=twnb.nbtrisna.my.id">https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow</a></p><p>To define <em>matrix_strategy</em> simply put in <code>jobs.&lt;job_id&gt;.strategy.matrix</code> with value array.</p><pre><code class="language-yaml">jobs:
+	example_matrix:
+		strategy:
+			matrix:
+				os: [ubuntu-latest, selfhosted]
+				version: [10, 11, 12]
+</code></pre><p>By default, GitHub will maximize the number of jobs run in parallel depending on runner availability. The order of the variables in the matrix determines the order in which the jobs are created. The first variable you define will be the first job that is created in your workflow run. For example, the above matrix will create the jobs in the following order:</p><pre><code>{version: 10, os: ubuntu-latest}
+{version: 10, os: windows-latest}
+{version: 12, os: ubuntu-latest}
+{version: 12, os: windows-latest}
+{version: 14, os: ubuntu-latest}
+{version: 14, os: windows-latest}
+</code></pre><h4 id="single-dimension-matrix">Single-dimension matrix</h4><pre><code class="language-yaml">jobs:
+  example_matrix:
+    strategy:
+      matrix:
+        version: [10, 12, 14]
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.version }}
+
+</code></pre><p>Explanation : For example, the following workflow defines the variable version with the values [10, 12, 14]. The workflow will run three jobs, one for each value in the variable. Each job will access the version value through the matrix.version context and pass the value as node-version to the actions/setup-node action.</p><h4 id="multi-dimension-matrix">Multi-dimension matrix</h4><pre><code class="language-yaml">jobs:
+  example_matrix:
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, ubuntu-20.04]
+        version: [10, 12, 14]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.version }}
+</code></pre><h3 id="quest">Quest</h3><ol><li>Create new job called <code>matrix-workflow.yaml</code>. Using <code>matrix-strategy</code> to run jobs in different os</li></ol><pre><code class="language-yaml">name: Hello CI
+on: 
+    - push
+jobs:
+  build:
+    strategy:
+      matrix: 
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+        - name: say hello
+          run: echo &quot;Hello from CI/CD!&quot;
+        - name: Greeting from variable
+          run: echo &quot;Hello from ${{ env.GREETING }}&quot;
+        - name: Echo secret
+          run: echo &quot;Secret is ${{ secrets.SECRET_MSG }}&quot;
+        - name: Display OS
+          run: echo &quot;Running on ${{ matrix.os }}&quot;
+</code></pre><ol start="2"><li>Push, and see result</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615135116.png" class="kg-image" alt="2025-06-13" loading="lazy" width="961" height="842"></figure><p><strong>Answer</strong> :</p><ol><li>Kelebihan utama menggunakan matrix yaitu dapat mempersingkat dan membuat efiisien dari file workflow. Ketika ada perubahan besar di yaml workflow, devops hanya mengubah satu job. Tanpa mengulangi edit yang lain</li><li>Matrix dapat menjadi overkill karena dapat menjalankan secara paralel setiap jobs sesuai dengan variable yang di definisikan dalam array. Untuk membatasinya, kita dapat membatasi sesuai dengan kebutuhan(? coba koreksi)</li></ol><h2 id="daily-quest-4-dependency-caching"><strong>Daily Quest #4: Dependency Caching</strong></h2><p>Refrensi : <a href="https://docs.github.com/actions/using-workflows/caching-dependencies-to-speed-up-workflows?ref=twnb.nbtrisna.my.id">https://docs.github.com/actions/using-workflows/caching-dependencies-to-speed-up-workflows</a><br><em>To make workflows faster and efficient, you can cache for depedencies and other commonly reused file.</em><br>Job in github-hosted runners start a clean runner image, and must download depedencies each time. Causing incerased network utilizaiton, longiger runtime, and incerase cost. To cache depedencies for a job, you can use <code>cache-action</code>. The action create and restores a cache identified by a unique key.</p><p><strong>Artifacts vs caching</strong></p><ul><li>Use caching when you want to reuse files that don&apos;t change often between jobs/workflows runs. Such a depedencies from package management system (npm, dll)</li><li>Using artifacts when you want to save files produce by a job to view after a workflow run has ended. Such a built binaries/logs.</li></ul><p><strong>Using a <code>cache</code> actions</strong></p><ul><li>First search for excat match to your provided <code>key</code></li><li>if no excact match, it will search for partial matches of the <code>key</code></li><li>if there is still no match found, and you&apos;ve provided <code>restore-keys</code>, these keys wil be checked sequenial for partial matches.<br><strong>Input parameters for the cache action</strong></li><li><code>key</code> : Using to search for a cache. It can any combination of variables, context values, static strings, and function.</li><li><code>path</code> : The path of the runner to cache/restore</li><li><code>restore-keys</code> : Alternative restore keys.</li></ul><p>Is quite hard to understand to using <code>key</code> and <code>restore-key</code>. So first if key not match -&gt; search to restore-keys to list what to restore on path.</p><pre><code class="language-sh">       +-------------------------+
+       |  Start cache step      |
+       +-------------------------+
+                 |
+                 v
+      +---------------------------+
+      |  Key match with cache?   |
+      +---------------------------+
+           |              |
+          Yes            No
+           |              |
+           v              v
+  Restore full         Try restore with
+    cache              restore-keys prefix
+           |              |
+         (Hit)         (Partial hit / miss)
+           |              |
+           v              v
+    Run job (npm install, dll)
+           |
+           v
+  +------------------------------+
+  |  Save cache at end?         |
+  +------------------------------+
+           |
+  Only if &#x274C; cache miss
+</code></pre><p>Cache : only run if cache miss.</p><p><strong>Skenario</strong> : add cache before installing deedencies</p><ol><li>Edit <code>cache-workflow.yml</code></li></ol><pre><code class="language-yaml">name: Cache Workflows
+on: 
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+        - name: say hello
+          run: echo &quot;Hello from CI/CD!&quot;
+        - name: Greeting from variable
+          run: echo &quot;Hello from ${{ env.GREETING }}&quot;
+        - name: Echo secret
+          run: echo &quot;Secret is ${{ secrets.SECRET_MSG }}&quot;
+        - name: Cache node modules 
+          uses: actions/cache@v4
+          with:
+            path: ~/.npm
+            key: ${{ runner.os }}-node-${{ hashFiles(&apos;**/package-lock.json&apos;) }}
+            restore-keys: |
+              ${{ runner.os }}-node-
+        - name: Install dependencies
+          run: npm install
+        - if: ${{ steps.cache-npm.outputs.cache-hit != &apos;true&apos; }}
+          name: List the state of node modules
+          continue-on-error: true
+          run: npm list
+</code></pre><ol start="2"><li>Push, and result</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615135122.png" class="kg-image" alt="2025-06-13" loading="lazy" width="961" height="842"></figure><p><br><strong>Answer</strong></p><ol><li>Key and restore-keys akan melakukan pengecekan, jika key match maka akan di restore seluruh yang ada di path. Jika tidak, maka akan melakukan general check dengan restore-keys. Jika match maka restore, jika tidak maka hanya akan di cache dan tidak restore</li><li>Tidak menggunakan caching ketika workflow/job yang dijalankan tidak memerlukan depedencies berulang.</li></ol>]]></content:encoded></item><item><title><![CDATA[2025-06-12]]></title><description><![CDATA[OpenTofu is fork from opensource terraform tool for infrastructure as a code. This tool allow to define infrastructure to human readable file .tf so you can manage consistant infrastructure throught lifesycle.]]></description><link>https://twnb.nbtrisna.my.id/2025-06-12/</link><guid isPermaLink="false">685217443eb49b0001caa6c5</guid><category><![CDATA[daily-notes]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Thu, 12 Jun 2025 01:44:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/0bed499d-a9ba-4c97-8426-b0c3546b9103.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T013155Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=aa5dc519e1f8fb7a956a8c8ec208e2185d2d337d06c5a3bee75b7097bcc3825a" medium="image"/><content:encoded><![CDATA[<h1 id="learn-opentofu">Learn Opentofu</h1><img src="https://s3.nbtrisna.my.id/random-photo/0bed499d-a9ba-4c97-8426-b0c3546b9103.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T013155Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=aa5dc519e1f8fb7a956a8c8ec208e2185d2d337d06c5a3bee75b7097bcc3825a" alt="2025-06-12"><p>Referensi : <a href="https://opentofu.org/docs/?ref=twnb.nbtrisna.my.id">https://opentofu.org/docs/</a><br><em>OpenTofu is fork from opensource terraform tool for infrastructure as a code. This tool allow to define infrastructure to human readable file <code>.tf</code> so you can manage consistant infrastructure throught lifesycle.</em></p><p>In first daily quest, we learn to create simple file <code>hello.txt</code> using <code>local</code> provider.</p><p>OpenTofu relies on plugins called providers to interact with cloud providers, SaaS providers, and other APIs.</p><p><em>Resources</em>&#xA0;are the most important element in the OpenTofu language. Each resource block describes one or more infrastructure objects, such as virtual networks, compute instances, or higher-level components such as DNS records.</p><p>Alur init -&gt; plan -&gt; apply diperlukan agar sebelum infrastruktur dijalankan, ops bisa cek.</p><h4 id="hello-world">Hello world</h4><ol><li>Makesure tofu installed</li><li>Create <code>main.tf</code> file</li></ol><pre><code class="language-sh">terraform {
+  required_providers {
+    local = {
+      source  = &quot;hashicorp/local&quot;
+      version = &quot;~&gt; 2.0&quot;
+    }
+  }
+
+  required_version = &quot;&gt;= 1.0&quot;
+}
+
+provider &quot;local&quot; {
+  # No configuration needed for local provider
+  
+}
+
+resource &quot;local_file&quot; &quot;hello_world&quot; {
+  content  = &quot;Hello, Opentofu!&quot;
+  filename = &quot;${path.module}/hello.txt&quot;
+  
+}
+</code></pre><ol><li>Setup provider &amp; apply</li></ol><pre><code class="language-sh">tofu init
+tofu plan
+tofu apply
+</code></pre><p>Result<br></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250612085123.png" class="kg-image" alt="2025-06-12" loading="lazy" width="1250" height="440"></figure><h4 id="plan-inception">Plan Inception</h4><p><em>After init, opentofu create plan without apply anything about main.tf. Its crucial for developer to review things you need to create.</em></p><p><strong>Try</strong> : skenario we change value content to <code>Hello, Opentofu! V2</code></p><ol><li>Run tofu plan with out for check changes before we edit <code>main.tf</code></li></ol><pre><code class="language-sh">tofu plan -out=plan2.out
+---
+
+No changes. Your infrastructure matches the configuration.
+
+OpenTofu has compared your real infrastructure against your configuration and
+found no differences, so no changes are needed.
+
+---
+# print to text
+tofu show plan.out &gt; before.txt
+</code></pre><ol><li>Edit <code>main.tf</code></li></ol><pre><code class="language-sh"># before
+
+resource &quot;local_file&quot; &quot;hello_world&quot; {
+  content  = &quot;Hello, Opentofu!&quot;
+  filename = &quot;${path.module}/hello.txt&quot;
+}
+
+# after
+
+resource &quot;local_file&quot; &quot;hello_world&quot; {
+  content  = &quot;Hello, Opentofu! V2&quot;
+  filename = &quot;${path.module}/hello.txt&quot;
+}
+</code></pre><ol><li>Plan again with different output file</li></ol><pre><code class="language-sh">tofu plan -out=plan2.out
+---
+local_file.hello_world: Refreshing state... [id=38191fd8e74a432bf7ffc42ceee0bb4fb06e658d]
+
+OpenTofu used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+-/+ destroy and then create replacement
+
+OpenTofu will perform the following actions:
+
+  # local_file.hello_world must be replaced
+-/+ resource &quot;local_file&quot; &quot;hello_world&quot; {
+      ~ content              = &quot;Hello, Opentofu!&quot; -&gt; &quot;Hello, Opentofu! V2&quot; # forces replacement
+      ~ content_base64sha256 = &quot;lL/QFDa0wcJiPe1okWxphgQ0/2kax3o2shzTdVu8tTs=&quot; -&gt; (known after apply)
+      ~ content_base64sha512 = &quot;6JPryukFlv/rFOyC6tMLea+tQ2ZTJZxFsL57CYa3rXC/a28XaB3JmPerpMUSfWS29PyOr9lyCP2nxmIyqTnHpA==&quot; -&gt; (known after apply)
+      ~ content_md5          = &quot;4c66612d6cb3994e929b4ed74c1b7290&quot; -&gt; (known after apply)
+      ~ content_sha1         = &quot;38191fd8e74a432bf7ffc42ceee0bb4fb06e658d&quot; -&gt; (known after apply)
+      ~ content_sha256       = &quot;94bfd01436b4c1c2623ded68916c69860434ff691ac77a36b21cd3755bbcb53b&quot; -&gt; (known after apply)
+      ~ content_sha512       = &quot;e893ebcae90596ffeb14ec82ead30b79afad436653259c45b0be7b0986b7ad70bf6b6f17681dc998f7aba4c5127d64b6f4fc8eafd97208fda7c66232a939c7a4&quot; -&gt; (known after apply)
+      ~ id                   = &quot;38191fd8e74a432bf7ffc42ceee0bb4fb06e658d&quot; -&gt; (known after apply)
+        # (3 unchanged attributes hidden)
+    }
+
+Plan: 1 to add, 0 to change, 1 to destroy.
+
+&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;
+
+Saved the plan to: plan2.out
+
+To perform exactly these actions, run the following command to apply:
+    tofu apply &quot;plan2.out&quot;
+</code></pre><ol><li>Check difference between before.txt and after.txt</li></ol><pre><code class="language-sh">diff before.txt after.txt
+</code></pre><p>Result</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250612110838.png" class="kg-image" alt="2025-06-12" loading="lazy" width="2852" height="1068"></figure><h4 id="apply">Apply</h4><p><em>After reviewing on plan-stage, next step is apply resources using command <code>tofu apply</code></em></p><p><strong>Skenario</strong> : Apply <code>plan2.out</code></p><blockquote>In help <code>apply</code> mean<br>Creates or updates infrastructure according to OpenTofu configuration files in the current directory.</blockquote><p>By default, OpenTofu will generate a new plan and present it for your<br>approval before taking any action. You can optionally provide a plan<br>file created by a previous call to &quot;tofu plan&quot;, in which case<br>OpenTofu will take the actions described in that plan without any<br>confirmation prompt.</p><ol><li>Apply <code>plan2.out</code></li></ol><pre><code class="language-sh">tofu apply plan2.out
+</code></pre><ol><li>Result</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250612111149.png" class="kg-image" alt="2025-06-12" loading="lazy" width="1810" height="1282"></figure><ol><li><em>Destroy</em> for deleting all resources</li></ol><pre><code class="language-sh">tofu destroy -auto-approve # !IMPORTANT, dont use in production
+</code></pre><p>Result</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250612111255.png" class="kg-image" alt="2025-06-12" loading="lazy" width="2528" height="1184"></figure><p><strong>Answer</strong></p><ol><li>Perbedaan apply plan2.out dengan auto approve adalah ketika menggunakan plan2 adalah kondisi ketika tofu itu sudah di cek dalam stage plan. Sedangakan dengfan auto approve, resource langsung dibuat sesuai dengan file <code>main.tf</code></li><li>Destroy merupakan hal kritikal yang wajib dihindari apalagi dengan <code>-auto-approve</code> yang langsung menghapus resource tanpa adanya konfirmasi. Diwajibkan dengan mengtiadakan <code>-auto-approve</code></li></ol><p><a href="https://github.com/?ref=twnb.nbtrisna.my.id">https://github.com</a></p><h3 id="bos-quest">Bos quest</h3><p><strong>Archon Quest: The Forge of Foundations</strong></p><ol><li>Buat <code>main.tf</code></li></ol><pre><code class="language-sh">terraform {
+  required_providers {
+    local = {
+      source  = &quot;hashicorp/local&quot;
+      version = &quot;~&gt; 2.0&quot;
+    }
+  }
+
+  required_version = &quot;&gt;= 1.0&quot;
+}
+
+provider &quot;local&quot; {
+  # No configuration needed for local provider
+  
+}
+
+resource &quot;local_file&quot; &quot;hello_world&quot; {
+  content  = &quot;Hello, OpenTofu! V2&quot;
+  filename = &quot;${path.module}/otf-local/hello.txt&quot;
+  
+}
+</code></pre><ol start="2"><li>Buat <code>.github/workflows/ci.yaml</code></li></ol><pre><code class="language-sh">name: Apply Tofu to create hello.txt
+on:
+  push:
+    branches:
+      - main
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Tofu
+        uses: opentofu/setup-opentofu@v1
+
+      - name: Apply Tofu
+        run: |
+          tofu init
+          tofu plan
+          tofu apply -auto-approve
+
+      - name: Verify otf-local/hello.txt value
+        run: |
+          if ! grep -q &quot;Hello, OpenTofu! V2&quot; otf-local/hello.txt; then  
+            echo &quot;Validation failed!&quot; &amp;&amp; exit 1  
+          fi  
+
+      - name: Upload hello.txt artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello.txt
+          path: otf-local/hello.txt
+</code></pre><ol start="3"><li>Pastikan repository sudah di setup + push ke main branch</li></ol><pre><code class="language-sh">git push -u origin main
+</code></pre><ol start="4"><li>Result</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250612114614.png" class="kg-image" alt="2025-06-12" loading="lazy" width="3262" height="1294"></figure><p>Repository : <a href="https://github.com/ngurah-bagus-trisna/boss-land-of-iac?ref=twnb.nbtrisna.my.id">https://github.com/ngurah-bagus-trisna/boss-land-of-iac</a></p><h3 id="%F0%9F%8C%9F-side-quest-shell-scripting-sprint">&#x1F31F; Side Quest: Shell Scripting Sprint</h3><p>Refrensi : <a href="https://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html?ref=twnb.nbtrisna.my.id">https://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html</a></p><ol><li>Buat <code>backup.sh</code></li></ol><pre><code class="language-sh">#!/usr/bin/env bash
+
+SRC_DIR=&quot;$HOME/my-data&quot;
+DEST_DIR=&quot;$HOME/backup-$(date +%Y%m%d)&quot;
+
+if [ ! -d &quot;$SRC_DIR&quot; ]; then
+    echo &quot;Source directory $SRC_DIR does not exist.&quot;
+    exit 1
+else 
+    echo &quot;Backing up $SRC_DIR to $DEST_DIR&quot;
+    mkdir -p &quot;$DEST_DIR&quot;
+    cp -r &quot;$SRC_DIR/&quot;* &quot;$DEST_DIR/&quot;
+    if [ $? -eq 0 ]; then
+        echo &quot;Backup completed successfully.&quot;
+    else
+        echo &quot;Backup failed.&quot;
+        exit 1
+    fi
+fi
+</code></pre><ol start="2"><li>Jadikan executable</li></ol><pre><code class="language-sh">chmod +x backup.sh
+</code></pre><ol start="3"><li>Coba running</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250612115736.png" class="kg-image" alt="2025-06-12" loading="lazy" width="932" height="310"></figure><h3 id="the-first-workflow-daily-quest">The first workflow | daily-quest</h3><p>lab : <a href="https://vscode.dev/tunnel/nb-ubuntu-desk/home/shezen/learn-gpt/first-workflow?ref=twnb.nbtrisna.my.id">https://vscode.dev/tunnel/nb-ubuntu-desk/home/shezen/learn-gpt/first-workflow</a></p><p>Github action give tools to automation in repository git using <em>github_workflows</em>. It allow to runing task like build, test, deploy and push to production and minimize error/problem.</p><p><strong>Skenario</strong> : Create new repository, publish on github, add workflows to say &quot;Hello World&quot;</p><ol><li>Create new file <code>.github/workflows/first-workflows.yaml</code></li></ol><pre><code class="language-yaml">name: Hello CI
+on: 
+    - push
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+            - name: say hello
+              run: echo &quot;Hello from CI/CD!&quot;
+</code></pre><ol start="2"><li>Create repository <code>ci-cd-demo</code> on github</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250612231004.png" class="kg-image" alt="2025-06-12" loading="lazy" width="880" height="716"></figure><ol start="3"><li>Git init, add, commit + push to remote repository</li></ol><pre><code class="language-sh">git init
+git add .
+git commit -m &quot;ci: add testing hello-world on gh_workflows&quot;
+
+git remote add origin https://github.com/ngurah-bagus-trisna/ci-cd-demo.git
+git branch -M main
+git push -u origin main
+</code></pre><ol start="4"><li>Result</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250612231216.png" class="kg-image" alt="2025-06-12" loading="lazy" width="951" height="989"></figure><p>Answer :</p><ol><li>Blok on digunakan untuk penentu trigger sebuah action, jobs adalah sekumpulan action yang akan di running, steps adalah serangkaian langkah yang akan di exec dalam runner</li><li>Action checkout digunakan untuk mengambil data dalam repository</li></ol>]]></content:encoded></item><item><title><![CDATA[Install Kubecost]]></title><description><![CDATA[Kubecost merupakan tools yang digunakan untuk tracing, monitoring biaya dari sebuah on-premises kubernetes cluster.]]></description><link>https://twnb.nbtrisna.my.id/install-kubecost-2/</link><guid isPermaLink="false">68523cc7aadfe60001337390</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Mon, 09 Jun 2025 04:13:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/74535f4b-039f-4405-b54c-6263c1a5cf3f.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T041232Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=8b5738922f91014e8ba7cc536830a9aed5813adb3d5839a76a12a1ef88f3909d" medium="image"/><content:encoded><![CDATA[<img src="https://s3.nbtrisna.my.id/random-photo/74535f4b-039f-4405-b54c-6263c1a5cf3f.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T041232Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=8b5738922f91014e8ba7cc536830a9aed5813adb3d5839a76a12a1ef88f3909d" alt="Install Kubecost"><p>Kubecost merupakan tools yang digunakan untuk tracing, monitoring biaya dari sebuah on-premises kubernetes cluster.</p><h2 id="installasi">Installasi</h2><p>Refrensi : https://www.kubecost.com/install#show-instructions</p><p>Installasi kubecost menggunakan helm, disini ketika melakukan installasi kubecost, secara otomatis akan terinstall prometheus dan grafana.</p><ol><li>Get helm values</li></ol><pre><code class="language-sh">helm repo add kubecost https://kubecost.github.io/cost-analyzer/
+helm show values kubecost kubecost/cost-analyzer -n kubecost &gt; values.yaml
+</code></pre><ol start="2"><li>Sesuaikan values</li></ol><p>Disini saya menyesuaikan mata uang yang digunakan dalam dashboard Kubecost</p><pre><code class="language-yaml">kubecostProductConfigs:
+    currencyCode: IDR
+</code></pre><p>Untuk service yang sebelumnya <code>ClusterIP</code>, saya set ke <code>NodePort</code> agar dapat mudah diakses.</p><pre><code class="language-yaml">service:
+  type: NodePort 
+  nodePort: 30003
+</code></pre><ol start="3"><li>Installasi</li></ol><pre><code class="language-sh">helm upgrade --install kubecost \
+  --repo https://kubecost.github.io/cost-analyzer/ cost-analyzer \
+  --namespace kubecost --create-namespace -f values.yaml
+</code></pre><p>Result, pastikan pod running semua.</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020241108195027.png" class="kg-image" alt="Install Kubecost" loading="lazy" width="1628" height="920"></figure><p>Url dapat diakses dengan nodeport :30003</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020241108195822.png" class="kg-image" alt="Install Kubecost" loading="lazy" width="3360" height="1854"></figure>]]></content:encoded></item><item><title><![CDATA[Docker Registry Mirror]]></title><description><![CDATA[Ketika sebuah ip terus"an pull ke registry docker, akan menyebabkan sebuah peringatan limit pull telah terpakai. Biasanya akan reset setelah 6 jam. Untuk menyiasati, dicoba riset install registry mirror di gns3.]]></description><link>https://twnb.nbtrisna.my.id/docker-registry-mirror-2/</link><guid isPermaLink="false">68523accaadfe60001337350</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Sun, 08 Jun 2025 04:04:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/d617f61e-753a-49ab-9b04-a47571df1336.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T040359Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=0f5aa313e8bd8cd451718101a115ccf648e51a253c81bcbbfa9d3863185072f9" medium="image"/><content:encoded><![CDATA[<img src="https://s3.nbtrisna.my.id/random-photo/d617f61e-753a-49ab-9b04-a47571df1336.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T040359Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=0f5aa313e8bd8cd451718101a115ccf648e51a253c81bcbbfa9d3863185072f9" alt="Docker Registry Mirror"><p>Refrensi :</p><ul><li>https://stackoverflow.com/questions/74595635/how-to-configure-containerd-to-use-a-registry-mirror</li><li>https://docs.docker.com/registry/recipes/mirror/</li><li>https://docs.docker.com/registry/deploying/#deploy-your-registry-using-a-compose-file</li><li>https://d7y.io/docs/setup/runtime/containerd/mirror/</li></ul><p>Ketika sebuah ip terus&quot;an pull ke registry docker, akan menyebabkan sebuah peringatan limit pull telah terpakai. Biasanya akan reset setelah 6 jam. Untuk menyiasati, dicoba riset install registry mirror di gns3.</p><h3 id="common-issue">Common issue</h3><ul><li>Tidak bisa login dengan auth htpasswd. syntax docker login bisa, hanya saja ketika pull tidak menggunakan registry-mirror</li><li>Hanya bisa 1 Registry per registry-mirror. Jadi ketika ingin cache image selain docker.io, harus membuat kembali docker-registry dengan port yang berbeda</li><li>Bisa untuk containerd, dan docker</li></ul><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230529004247.png" class="kg-image" alt="Docker Registry Mirror" loading="lazy" width="857" height="607"></figure><p>Simple topology</p>
+<!--kg-card-begin: html-->
+<table>
+<thead>
+<tr>
+<th>hostname</th>
+<th>IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>regis-server</td>
+<td>192.168.122.10/24</td>
+</tr>
+<tr>
+<td>docker-client</td>
+<td>192.168.122.11/24</td>
+</tr>
+</tbody>
+</table>
+<!--kg-card-end: html-->
+<h2 id="setup-registry-server">Setup registry server</h2><p>Metode yang dipakai adalah yang paling simple, menggunakan docker compose</p><p>Create self-signed certificate (For https)</p><pre><code class="language-sh">mkdir -p registry/{cert,auth,data}
+cd registry
+
+openssl req \
+  -newkey rsa:4096 -nodes -sha256 -keyout certs/domain.key \
+  -addext &quot;subjectAltName = DNS:registry.ngurah.local&quot; \
+  -x509 -days 365 -out certs/ca.crt
+
+sudo mkdir -p /etc/docker/certs.d/registry.ngurah.local:5000
+sudo cp certs/ca.crt /etc/docker/certs.d/registry.ngurah.local:5000/
+</code></pre><p>Or create letsencrypt certificate using dns challange.</p><pre><code class="language-sh">certbot certonly --preferred-challenges=dns --dns-cloudflare \
+--server https://acme-v02.api.letsencrypt.org/directory \
+--dns-cloudflare-credentials ~/.cloudflare.ini \
+--agree-tos -d registry.ngurahbagus.my.id
+</code></pre><p>Create User &amp; auth</p><pre><code class="language-sh">docker run \
+  --entrypoint htpasswd \
+  httpd:2 -Bbn ngurah wait &gt; auth/htpasswd
+</code></pre><p>Create docker compose (if self-signed certificate)</p><pre><code class="language-yaml">version: &apos;2&apos;
+services:
+  registry:
+    restart: always
+    image: registry:2
+    ports:
+      - 5000:5000
+    volumes:
+      - /home/ubuntu/registry/data:/var/lib/registry
+      - /home/ubuntu/registry/certs:/certs
+      - /home/ubuntu/registry/auth:/auth
+      - ./config.yml:/etc/docker/registry/config.yml
+</code></pre><p>Create docker compose (if using lets-encrypt)</p><pre><code class="language-yaml">ersion: &apos;2&apos;
+services:
+  registry:
+    restart: always
+    image: registry:2
+    ports:
+      - 5000:5000
+    volumes:
+      - ./data:/var/lib/registry
+      - /etc/letsencrypt/live/example.com/fullchain.pem:/etc/letsencrypt/live/example.com/fullchain.pem
+      - /etc/letsencrypt/live/example.com/privkey.pem:/etc/letsencrypt/live/example.com/privkey.pem
+      - ./auth:/auth
+      - ./config.yml:/etc/docker/registry/config.yml
+</code></pre><p>Create config.yml</p><pre><code class="language-yaml">version: 0.1
+log:
+  fields:
+    service: registry
+storage:
+  cache:
+    blobdescriptor: inmemory
+  filesystem:
+    rootdirectory: /var/lib/registry
+http:
+  addr: :5000
+  host: https://example.com
+  headers:
+    X-Content-Type-Options: [nosniff]
+  tls:
+    certificate: # your certificate
+    key: # your cert key
+
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3
+proxy:
+  remoteurl: https://registry.k8s.io # mirroring k8s.io
+
+</code></pre><p>Running docker container</p><pre><code class="language-sh">docker-compose up -d
+</code></pre><p>Try login</p><pre><code class="language-sh">docker login registry.ngurah.local:5000
+---
+Login Succeeded # Berhasil
+</code></pre><h2 id="setup-mirror-registry-client-docker">Setup mirror registry client Docker</h2><blockquote>Using Docker-client first</blockquote><p>Setup insecure registry</p><pre><code class="language-sh"># Skip if you not using self-signed cert
+sudo mkdir -p /etc/docker/certs.d/registry.ngurah.local:5000
+sudo cp ca.crt /etc/docker/certs.d/registry.ngurah.local:5000/
+</code></pre><p>Configure mirror,</p><pre><code class="language-sh">sudo vi /etc/docker/daemon.json
+---
+{
+  &quot;registry-mirrors&quot;: [&quot;https://registry.ngurah.local:5000&quot;]
+}
+</code></pre><p>Restart docker, &amp; try pull private image using credentials on registry-server</p><pre><code class="language-sh">sudo systemctl restart docker
+docker pull hello-world 
+
+# Check registry catalog
+curl https://example.com:5000/v2/_catalog
+---
+{&quot;repositories&quot;:[&quot;kube-proxy&quot;,&quot;library/hello-world&quot;]} # makesure image availible
+</code></pre><p>Sekarang image akan tercache di registry server</p><h2 id="setup-mirror-registry-client-containerd">Setup mirror registry client containerd</h2><p>Setup mirror first</p><pre><code class="language-sh">mkdir /etc/containerd/certs.d/registry.k8s.io
+sudo vi /etc/containerd/certs.d/registry.k8s.io/hosts.toml
+---
+server = &quot;https://registry.k8s.io&quot;
+
+[host.&quot;https://example:5000&quot;]
+  capabilities = [&quot;pull&quot;, &quot;resolve&quot;]
+</code></pre><p>Konfigurasi /etc/containerd/config.toml untuk membaca registry di certs.d</p><pre><code class="language-yaml">    [plugins.&quot;io.containerd.grpc.v1.cri&quot;.registry] 
+      config_path = &quot;/etc/containerd/certs.d&quot; # enable
+</code></pre><p>Restart containerd &amp; try pull registry.k8s.io</p><pre><code class="language-sh">sudo systemctl restart containerd.io
+sudo crictl pull registry.k8s.io/kube-proxy:v1.27.2
+</code></pre>]]></content:encoded></item><item><title><![CDATA[BGP Virtual IP]]></title><description><![CDATA[Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm. ]]></description><link>https://twnb.nbtrisna.my.id/bgp-virtual-ip/</link><guid isPermaLink="false">68523c58aadfe60001337383</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Sat, 07 Jun 2025 04:11:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/c756208e-5119-459b-9656-62d3b05bbbcb.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T041050Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=0f300afb47ea16b79a5ffb38c4950f822576f83a3950ec7d6b29d4d5d5d9047c" medium="image"/><content:encoded><![CDATA[<img src="https://s3.nbtrisna.my.id/random-photo/c756208e-5119-459b-9656-62d3b05bbbcb.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T041050Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=0f300afb47ea16b79a5ffb38c4950f822576f83a3950ec7d6b29d4d5d5d9047c" alt="BGP Virtual IP"><p>Refrensi : </p><ul><li>https://docs.vultr.com/high-availability-on-vultr-with-floating-ip-and-bgp</li></ul><p>Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm. VirtualIP disini masih belum sempurna, karena beberapa kali pengetestan dan tuning buat pindah ke vm lain masih terdapat jeda yang sangat lumayan &gt; 1 menit.</p><h2 id="environment">environment</h2><p>Pakai OS Ubuntu 22.04 Server</p>
+<!--kg-card-begin: html-->
+<table>
+<thead>
+<tr>
+<th>VM Hostname</th>
+<th>IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rke-server-01</td>
+<td>10.10.11.10</td>
+</tr>
+<tr>
+<td>rke-server-02</td>
+<td>10.10.11.11</td>
+</tr>
+<tr>
+<td>rke-server-03</td>
+<td>10.10.11.12</td>
+</tr>
+<tr>
+<td>vip-rke</td>
+<td>10.10.11.100</td>
+</tr>
+<tr>
+<td>Kondisi awalnya terlihat kalau tidak terdapat ip <code>10.10.11.100</code> di dhcp-leases.</td>
+<td></td>
+</tr>
+<tr>
+<td><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020240805124052.png" alt="BGP Virtual IP"></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020240805124110.png" alt="BGP Virtual IP"></td>
+<td></td>
+</tr>
+<tr>
+<td>Di ping juga pastinya engga mau, karena belum di setup</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<!--kg-card-end: html-->
+<h2 id="setup">Setup</h2><blockquote>Exec on all node</blockquote><ol><li>Install bird</li></ol><pre><code class="language-sh">sudo apt install bird
+</code></pre><ol start="2"><li>Add virtual ip di interface loopback.</li></ol><pre><code class="language-sh">sudo vim /etc/netplan/xx.yaml
+</code></pre><pre><code class="language-yaml">network:
+    ethernets:
+        lo:
+            addresses:
+              - 127.0.0.1/8
+              - ::1/128
+              - 10.10.11.100/32
+</code></pre><pre><code class="language-sh">sudo netplan apply 
+</code></pre><p>Pastikan interface <code>lo</code> memiliki virtualip</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020240805125133.png" class="kg-image" alt="BGP Virtual IP" loading="lazy" width="835" height="284"></figure><h3 id="config-rke-server-01">config rke-server-01</h3><pre><code class="language-sh">sudo vim /etc/bird/bird.conf
+</code></pre><pre><code class="language-fonfig"># This is a minimal configuration file, which allows the bird daemon to start
+# but will not cause anything else to happen.
+#
+# Please refer to the documentation in the bird-doc package or BIRD User&apos;s
+# Guide on http://bird.network.cz/ for more information on configuring BIRD and
+# adding routing protocols.
+
+# Change this into your BIRD router ID. It&apos;s a world-wide unique identification
+# of your router, usually one of router&apos;s IPv4 addresses.
+router id 10.10.11.10;
+
+# The Kernel protocol is not a real routing protocol. Instead of communicating
+# with other routers in the network, it performs synchronization of BIRD&apos;s
+# routing tables with the OS kernel.
+protocol kernel {
+        scan time 60;
+        import none;
+#       export all;   # Actually insert routes into the kernel routing table
+}
+
+# The Device protocol is not a real routing protocol. It doesn&apos;t generate any
+# routes and it only serves as a module for getting information about network
+# interfaces from the kernel. 
+protocol device {
+        scan time 60;
+}
+
+protocol direct {
+        interface &quot;lo&quot;;
+}
+
+protocol bgp uplink_1 {
+    local as 64512;
+    source address 10.10.11.10;
+    import none;
+    export all;
+    graceful restart on;
+    neighbor 10.10.11.11 as 64512;
+}
+
+
+protocol bgp uplink_2 {
+    local as 64512;
+    source address 10.10.11.10;
+    import none;
+    export all;
+    graceful restart on;
+    neighbor 10.10.11.12 as 64512;
+}
+</code></pre><p>Enable bird</p><pre><code class="language-sh">sudo enable --now bird
+</code></pre><h3 id="config-rke-server-02">config rke-server-02</h3><pre><code class="language-sh">sudo vim /etc/bird/bird.conf
+</code></pre><pre><code># This is a minimal configuration file, which allows the bird daemon to start
+# but will not cause anything else to happen.
+#
+# Please refer to the documentation in the bird-doc package or BIRD User&apos;s
+# Guide on http://bird.network.cz/ for more information on configuring BIRD and
+# adding routing protocols.
+
+# Change this into your BIRD router ID. It&apos;s a world-wide unique identification
+# of your router, usually one of router&apos;s IPv4 addresses.
+router id 10.10.11.11;
+
+# The Kernel protocol is not a real routing protocol. Instead of communicating
+# with other routers in the network, it performs synchronization of BIRD&apos;s
+# routing tables with the OS kernel.
+protocol kernel {
+        scan time 60;
+        import none;
+#       export all;   # Actually insert routes into the kernel routing table
+}
+
+# The Device protocol is not a real routing protocol. It doesn&apos;t generate any
+# routes and it only serves as a module for getting information about network
+# interfaces from the kernel. 
+protocol device {
+        scan time 60;
+}
+
+protocol direct {
+        interface &quot;lo&quot;;
+}
+
+protocol bgp uplink_1 {
+    local as 64512;
+    source address 10.10.11.11;
+    import none;
+    export all;
+    graceful restart on; 
+    neighbor 10.10.11.10 as 64512;
+}
+
+
+protocol bgp uplink_2 {
+    local as 64512;
+    source address 10.10.11.11;
+    import none;
+    export all;
+    graceful restart on;
+    neighbor 10.10.11.12 as 64512;
+}  
+</code></pre><p>Enable service bird</p><pre><code class="language-sh">sudo systemctl enable --now bird
+</code></pre><h3 id="config-rke-server-03">config rke-server-03</h3><pre><code class="language-sh">sudo vim /etc/bird/bird.conf
+</code></pre><pre><code class="language-cfg"># This is a minimal configuration file, which allows the bird daemon to start
+# but will not cause anything else to happen.
+#
+# Please refer to the documentation in the bird-doc package or BIRD User&apos;s
+# Guide on http://bird.network.cz/ for more information on configuring BIRD and
+# adding routing protocols.
+
+# Change this into your BIRD router ID. It&apos;s a world-wide unique identification
+# of your router, usually one of router&apos;s IPv4 addresses.
+router id 10.10.11.12;
+
+# The Kernel protocol is not a real routing protocol. Instead of communicating
+# with other routers in the network, it performs synchronization of BIRD&apos;s
+# routing tables with the OS kernel.
+protocol kernel {
+        scan time 60;
+        import none;
+#       export all;   # Actually insert routes into the kernel routing table
+}
+
+# The Device protocol is not a real routing protocol. It doesn&apos;t generate any
+# routes and it only serves as a module for getting information about network
+# interfaces from the kernel. 
+protocol device {
+        scan time 60;
+}
+
+protocol direct {
+        interface &quot;lo&quot;;
+}
+
+protocol bgp uplink_1 {
+    local as 64512;
+    source address 10.10.11.12;
+    import none;
+    export all;
+    graceful restart on; 
+    neighbor 10.10.11.10 as 64512;
+}
+
+
+protocol bgp uplink_2 {
+    local as 64512;
+    source address 10.10.11.12;
+    import none;
+    export all;
+    graceful restart on;
+    neighbor 10.10.11.11 as 64512;
+}  
+</code></pre><p>Enable service bgp</p><pre><code class="language-sh">sudo enable --now bird
+</code></pre><h2 id="verifikasi">Verifikasi</h2><ol><li>Check bgp session tiap vm</li></ol><pre><code class="language-sh">birdc show proto all 
+</code></pre><p>Pastikan bgp state udah Active</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020240805130136.png" class="kg-image" alt="BGP Virtual IP" loading="lazy" width="1109" height="980"></figure><ol start="2"><li>Ping vip dari baremetal</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020240805130200.png" class="kg-image" alt="BGP Virtual IP" loading="lazy" width="601" height="266"></figure><ol start="3"><li>Install nginx masing&quot;, dan ubah index dengan hostname. Dan curl dari baremetal</li></ol><pre><code class="language-sh">curl 10.10.11.100
+</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020240805132151.png" class="kg-image" alt="BGP Virtual IP" loading="lazy" width="1871" height="1047"></figure><p>Coba curl terus menerus, sambil matikan instance rke-3</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020240805132506.png" class="kg-image" alt="BGP Virtual IP" loading="lazy" width="1871" height="1047"></figure><p>Dan ip berpindah ke rke-2. perpindahan cukup lama, dan memang bgp sepertinya tidak bestpractice sebagai vrrp dibandingkan keepalive.</p>]]></content:encoded></item><item><title><![CDATA[nginx-upstream ingress]]></title><description><![CDATA[Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.]]></description><link>https://twnb.nbtrisna.my.id/nginx-upstream-ingress-2/</link><guid isPermaLink="false">68523b4caadfe60001337360</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Fri, 06 Jun 2025 04:06:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T040622Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87" medium="image"/><content:encoded><![CDATA[<img src="https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T040622Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87" alt="nginx-upstream ingress"><p>Refrensi : </p><ul><li>https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/</li></ul><p>Untuk mengetahui values dari helm, bisa mengunjungi link <a href="https://artifacthub.io/packages/helm/?ref=twnb.nbtrisna.my.id">ArtifactHub</a></p><p>Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan <code>Custom Resource Definitions</code> untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.</p><blockquote><code>controller.enableCustomResources</code>&#xA0;set to&#xA0;<code>false</code>&#xA0;and&#xA0;<code>controller.appprotect.enable</code>&#xA0;set to&#xA0;<code>false</code> and&#xA0;<code>controller.appprotectdos.enable</code>&#xA0;set to&#xA0;<code>false</code>), the installation of the CRDs can be skipped by specifying&#xA0;<code>--skip-crds</code>&#xA0;for the helm install command.</blockquote><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621032858.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="955" height="213"></figure><p>Untuk disini saya akan menggunakan default setting yaitu dengan crd</p><pre><code class="language-sh">helm install nginx-ingress oci://ghcr.io/nginxinc/charts/nginx-ingress --version 3.1.1 --namespace nginx-ingress --create-namespace --set controller.ingressClass=nginx-ingress 
+</code></pre><p>Setelah installasi, secara otomatis CRD akan terdeploy juga</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621035659.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1567" height="214"></figure><p>Verifikasi, Pastikan semua running dan coba untuk expos nginx-deployment dengan ingress-class nginx-ingress</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621035741.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="937" height="211"></figure><pre><code class="language-sh">kubectl create ingress nginx-ingress --rule=&quot;nginx-ingress.ok/*=nginx:80&quot; --class nginx-ingress
+</code></pre><p>Works</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621040351.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="938" height="230"></figure><h3 id="monitoring-using-servicemonitors">Monitoring using servicemonitors</h3><p>Create svc port <code>prometheus</code></p><pre><code class="language-yaml">kubectl edit svc -n nginx-ingress nginx-ingress
+---
+spec: 
+  ports:
+    - name: prometheus
+      port: 9113
+      protocol: TCP
+      targetPort: 9113
+</code></pre><p>Create service-monitors</p><pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ingress-nginx
+  namespace: nginx-ingress
+  labels:
+    release: nb
+    jobLabel: ingress-nginx
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: nginx-ingress
+      app.kubernetes.io/name: nginx-ingress
+  endpoints:
+  - port: prometheus 
+    scheme: http
+</code></pre><h1 id="virtualserver">VirtualServer</h1><p>Refrensi : https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#upstream</p><p>The VirtualServer resource defines load balancing configuration for a domain name, such as&#xA0;<code>example.com</code>. Virtual server ini dalam penerapannya memungkinkan dalam satu ingress memiliki 2 service berbeda dengan path yang berbeda juga. Misal <code>/coffe</code> -&gt; <code>svc:coffe:80</code> atau <code>/milk</code> -&gt; <code>svc:milk:8080</code></p><h2 id="basic-create-ingress-using-virtualserver">Basic Create Ingress Using VirtualServer</h2><p>Refrensi : https://github.com/nginxinc/kubernetes-ingress/tree/v3.1.1/examples/custom-resources/basic-configuration</p><p>Selain membuat ingress menggunakan kind <code>Ingress</code>, di nginx-ingress bisa memanfaatkan fitur VirtualServer.</p><blockquote>The VirtualServer and VirtualServerRoute resources are load balancing configurations recommended as an alternative to the Ingress resource.</blockquote><p>Dari dokumentasi, disini VIrtualServer dapat sebagai alternatif konfigurasi dari Ingress Resource.</p><p>Basic yaml file dari VIrtualServer</p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: 
+spec: 
+</code></pre><h3 id="basic-ingress">Basic ingress.</h3><ul><li>Expose svc nginx:80 -&gt; virtual-svc.nginx.local dengan VirtualServer</li></ul><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: nginx-test
+spec:
+  host: virtual-svc.nginx.local
+  upstreams:
+  - name: nginx
+    service: nginx
+    port: 80
+  routes:
+  - path: /
+    action:
+      pass: nginx # name dari upstreams
+</code></pre><p>Setelah apply coba cek</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624201239.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="999" height="572"></figure><p>Coba hit : `curl -v http://localhost:31105 -H &apos;Host: virtual-svc.nginx.local&apos;</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624201433.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1104" height="617"></figure><h1 id="virtualserver-separate-service-by-path">VirtualServer separate service by path</h1><p>Refrensi : https://github.com/nginxinc/kubernetes-ingress/tree/v3.1.1/examples/custom-resources/basic-configuration</p><p>Di virtualserver sama seperti k8s-ingress, kita dapat membuat 2 service dalam satu ingress dengan path yang berbeda. Misal <code>/coffe</code> -&gt; <code>svc:coffe:80</code> atau <code>/milk</code> -&gt; <code>svc:milk:8080</code></p><ol><li>Buat deployment coffe &amp; tea</li></ol><pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: coffee
+  template:
+    metadata:
+      labels:
+        app: coffee
+    spec:
+      containers:
+      - name: coffee
+        image: nginxdemos/nginx-hello:plain-text
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coffee-svc
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: coffee
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tea
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tea
+  template:
+    metadata:
+      labels:
+        app: tea
+    spec:
+      containers:
+      - name: tea
+        image: nginxdemos/nginx-hello:plain-text
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tea-svc
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: tea
+</code></pre><ol start="2"><li>Buat VirtualServer</li></ol><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: cafe-testing
+spec:
+  host: cafe.nginx.local
+  upstreams:
+  - name: tea
+    service: tea-svc
+    port: 80
+  - name: coffee
+    service: coffee-svc
+    port: 80
+  routes:
+  - path: /tea
+    action:
+      pass: tea
+  - path: /coffee
+    action:
+      pass: coffee
+</code></pre><ol start="3"><li>Verifikasi</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624204053.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1104" height="690"></figure><pre><code class="language-sh"># Testing curl
+curl http://localhost:31105/tea -H &apos;Host: cafe.nginx.local&apos;
+curl http://localhost:31105/coffe -H &apos;Host: cafe.nginx.local&apos;
+</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624204300.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="874" height="213"></figure><h1 id="mencoba-lbmethod">Mencoba lb_method</h1><p>Dilihat dari refrensi <a href="https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/?ref=twnb.nbtrisna.my.id#upstream">berikut</a>, kita bisa menambahkan <code>lb-method</code> di upstream section. Untuk metode yang di support bisa ke refrensi <a href="https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/?ref=twnb.nbtrisna.my.id#choosing-a-load-balancing-method">berikut</a></p><p>Defaul algortihm yang digunakan nginx-ingress adalah yang tertera dalam configmaps nginx-ingress. Hanya saja tidak ada data yaml yang terdefine di cm ingress.</p><pre><code class="language-sh">k get cm -n nginx-ingress nginx-ingress -o yaml
+</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624205128.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="684" height="342"></figure><p>Oke Gas dicoba.</p><p>Ketika tidak mendefinisikan algoritma lb di upstream, dicoba hit 5 kali dan hasilnya seperti berikut</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624205245.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1248" height="889"></figure>
+<!--kg-card-begin: html-->
+<table>
+<thead>
+<tr>
+<th>Pod Name</th>
+<th>Jumlah Hit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coffee-7dd75bc79b-9f8l7</td>
+<td>4</td>
+</tr>
+<tr>
+<td>coffee-7dd75bc79b-2grss</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<!--kg-card-end: html-->
+<p>Dari hasil hit, nginx memilih pod secara random selama hit.</p><p>Saya coba dengan <code>lb-method: roundrobin</code>, harusnya akan hit secara bergantian</p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: cafe-testing
+spec:
+  host: cafe-round.nginx.local
+  upstreams:
+  - name: tea
+    service: tea-svc
+    port: 80
+  - name: coffee
+    service: coffee-svc
+    port: 80
+    lb-method: round_robin # add spesific on coffe path
+  routes:
+  - path: /tea
+    action:
+      pass: tea
+  - path: /coffee
+    action:
+      pass: coffee
+
+</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624205607.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1248" height="889"></figure>
+<!--kg-card-begin: html-->
+<table>
+<thead>
+<tr>
+<th>Pod Name</th>
+<th>Jumlah Hit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coffee-7dd75bc79b-9f8l7</td>
+<td>5</td>
+</tr>
+<tr>
+<td>coffee-7dd75bc79b-2grss</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<!--kg-card-end: html-->
+<p>Yup hasilnya akan di loadbalance secara &quot;roundrobin&quot; ke masing&quot; pod. :)</p>]]></content:encoded></item><item><title><![CDATA[setup certificate win-server (standalone)]]></title><description><![CDATA[Intinya, untuk trafik TLS/SSL (Transport Layer Secure) dibutuhkan sebuah Certificate, biasanya terdiri dari CA Certificate, dan Client certifikate (Sertifikat yang akan dipakai)]]></description><link>https://twnb.nbtrisna.my.id/setup-certificate-win-server-standalone/</link><guid isPermaLink="false">68523becaadfe60001337375</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Thu, 05 Jun 2025 04:09:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/e84e1607-5b7a-4882-9def-25201db3ec4c.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T040838Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=a1320369af177998152f9dd5bc369bd216132b03063b369ec3fc730d1fcf77eb" medium="image"/><content:encoded><![CDATA[<img src="https://s3.nbtrisna.my.id/random-photo/e84e1607-5b7a-4882-9def-25201db3ec4c.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T040838Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=a1320369af177998152f9dd5bc369bd216132b03063b369ec3fc730d1fcf77eb" alt="setup certificate win-server (standalone)"><p>Refrensi : </p><ul><li>https://support.n4l.co.nz/s/article/How-to-install-Certificate-Authority-CA-server-and-create-certificates</li></ul><p>Intinya, untuk trafik TLS/SSL (Transport Layer Secure) dibutuhkan sebuah Certificate, biasanya terdiri dari CA Certificate, dan Client certifikate (Sertifikat yang akan dipakai)</p><p>Prosedurnya :</p><ul><li>CA Server akan membuat sebuah <code>ROOT CA</code>/ Certifikate tersebut harus diinstall di setiap server sebagai trusted root certifikate</li><li>Setelah itu, kita buat file request misal untuk web <code>helo.lks1.com</code>. Nanti nya akan kegenerate file .csr (certificate sign request). Nantinya si server CA akan diminta untuk menandatangani/Sign certifikate tersebut agar valid</li><li>Import file .csr, lalu akan di sign oleh CA Server, yang nantinya akan menjadi output .pfx/.crt</li><li>Certificate akan bisa digunakan untuk https.</li></ul><blockquote>Common issue</blockquote><p>Sering terjadi seperti <code>untrusted</code> padahal sudah <code>https</code>, itu bisa terjadi karena <code>ROOT_CA</code> tidak terimport secara sempurna di mesin Client. Contohnya,</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008155602.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1281" height="809"></figure><h2 id="install">Install</h2><ol><li>Lanjut pilih Role-based</li></ol><p>Add Role &amp; Features, Klik next di bagian <code>Before you begin</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008155717.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1372" height="803"></figure><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008155840.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1283" height="757"></figure><ol start="3"><li>di <code>Server Section</code> pilih server yang akan diinstall CA Server, Klik next</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008155936.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1285" height="753"></figure><ol start="4"><li>Pilih <code>Active Directory Certificate Services</code>, Klik next. Next di features bisa skip langsung next ke bagian <code>AD CS</code></li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160017.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1281" height="754"></figure><ol start="5"><li>Di section AD CS Klik <code>next</code>, di Role Services pilih <code>Certificate Authority</code></li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160137.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1284" height="758"></figure><ol start="6"><li>Klik next dan Install..</li></ol><h2 id="setup">Setup</h2><p>Setelah selesai install, biasanya akan ada notif untuk menyarankan setup seperti berikut, tinggal klik aja</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160331.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1276" height="405"></figure><ol><li>Credentials, bisa pake akun Administrator aja klik next.</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160406.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1282" height="756"></figure><ol start="2"><li>Role service bisa pilih <code>Certificate Authority</code>, klik next</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160446.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1284" height="750"></figure><ol start="3"><li>Karena win-server tidak dikonfigurasi domain, bisa langsung pilih <code>Standalone CA</code>. Poin positifnya, untuk CA Server tidak perlu di configurasi untuk ke internet</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160611.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1287" height="747"></figure><ol start="4"><li>Next, untuk CA Type, bisa pilih <code>ROOT CA</code></li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160720.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1287" height="750"></figure><ol start="5"><li>Private Key, bisa dibuat aja/Next aja</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160746.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1289" height="752"></figure><ol start="6"><li>Crypthograpy bisa next</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160819.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1293" height="752"></figure><ol start="7"><li>Di <code>CA Name</code>, bisa dikonfigurasi namanya untu <code>CN</code> nya apa. misal <code>ca.ngurah.local</code>/sesuaikan soal.</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160916.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1288" height="755"></figure><ol start="8"><li>Validity period sesuaikan dengan soal/biarkan default</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008161000.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1277" height="751"></figure><ol start="9"><li>Di section <code>CA Database</code> bisa skip aja</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008161031.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1283" height="755"></figure><ol start="10"><li>Di section <code>Confirmation</code> bisa cek kembali konfigurasi, dan jika sudah langsung <code>Configure</code></li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008161138.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1273" height="746"></figure><p>Pastikan Result success. :) bisa di close aja.</p><h2 id="install-root-ca-di-all-server">Install Root CA di all server</h2><h3 id="export-root-ca-first">Export Root CA first</h3><ol><li>Cari <code>Certificate</code> di search</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008161420.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1284" height="755"></figure><ol start="2"><li>Klik <code>Certificates - Local Computer</code> &gt; <code>Personal</code> &gt; Certificate</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008161936.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1279" height="750"></figure><p>nanti akan muncul <code>ROOT CA</code> yang tadi telah dibuat, export root ca tersebut.</p><ol start="3"><li>Klik kanan di root ca yang udah dibuat tadi, pilih <code>All Tasks</code> &gt; <code>Export</code></li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008162117.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1277" height="752"></figure><ol start="4"><li>Klik Next</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008162215.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1283" height="751"></figure><ol start="4"><li>Di <code>Export Private keys</code> Bisa pilih <code>yes/no</code> tergantung ingin si certificate + privkey/ Certificate doang. Tergantung kebutuhan, tapi saran pilih <code>no</code> aja biar universal bisa windows bisa linux</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008162359.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1281" height="747"></figure><ol start="5"><li>Selanjutnya pilih next, sesuai soal</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008162433.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1280" height="750"></figure><ol start="6"><li>Di file section, tinggal pilih dimana letak certificate akan di export</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008162531.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1287" height="759"></figure><ol start="7"><li>Summary, kalo data udah bener, bisa langsung di finish</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008162601.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1285" height="756"></figure>]]></content:encoded></item><item><title><![CDATA[nginx-upstream Transport Server]]></title><description><![CDATA[TransportServer resource memungkinkan untuk conifgurasi TCP, UDP dan TLS Passtrough melalui nginx-upstream. Fitur ini berfungsi jika installasi dengan CRD.]]></description><link>https://twnb.nbtrisna.my.id/nginx-upstream-transport-server-2/</link><guid isPermaLink="false">68523d74aadfe6000133739c</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Tue, 03 Jun 2025 04:16:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/9cd0acc7-5b83-4606-afee-a7f5f5b504ba.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T041512Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=7eaf09130ed3a4fb888c7da284c89f5cf4a8dad7fe3fe657252fdb7bd6e59a6f" medium="image"/><content:encoded><![CDATA[<img src="https://s3.nbtrisna.my.id/random-photo/9cd0acc7-5b83-4606-afee-a7f5f5b504ba.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T041512Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=7eaf09130ed3a4fb888c7da284c89f5cf4a8dad7fe3fe657252fdb7bd6e59a6f" alt="nginx-upstream Transport Server"><p>Refrensi :</p><ul><li>https://docs.nginx.com/nginx-ingress-controller/configuration/transportserver-resource/</li></ul><p>TransportServer resource memungkinkan untuk conifgurasi TCP, UDP dan TLS Passtrough melalui nginx-upstream. Fitur ini berfungsi jika installasi dengan CRD.</p><h2 id="persyaratan">Persyaratan</h2><ul><li>Untuk tcp dan udp, perlu membuat globalresources terlebih dahulu. <a href="https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/globalconfiguration-resource?ref=twnb.nbtrisna.my.id">Refrensi</a></li><li>Untuk TLS Passtrough, perlu menambahkan <code>-enable-tls-passthrough</code> di command line argument ingress-controller</li></ul><h2 id="simple-testing-access-ssh-to-pod-using-tcp-passtrough-port-22">Simple Testing, Access ssh to pod using tcp passtrough port 22</h2><p>Untuk mencoba saya membuat pod <code>openssh-server</code>. Nantinya akan expose port 22 dari container, dan coba akses mengggukana ip dari ingress-nginx.</p><p>Refrensi dari percobaan : https://stackoverflow.com/questions/68046576/exposing-tcp-service-using-nginx-ingress-controller-operator-on-openshift</p><ol><li>Create deployment + service openssh-server, expose port 22.</li></ol><pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ssh-server
+  name: ssh-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ssh-server
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ssh-server
+    spec:
+      containers:
+      - image: linuxserver/openssh-server
+        name: openssh-server
+        ports:
+        - name: ssh-port
+          containerPort: 2222
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ssh-server
+  name: ssh-server
+spec:
+  ports:
+  - name: ssh-port
+    port: 22
+    protocol: TCP
+    targetPort: 2222
+  selector:
+    app: ssh-server
+  type: ClusterIP
+			
+</code></pre><p>Hit port 2222. (Default container)</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230705050341.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="745" height="204"></figure><p>Hit port 22 pakai clusterIP</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230705050432.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="677" height="149"></figure><ol start="2"><li>Buat <code>GlobalConfiguration</code></li></ol><p>GlobalConfiguration berfungsi untuk membuat listen port 2250 di ingress-controler. Nantinya port 2250 berfungsi untuk meneruskan port 22 dari deployment <code>ssh-test</code></p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1alpha1
+kind: GlobalConfiguration
+metadata:
+  name: nginx-ingress-config
+  namespace: nginx-ingress
+spec:
+  listeners:
+  - name: ssh-tcp
+    port: 2250 # port yang akan di expose
+    protocol: TCP
+</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230705051345.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="948" height="126"></figure><p>Setelah apply global-config, edit deployment nginx-ingress, tambahkan <code>-global-configuration=&lt;namespace&gt;/name</code> di command section.</p><pre><code class="language-yaml">kubectl edit deployments.apps -n nginx-ingress nginx-ingress-controller
+---
+spec:
+  containers:
+  - args:
+    - -global-configuration=nginx-ingress/nginx-ingress-config
+</code></pre><ol start="3"><li>Buat TransportServer</li></ol><pre><code class="language-yaml">```yaml
+apiVersion: k8s.nginx.org/v1alpha1
+kind: TransportServer
+metadata:
+  name: ssh-tcp
+spec:
+  listener:
+    name: ssh-tcp
+    protocol: TCP
+  upstreams:
+  - name: ssh-app
+    service: ssh-server
+    port: 22
+  action:
+    pass: ssh-app
+</code></pre><h2 id="verifikasi">Verifikasi</h2><p>Pastikan transportserver sudah valid</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230705052139.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="723" height="77"></figure><p>Coba hit port 2250 sesuai dari <code>port listeners</code> yang dibuat. Dicoba terlebih dahulu dengan IP Port <code>ingress-controller</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230705052338.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="1070" height="157"></figure><p>Coba hit dengan <code>ClusterIP</code> nginx-controller</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230705052444.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="838" height="103"></figure><p>Hal tersebut tidak bisa, karena belum mapping port 2250 ke service dari <code>nginx-ingress</code>. Selanjutnya dicoba menambahkan port 2250</p><pre><code class="language-yaml">kubectl edit svc -n nginx-ingress nginx-ingress-controller
+---
+spec:
+  ports:
+  - name: http
+    nodePort: 32551
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: https
+    nodePort: 31435
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  - name: ssh-port
+    port: 2250 # tambahkan port 2250
+    protocol: TCP
+    targetPort: 2250
+</code></pre><p>Setelah diedit, bisa di hit menggunakan <code>ClusterIP</code> maupun <code>IPLoadbalancer</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230705052822.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="892" height="274"></figure>]]></content:encoded></item></channel></rss>
