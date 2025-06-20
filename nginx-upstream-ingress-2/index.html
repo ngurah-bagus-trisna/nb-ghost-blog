@@ -6,22 +6,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="preload" as="style" href="/assets/built/screen.css?v=8299a990da">
-    <link rel="preload" as="script" href="/assets/built/source.js?v=8299a990da">
+    <link rel="preload" as="style" href="/assets/built/screen.css?v=a90396e918">
+    <link rel="preload" as="script" href="/assets/built/source.js?v=a90396e918">
     
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-roman.woff2?v=8299a990da" crossorigin="anonymous">
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-roman.woff2?v=a90396e918" crossorigin="anonymous">
 <style>
     @font-face {
         font-family: "Inter";
         font-style: normal;
         font-weight: 100 900;
         font-display: optional;
-        src: url(/assets/fonts/inter-roman.woff2?v=8299a990da) format("woff2");
+        src: url(/assets/fonts/inter-roman.woff2?v=a90396e918) format("woff2");
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
     }
 </style>
 
-    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=8299a990da">
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=a90396e918">
 
     <style>
         :root {
@@ -95,9 +95,7 @@
         "name": "I Gusti Ngurah Bagus Trisna Andika",
         "image": {
             "@type": "ImageObject",
-            "url": "https://www.gravatar.com/avatar/67669d72ccc65017961ab1d385f74c60?s=250&r=x&d=mp",
-            "width": 250,
-            "height": 250
+            "url": "https://www.gravatar.com/avatar/67669d72ccc65017961ab1d385f74c60?s=250&r=x&d=mp"
         },
         "url": "https://twnb.nbtrisna.my.id/author/ngurah/",
         "sameAs": []
@@ -124,8 +122,8 @@
     <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.5/umd/sodo-search.min.js" data-key="d8018a425f7cfc3913d46bfa03" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.5/umd/main.css" data-sodo-search="https://twnb.nbtrisna.my.id/" data-locale="id" crossorigin="anonymous"></script>
     
     <link href="https://twnb.nbtrisna.my.id/webmentions/receive/" rel="webmention">
-    <script defer src="/public/cards.min.js?v=8299a990da"></script><style>:root {--ghost-accent-color: #b6bdff;}</style>
-    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=8299a990da">
+    <script defer src="/public/cards.min.js?v=a90396e918"></script><style>:root {--ghost-accent-color: #b6bdff;}</style>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=a90396e918">
     <meta name="google-site-verification" content="aJn625qTdbOQcWo6rLrtjWcfkTE6RlP1zdyLCECipdQ" />
 <!-- Dracula Theme for Prism (Unpkg) -->
 <link rel="stylesheet" href="https://unpkg.com/dracula-prism/dist/css/dracula-prism.css">
@@ -375,7 +373,7 @@
         </header>
 
         <section class="gh-content gh-canvas is-body">
-            <p>Refrensi : </p><ul><li>https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/</li></ul><p>Untuk mengetahui values dari helm, bisa mengunjungi link <a href="https://artifacthub.io/packages/helm/?ref=twnb.nbtrisna.my.id">ArtifactHub</a></p><p>Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan <code>Custom Resource Definitions</code> untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.</p><blockquote><code>controller.enableCustomResources</code>&nbsp;set to&nbsp;<code>false</code>&nbsp;and&nbsp;<code>controller.appprotect.enable</code>&nbsp;set to&nbsp;<code>false</code> and&nbsp;<code>controller.appprotectdos.enable</code>&nbsp;set to&nbsp;<code>false</code>), the installation of the CRDs can be skipped by specifying&nbsp;<code>--skip-crds</code>&nbsp;for the helm install command.</blockquote><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621032858.png" class="kg-image" alt="Pasted image 20230621032858" loading="lazy" width="955" height="213"></figure><p>Untuk disini saya akan menggunakan default setting yaitu dengan crd</p><pre><code class="language-sh">helm install nginx-ingress oci://ghcr.io/nginxinc/charts/nginx-ingress --version 3.1.1 --namespace nginx-ingress --create-namespace --set controller.ingressClass=nginx-ingress 
+            <p>Refrensi : </p><ul><li>https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/</li></ul><p>Untuk mengetahui values dari helm, bisa mengunjungi link <a href="https://artifacthub.io/packages/helm/?ref=dev.nbtrisna.my.id">ArtifactHub</a></p><p>Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan <code>Custom Resource Definitions</code> untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.</p><blockquote><code>controller.enableCustomResources</code>&nbsp;set to&nbsp;<code>false</code>&nbsp;and&nbsp;<code>controller.appprotect.enable</code>&nbsp;set to&nbsp;<code>false</code> and&nbsp;<code>controller.appprotectdos.enable</code>&nbsp;set to&nbsp;<code>false</code>), the installation of the CRDs can be skipped by specifying&nbsp;<code>--skip-crds</code>&nbsp;for the helm install command.</blockquote><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621032858.png" class="kg-image" alt="Pasted image 20230621032858" loading="lazy" width="955" height="213"></figure><p>Untuk disini saya akan menggunakan default setting yaitu dengan crd</p><pre><code class="language-sh">helm install nginx-ingress oci://ghcr.io/nginxinc/charts/nginx-ingress --version 3.1.1 --namespace nginx-ingress --create-namespace --set controller.ingressClass=nginx-ingress 
 </code></pre><p>Setelah installasi, secara otomatis CRD akan terdeploy juga</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621035659.png" class="kg-image" alt="Pasted image 20230621035659" loading="lazy" width="1567" height="214"></figure><p>Verifikasi, Pastikan semua running dan coba untuk expos nginx-deployment dengan ingress-class nginx-ingress</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621035741.png" class="kg-image" alt="Pasted image 20230621035741" loading="lazy" width="937" height="211"></figure><pre><code class="language-sh">kubectl create ingress nginx-ingress --rule="nginx-ingress.ok/*=nginx:80" --class nginx-ingress
 </code></pre><p>Works</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621040351.png" class="kg-image" alt="Pasted image 20230621040351" loading="lazy" width="938" height="230"></figure><h3 id="monitoring-using-servicemonitors">Monitoring using servicemonitors</h3><p>Create svc port <code>prometheus</code></p><pre><code class="language-yaml">kubectl edit svc -n nginx-ingress nginx-ingress
 ---
@@ -508,7 +506,7 @@ spec:
 </code></pre><ol start="3"><li>Verifikasi</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624204053.png" class="kg-image" alt="Pasted image 20230624204053" loading="lazy" width="1104" height="690"></figure><pre><code class="language-sh"># Testing curl
 curl http://localhost:31105/tea -H 'Host: cafe.nginx.local'
 curl http://localhost:31105/coffe -H 'Host: cafe.nginx.local'
-</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624204300.png" class="kg-image" alt="Pasted image 20230624204300" loading="lazy" width="874" height="213"></figure><h1 id="mencoba-lbmethod">Mencoba lb_method</h1><p>Dilihat dari refrensi <a href="https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/?ref=twnb.nbtrisna.my.id#upstream">berikut</a>, kita bisa menambahkan <code>lb-method</code> di upstream section. Untuk metode yang di support bisa ke refrensi <a href="https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/?ref=twnb.nbtrisna.my.id#choosing-a-load-balancing-method">berikut</a></p><p>Defaul algortihm yang digunakan nginx-ingress adalah yang tertera dalam configmaps nginx-ingress. Hanya saja tidak ada data yaml yang terdefine di cm ingress.</p><pre><code class="language-sh">k get cm -n nginx-ingress nginx-ingress -o yaml
+</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624204300.png" class="kg-image" alt="Pasted image 20230624204300" loading="lazy" width="874" height="213"></figure><h1 id="mencoba-lbmethod">Mencoba lb_method</h1><p>Dilihat dari refrensi <a href="https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/?ref=dev.nbtrisna.my.id#upstream">berikut</a>, kita bisa menambahkan <code>lb-method</code> di upstream section. Untuk metode yang di support bisa ke refrensi <a href="https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/?ref=dev.nbtrisna.my.id#choosing-a-load-balancing-method">berikut</a></p><p>Defaul algortihm yang digunakan nginx-ingress adalah yang tertera dalam configmaps nginx-ingress. Hanya saja tidak ada data yaml yang terdefine di cm ingress.</p><pre><code class="language-sh">k get cm -n nginx-ingress nginx-ingress -o yaml
 </code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624205128.png" class="kg-image" alt="Pasted image 20230624205128" loading="lazy" width="684" height="342"></figure><p>Oke Gas dicoba.</p><p>Ketika tidak mendefinisikan algoritma lb di upstream, dicoba hit 5 kali dan hasilnya seperti berikut</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624205245.png" class="kg-image" alt="Pasted image 20230624205245" loading="lazy" width="1248" height="889"></figure>
 <!--kg-card-begin: html-->
 <table>
@@ -586,7 +584,7 @@ spec:
                 <div class="gh-container-inner gh-inner">
                     <h2 class="gh-container-title">Read more</h2>
                     <div class="gh-feed">
-                            <article class="gh-card post no-image">
+                            <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-20-2/">
             <figure class="gh-card-image">
                 <img
@@ -615,7 +613,7 @@ spec:
         </div>
     </a>
 </article>
-                            <article class="gh-card post no-image">
+                            <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-19/">
             <figure class="gh-card-image">
                 <img
@@ -644,7 +642,7 @@ spec:
         </div>
     </a>
 </article>
-                            <article class="gh-card post no-image">
+                            <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-18/">
             <figure class="gh-card-image">
                 <img
@@ -673,7 +671,7 @@ spec:
         </div>
     </a>
 </article>
-                            <article class="gh-card post no-image">
+                            <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-17/">
             <figure class="gh-card-image">
                 <img
@@ -768,7 +766,7 @@ spec:
         </div>
     </div>
 </div>
-<script src="/assets/built/source.js?v=8299a990da"></script>
+<script src="/assets/built/source.js?v=a90396e918"></script>
 
 <!-- Prism Core & Components -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/prism.min.js"></script>

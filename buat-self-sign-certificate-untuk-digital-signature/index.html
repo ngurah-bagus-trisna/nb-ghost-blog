@@ -6,22 +6,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="preload" as="style" href="/assets/built/screen.css?v=8299a990da">
-    <link rel="preload" as="script" href="/assets/built/source.js?v=8299a990da">
+    <link rel="preload" as="style" href="/assets/built/screen.css?v=a90396e918">
+    <link rel="preload" as="script" href="/assets/built/source.js?v=a90396e918">
     
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-roman.woff2?v=8299a990da" crossorigin="anonymous">
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-roman.woff2?v=a90396e918" crossorigin="anonymous">
 <style>
     @font-face {
         font-family: "Inter";
         font-style: normal;
         font-weight: 100 900;
         font-display: optional;
-        src: url(/assets/fonts/inter-roman.woff2?v=8299a990da) format("woff2");
+        src: url(/assets/fonts/inter-roman.woff2?v=a90396e918) format("woff2");
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
     }
 </style>
 
-    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=8299a990da">
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=a90396e918">
 
     <style>
         :root {
@@ -130,9 +130,7 @@ extendedKeyUsage &#x3D; clientAuth,">
         "name": "I Gusti Ngurah Bagus Trisna Andika",
         "image": {
             "@type": "ImageObject",
-            "url": "https://www.gravatar.com/avatar/67669d72ccc65017961ab1d385f74c60?s=250&r=x&d=mp",
-            "width": 250,
-            "height": 250
+            "url": "https://www.gravatar.com/avatar/67669d72ccc65017961ab1d385f74c60?s=250&r=x&d=mp"
         },
         "url": "https://twnb.nbtrisna.my.id/author/ngurah/",
         "sameAs": []
@@ -158,8 +156,8 @@ extendedKeyUsage &#x3D; clientAuth,">
     <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.5/umd/sodo-search.min.js" data-key="d8018a425f7cfc3913d46bfa03" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.5/umd/main.css" data-sodo-search="https://twnb.nbtrisna.my.id/" data-locale="id" crossorigin="anonymous"></script>
     
     <link href="https://twnb.nbtrisna.my.id/webmentions/receive/" rel="webmention">
-    <script defer src="/public/cards.min.js?v=8299a990da"></script><style>:root {--ghost-accent-color: #b6bdff;}</style>
-    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=8299a990da">
+    <script defer src="/public/cards.min.js?v=a90396e918"></script><style>:root {--ghost-accent-color: #b6bdff;}</style>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=a90396e918">
     <meta name="google-site-verification" content="aJn625qTdbOQcWo6rLrtjWcfkTE6RlP1zdyLCECipdQ" />
 <!-- Dracula Theme for Prism (Unpkg) -->
 <link rel="stylesheet" href="https://unpkg.com/dracula-prism/dist/css/dracula-prism.css">
@@ -420,7 +418,7 @@ L  = Denpasar
 O  = Your Organization
 OU = Your Department
 CN = Your Name
-emailAddress = <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c0b9afb5b2eea5ada1a9ac80a5b8a1adb0aca5eea3afad">[email&#160;protected]</a>
+emailAddress = your.email@example.com
 
 
 [req_ext]
@@ -429,7 +427,7 @@ extendedKeyUsage = clientAuth, emailProtection
 subjectAltName = @alt_names
 
 [alt_names]
-email = <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6910061c1b470c04080005290c11080419050c470a0604">[email&#160;protected]</a></code></pre><ol start="2"><li>Generate key &amp; CSR</li></ol><pre><code class="language-shell">openssl req -new -keyout my_private_key.pem -out my_certificate_request.csr -config openssl.cnf</code></pre><ol start="3"><li>Self-sign csr yang sudah dibuat</li></ol><pre><code class="language-shell">openssl x509 -req -days 365 -in my_certificate_request.csr -signkey my_private_key.pem -out my_certificate.pem -extensions req_ext -extfile openssl.cnf
+email = your.email@example.com</code></pre><ol start="2"><li>Generate key &amp; CSR</li></ol><pre><code class="language-shell">openssl req -new -keyout my_private_key.pem -out my_certificate_request.csr -config openssl.cnf</code></pre><ol start="3"><li>Self-sign csr yang sudah dibuat</li></ol><pre><code class="language-shell">openssl x509 -req -days 365 -in my_certificate_request.csr -signkey my_private_key.pem -out my_certificate.pem -extensions req_ext -extfile openssl.cnf
 </code></pre><ol start="4"><li>Verifikasi</li></ol><pre><code class="language-shell">openssl x509 -in my_certificate.pem -text -noout</code></pre><ol start="5"><li>Convert ke .p12</li></ol><pre><code class="language-shell">openssl pkcs12 -export -out my_certificate.p12 -inkey my_private_key.pem -in my_certificate.pem</code></pre><p>Dan certificate ini bisa digunakan misal ingin membuat selfhosted digital signature dengan <code>DocuSeal</code></p>
         </section>
 
@@ -443,7 +441,7 @@ email = <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail=
                 <div class="gh-container-inner gh-inner">
                     <h2 class="gh-container-title">Read more</h2>
                     <div class="gh-feed">
-                            <article class="gh-card post no-image">
+                            <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-20-2/">
             <figure class="gh-card-image">
                 <img
@@ -472,7 +470,7 @@ email = <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail=
         </div>
     </a>
 </article>
-                            <article class="gh-card post no-image">
+                            <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-19/">
             <figure class="gh-card-image">
                 <img
@@ -501,7 +499,7 @@ email = <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail=
         </div>
     </a>
 </article>
-                            <article class="gh-card post no-image">
+                            <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-18/">
             <figure class="gh-card-image">
                 <img
@@ -530,7 +528,7 @@ email = <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail=
         </div>
     </a>
 </article>
-                            <article class="gh-card post no-image">
+                            <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-17/">
             <figure class="gh-card-image">
                 <img
@@ -625,7 +623,7 @@ email = <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail=
         </div>
     </div>
 </div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/assets/built/source.js?v=8299a990da"></script>
+<script src="/assets/built/source.js?v=a90396e918"></script>
 
 <!-- Prism Core & Components -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/prism.min.js"></script>

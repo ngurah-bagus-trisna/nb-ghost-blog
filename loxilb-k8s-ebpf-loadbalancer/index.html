@@ -6,22 +6,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="preload" as="style" href="/assets/built/screen.css?v=8299a990da">
-    <link rel="preload" as="script" href="/assets/built/source.js?v=8299a990da">
+    <link rel="preload" as="style" href="/assets/built/screen.css?v=a90396e918">
+    <link rel="preload" as="script" href="/assets/built/source.js?v=a90396e918">
     
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-roman.woff2?v=8299a990da" crossorigin="anonymous">
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-roman.woff2?v=a90396e918" crossorigin="anonymous">
 <style>
     @font-face {
         font-family: "Inter";
         font-style: normal;
         font-weight: 100 900;
         font-display: optional;
-        src: url(/assets/fonts/inter-roman.woff2?v=8299a990da) format("woff2");
+        src: url(/assets/fonts/inter-roman.woff2?v=a90396e918) format("woff2");
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
     }
 </style>
 
-    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=8299a990da">
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=a90396e918">
 
     <style>
         :root {
@@ -94,9 +94,7 @@ Dalam kubernetes, agar bisa aplikasi/deployment dapat diakses dari luar, diperlu
         "name": "I Gusti Ngurah Bagus Trisna Andika",
         "image": {
             "@type": "ImageObject",
-            "url": "https://www.gravatar.com/avatar/67669d72ccc65017961ab1d385f74c60?s=250&r=x&d=mp",
-            "width": 250,
-            "height": 250
+            "url": "https://www.gravatar.com/avatar/67669d72ccc65017961ab1d385f74c60?s=250&r=x&d=mp"
         },
         "url": "https://twnb.nbtrisna.my.id/author/ngurah/",
         "sameAs": []
@@ -122,8 +120,8 @@ Dalam kubernetes, agar bisa aplikasi/deployment dapat diakses dari luar, diperlu
     <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.5/umd/sodo-search.min.js" data-key="d8018a425f7cfc3913d46bfa03" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.5/umd/main.css" data-sodo-search="https://twnb.nbtrisna.my.id/" data-locale="id" crossorigin="anonymous"></script>
     
     <link href="https://twnb.nbtrisna.my.id/webmentions/receive/" rel="webmention">
-    <script defer src="/public/cards.min.js?v=8299a990da"></script><style>:root {--ghost-accent-color: #b6bdff;}</style>
-    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=8299a990da">
+    <script defer src="/public/cards.min.js?v=a90396e918"></script><style>:root {--ghost-accent-color: #b6bdff;}</style>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=a90396e918">
     <meta name="google-site-verification" content="aJn625qTdbOQcWo6rLrtjWcfkTE6RlP1zdyLCECipdQ" />
 <!-- Dracula Theme for Prism (Unpkg) -->
 <link rel="stylesheet" href="https://unpkg.com/dracula-prism/dist/css/dracula-prism.css">
@@ -370,7 +368,7 @@ Dalam kubernetes, agar bisa aplikasi/deployment dapat diakses dari luar, diperlu
         </header>
 
         <section class="gh-content gh-canvas is-body">
-            <p>Loxilb adalah aplikasi loadbalancer hyper-scale untuk cloud-native, menggunakan teknologi eBPF dengan berabasis golang. Didesain untuk on-premises, edge, dan public cloud Kubernetes Cluster Deployment.</p><p>Dalam kubernetes, agar bisa aplikasi/deployment dapat diakses dari luar, diperlukan sebuah <code>loadbalancer</code>. Kubernetes sendiri tidak mempunyai fitur untuk mengatur service <code>loadbalancer</code> jadinya ketika kita memberikan sebuah <code>service</code> dengan value <code>loadbalancer</code>, service tersebut akan stuck di <code>pending</code> state.</p><p><strong>Metallb</strong> sebelumnya dapat menjadi solusi dari hal tersebut, tetapi ada beberapa hal yang tidak dipunyai metallb, menurut dari dokumentasi <a href="https://loxilb-io.github.io/loxilbdocs/?ref=twnb.nbtrisna.my.id">loxilb</a> beberapa protokol tidak disupport oleh metallb, jadinya loxilb hadir mengatasi hal tersebut.</p><h2 id="try-kube-loxilb">Try kube-loxilb</h2><blockquote>Di deploy dalam k8s-onpremises</blockquote><p>Refrensi : https://loxilb-io.github.io/loxilbdocs/kube-loxilb/</p><p>Kube-loxilb adalah loxilb yang diimplementasika untuk kubenrnetes <code>service</code> <code>loadbalancer</code> spec dimana sudah terdapat support untuk load-balancer class, IPAM (IP Address Management), dll. kube-loxilb running sebagai <code>deployment</code> di ns kube-system. Deployment hanya mengambil informasi mengenai komponen k8s di cluster tersebut, dan tidak mengimplementasikan packet/session loadbalancer. Untuk loadbalancer akan diambil tugasnya oleh <code>loxilb</code> yang berada di luar cluster, sebagai external loadbalancer.</p><ol><li>Buat instance diluar cluster k8s, disini saya memakai nama <code>nb-loxi-lb</code> sebagai docker-engine. Nantinya akan diinstal docker yang akan running service <code>loxilb</code>. Setup docker-engine, dan lanjut ke next step</li><li>Pull image</li></ol><pre><code class="language-sh">docker pull ghcr.io/loxilb-io/loxilb:latestu22
+            <p>Loxilb adalah aplikasi loadbalancer hyper-scale untuk cloud-native, menggunakan teknologi eBPF dengan berabasis golang. Didesain untuk on-premises, edge, dan public cloud Kubernetes Cluster Deployment.</p><p>Dalam kubernetes, agar bisa aplikasi/deployment dapat diakses dari luar, diperlukan sebuah <code>loadbalancer</code>. Kubernetes sendiri tidak mempunyai fitur untuk mengatur service <code>loadbalancer</code> jadinya ketika kita memberikan sebuah <code>service</code> dengan value <code>loadbalancer</code>, service tersebut akan stuck di <code>pending</code> state.</p><p><strong>Metallb</strong> sebelumnya dapat menjadi solusi dari hal tersebut, tetapi ada beberapa hal yang tidak dipunyai metallb, menurut dari dokumentasi <a href="https://loxilb-io.github.io/loxilbdocs/?ref=dev.nbtrisna.my.id">loxilb</a> beberapa protokol tidak disupport oleh metallb, jadinya loxilb hadir mengatasi hal tersebut.</p><h2 id="try-kube-loxilb">Try kube-loxilb</h2><blockquote>Di deploy dalam k8s-onpremises</blockquote><p>Refrensi : https://loxilb-io.github.io/loxilbdocs/kube-loxilb/</p><p>Kube-loxilb adalah loxilb yang diimplementasika untuk kubenrnetes <code>service</code> <code>loadbalancer</code> spec dimana sudah terdapat support untuk load-balancer class, IPAM (IP Address Management), dll. kube-loxilb running sebagai <code>deployment</code> di ns kube-system. Deployment hanya mengambil informasi mengenai komponen k8s di cluster tersebut, dan tidak mengimplementasikan packet/session loadbalancer. Untuk loadbalancer akan diambil tugasnya oleh <code>loxilb</code> yang berada di luar cluster, sebagai external loadbalancer.</p><ol><li>Buat instance diluar cluster k8s, disini saya memakai nama <code>nb-loxi-lb</code> sebagai docker-engine. Nantinya akan diinstal docker yang akan running service <code>loxilb</code>. Setup docker-engine, dan lanjut ke next step</li><li>Pull image</li></ol><pre><code class="language-sh">docker pull ghcr.io/loxilb-io/loxilb:latestu22
 </code></pre><p>Buat network <code>mac-vlan</code></p><pre><code class="language-sh">docker network create -d macvlan -o parent=enp0s3   --subnet 172.10.10.0/24   --gateway 172.10.10.1 --aux-address 'host=172.10.10.50' llbnet
 </code></pre><p>Running docker container</p><pre><code class="language-sh">docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --net=llbnet --ip=172.10.10.55 --name loxilb ghcr.io/loxilb-io/loxilb:latestu22
 </code></pre><p>Pastikan dari cluster k8s, bisa ping ke loxilb container</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://twnb.nbtrisna.my.id/content/images/2024/08/Pasted-image-20230916022025-2-1.png" class="kg-image" alt="" loading="lazy" width="506" height="167"><figcaption><span style="white-space: pre-wrap;">Ping ke loxi</span></figcaption></figure><p>Telnet ke port <code>11111</code></p><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/08/Pasted-image-20230916022122.png" class="kg-image" alt="" loading="lazy" width="377" height="83"></figure><p>3. Install kube-loxilb di cluster-k8s. Step:</p><pre><code class="language-sh">wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/kube-loxilb.yaml
@@ -378,7 +376,7 @@ Dalam kubernetes, agar bisa aplikasi/deployment dapat diakses dari luar, diperlu
         - --loxiURL=http://172.10.10.55:11111 
         - --externalCIDR=172.10.10.55/32
         - --setLBMode=2 # mode ini menggunakan metode One-ARM Nat
-</code></pre><p>Keterangan nat : https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md#nat-modes-in-loxilb</p><p>Keterangan:</p><ul><li>loxiURL : API server address of loxilb. This is the docker IP address loxilb docker of Step 1. If unspecified, kube-loxilb assumes loxilb is running in-cluster mode and autoconfigures this.</li><li>externalCIDR : CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode)</li><li>setLBMode : Specifies the NAT mode of the load balancer. There are currently 3 modes supported. Read more <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md?ref=twnb.nbtrisna.my.id#nat-modes-in-loxilb">here</a>.</li></ul><p>Pastikan Running</p><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/08/Pasted-image-20230916024755.png" class="kg-image" alt="" loading="lazy" width="781" height="51" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/08/Pasted-image-20230916024755.png 600w, https://twnb.nbtrisna.my.id/content/images/2024/08/Pasted-image-20230916024755.png 781w" sizes="(min-width: 720px) 720px"></figure><p>Coba buat pod</p><pre><code class="language-yaml">cat &lt;&lt; EOF | tee nginx-liveness.yaml
+</code></pre><p>Keterangan nat : https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md#nat-modes-in-loxilb</p><p>Keterangan:</p><ul><li>loxiURL : API server address of loxilb. This is the docker IP address loxilb docker of Step 1. If unspecified, kube-loxilb assumes loxilb is running in-cluster mode and autoconfigures this.</li><li>externalCIDR : CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode)</li><li>setLBMode : Specifies the NAT mode of the load balancer. There are currently 3 modes supported. Read more <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md?ref=dev.nbtrisna.my.id#nat-modes-in-loxilb">here</a>.</li></ul><p>Pastikan Running</p><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/08/Pasted-image-20230916024755.png" class="kg-image" alt="" loading="lazy" width="781" height="51" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/08/Pasted-image-20230916024755.png 600w, https://twnb.nbtrisna.my.id/content/images/2024/08/Pasted-image-20230916024755.png 781w" sizes="(min-width: 720px) 720px"></figure><p>Coba buat pod</p><pre><code class="language-yaml">cat &lt;&lt; EOF | tee nginx-liveness.yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -421,7 +419,7 @@ EOF
                 <div class="gh-container-inner gh-inner">
                     <h2 class="gh-container-title">Read more</h2>
                     <div class="gh-feed">
-                            <article class="gh-card post no-image">
+                            <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-20-2/">
             <figure class="gh-card-image">
                 <img
@@ -450,7 +448,7 @@ EOF
         </div>
     </a>
 </article>
-                            <article class="gh-card post no-image">
+                            <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-19/">
             <figure class="gh-card-image">
                 <img
@@ -479,7 +477,7 @@ EOF
         </div>
     </a>
 </article>
-                            <article class="gh-card post no-image">
+                            <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-18/">
             <figure class="gh-card-image">
                 <img
@@ -508,7 +506,7 @@ EOF
         </div>
     </a>
 </article>
-                            <article class="gh-card post no-image">
+                            <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-17/">
             <figure class="gh-card-image">
                 <img
@@ -603,7 +601,7 @@ EOF
         </div>
     </div>
 </div>
-<script src="/assets/built/source.js?v=8299a990da"></script>
+<script src="/assets/built/source.js?v=a90396e918"></script>
 
 <!-- Prism Core & Components -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/prism.min.js"></script>

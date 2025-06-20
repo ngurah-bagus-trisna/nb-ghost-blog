@@ -6,22 +6,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="preload" as="style" href="/assets/built/screen.css?v=8299a990da">
-    <link rel="preload" as="script" href="/assets/built/source.js?v=8299a990da">
+    <link rel="preload" as="style" href="/assets/built/screen.css?v=a90396e918">
+    <link rel="preload" as="script" href="/assets/built/source.js?v=a90396e918">
     
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-roman.woff2?v=8299a990da" crossorigin="anonymous">
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-roman.woff2?v=a90396e918" crossorigin="anonymous">
 <style>
     @font-face {
         font-family: "Inter";
         font-style: normal;
         font-weight: 100 900;
         font-display: optional;
-        src: url(/assets/fonts/inter-roman.woff2?v=8299a990da) format("woff2");
+        src: url(/assets/fonts/inter-roman.woff2?v=a90396e918) format("woff2");
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
     }
 </style>
 
-    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=8299a990da">
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css?v=a90396e918">
 
     <style>
         :root {
@@ -95,9 +95,7 @@
         "name": "I Gusti Ngurah Bagus Trisna Andika",
         "image": {
             "@type": "ImageObject",
-            "url": "https://www.gravatar.com/avatar/67669d72ccc65017961ab1d385f74c60?s=250&r=x&d=mp",
-            "width": 250,
-            "height": 250
+            "url": "https://www.gravatar.com/avatar/67669d72ccc65017961ab1d385f74c60?s=250&r=x&d=mp"
         },
         "url": "https://twnb.nbtrisna.my.id/author/ngurah/",
         "sameAs": []
@@ -124,8 +122,8 @@
     <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.5/umd/sodo-search.min.js" data-key="d8018a425f7cfc3913d46bfa03" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.5/umd/main.css" data-sodo-search="https://twnb.nbtrisna.my.id/" data-locale="id" crossorigin="anonymous"></script>
     
     <link href="https://twnb.nbtrisna.my.id/webmentions/receive/" rel="webmention">
-    <script defer src="/public/cards.min.js?v=8299a990da"></script><style>:root {--ghost-accent-color: #b6bdff;}</style>
-    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=8299a990da">
+    <script defer src="/public/cards.min.js?v=a90396e918"></script><style>:root {--ghost-accent-color: #b6bdff;}</style>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=a90396e918">
     <meta name="google-site-verification" content="aJn625qTdbOQcWo6rLrtjWcfkTE6RlP1zdyLCECipdQ" />
 <!-- Dracula Theme for Prism (Unpkg) -->
 <link rel="stylesheet" href="https://unpkg.com/dracula-prism/dist/css/dracula-prism.css">
@@ -390,7 +388,7 @@ jobs:
           run: echo "Hello from ${{ env.GREETING }}"
         - name: Echo secret
           run: echo "Secret is ${{ secrets.SECRET_MSG }}"
-</code></pre><ol start="2"><li>Create secrets on github. Navigate to <code>Settings &gt; Secrets and variables &gt; Actions</code></li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615135106.png" class="kg-image" alt="Pasted image 20250615135106" loading="lazy" width="961" height="929"></figure><p><br>3. Create secrets &amp; variable, makesure name of variable/secret correct</p><p>Result</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615135035.png" class="kg-image" alt="Pasted image 20250615135035" loading="lazy" width="955" height="907"></figure><p><br>Answer :</p><ol><li>Penggunaan secrets digunakan untuk store data penting seperti password. Ketika digunakan dalam workflows, akan di samarkan dengan <code>**</code>. Untuk variable, biasanya digunakan untuk menyimpan config, dll. Yang sifatnya general</li><li>Github workflow memask secret agar isi dari secret tidak terlihat. Karena biasanya data yang tersimpan dalam secrets adalah data rahasia.</li></ol><h2 id="daily-quest-3-matrix-mastery"><strong>Daily Quest #3: Matrix Mastery</strong></h2><p><em>In github workflows, we can use <code>matrix strategies</code> for create multiple job runs using a single jobs variable definition like job running pararalel simultaneously. For example like you can configure your ci to run build in 3 different os/arch</em></p><p>Referensi : <a href="https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow?ref=twnb.nbtrisna.my.id">https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow</a></p><p>To define <em>matrix_strategy</em> simply put in <code>jobs.&lt;job_id&gt;.strategy.matrix</code> with value array.</p><pre><code class="language-yaml">jobs:
+</code></pre><ol start="2"><li>Create secrets on github. Navigate to <code>Settings &gt; Secrets and variables &gt; Actions</code></li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615135106.png" class="kg-image" alt="Pasted image 20250615135106" loading="lazy" width="961" height="929"></figure><p><br>3. Create secrets &amp; variable, makesure name of variable/secret correct</p><p>Result</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615135035.png" class="kg-image" alt="Pasted image 20250615135035" loading="lazy" width="955" height="907"></figure><p><br>Answer :</p><ol><li>Penggunaan secrets digunakan untuk store data penting seperti password. Ketika digunakan dalam workflows, akan di samarkan dengan <code>**</code>. Untuk variable, biasanya digunakan untuk menyimpan config, dll. Yang sifatnya general</li><li>Github workflow memask secret agar isi dari secret tidak terlihat. Karena biasanya data yang tersimpan dalam secrets adalah data rahasia.</li></ol><h2 id="daily-quest-3-matrix-mastery"><strong>Daily Quest #3: Matrix Mastery</strong></h2><p><em>In github workflows, we can use <code>matrix strategies</code> for create multiple job runs using a single jobs variable definition like job running pararalel simultaneously. For example like you can configure your ci to run build in 3 different os/arch</em></p><p>Referensi : <a href="https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow?ref=dev.nbtrisna.my.id">https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow</a></p><p>To define <em>matrix_strategy</em> simply put in <code>jobs.&lt;job_id&gt;.strategy.matrix</code> with value array.</p><pre><code class="language-yaml">jobs:
 	example_matrix:
 		strategy:
 			matrix:
@@ -443,7 +441,7 @@ jobs:
           run: echo "Secret is ${{ secrets.SECRET_MSG }}"
         - name: Display OS
           run: echo "Running on ${{ matrix.os }}"
-</code></pre><ol start="2"><li>Push, and see result</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615135116.png" class="kg-image" alt="Pasted image 20250615135116" loading="lazy" width="961" height="842"></figure><p><strong>Answer</strong> :</p><ol><li>Kelebihan utama menggunakan matrix yaitu dapat mempersingkat dan membuat efiisien dari file workflow. Ketika ada perubahan besar di yaml workflow, devops hanya mengubah satu job. Tanpa mengulangi edit yang lain</li><li>Matrix dapat menjadi overkill karena dapat menjalankan secara paralel setiap jobs sesuai dengan variable yang di definisikan dalam array. Untuk membatasinya, kita dapat membatasi sesuai dengan kebutuhan(? coba koreksi)</li></ol><h2 id="daily-quest-4-dependency-caching"><strong>Daily Quest #4: Dependency Caching</strong></h2><p>Refrensi : <a href="https://docs.github.com/actions/using-workflows/caching-dependencies-to-speed-up-workflows?ref=twnb.nbtrisna.my.id">https://docs.github.com/actions/using-workflows/caching-dependencies-to-speed-up-workflows</a><br><em>To make workflows faster and efficient, you can cache for depedencies and other commonly reused file.</em><br>Job in github-hosted runners start a clean runner image, and must download depedencies each time. Causing incerased network utilizaiton, longiger runtime, and incerase cost. To cache depedencies for a job, you can use <code>cache-action</code>. The action create and restores a cache identified by a unique key.</p><p><strong>Artifacts vs caching</strong></p><ul><li>Use caching when you want to reuse files that don't change often between jobs/workflows runs. Such a depedencies from package management system (npm, dll)</li><li>Using artifacts when you want to save files produce by a job to view after a workflow run has ended. Such a built binaries/logs.</li></ul><p><strong>Using a <code>cache</code> actions</strong></p><ul><li>First search for excat match to your provided <code>key</code></li><li>if no excact match, it will search for partial matches of the <code>key</code></li><li>if there is still no match found, and you've provided <code>restore-keys</code>, these keys wil be checked sequenial for partial matches.<br><strong>Input parameters for the cache action</strong></li><li><code>key</code> : Using to search for a cache. It can any combination of variables, context values, static strings, and function.</li><li><code>path</code> : The path of the runner to cache/restore</li><li><code>restore-keys</code> : Alternative restore keys.</li></ul><p>Is quite hard to understand to using <code>key</code> and <code>restore-key</code>. So first if key not match -&gt; search to restore-keys to list what to restore on path.</p><pre><code class="language-sh">       +-------------------------+
+</code></pre><ol start="2"><li>Push, and see result</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020250615135116.png" class="kg-image" alt="Pasted image 20250615135116" loading="lazy" width="961" height="842"></figure><p><strong>Answer</strong> :</p><ol><li>Kelebihan utama menggunakan matrix yaitu dapat mempersingkat dan membuat efiisien dari file workflow. Ketika ada perubahan besar di yaml workflow, devops hanya mengubah satu job. Tanpa mengulangi edit yang lain</li><li>Matrix dapat menjadi overkill karena dapat menjalankan secara paralel setiap jobs sesuai dengan variable yang di definisikan dalam array. Untuk membatasinya, kita dapat membatasi sesuai dengan kebutuhan(? coba koreksi)</li></ol><h2 id="daily-quest-4-dependency-caching"><strong>Daily Quest #4: Dependency Caching</strong></h2><p>Refrensi : <a href="https://docs.github.com/actions/using-workflows/caching-dependencies-to-speed-up-workflows?ref=dev.nbtrisna.my.id">https://docs.github.com/actions/using-workflows/caching-dependencies-to-speed-up-workflows</a><br><em>To make workflows faster and efficient, you can cache for depedencies and other commonly reused file.</em><br>Job in github-hosted runners start a clean runner image, and must download depedencies each time. Causing incerased network utilizaiton, longiger runtime, and incerase cost. To cache depedencies for a job, you can use <code>cache-action</code>. The action create and restores a cache identified by a unique key.</p><p><strong>Artifacts vs caching</strong></p><ul><li>Use caching when you want to reuse files that don't change often between jobs/workflows runs. Such a depedencies from package management system (npm, dll)</li><li>Using artifacts when you want to save files produce by a job to view after a workflow run has ended. Such a built binaries/logs.</li></ul><p><strong>Using a <code>cache</code> actions</strong></p><ul><li>First search for excat match to your provided <code>key</code></li><li>if no excact match, it will search for partial matches of the <code>key</code></li><li>if there is still no match found, and you've provided <code>restore-keys</code>, these keys wil be checked sequenial for partial matches.<br><strong>Input parameters for the cache action</strong></li><li><code>key</code> : Using to search for a cache. It can any combination of variables, context values, static strings, and function.</li><li><code>path</code> : The path of the runner to cache/restore</li><li><code>restore-keys</code> : Alternative restore keys.</li></ul><p>Is quite hard to understand to using <code>key</code> and <code>restore-key</code>. So first if key not match -&gt; search to restore-keys to list what to restore on path.</p><pre><code class="language-sh">       +-------------------------+
        |  Start cache step      |
        +-------------------------+
                  |
@@ -512,7 +510,7 @@ jobs:
                 <div class="gh-container-inner gh-inner">
                     <h2 class="gh-container-title">Read more</h2>
                     <div class="gh-feed">
-                            <article class="gh-card post no-image">
+                            <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-20-2/">
             <figure class="gh-card-image">
                 <img
@@ -541,7 +539,7 @@ jobs:
         </div>
     </a>
 </article>
-                            <article class="gh-card post no-image">
+                            <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-19/">
             <figure class="gh-card-image">
                 <img
@@ -570,7 +568,7 @@ jobs:
         </div>
     </a>
 </article>
-                            <article class="gh-card post no-image">
+                            <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-18/">
             <figure class="gh-card-image">
                 <img
@@ -599,7 +597,7 @@ jobs:
         </div>
     </a>
 </article>
-                            <article class="gh-card post no-image">
+                            <article class="gh-card post">
     <a class="gh-card-link" href="/2025-06-17/">
             <figure class="gh-card-image">
                 <img
@@ -694,7 +692,7 @@ jobs:
         </div>
     </div>
 </div>
-<script src="/assets/built/source.js?v=8299a990da"></script>
+<script src="/assets/built/source.js?v=a90396e918"></script>
 
 <!-- Prism Core & Components -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/prism.min.js"></script>
