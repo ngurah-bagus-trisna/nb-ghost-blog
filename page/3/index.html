@@ -25,7 +25,7 @@
 
     <style>
         :root {
-            --background-color: #171717
+            --background-color: #151515
         }
     </style>
 
@@ -282,7 +282,7 @@
     
 <main class="gh-main">
     
-<section class="gh-container is-grid gh-outer">
+<section class="gh-container is-grid no-image gh-outer">
     <div class="gh-container-inner gh-inner">
         
             <h2 class="gh-container-title">
@@ -293,64 +293,7 @@
             <div class="gh-feed">
 
 
-                        <article class="gh-card post tag-catatan tag-linux">
-    <a class="gh-card-link" href="/setup-sstp-softehter-docker/">
-            <figure class="gh-card-image">
-                <img
-                    srcset="https://images.unsplash.com/photo-1603985529862-9e12198c9a60?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;webp&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDJ8fFZQTnxlbnwwfHx8fDE3MjIxMTIyMDN8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;160 160w,
-                            https://images.unsplash.com/photo-1603985529862-9e12198c9a60?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;webp&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDJ8fFZQTnxlbnwwfHx8fDE3MjIxMTIyMDN8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;320 320w,
-                            https://images.unsplash.com/photo-1603985529862-9e12198c9a60?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;webp&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDJ8fFZQTnxlbnwwfHx8fDE3MjIxMTIyMDN8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;600 600w,
-                            https://images.unsplash.com/photo-1603985529862-9e12198c9a60?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;webp&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDJ8fFZQTnxlbnwwfHx8fDE3MjIxMTIyMDN8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;960 960w,
-                            https://images.unsplash.com/photo-1603985529862-9e12198c9a60?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;webp&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDJ8fFZQTnxlbnwwfHx8fDE3MjIxMTIyMDN8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1200 1200w,
-                            https://images.unsplash.com/photo-1603985529862-9e12198c9a60?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;webp&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDJ8fFZQTnxlbnwwfHx8fDE3MjIxMTIyMDN8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000 2000w"
-                    sizes="320px"
-                    src="https://images.unsplash.com/photo-1603985529862-9e12198c9a60?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDJ8fFZQTnxlbnwwfHx8fDE3MjIxMTIyMDN8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;600"
-                    alt="Setup SSTP Softehter Docker"
-                    loading="lazy"
-                >
-            </figure>
-        <div class="gh-card-wrapper">
-                <p class="gh-card-tag">catatan</p>
-            <h3 class="gh-card-title is-title">Setup SSTP Softehter Docker</h3>
-                    <p class="gh-card-excerpt is-body">Setup
-
- 1. Create docker-compose
-
-version: &#39;3&#39;
-
-services:
-  softether:
-    image: softethervpn/vpnserver:stable
-    cap_add:
-      - NET_ADMIN
-    restart: always
-    container_name: vpn-softether
-    ports:
-      - 8443:443
-    volumes:
-      - &quot;./softether_data:/mnt&quot;
-
-
- 1. Compose Up
-
-docker compose up -d
-
-
-
-Create User
-
- 1. Akses vpncmd dengan command dibawah</p>
-            <footer class="gh-card-meta">
-<!--
-             -->
-                    <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
-                    <time class="gh-card-date" datetime="2024-07-28">28 Jul 2024</time>
-                <!--
-         --></footer>
-        </div>
-    </a>
-</article>
-                        <article class="gh-card post tag-catatan">
+                        <article class="gh-card post tag-catatan no-image">
     <a class="gh-card-link" href="/port-forward-firewalld/">
             <figure class="gh-card-image">
                 <img
@@ -389,7 +332,7 @@ Skenarionya saya ingin port forward, jika mengakses ip x.x.x.x port 80 di zone w
         </div>
     </a>
 </article>
-                        <article class="gh-card post">
+                        <article class="gh-card post no-image">
     <a class="gh-card-link" href="/install-nextcloud-rocky-linux-9/">
             <figure class="gh-card-image">
                 <img
@@ -418,7 +361,7 @@ Skenarionya saya ingin port forward, jika mengakses ip x.x.x.x port 80 di zone w
         </div>
     </a>
 </article>
-                        <article class="gh-card post tag-catatan">
+                        <article class="gh-card post tag-catatan no-image">
     <a class="gh-card-link" href="/blog-membuat-vm-di-hyper-v/">
             <figure class="gh-card-image">
                 <img
@@ -455,7 +398,7 @@ Preparation
         </div>
     </a>
 </article>
-                        <article class="gh-card post tag-catatan">
+                        <article class="gh-card post tag-catatan no-image">
     <a class="gh-card-link" href="/blog-enable-hyperv/">
             <figure class="gh-card-image">
                 <img
@@ -492,7 +435,7 @@ Refrensi: https://learn.microsoft.com/</p>
         </div>
     </a>
 </article>
-                        <article class="gh-card post tag-catatan tag-linux tag-kvm">
+                        <article class="gh-card post tag-catatan tag-linux tag-kvm no-image">
     <a class="gh-card-link" href="/catatan-access-qemusystem-nonroot/">
             <figure class="gh-card-image">
                 <img
@@ -522,7 +465,7 @@ Refrensi: https://learn.microsoft.com/</p>
         </div>
     </a>
 </article>
-                        <article class="gh-card post tag-catatan">
+                        <article class="gh-card post tag-catatan no-image">
     <a class="gh-card-link" href="/after-installing-arch-linux-why-my-windows-missing/">
             <figure class="gh-card-image">
                 <img

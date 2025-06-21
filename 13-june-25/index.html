@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 
-    <title>nginx-upstream ingress</title>
+    <title>13-June-25</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -48,32 +48,32 @@
         document.documentElement.className = `has-${textColor}-text`;
     </script>
 
-    <meta name="description" content="Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.">
+    <meta name="description" content="In CI/CD world, environment variables and secret is key to storing value without writing directly to yaml files. It&#x27;s possible to manage credentials, versioning, and configure build according to the needs">
     <link rel="icon" href="https://twnb.nbtrisna.my.id/content/images/size/w256h256/2023/12/Logo-CHannel-1.png" type="image/png">
-    <link rel="canonical" href="https://twnb.nbtrisna.my.id/nginx-upstream-ingress-2/">
+    <link rel="canonical" href="https://twnb.nbtrisna.my.id/13-june-25/">
     <meta name="referrer" content="no-referrer-when-downgrade">
     
     <meta property="og:site_name" content="twnb">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="nginx-upstream ingress">
-    <meta property="og:description" content="Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.">
-    <meta property="og:url" content="https://twnb.nbtrisna.my.id/nginx-upstream-ingress-2/">
-    <meta property="og:image" content="https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T040622Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87">
-    <meta property="article:published_time" content="2025-06-06T04:06:00.000Z">
-    <meta property="article:modified_time" content="2025-06-18T19:51:21.000Z">
-    <meta property="article:tag" content="catatan">
+    <meta property="og:title" content="13-June-25">
+    <meta property="og:description" content="In CI/CD world, environment variables and secret is key to storing value without writing directly to yaml files. It&#x27;s possible to manage credentials, versioning, and configure build according to the needs">
+    <meta property="og:url" content="https://twnb.nbtrisna.my.id/13-june-25/">
+    <meta property="og:image" content="https://photoby.nbtrisna.my.id/14e99474-f094-4fa0-b62c-f2998351d5dc.jpg">
+    <meta property="article:published_time" content="2025-06-13T00:43:00.000Z">
+    <meta property="article:modified_time" content="2025-06-21T00:44:54.000Z">
+    <meta property="article:tag" content="daily-notes">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="nginx-upstream ingress">
-    <meta name="twitter:description" content="Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.">
-    <meta name="twitter:url" content="https://twnb.nbtrisna.my.id/nginx-upstream-ingress-2/">
-    <meta name="twitter:image" content="https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T040622Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87">
+    <meta name="twitter:title" content="13-June-25">
+    <meta name="twitter:description" content="In CI/CD world, environment variables and secret is key to storing value without writing directly to yaml files. It&#x27;s possible to manage credentials, versioning, and configure build according to the needs">
+    <meta name="twitter:url" content="https://twnb.nbtrisna.my.id/13-june-25/">
+    <meta name="twitter:image" content="https://photoby.nbtrisna.my.id/14e99474-f094-4fa0-b62c-f2998351d5dc.jpg">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="I Gusti Ngurah Bagus Trisna Andika">
     <meta name="twitter:label2" content="Filed under">
-    <meta name="twitter:data2" content="catatan">
-    <meta property="og:image:width" content="1083">
-    <meta property="og:image:height" content="722">
+    <meta name="twitter:data2" content="daily-notes">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="800">
     
     <script type="application/ld+json">
 {
@@ -100,19 +100,19 @@
         "url": "https://twnb.nbtrisna.my.id/author/ngurah/",
         "sameAs": []
     },
-    "headline": "nginx-upstream ingress",
-    "url": "https://twnb.nbtrisna.my.id/nginx-upstream-ingress-2/",
-    "datePublished": "2025-06-06T04:06:00.000Z",
-    "dateModified": "2025-06-18T19:51:21.000Z",
+    "headline": "13-June-25",
+    "url": "https://twnb.nbtrisna.my.id/13-june-25/",
+    "datePublished": "2025-06-13T00:43:00.000Z",
+    "dateModified": "2025-06-21T00:44:54.000Z",
     "image": {
         "@type": "ImageObject",
-        "url": "https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250618T040622Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87",
-        "width": 1083,
-        "height": 722
+        "url": "https://photoby.nbtrisna.my.id/14e99474-f094-4fa0-b62c-f2998351d5dc.jpg",
+        "width": 1200,
+        "height": 800
     },
-    "keywords": "catatan",
-    "description": "Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.",
-    "mainEntityOfPage": "https://twnb.nbtrisna.my.id/nginx-upstream-ingress-2/"
+    "keywords": "daily-notes",
+    "description": "In CI/CD world, environment variables and secret is key to storing value without writing directly to yaml files. It&#x27;s possible to manage credentials, versioning, and configure build according to the needs",
+    "mainEntityOfPage": "https://twnb.nbtrisna.my.id/13-june-25/"
 }
     </script>
 
@@ -310,7 +310,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net"><link rel="stylesheet" href="https://fonts.bunny.net/css?family=noto-sans:400,700|space-mono:400,700"><style>:root {--gh-font-heading: Noto Sans;--gh-font-body: Space Mono;}</style>
 
 </head>
-<body class="post-template tag-catatan gh-font-heading-noto-sans gh-font-body-space-mono has-sans-title has-sans-body">
+<body class="post-template tag-daily-notes gh-font-heading-noto-sans gh-font-body-space-mono has-sans-title has-sans-body">
 
 <div class="gh-viewport">
     
@@ -347,231 +347,157 @@
 
 <main class="gh-main">
 
-    <article class="gh-article post tag-catatan">
+    <article class="gh-article post tag-daily-notes">
 
         <header class="gh-article-header gh-canvas">
 
-                <a class="gh-article-tag" href="https://twnb.nbtrisna.my.id/tag/catatan/">catatan</a>
-            <h1 class="gh-article-title is-title">nginx-upstream ingress</h1>
-                <p class="gh-article-excerpt is-body">Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.</p>
+                <a class="gh-article-tag" href="https://twnb.nbtrisna.my.id/tag/daily-notes/">daily-notes</a>
+            <h1 class="gh-article-title is-title">13-June-25</h1>
+                <p class="gh-article-excerpt is-body">In CI/CD world, environment variables and secret is key to storing value without writing directly to yaml files. It&#x27;s possible to manage credentials, versioning, and configure build according to the needs</p>
 
 
                 <figure class="gh-article-image">
         <img
-            srcset="https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T040622Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87 320w,
-                    https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T040622Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87 600w,
-                    https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T040622Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87 960w,
-                    https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T040622Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87 1200w,
-                    https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T040622Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87 2000w"
+            srcset="https://photoby.nbtrisna.my.id/14e99474-f094-4fa0-b62c-f2998351d5dc.jpg 320w,
+                    https://photoby.nbtrisna.my.id/14e99474-f094-4fa0-b62c-f2998351d5dc.jpg 600w,
+                    https://photoby.nbtrisna.my.id/14e99474-f094-4fa0-b62c-f2998351d5dc.jpg 960w,
+                    https://photoby.nbtrisna.my.id/14e99474-f094-4fa0-b62c-f2998351d5dc.jpg 1200w,
+                    https://photoby.nbtrisna.my.id/14e99474-f094-4fa0-b62c-f2998351d5dc.jpg 2000w"
             sizes="(max-width: 1200px) 100vw, 1120px"
-            src="https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T040622Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87"
-            alt="nginx-upstream ingress"
+            src="https://photoby.nbtrisna.my.id/14e99474-f094-4fa0-b62c-f2998351d5dc.jpg"
+            alt="13-June-25"
         >
-            <figcaption><b><strong style="white-space: pre-wrap;">Photo by </strong></b><b><code spellcheck="false" style="white-space: pre-wrap;"><strong>nb.trisna</strong></code></b><span style="white-space: pre-wrap;"> Embracing ancient Balinese wisdom: finding peace in the interconnected dance of nature, humanity, and the divine.</span></figcaption>
+            <figcaption><b><strong style="white-space: pre-wrap;">Photo by nbtrisna</strong></b><span style="white-space: pre-wrap;"> Humble craft, bringing possibilities to light.</span></figcaption>
     </figure>
 
         </header>
 
         <section class="gh-content gh-canvas is-body">
-            <p>Refrensi : </p><ul><li>https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/</li></ul><p>Untuk mengetahui values dari helm, bisa mengunjungi link <a href="https://artifacthub.io/packages/helm/?ref=dev.nbtrisna.my.id">ArtifactHub</a></p><p>Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan <code>Custom Resource Definitions</code> untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.</p><blockquote><code>controller.enableCustomResources</code>&nbsp;set to&nbsp;<code>false</code>&nbsp;and&nbsp;<code>controller.appprotect.enable</code>&nbsp;set to&nbsp;<code>false</code> and&nbsp;<code>controller.appprotectdos.enable</code>&nbsp;set to&nbsp;<code>false</code>), the installation of the CRDs can be skipped by specifying&nbsp;<code>--skip-crds</code>&nbsp;for the helm install command.</blockquote><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621032858.png" class="kg-image" alt="Pasted image 20230621032858" loading="lazy" width="955" height="213"></figure><p>Untuk disini saya akan menggunakan default setting yaitu dengan crd</p><pre><code class="language-sh">helm install nginx-ingress oci://ghcr.io/nginxinc/charts/nginx-ingress --version 3.1.1 --namespace nginx-ingress --create-namespace --set controller.ingressClass=nginx-ingress 
-</code></pre><p>Setelah installasi, secara otomatis CRD akan terdeploy juga</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621035659.png" class="kg-image" alt="Pasted image 20230621035659" loading="lazy" width="1567" height="214"></figure><p>Verifikasi, Pastikan semua running dan coba untuk expos nginx-deployment dengan ingress-class nginx-ingress</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621035741.png" class="kg-image" alt="Pasted image 20230621035741" loading="lazy" width="937" height="211"></figure><pre><code class="language-sh">kubectl create ingress nginx-ingress --rule="nginx-ingress.ok/*=nginx:80" --class nginx-ingress
-</code></pre><p>Works</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621040351.png" class="kg-image" alt="Pasted image 20230621040351" loading="lazy" width="938" height="230"></figure><h3 id="monitoring-using-servicemonitors">Monitoring using servicemonitors</h3><p>Create svc port <code>prometheus</code></p><pre><code class="language-yaml">kubectl edit svc -n nginx-ingress nginx-ingress
----
-spec: 
-  ports:
-    - name: prometheus
-      port: 9113
-      protocol: TCP
-      targetPort: 9113
-</code></pre><p>Create service-monitors</p><pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: ingress-nginx
-  namespace: nginx-ingress
-  labels:
-    release: nb
-    jobLabel: ingress-nginx
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/instance: nginx-ingress
-      app.kubernetes.io/name: nginx-ingress
-  endpoints:
-  - port: prometheus 
-    scheme: http
-</code></pre><h1 id="virtualserver">VirtualServer</h1><p>Refrensi : https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#upstream</p><p>The VirtualServer resource defines load balancing configuration for a domain name, such as&nbsp;<code>example.com</code>. Virtual server ini dalam penerapannya memungkinkan dalam satu ingress memiliki 2 service berbeda dengan path yang berbeda juga. Misal <code>/coffe</code> -&gt; <code>svc:coffe:80</code> atau <code>/milk</code> -&gt; <code>svc:milk:8080</code></p><h2 id="basic-create-ingress-using-virtualserver">Basic Create Ingress Using VirtualServer</h2><p>Refrensi : https://github.com/nginxinc/kubernetes-ingress/tree/v3.1.1/examples/custom-resources/basic-configuration</p><p>Selain membuat ingress menggunakan kind <code>Ingress</code>, di nginx-ingress bisa memanfaatkan fitur VirtualServer.</p><blockquote>The VirtualServer and VirtualServerRoute resources are load balancing configurations recommended as an alternative to the Ingress resource.</blockquote><p>Dari dokumentasi, disini VIrtualServer dapat sebagai alternatif konfigurasi dari Ingress Resource.</p><p>Basic yaml file dari VIrtualServer</p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: 
-spec: 
-</code></pre><h3 id="basic-ingress">Basic ingress.</h3><ul><li>Expose svc nginx:80 -&gt; virtual-svc.nginx.local dengan VirtualServer</li></ul><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: nginx-test
-spec:
-  host: virtual-svc.nginx.local
-  upstreams:
-  - name: nginx
-    service: nginx
-    port: 80
-  routes:
-  - path: /
-    action:
-      pass: nginx # name dari upstreams
-</code></pre><p>Setelah apply coba cek</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624201239.png" class="kg-image" alt="Pasted image 20230624201239" loading="lazy" width="999" height="572"></figure><p>Coba hit : `curl -v http://localhost:31105 -H 'Host: virtual-svc.nginx.local'</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624201433.png" class="kg-image" alt="Pasted image 20230624201433" loading="lazy" width="1104" height="617"></figure><h1 id="virtualserver-separate-service-by-path">VirtualServer separate service by path</h1><p>Refrensi : https://github.com/nginxinc/kubernetes-ingress/tree/v3.1.1/examples/custom-resources/basic-configuration</p><p>Di virtualserver sama seperti k8s-ingress, kita dapat membuat 2 service dalam satu ingress dengan path yang berbeda. Misal <code>/coffe</code> -&gt; <code>svc:coffe:80</code> atau <code>/milk</code> -&gt; <code>svc:milk:8080</code></p><ol><li>Buat deployment coffe &amp; tea</li></ol><pre><code class="language-yaml">apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: coffee
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: coffee
-  template:
-    metadata:
-      labels:
-        app: coffee
-    spec:
-      containers:
-      - name: coffee
-        image: nginxdemos/nginx-hello:plain-text
-        ports:
-        - containerPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: coffee-svc
-spec:
-  ports:
-  - port: 80
-    targetPort: 8080
-    protocol: TCP
-    name: http
-  selector:
-    app: coffee
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: tea
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: tea
-  template:
-    metadata:
-      labels:
-        app: tea
-    spec:
-      containers:
-      - name: tea
-        image: nginxdemos/nginx-hello:plain-text
-        ports:
-        - containerPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: tea-svc
-spec:
-  ports:
-  - port: 80
-    targetPort: 8080
-    protocol: TCP
-    name: http
-  selector:
-    app: tea
-</code></pre><ol start="2"><li>Buat VirtualServer</li></ol><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: cafe-testing
-spec:
-  host: cafe.nginx.local
-  upstreams:
-  - name: tea
-    service: tea-svc
-    port: 80
-  - name: coffee
-    service: coffee-svc
-    port: 80
-  routes:
-  - path: /tea
-    action:
-      pass: tea
-  - path: /coffee
-    action:
-      pass: coffee
-</code></pre><ol start="3"><li>Verifikasi</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624204053.png" class="kg-image" alt="Pasted image 20230624204053" loading="lazy" width="1104" height="690"></figure><pre><code class="language-sh"># Testing curl
-curl http://localhost:31105/tea -H 'Host: cafe.nginx.local'
-curl http://localhost:31105/coffe -H 'Host: cafe.nginx.local'
-</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624204300.png" class="kg-image" alt="Pasted image 20230624204300" loading="lazy" width="874" height="213"></figure><h1 id="mencoba-lbmethod">Mencoba lb_method</h1><p>Dilihat dari refrensi <a href="https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/?ref=dev.nbtrisna.my.id#upstream">berikut</a>, kita bisa menambahkan <code>lb-method</code> di upstream section. Untuk metode yang di support bisa ke refrensi <a href="https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/?ref=dev.nbtrisna.my.id#choosing-a-load-balancing-method">berikut</a></p><p>Defaul algortihm yang digunakan nginx-ingress adalah yang tertera dalam configmaps nginx-ingress. Hanya saja tidak ada data yaml yang terdefine di cm ingress.</p><pre><code class="language-sh">k get cm -n nginx-ingress nginx-ingress -o yaml
-</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624205128.png" class="kg-image" alt="Pasted image 20230624205128" loading="lazy" width="684" height="342"></figure><p>Oke Gas dicoba.</p><p>Ketika tidak mendefinisikan algoritma lb di upstream, dicoba hit 5 kali dan hasilnya seperti berikut</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624205245.png" class="kg-image" alt="Pasted image 20230624205245" loading="lazy" width="1248" height="889"></figure>
-<!--kg-card-begin: html-->
-<table>
-<thead>
-<tr>
-<th>Pod Name</th>
-<th>Jumlah Hit</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>coffee-7dd75bc79b-9f8l7</td>
-<td>4</td>
-</tr>
-<tr>
-<td>coffee-7dd75bc79b-2grss</td>
-<td>6</td>
-</tr>
-</tbody>
-</table>
-<!--kg-card-end: html-->
-<p>Dari hasil hit, nginx memilih pod secara random selama hit.</p><p>Saya coba dengan <code>lb-method: roundrobin</code>, harusnya akan hit secara bergantian</p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: cafe-testing
-spec:
-  host: cafe-round.nginx.local
-  upstreams:
-  - name: tea
-    service: tea-svc
-    port: 80
-  - name: coffee
-    service: coffee-svc
-    port: 80
-    lb-method: round_robin # add spesific on coffe path
-  routes:
-  - path: /tea
-    action:
-      pass: tea
-  - path: /coffee
-    action:
-      pass: coffee
+            <h3 id="daily-quest-2-secrets-environment-variables"><strong>Daily Quest #2: Secrets &amp; Environment Variables</strong></h3><p><em>In CI/CD world, environment variables and secret is key to storing value without writing directly to yaml files. It's possible to manage credentials, versioning, and configure build according to the needs</em></p><p><strong>Skenario</strong> : Understand how to use <code>env</code> and <code>secret</code> in github actions for flexible and secure workflow.</p><ol><li>In existing repository, reconfigure <code>first-workflows.yaml</code>.</li></ol><pre><code class="language-yaml">name: Hello CI
+on: 
+    - push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+        - name: say hello
+          run: echo "Hello from CI/CD!"
+        - name: Greeting from variable
+          run: echo "Hello from ${{ env.GREETING }}"
+        - name: Echo secret
+          run: echo "Secret is ${{ secrets.SECRET_MSG }}"
+</code></pre><ol start="2"><li>Create secrets on github. Navigate to <code>Settings &gt; Secrets and variables &gt; Actions</code></li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250615135106.png" class="kg-image" alt="Pasted image 20250615135106" loading="lazy" width="961" height="929"></figure><p>2. Create secrets &amp; variable, makesure name of variable/secret correct</p><ol start="3"><li>Result</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250615135035.png" class="kg-image" alt="Pasted image 20250615135035" loading="lazy" width="955" height="907"></figure><p>Answer :</p><ol><li>Penggunaan secrets digunakan untuk store data penting seperti password. Ketika digunakan dalam workflows, akan di samarkan dengan <code>**</code>. Untuk variable, biasanya digunakan untuk menyimpan config, dll. Yang sifatnya general</li><li>Github workflow memask secret agar isi dari secret tidak terlihat. Karena biasanya data yang tersimpan dalam secrets adalah data rahasia.</li></ol><h2 id="daily-quest-3-matrix-mastery"><strong>Daily Quest #3: Matrix Mastery</strong></h2><p><em>In github workflows, we can use <code>matrix strategies</code> for create multiple job runs using a single jobs variable definition like job running pararalel simultaneously. For example like you can configure your ci to run build in 3 different os/arch</em></p><p>Referensi : https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow</p><p>To define <em>matrix_strategy</em> simply put in <code>jobs.&lt;job_id&gt;.strategy.matrix</code> with value array.</p><pre><code class="language-yaml">jobs:
+	example_matrix:
+		strategy:
+			matrix:
+				os: [ubuntu-latest, selfhosted]
+				version: [10, 11, 12]
+</code></pre><p>By default, GitHub will maximize the number of jobs run in parallel depending on runner availability. The order of the variables in the matrix determines the order in which the jobs are created. The first variable you define will be the first job that is created in your workflow run. For example, the above matrix will create the jobs in the following order:</p><pre><code>{version: 10, os: ubuntu-latest}
+{version: 10, os: windows-latest}
+{version: 12, os: ubuntu-latest}
+{version: 12, os: windows-latest}
+{version: 14, os: ubuntu-latest}
+{version: 14, os: windows-latest}
+</code></pre><h4 id="single-dimension-matrix">Single-dimension matrix</h4><pre><code class="language-yaml">jobs:
+  example_matrix:
+    strategy:
+      matrix:
+        version: [10, 12, 14]
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.version }}
 
-</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624205607.png" class="kg-image" alt="Pasted image 20230624205607" loading="lazy" width="1248" height="889"></figure>
-<!--kg-card-begin: html-->
-<table>
-<thead>
-<tr>
-<th>Pod Name</th>
-<th>Jumlah Hit</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>coffee-7dd75bc79b-9f8l7</td>
-<td>5</td>
-</tr>
-<tr>
-<td>coffee-7dd75bc79b-2grss</td>
-<td>5</td>
-</tr>
-</tbody>
-</table>
-<!--kg-card-end: html-->
-<p>Yup hasilnya akan di loadbalance secara "roundrobin" ke masing" pod. :)</p>
+</code></pre><p>Explanation : For example, the following workflow defines the variable version with the values [10, 12, 14]. The workflow will run three jobs, one for each value in the variable. Each job will access the version value through the matrix.version context and pass the value as node-version to the actions/setup-node action.</p><h4 id="multi-dimension-matrix">Multi-dimension matrix</h4><pre><code class="language-yaml">jobs:
+  example_matrix:
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, ubuntu-20.04]
+        version: [10, 12, 14]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.version }}
+</code></pre><h3 id="quest">Quest</h3><ol><li>Create new job called <code>matrix-workflow.yaml</code>. Using <code>matrix-strategy</code> to run jobs in different os</li></ol><pre><code class="language-yaml">name: Hello CI
+on: 
+    - push
+jobs:
+  build:
+    strategy:
+      matrix: 
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+        - name: say hello
+          run: echo "Hello from CI/CD!"
+        - name: Greeting from variable
+          run: echo "Hello from ${{ env.GREETING }}"
+        - name: Echo secret
+          run: echo "Secret is ${{ secrets.SECRET_MSG }}"
+        - name: Display OS
+          run: echo "Running on ${{ matrix.os }}"
+</code></pre><ol start="2"><li>Push, and see result</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250615135116.png" class="kg-image" alt="Pasted image 20250615135116" loading="lazy" width="961" height="842"></figure><p><strong>Answer</strong> :</p><ol><li>Kelebihan utama menggunakan matrix yaitu dapat mempersingkat dan membuat efiisien dari file workflow. Ketika ada perubahan besar di yaml workflow, devops hanya mengubah satu job. Tanpa mengulangi edit yang lain</li><li>Matrix dapat menjadi overkill karena dapat menjalankan secara paralel setiap jobs sesuai dengan variable yang di definisikan dalam array. Untuk membatasinya, kita dapat membatasi sesuai dengan kebutuhan(? coba koreksi)</li></ol><h2 id="daily-quest-4-dependency-caching"><strong>Daily Quest #4: Dependency Caching</strong></h2><p>Refrensi : https://docs.github.com/actions/using-workflows/caching-dependencies-to-speed-up-workflows <em>To make workflows faster and efficient, you can cache for depedencies and other commonly reused file.</em> Job in github-hosted runners start a clean runner image, and must download depedencies each time. Causing incerased network utilizaiton, longiger runtime, and incerase cost. To cache depedencies for a job, you can use <code>cache-action</code>. The action create and restores a cache identified by a unique key.</p><p><strong>Artifacts vs caching</strong></p><ul><li>Use caching when you want to reuse files that don't change often between jobs/workflows runs. Such a depedencies from package management system (npm, dll)</li><li>Using artifacts when you want to save files produce by a job to view after a workflow run has ended. Such a built binaries/logs.</li></ul><p><strong>Using a <code>cache</code> actions</strong></p><ul><li>First search for excat match to your provided <code>key</code></li><li>if no excact match, it will search for partial matches of the <code>key</code></li><li>if there is still no match found, and you've provided <code>restore-keys</code>, these keys wil be checked sequenial for partial matches. <strong>Input parameters for the cache action</strong></li><li><code>key</code> : Using to search for a cache. It can any combination of variables, context values, static strings, and function.</li><li><code>path</code> : The path of the runner to cache/restore</li><li><code>restore-keys</code> : Alternative restore keys.</li></ul><p>Is quite hard to understand to using <code>key</code> and <code>restore-key</code>. So first if key not match -&gt; search to restore-keys to list what to restore on path.</p><pre><code class="language-sh">       +-------------------------+
+       |  Start cache step      |
+       +-------------------------+
+                 |
+                 v
+      +---------------------------+
+      |  Key match with cache?   |
+      +---------------------------+
+           |              |
+          Yes            No
+           |              |
+           v              v
+  Restore full         Try restore with
+    cache              restore-keys prefix
+           |              |
+         (Hit)         (Partial hit / miss)
+           |              |
+           v              v
+    Run job (npm install, dll)
+           |
+           v
+  +------------------------------+
+  |  Save cache at end?         |
+  +------------------------------+
+           |
+  Only if ❌ cache miss
+</code></pre><p>Cache : only run if cache miss.</p><p><strong>Skenario</strong> : add cache before installing deedencies</p><ol><li>Edit <code>cache-workflow.yml</code></li></ol><pre><code class="language-yaml file:cache-workflow.yml">name: Cache Workflows
+on: 
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+        - name: say hello
+          run: echo "Hello from CI/CD!"
+        - name: Greeting from variable
+          run: echo "Hello from ${{ env.GREETING }}"
+        - name: Echo secret
+          run: echo "Secret is ${{ secrets.SECRET_MSG }}"
+        - name: Cache node modules 
+          uses: actions/cache@v4
+          with:
+            path: ~/.npm
+            key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+            restore-keys: |
+              ${{ runner.os }}-node-
+        - name: Install dependencies
+          run: npm install
+        - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+          name: List the state of node modules
+          continue-on-error: true
+          run: npm list
+</code></pre><ol start="2"><li>Push, and result</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250615135122.png" class="kg-image" alt="Pasted image 20250615135122" loading="lazy" width="961" height="842"></figure><p><strong>Answer</strong></p><ol><li>Key and restore-keys akan melakukan pengecekan, jika key match maka akan di restore seluruh yang ada di path. Jika tidak, maka akan melakukan general check dengan restore-keys. Jika match maka restore, jika tidak maka hanya akan di cache dan tidak restore</li><li>Tidak menggunakan caching ketika workflow/job yang dijalankan tidak memerlukan depedencies berulang.</li></ol>
         </section>
 
     </article>

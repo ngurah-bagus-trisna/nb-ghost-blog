@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 
-    <title>nginx-upstream ingress</title>
+    <title>19-June-25</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -48,32 +48,32 @@
         document.documentElement.className = `has-${textColor}-text`;
     </script>
 
-    <meta name="description" content="Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.">
+    <meta name="description" content="Create pipeline with lint &amp; unit test, terraform, iaac testing (using terratest), Docker Build &amp; Security Scan (Trivy), Deploy, Smoke Test &amp; Metrics Scrape, Cleanup &amp; Notification">
     <link rel="icon" href="https://twnb.nbtrisna.my.id/content/images/size/w256h256/2023/12/Logo-CHannel-1.png" type="image/png">
-    <link rel="canonical" href="https://twnb.nbtrisna.my.id/nginx-upstream-ingress-2/">
+    <link rel="canonical" href="https://twnb.nbtrisna.my.id/19-june-25/">
     <meta name="referrer" content="no-referrer-when-downgrade">
     
     <meta property="og:site_name" content="twnb">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="nginx-upstream ingress">
-    <meta property="og:description" content="Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.">
-    <meta property="og:url" content="https://twnb.nbtrisna.my.id/nginx-upstream-ingress-2/">
-    <meta property="og:image" content="https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T040622Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87">
-    <meta property="article:published_time" content="2025-06-06T04:06:00.000Z">
-    <meta property="article:modified_time" content="2025-06-18T19:51:21.000Z">
-    <meta property="article:tag" content="catatan">
+    <meta property="og:title" content="19-June-25">
+    <meta property="og:description" content="Create pipeline with lint &amp; unit test, terraform, iaac testing (using terratest), Docker Build &amp; Security Scan (Trivy), Deploy, Smoke Test &amp; Metrics Scrape, Cleanup &amp; Notification">
+    <meta property="og:url" content="https://twnb.nbtrisna.my.id/19-june-25/">
+    <meta property="og:image" content="https://photoby.nbtrisna.my.id/3a4489b7-1846-4855-8306-8a885e6ac289.jpg">
+    <meta property="article:published_time" content="2025-06-19T00:50:00.000Z">
+    <meta property="article:modified_time" content="2025-06-21T00:52:28.000Z">
+    <meta property="article:tag" content="daily-notes">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="nginx-upstream ingress">
-    <meta name="twitter:description" content="Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.">
-    <meta name="twitter:url" content="https://twnb.nbtrisna.my.id/nginx-upstream-ingress-2/">
-    <meta name="twitter:image" content="https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T040622Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87">
+    <meta name="twitter:title" content="19-June-25">
+    <meta name="twitter:description" content="Create pipeline with lint &amp; unit test, terraform, iaac testing (using terratest), Docker Build &amp; Security Scan (Trivy), Deploy, Smoke Test &amp; Metrics Scrape, Cleanup &amp; Notification">
+    <meta name="twitter:url" content="https://twnb.nbtrisna.my.id/19-june-25/">
+    <meta name="twitter:image" content="https://photoby.nbtrisna.my.id/3a4489b7-1846-4855-8306-8a885e6ac289.jpg">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="I Gusti Ngurah Bagus Trisna Andika">
     <meta name="twitter:label2" content="Filed under">
-    <meta name="twitter:data2" content="catatan">
-    <meta property="og:image:width" content="1083">
-    <meta property="og:image:height" content="722">
+    <meta name="twitter:data2" content="daily-notes">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="800">
     
     <script type="application/ld+json">
 {
@@ -100,19 +100,19 @@
         "url": "https://twnb.nbtrisna.my.id/author/ngurah/",
         "sameAs": []
     },
-    "headline": "nginx-upstream ingress",
-    "url": "https://twnb.nbtrisna.my.id/nginx-upstream-ingress-2/",
-    "datePublished": "2025-06-06T04:06:00.000Z",
-    "dateModified": "2025-06-18T19:51:21.000Z",
+    "headline": "19-June-25",
+    "url": "https://twnb.nbtrisna.my.id/19-june-25/",
+    "datePublished": "2025-06-19T00:50:00.000Z",
+    "dateModified": "2025-06-21T00:52:28.000Z",
     "image": {
         "@type": "ImageObject",
-        "url": "https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250618T040622Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87",
-        "width": 1083,
-        "height": 722
+        "url": "https://photoby.nbtrisna.my.id/3a4489b7-1846-4855-8306-8a885e6ac289.jpg",
+        "width": 1200,
+        "height": 800
     },
-    "keywords": "catatan",
-    "description": "Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.",
-    "mainEntityOfPage": "https://twnb.nbtrisna.my.id/nginx-upstream-ingress-2/"
+    "keywords": "daily-notes",
+    "description": "Create pipeline with lint &amp; unit test, terraform, iaac testing (using terratest), Docker Build &amp; Security Scan (Trivy), Deploy, Smoke Test &amp; Metrics Scrape, Cleanup &amp; Notification",
+    "mainEntityOfPage": "https://twnb.nbtrisna.my.id/19-june-25/"
 }
     </script>
 
@@ -310,7 +310,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net"><link rel="stylesheet" href="https://fonts.bunny.net/css?family=noto-sans:400,700|space-mono:400,700"><style>:root {--gh-font-heading: Noto Sans;--gh-font-body: Space Mono;}</style>
 
 </head>
-<body class="post-template tag-catatan gh-font-heading-noto-sans gh-font-body-space-mono has-sans-title has-sans-body">
+<body class="post-template tag-daily-notes gh-font-heading-noto-sans gh-font-body-space-mono has-sans-title has-sans-body">
 
 <div class="gh-viewport">
     
@@ -347,231 +347,303 @@
 
 <main class="gh-main">
 
-    <article class="gh-article post tag-catatan">
+    <article class="gh-article post tag-daily-notes">
 
         <header class="gh-article-header gh-canvas">
 
-                <a class="gh-article-tag" href="https://twnb.nbtrisna.my.id/tag/catatan/">catatan</a>
-            <h1 class="gh-article-title is-title">nginx-upstream ingress</h1>
-                <p class="gh-article-excerpt is-body">Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.</p>
+                <a class="gh-article-tag" href="https://twnb.nbtrisna.my.id/tag/daily-notes/">daily-notes</a>
+            <h1 class="gh-article-title is-title">19-June-25</h1>
+                <p class="gh-article-excerpt is-body">Create pipeline with lint &amp; unit test, terraform, iaac testing (using terratest), Docker Build &amp; Security Scan (Trivy), Deploy, Smoke Test &amp; Metrics Scrape, Cleanup &amp; Notification</p>
 
 
                 <figure class="gh-article-image">
         <img
-            srcset="https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T040622Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87 320w,
-                    https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T040622Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87 600w,
-                    https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T040622Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87 960w,
-                    https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T040622Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87 1200w,
-                    https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T040622Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87 2000w"
+            srcset="https://photoby.nbtrisna.my.id/3a4489b7-1846-4855-8306-8a885e6ac289.jpg 320w,
+                    https://photoby.nbtrisna.my.id/3a4489b7-1846-4855-8306-8a885e6ac289.jpg 600w,
+                    https://photoby.nbtrisna.my.id/3a4489b7-1846-4855-8306-8a885e6ac289.jpg 960w,
+                    https://photoby.nbtrisna.my.id/3a4489b7-1846-4855-8306-8a885e6ac289.jpg 1200w,
+                    https://photoby.nbtrisna.my.id/3a4489b7-1846-4855-8306-8a885e6ac289.jpg 2000w"
             sizes="(max-width: 1200px) 100vw, 1120px"
-            src="https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm&#x3D;AWS4-HMAC-SHA256&amp;X-Amz-Credential&#x3D;njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date&#x3D;20250618T040622Z&amp;X-Amz-Expires&#x3D;604800&amp;X-Amz-SignedHeaders&#x3D;host&amp;X-Amz-Signature&#x3D;d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87"
-            alt="nginx-upstream ingress"
+            src="https://photoby.nbtrisna.my.id/3a4489b7-1846-4855-8306-8a885e6ac289.jpg"
+            alt="19-June-25"
         >
-            <figcaption><b><strong style="white-space: pre-wrap;">Photo by </strong></b><b><code spellcheck="false" style="white-space: pre-wrap;"><strong>nb.trisna</strong></code></b><span style="white-space: pre-wrap;"> Embracing ancient Balinese wisdom: finding peace in the interconnected dance of nature, humanity, and the divine.</span></figcaption>
+            <figcaption><b><strong style="white-space: pre-wrap;">Photo by nbtrisna</strong></b><span style="white-space: pre-wrap;"> A silent observer of the city night, a black cat pauses on the pavement, watching the world pass by.</span></figcaption>
     </figure>
 
         </header>
 
         <section class="gh-content gh-canvas is-body">
-            <p>Refrensi : </p><ul><li>https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/</li></ul><p>Untuk mengetahui values dari helm, bisa mengunjungi link <a href="https://artifacthub.io/packages/helm/?ref=dev.nbtrisna.my.id">ArtifactHub</a></p><p>Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan <code>Custom Resource Definitions</code> untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.</p><blockquote><code>controller.enableCustomResources</code>&nbsp;set to&nbsp;<code>false</code>&nbsp;and&nbsp;<code>controller.appprotect.enable</code>&nbsp;set to&nbsp;<code>false</code> and&nbsp;<code>controller.appprotectdos.enable</code>&nbsp;set to&nbsp;<code>false</code>), the installation of the CRDs can be skipped by specifying&nbsp;<code>--skip-crds</code>&nbsp;for the helm install command.</blockquote><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621032858.png" class="kg-image" alt="Pasted image 20230621032858" loading="lazy" width="955" height="213"></figure><p>Untuk disini saya akan menggunakan default setting yaitu dengan crd</p><pre><code class="language-sh">helm install nginx-ingress oci://ghcr.io/nginxinc/charts/nginx-ingress --version 3.1.1 --namespace nginx-ingress --create-namespace --set controller.ingressClass=nginx-ingress 
-</code></pre><p>Setelah installasi, secara otomatis CRD akan terdeploy juga</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621035659.png" class="kg-image" alt="Pasted image 20230621035659" loading="lazy" width="1567" height="214"></figure><p>Verifikasi, Pastikan semua running dan coba untuk expos nginx-deployment dengan ingress-class nginx-ingress</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621035741.png" class="kg-image" alt="Pasted image 20230621035741" loading="lazy" width="937" height="211"></figure><pre><code class="language-sh">kubectl create ingress nginx-ingress --rule="nginx-ingress.ok/*=nginx:80" --class nginx-ingress
-</code></pre><p>Works</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621040351.png" class="kg-image" alt="Pasted image 20230621040351" loading="lazy" width="938" height="230"></figure><h3 id="monitoring-using-servicemonitors">Monitoring using servicemonitors</h3><p>Create svc port <code>prometheus</code></p><pre><code class="language-yaml">kubectl edit svc -n nginx-ingress nginx-ingress
----
-spec: 
-  ports:
-    - name: prometheus
-      port: 9113
-      protocol: TCP
-      targetPort: 9113
-</code></pre><p>Create service-monitors</p><pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: ingress-nginx
-  namespace: nginx-ingress
-  labels:
-    release: nb
-    jobLabel: ingress-nginx
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/instance: nginx-ingress
-      app.kubernetes.io/name: nginx-ingress
-  endpoints:
-  - port: prometheus 
-    scheme: http
-</code></pre><h1 id="virtualserver">VirtualServer</h1><p>Refrensi : https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#upstream</p><p>The VirtualServer resource defines load balancing configuration for a domain name, such as&nbsp;<code>example.com</code>. Virtual server ini dalam penerapannya memungkinkan dalam satu ingress memiliki 2 service berbeda dengan path yang berbeda juga. Misal <code>/coffe</code> -&gt; <code>svc:coffe:80</code> atau <code>/milk</code> -&gt; <code>svc:milk:8080</code></p><h2 id="basic-create-ingress-using-virtualserver">Basic Create Ingress Using VirtualServer</h2><p>Refrensi : https://github.com/nginxinc/kubernetes-ingress/tree/v3.1.1/examples/custom-resources/basic-configuration</p><p>Selain membuat ingress menggunakan kind <code>Ingress</code>, di nginx-ingress bisa memanfaatkan fitur VirtualServer.</p><blockquote>The VirtualServer and VirtualServerRoute resources are load balancing configurations recommended as an alternative to the Ingress resource.</blockquote><p>Dari dokumentasi, disini VIrtualServer dapat sebagai alternatif konfigurasi dari Ingress Resource.</p><p>Basic yaml file dari VIrtualServer</p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: 
-spec: 
-</code></pre><h3 id="basic-ingress">Basic ingress.</h3><ul><li>Expose svc nginx:80 -&gt; virtual-svc.nginx.local dengan VirtualServer</li></ul><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: nginx-test
-spec:
-  host: virtual-svc.nginx.local
-  upstreams:
-  - name: nginx
-    service: nginx
-    port: 80
-  routes:
-  - path: /
-    action:
-      pass: nginx # name dari upstreams
-</code></pre><p>Setelah apply coba cek</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624201239.png" class="kg-image" alt="Pasted image 20230624201239" loading="lazy" width="999" height="572"></figure><p>Coba hit : `curl -v http://localhost:31105 -H 'Host: virtual-svc.nginx.local'</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624201433.png" class="kg-image" alt="Pasted image 20230624201433" loading="lazy" width="1104" height="617"></figure><h1 id="virtualserver-separate-service-by-path">VirtualServer separate service by path</h1><p>Refrensi : https://github.com/nginxinc/kubernetes-ingress/tree/v3.1.1/examples/custom-resources/basic-configuration</p><p>Di virtualserver sama seperti k8s-ingress, kita dapat membuat 2 service dalam satu ingress dengan path yang berbeda. Misal <code>/coffe</code> -&gt; <code>svc:coffe:80</code> atau <code>/milk</code> -&gt; <code>svc:milk:8080</code></p><ol><li>Buat deployment coffe &amp; tea</li></ol><pre><code class="language-yaml">apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: coffee
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: coffee
-  template:
-    metadata:
-      labels:
-        app: coffee
-    spec:
-      containers:
-      - name: coffee
-        image: nginxdemos/nginx-hello:plain-text
-        ports:
-        - containerPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: coffee-svc
-spec:
-  ports:
-  - port: 80
-    targetPort: 8080
-    protocol: TCP
-    name: http
-  selector:
-    app: coffee
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: tea
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: tea
-  template:
-    metadata:
-      labels:
-        app: tea
-    spec:
-      containers:
-      - name: tea
-        image: nginxdemos/nginx-hello:plain-text
-        ports:
-        - containerPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: tea-svc
-spec:
-  ports:
-  - port: 80
-    targetPort: 8080
-    protocol: TCP
-    name: http
-  selector:
-    app: tea
-</code></pre><ol start="2"><li>Buat VirtualServer</li></ol><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: cafe-testing
-spec:
-  host: cafe.nginx.local
-  upstreams:
-  - name: tea
-    service: tea-svc
-    port: 80
-  - name: coffee
-    service: coffee-svc
-    port: 80
-  routes:
-  - path: /tea
-    action:
-      pass: tea
-  - path: /coffee
-    action:
-      pass: coffee
-</code></pre><ol start="3"><li>Verifikasi</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624204053.png" class="kg-image" alt="Pasted image 20230624204053" loading="lazy" width="1104" height="690"></figure><pre><code class="language-sh"># Testing curl
-curl http://localhost:31105/tea -H 'Host: cafe.nginx.local'
-curl http://localhost:31105/coffe -H 'Host: cafe.nginx.local'
-</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624204300.png" class="kg-image" alt="Pasted image 20230624204300" loading="lazy" width="874" height="213"></figure><h1 id="mencoba-lbmethod">Mencoba lb_method</h1><p>Dilihat dari refrensi <a href="https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/?ref=dev.nbtrisna.my.id#upstream">berikut</a>, kita bisa menambahkan <code>lb-method</code> di upstream section. Untuk metode yang di support bisa ke refrensi <a href="https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/?ref=dev.nbtrisna.my.id#choosing-a-load-balancing-method">berikut</a></p><p>Defaul algortihm yang digunakan nginx-ingress adalah yang tertera dalam configmaps nginx-ingress. Hanya saja tidak ada data yaml yang terdefine di cm ingress.</p><pre><code class="language-sh">k get cm -n nginx-ingress nginx-ingress -o yaml
-</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624205128.png" class="kg-image" alt="Pasted image 20230624205128" loading="lazy" width="684" height="342"></figure><p>Oke Gas dicoba.</p><p>Ketika tidak mendefinisikan algoritma lb di upstream, dicoba hit 5 kali dan hasilnya seperti berikut</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624205245.png" class="kg-image" alt="Pasted image 20230624205245" loading="lazy" width="1248" height="889"></figure>
-<!--kg-card-begin: html-->
-<table>
-<thead>
-<tr>
-<th>Pod Name</th>
-<th>Jumlah Hit</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>coffee-7dd75bc79b-9f8l7</td>
-<td>4</td>
-</tr>
-<tr>
-<td>coffee-7dd75bc79b-2grss</td>
-<td>6</td>
-</tr>
-</tbody>
-</table>
-<!--kg-card-end: html-->
-<p>Dari hasil hit, nginx memilih pod secara random selama hit.</p><p>Saya coba dengan <code>lb-method: roundrobin</code>, harusnya akan hit secara bergantian</p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: cafe-testing
-spec:
-  host: cafe-round.nginx.local
-  upstreams:
-  - name: tea
-    service: tea-svc
-    port: 80
-  - name: coffee
-    service: coffee-svc
-    port: 80
-    lb-method: round_robin # add spesific on coffe path
-  routes:
-  - path: /tea
-    action:
-      pass: tea
-  - path: /coffee
-    action:
-      pass: coffee
+            <h3 id="archon-quest-realm-of-cicd">Archon Quest: Realm of CI/CD</h3><p><em>Create pipeline with lint &amp; unit test, terraform, iaac testing (using <code>terratest</code>), Docker Build &amp; Security Scan (Trivy), Deploy, Smoke Test &amp; Metrics Scrape, Cleanup &amp; Notification</em></p><p><strong>Objective</strong></p><ul><li><strong>Lint &amp; Unit Test</strong> for both Node.js &amp; Go using a <strong>matrix</strong> strategy.</li><li><strong>Terraform Plan &amp; Apply</strong> on <code>main</code> branch (dev environment).</li><li><strong>Infrastructure Testing</strong> with Terratest.</li><li><strong>Docker Build &amp; Security Scan</strong> (Trivy).</li><li><strong>Deploy to Staging</strong> (auto) then <strong>Production</strong> (manual approvals).</li><li><strong>Smoke Tests &amp; Metrics Scrape</strong> (Prometheus).</li><li><strong>Cleanup &amp; Notification</strong>.</li></ul><h3 id="action">Action!</h3><p>Repository : https://github.com/ngurah-bagus-trisna/realm-of-cicd</p><ol><li>Define three environments in repo Settings: dev, staging, production (Add required reviewers in production)</li></ol><p>Create new repository first called <code>realm-of-cicd</code>, after that creating new environment by accesing <code>Settings &gt; Environment &gt; New Environmet</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250619031254.png" class="kg-image" alt="Pasted image 20250619031254" loading="lazy" width="1838" height="1544"></figure><p>Result</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250619031818.png" class="kg-image" alt="Pasted image 20250619031818" loading="lazy" width="1862" height="1022"></figure><ol start="2"><li>Setup linter for <code>nodejs-apps</code></li></ol><p>Reference :</p><ul><li>https://medium.com/opportunities-in-the-world-of-tech/how-i-set-up-ci-cd-for-a-node-js-app-with-eslint-jest-and-docker-hub-7d3cacf7add8</li></ul><pre><code class="language-sh">npm init -y  
+npm install express
 
-</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624205607.png" class="kg-image" alt="Pasted image 20230624205607" loading="lazy" width="1248" height="889"></figure>
-<!--kg-card-begin: html-->
-<table>
-<thead>
-<tr>
-<th>Pod Name</th>
-<th>Jumlah Hit</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>coffee-7dd75bc79b-9f8l7</td>
-<td>5</td>
-</tr>
-<tr>
-<td>coffee-7dd75bc79b-2grss</td>
-<td>5</td>
-</tr>
-</tbody>
-</table>
-<!--kg-card-end: html-->
-<p>Yup hasilnya akan di loadbalance secara "roundrobin" ke masing" pod. :)</p>
+npm install --save-dev jest supertest
+npx eslint --init
+</code></pre><p>Create basic <code>helloWorld</code> node-js apps using express js.</p><pre><code class="language-js file:index.js">const express = require('express')
+const app = express()
+
+app.get('/', (req, res) =&gt; {
+  res.send('Hello World!')
+})
+
+module.exports = app; 
+</code></pre><pre><code class="language-js file:server.js">const app = require('./index');
+const port = 8080;
+
+app.listen(port, () =&gt; {
+  console.log(`Example app listening on port ${port}`);
+});
+</code></pre><p>Create test unit using <code>jest</code></p><pre><code class="language-js file:tests/app.test.js">const request = require('supertest');
+const app = require('../'); 
+
+describe('GET /', () =&gt; {
+  it('responds with hello message', async () =&gt; {
+    const res = await request(app).get('/');
+    expect(res.statusCode).toEqual(200);
+    expect(res.text).toContain(`Hello World!`);
+  });
+});
+</code></pre><p>Configure <code>eslint.config.mjs</code> for lint <code>jest</code></p><pre><code class="language-js file:eslint.config.mjs">import js from "@eslint/js";
+import globals from "globals";
+import { defineConfig } from "eslint/config";
+
+
+export default defineConfig([
+  { 
+    files: ["**/*.{js,mjs,cjs}"], 
+    plugins: { js }, 
+    extends: ["js/recommended"] 
+  },
+  { 
+    files: ["**/*.{js,mjs,cjs}"], 
+    languageOptions: { 
+      globals: globals.node 
+    } 
+  },
+  { 
+    files: ["**/*.test.{js,mjs,cjs}"], 
+    languageOptions: { 
+      globals: globals.jest  
+    } 
+  }
+]);
+</code></pre><p>Configure <code>package.json</code>, add script for <code>lint,test and dev</code></p><pre><code class="language-json file:package.json">  "scripts": {
+    "lint": "npx eslint .",
+    "test": "jest",
+    "dev": "node server.js"
+  },
+</code></pre><p>Try to run first in terminal, makesure all passed.</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250619183255.png" class="kg-image" alt="Pasted image 20250619183255" loading="lazy" width="422" height="346"></figure><ol start="3"><li>In quest, need to plan <code>main.tf</code> to create <code>hello.txt</code>.</li></ol><p>Create <code>main.tf</code></p><pre><code class="language-tf file:main.tf">terraform {
+  required_providers {
+    local = {
+      source  = "hashicorp/local"
+      version = "~&gt; 2.0"
+    }
+  }
+
+  required_version = "&gt;= 1.0"
+}
+
+provider "local" {
+  # No configuration needed for local provider
+  
+}
+
+resource "local_file" "hello_world" {
+  content  = "Hello, OpenTofu!"
+  filename = "${path.module}/test/hello.txt"
+  
+}
+</code></pre><blockquote>It will create a text file with the content <code>Hello, Opentofu!</code></blockquote><p>Create terratest to makesure terraform can apply <code>main.tf</code></p><pre><code class="language-go file:tests/test_infra.go">package test
+
+import (
+	"testing"
+
+	"github.com/gruntwork-io/terratest/modules/terraform"
+	"github.com/stretchr/testify/assert"
+	"os"
+)
+
+func TestHelloFile(t *testing.T) {
+	// retryable errors in terraform testing.
+	terraformOptions := terraform.WithDefaultRetryableErrors(t, &amp;terraform.Options{
+		TerraformDir: "../",
+	})
+
+	defer terraform.Destroy(t, terraformOptions)
+
+	terraform.InitAndApply(t, terraformOptions)
+	
+	content, err := os.ReadFile("hello.txt")
+	assert.NoError(t, err)
+	assert.Contains(t, string(content), "Hello, OpenTofu!")
+}	
+</code></pre><blockquote>It will apply <code>main.tf</code>, and destroy after the check finished</blockquote><p>Init go modules &amp; install modules</p><pre><code class="language-sh">go mod init helo_test
+go mod tidy
+
+go test
+</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250619184125.png" class="kg-image" alt="Pasted image 20250619184125" loading="lazy" width="677" height="224"></figure><ol start="4"><li>Create github workflows <code>.github/workflows/archon-ci.yml</code></li></ol><pre><code class="language-yaml file:.github/workflows/archon-ci.yml">name: Archon CI
+on:
+  push:
+    branches: [main]
+jobs:
+  lint-test:
+    strategy:
+      matrix:
+        language: [node, go]
+        node-version: [20, 18]
+        go-version: ["1.20", "1.21"]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        if: matrix.language == 'node'
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}       
+
+      - name: Run lint and unit tests on nodejs
+        if: matrix.language == 'node'
+        run: |
+          npm install
+          npm run lint
+          npm run test
+
+  IaC-apply:
+    needs: lint-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.1
+
+      - name: Configure terraform plugin cache
+        run: |
+          echo "TF_PLUGIN_CACHE_DIR=$HOME/.terraform.d/plugin-cache" &gt;&gt;"$GITHUB_ENV"
+          mkdir -p $HOME/.terraform.d/plugin-cache
+
+      - name: Caching terraform providers
+        uses: actions/cache@v4
+        with:
+          key: terraform-${{ runner.os }}-${{ hashFiles('**/.terraform.lock.hcl') }}
+          path: |
+            $HOME/.terraform.d/plugin-cache
+          restore-keys: |
+            terraform-${{ runner.os }}-
+
+      - name: Apply terraform
+        run: |
+          terraform init 
+          terraform apply -auto-approve
+
+      - name: Export to artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Output files
+          path: |
+            tests/hello.txt
+  
+  build-image:
+    needs: lint-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+    
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build docker image with layer cache
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/archon-image:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+        
+      - name: Pull image
+        run: |
+          docker pull ${{ secrets.DOCKER_USERNAME }}/archon-image:latest
+
+      - name: Scan docker image
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: ${{ secrets.DOCKER_USERNAME }}/archon-image:latest
+          format: 'table'
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          exit-code: 1
+
+      - name: Push docker image sha
+        run: |
+          # Add your docker push commands here, e.g.:
+          docker tag ${{ secrets.DOCKER_USERNAME }}/archon-image:latest ${{ secrets.DOCKER_USERNAME }}/archon-image:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/archon-image:${{ github.sha }}
+
+  deploy-development:
+    needs: [build-image, IaC-apply]
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      environment: Development
+
+  deploy-staging:
+    needs: [deploy-development]
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      environment: Staging
+
+  deploy-production:
+    needs: [deploy-staging]
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      environment: Production
+
+</code></pre><blockquote>Explanation : This workflow automates linting, testing, infrastructure deployment, Docker image building, and multi-environment deployments using a matrix strategy and job dependencies.</blockquote><p>Next create reusable workflow <code>deploy.yml</code></p><pre><code class="language-yaml file:.github/workflows/deploy.yml">name: Deploy Workflow
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: 'The environment to deploy to'
+        required: true
+        type: string
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Deploy to ${{ inputs.environment }}
+      run: |
+        echo "Deploy to ${{ inputs.environment }}"
+        docker run -d --name archon-${{ inputs.environment}} -p 8080:8080 ngurahbagustrisna/archon-image:latest
+    
+    - name: Wait for service to be ready
+      run: |
+        echo "Waiting for service to be ready"
+        sleep 20  # Adjust the sleep time as necessary
+
+    - name: Testing to hit using smoke tests on environment ${{ inputs.environment }}
+      run: |
+        echo "Running smoke tests"
+        # Add your smoke test commands here, e.g.:
+        chmod +x ./tests/smoke_test
+        bash ./tests/smoke_test
+        echo "Finished deploy to ${{ inputs.environment }}"
+        docker rm -f archon-${{ inputs.environment}} || true
+</code></pre><p>Push to github repository, and makesure all job passed.</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250619184844.png" class="kg-image" alt="Pasted image 20250619184844" loading="lazy" width="1863" height="570"></figure>
         </section>
 
     </article>
@@ -608,35 +680,6 @@ spec:
              -->
                     <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
                     <time class="gh-card-date" datetime="2025-06-20">20 Jun 2025</time>
-                <!--
-         --></footer>
-        </div>
-    </a>
-</article>
-                            <article class="gh-card post no-image">
-    <a class="gh-card-link" href="/19-june-25/">
-            <figure class="gh-card-image">
-                <img
-                    srcset="https://photoby.nbtrisna.my.id/3a4489b7-1846-4855-8306-8a885e6ac289.jpg 160w,
-                            https://photoby.nbtrisna.my.id/3a4489b7-1846-4855-8306-8a885e6ac289.jpg 320w,
-                            https://photoby.nbtrisna.my.id/3a4489b7-1846-4855-8306-8a885e6ac289.jpg 600w,
-                            https://photoby.nbtrisna.my.id/3a4489b7-1846-4855-8306-8a885e6ac289.jpg 960w,
-                            https://photoby.nbtrisna.my.id/3a4489b7-1846-4855-8306-8a885e6ac289.jpg 1200w,
-                            https://photoby.nbtrisna.my.id/3a4489b7-1846-4855-8306-8a885e6ac289.jpg 2000w"
-                    sizes="320px"
-                    src="https://photoby.nbtrisna.my.id/3a4489b7-1846-4855-8306-8a885e6ac289.jpg"
-                    alt="19-June-25"
-                    loading="lazy"
-                >
-            </figure>
-        <div class="gh-card-wrapper">
-            <h3 class="gh-card-title is-title">19-June-25</h3>
-                <p class="gh-card-excerpt is-body">Create pipeline with lint &amp; unit test, terraform, iaac testing (using terratest), Docker Build &amp; Security Scan (Trivy), Deploy, Smoke Test &amp; Metrics Scrape, Cleanup &amp; Notification</p>
-            <footer class="gh-card-meta">
-<!--
-             -->
-                    <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
-                    <time class="gh-card-date" datetime="2025-06-19">19 Jun 2025</time>
                 <!--
          --></footer>
         </div>
@@ -695,6 +738,35 @@ spec:
              -->
                     <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
                     <time class="gh-card-date" datetime="2025-06-17">17 Jun 2025</time>
+                <!--
+         --></footer>
+        </div>
+    </a>
+</article>
+                            <article class="gh-card post no-image">
+    <a class="gh-card-link" href="/16-june-25/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://photoby.nbtrisna.my.id/45d95000-4c24-477d-9400-721733ecd596.jpg 160w,
+                            https://photoby.nbtrisna.my.id/45d95000-4c24-477d-9400-721733ecd596.jpg 320w,
+                            https://photoby.nbtrisna.my.id/45d95000-4c24-477d-9400-721733ecd596.jpg 600w,
+                            https://photoby.nbtrisna.my.id/45d95000-4c24-477d-9400-721733ecd596.jpg 960w,
+                            https://photoby.nbtrisna.my.id/45d95000-4c24-477d-9400-721733ecd596.jpg 1200w,
+                            https://photoby.nbtrisna.my.id/45d95000-4c24-477d-9400-721733ecd596.jpg 2000w"
+                    sizes="320px"
+                    src="https://photoby.nbtrisna.my.id/45d95000-4c24-477d-9400-721733ecd596.jpg"
+                    alt="16-June-25"
+                    loading="lazy"
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+            <h3 class="gh-card-title is-title">16-June-25</h3>
+                <p class="gh-card-excerpt is-body">Observability &amp; monitoring is key to understand about application and infrastructure healty in real-time</p>
+            <footer class="gh-card-meta">
+<!--
+             -->
+                    <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
+                    <time class="gh-card-date" datetime="2025-06-16">16 Jun 2025</time>
                 <!--
          --></footer>
         </div>
