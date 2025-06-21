@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[twnb]]></title><description><![CDATA[Tech with Ngurah Bagus]]></description><link>https://twnb.nbtrisna.my.id/</link><image><url>https://twnb.nbtrisna.my.id/favicon.png</url><title>twnb</title><link>https://twnb.nbtrisna.my.id/</link></image><generator>Ghost 5.125</generator><lastBuildDate>Sat, 21 Jun 2025 01:04:23 GMT</lastBuildDate><atom:link href="https://twnb.nbtrisna.my.id/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[20-June-25]]></title><description><![CDATA[Learn about basic VPC, subnet, IGW (Internet Gateway), SG (Security Group), and EC2 using AWS Free Tier.]]></description><link>https://twnb.nbtrisna.my.id/20-june-25/</link><guid isPermaLink="false">6856026edace4b00019e51d4</guid><category><![CDATA[daily-notes]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Fri, 20 Jun 2025 00:53:00 GMT</pubDate><media:content url="https://photoby.nbtrisna.my.id/967d5953-56e2-4a9f-b472-444faa0076cd.jpg" medium="image"/><content:encoded><![CDATA[<h3 id="learn-aws-vpc">Learn AWS VPC</h3><img src="https://photoby.nbtrisna.my.id/967d5953-56e2-4a9f-b472-444faa0076cd.jpg" alt="20-June-25"><p><em>With amazon <code>virtual private cloud (VPC)</code>, you can launch aws resources in logicaly. isolated virtual network</em></p><p>Reference :</p><ul><li><a href="https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html?ref=dev.nbtrisna.my.id">What is Amazon VPC?</a></li></ul><figure class="kg-card kg-image-card"><img src="https://docs.aws.amazon.com/images/vpc/latest/userguide/images/how-it-works.png" class="kg-image" alt="20-June-25" loading="lazy" width="521" height="311"></figure><p><strong>Explanation</strong> :</p><ul><li><strong>VPC</strong> : isolated private network, that closely resembles a traditional network that you&apos;d operate in own data center.</li><li><strong>Subnet</strong> : After create <code>VPC</code>, then we can set range of IP Address in your VPC. A subnet must reside in single <code>Availibilty Zone</code>. After youadd subnets, you can deploy AWS resources in VPC.</li><li><strong>Internet Gateway</strong> : Gateway connect vpc to another network, for example if you want to connect all resources in VPC to internet, you nedd a <code>internet-gateway.</code></li><li><strong>Route Tables</strong> : Route table containts set of rules, called route. That are used to determine where network from your VPC is directed.</li></ul><h2 id="daily-quest-1-aws-free-tier-kickoff">Daily Quest #1: AWS Free Tier Kickoff</h2><blockquote>Learn about basic VPC, subnet, IGW (Internet Gateway), SG (Security Group), and EC2 using AWS Free Tier. Because i don&apos;t have AWS account, i need to <a href="https://signin.aws.amazon.com/signup?request_type=register&amp;ref=dev.nbtrisna.my.id">sign up</a> After login to account, makesure to enable 2FA for security reason.</blockquote><p>Reference :</p><ul><li>https://docs.aws.amazon.com/location/latest/developerguide/set-up.html</li></ul><h3 id="setup-iam-user">Setup IAM User</h3><blockquote>Instead login using <code>root_user</code>, AWS recomend to login using IAM user.</blockquote><p>I want to setup <em>IAM user</em> first, navigate to <code>Menu &gt; Security, Identitiy &amp; Compliance &gt; IAM</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250620143242.png" class="kg-image" alt="20-June-25" loading="lazy" width="1154" height="971"></figure><p>in IAM Dashboard, navigate to <code>User &gt; Create User</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250620143708.png" class="kg-image" alt="20-June-25" loading="lazy" width="1877" height="537"></figure><p>Then follow the step to create new IAM User. After all user details correct, click next</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250620144230.png" class="kg-image" alt="20-June-25" loading="lazy" width="1708" height="866"></figure><p>I think i don&apos;t need to create new group for my aws account, so i prefer to attach policy directly to <code>AdministratorAccess</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250620144403.png" class="kg-image" alt="20-June-25" loading="lazy" width="1716" height="661"></figure><p>After creating new IAM user, next login makesure to login using IAM user.</p><h3 id="aws-cli">AWS CLI</h3><blockquote>command line interface to manage all AWS Resources.</blockquote><p>Reference :</p><ul><li>https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html</li></ul><p>Installing on macOs</p><pre><code class="language-sh">curl &quot;https://awscli.amazonaws.com/AWSCLIV2.pkg&quot; -o &quot;AWSCLIV2.pkg&quot;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[twnb]]></title><description><![CDATA[Tech with Ngurah Bagus]]></description><link>https://twnb.nbtrisna.my.id/</link><image><url>https://twnb.nbtrisna.my.id/favicon.png</url><title>twnb</title><link>https://twnb.nbtrisna.my.id/</link></image><generator>Ghost 5.125</generator><lastBuildDate>Sat, 21 Jun 2025 01:26:12 GMT</lastBuildDate><atom:link href="https://twnb.nbtrisna.my.id/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[20-June-25]]></title><description><![CDATA[Learn about basic VPC, subnet, IGW (Internet Gateway), SG (Security Group), and EC2 using AWS Free Tier.]]></description><link>https://twnb.nbtrisna.my.id/20-june-25/</link><guid isPermaLink="false">6856026edace4b00019e51d4</guid><category><![CDATA[daily-notes]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Fri, 20 Jun 2025 00:53:00 GMT</pubDate><media:content url="https://photoby.nbtrisna.my.id/967d5953-56e2-4a9f-b472-444faa0076cd.jpg" medium="image"/><content:encoded><![CDATA[<h3 id="learn-aws-vpc">Learn AWS VPC</h3><img src="https://photoby.nbtrisna.my.id/967d5953-56e2-4a9f-b472-444faa0076cd.jpg" alt="20-June-25"><p><em>With amazon <code>virtual private cloud (VPC)</code>, you can launch aws resources in logicaly. isolated virtual network</em></p><p>Reference :</p><ul><li><a href="https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html?ref=dev.nbtrisna.my.id">What is Amazon VPC?</a></li></ul><figure class="kg-card kg-image-card"><img src="https://docs.aws.amazon.com/images/vpc/latest/userguide/images/how-it-works.png" class="kg-image" alt="20-June-25" loading="lazy" width="521" height="311"></figure><p><strong>Explanation</strong> :</p><ul><li><strong>VPC</strong> : isolated private network, that closely resembles a traditional network that you&apos;d operate in own data center.</li><li><strong>Subnet</strong> : After create <code>VPC</code>, then we can set range of IP Address in your VPC. A subnet must reside in single <code>Availibilty Zone</code>. After youadd subnets, you can deploy AWS resources in VPC.</li><li><strong>Internet Gateway</strong> : Gateway connect vpc to another network, for example if you want to connect all resources in VPC to internet, you nedd a <code>internet-gateway</code></li><li><strong>Route Tables</strong> : Route table containts set of rules, called route. That are used to determine where network from your VPC is directed.</li></ul><h2 id="daily-quest-1-aws-free-tier-kickoff">Daily Quest #1: AWS Free Tier Kickoff</h2><blockquote>Learn about basic VPC, subnet, IGW (Internet Gateway), SG (Security Group), and EC2 using AWS Free Tier. Because i don&apos;t have AWS account, i need to <a href="https://signin.aws.amazon.com/signup?request_type=register&amp;ref=dev.nbtrisna.my.id">sign up</a> After login to account, makesure to enable 2FA for security reason.</blockquote><p>Reference :</p><ul><li>https://docs.aws.amazon.com/location/latest/developerguide/set-up.html</li></ul><h3 id="setup-iam-user">Setup IAM User</h3><blockquote>Instead login using <code>root_user</code>, AWS recomend to login using IAM user.</blockquote><p>I want to setup <em>IAM user</em> first, navigate to <code>Menu &gt; Security, Identitiy &amp; Compliance &gt; IAM</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250620143242.png" class="kg-image" alt="20-June-25" loading="lazy" width="1154" height="971"></figure><p>in IAM Dashboard, navigate to <code>User &gt; Create User</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250620143708.png" class="kg-image" alt="20-June-25" loading="lazy" width="1877" height="537"></figure><p>Then follow the step to create new IAM User. After all user details correct, click next</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250620144230.png" class="kg-image" alt="20-June-25" loading="lazy" width="1708" height="866"></figure><p>I think i don&apos;t need to create new group for my aws account, so i prefer to attach policy directly to <code>AdministratorAccess</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250620144403.png" class="kg-image" alt="20-June-25" loading="lazy" width="1716" height="661"></figure><p>After creating new IAM user, next login makesure to login using IAM user.</p><h3 id="aws-cli">AWS CLI</h3><blockquote>command line interface to manage all AWS Resources.</blockquote><p>Reference :</p><ul><li>https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html</li></ul><p>Installing on macOs</p><pre><code class="language-sh">curl &quot;https://awscli.amazonaws.com/AWSCLIV2.pkg&quot; -o &quot;AWSCLIV2.pkg&quot;
 sudo installer -pkg AWSCLIV2.pkg -target /
 
 # Setup auto complate
@@ -1020,7 +1020,7 @@ git commit -m &quot;ci: add testing hello-world on gh_workflows&quot;
 git remote add origin https://github.com/ngurah-bagus-trisna/ci-cd-demo.git
 git branch -M main
 git push -u origin main
-</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250612231216.png" class="kg-image" alt="12-June-25" loading="lazy" width="951" height="989"></figure><p>4. Result</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250612231216.png" class="kg-image" alt="12-June-25" loading="lazy" width="951" height="989"></figure><p>Answer :</p><ol><li>Blok on digunakan untuk penentu trigger sebuah action, jobs adalah sekumpulan action yang akan di running, steps adalah serangkaian langkah yang akan di exec dalam runner</li><li>Action checkout digunakan untuk mengambil data dalam repository</li></ol>]]></content:encoded></item><item><title><![CDATA[Install Kubecost]]></title><description><![CDATA[Kubecost merupakan tools yang digunakan untuk tracing, monitoring biaya dari sebuah on-premises kubernetes cluster.]]></description><link>https://twnb.nbtrisna.my.id/install-kubecost-2/</link><guid isPermaLink="false">68523cc7aadfe60001337390</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Mon, 09 Jun 2025 04:13:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/74535f4b-039f-4405-b54c-6263c1a5cf3f.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T041232Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=8b5738922f91014e8ba7cc536830a9aed5813adb3d5839a76a12a1ef88f3909d" medium="image"/><content:encoded><![CDATA[<img src="https://s3.nbtrisna.my.id/random-photo/74535f4b-039f-4405-b54c-6263c1a5cf3f.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T041232Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=8b5738922f91014e8ba7cc536830a9aed5813adb3d5839a76a12a1ef88f3909d" alt="Install Kubecost"><p>Kubecost merupakan tools yang digunakan untuk tracing, monitoring biaya dari sebuah on-premises kubernetes cluster.</p><h2 id="installasi">Installasi</h2><p>Refrensi : https://www.kubecost.com/install#show-instructions</p><p>Installasi kubecost menggunakan helm, disini ketika melakukan installasi kubecost, secara otomatis akan terinstall prometheus dan grafana.</p><ol><li>Get helm values</li></ol><pre><code class="language-sh">helm repo add kubecost https://kubecost.github.io/cost-analyzer/
+</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250612231216.png" class="kg-image" alt="12-June-25" loading="lazy" width="951" height="989"></figure><p>4. Result</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250612231216.png" class="kg-image" alt="12-June-25" loading="lazy" width="951" height="989"></figure><p>Answer :</p><ol><li>Blok on digunakan untuk penentu trigger sebuah action, jobs adalah sekumpulan action yang akan di running, steps adalah serangkaian langkah yang akan di exec dalam runner</li><li>Action checkout digunakan untuk mengambil data dalam repository</li></ol>]]></content:encoded></item><item><title><![CDATA[Install Kubecost]]></title><description><![CDATA[<p>Kubecost merupakan tools yang digunakan untuk tracing, monitoring biaya dari sebuah on-premises kubernetes cluster.</p><h2 id="installasi">Installasi</h2><p>Refrensi : https://www.kubecost.com/install#show-instructions</p><p>Installasi kubecost menggunakan helm, disini ketika melakukan installasi kubecost, secara otomatis akan terinstall prometheus dan grafana.</p><ol><li>Get helm values</li></ol><pre><code class="language-sh">helm repo add kubecost https://kubecost.github.io/cost-analyzer/</code></pre>]]></description><link>https://twnb.nbtrisna.my.id/install-kubecost/</link><guid isPermaLink="false">68560715dace4b00019e51f1</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Mon, 09 Jun 2025 01:13:00 GMT</pubDate><media:content url="https://photoby.nbtrisna.my.id/f93f74c8-4c16-4abe-b636-ee096b89a021.jpg" medium="image"/><content:encoded><![CDATA[<img src="https://photoby.nbtrisna.my.id/f93f74c8-4c16-4abe-b636-ee096b89a021.jpg" alt="Install Kubecost"><p>Kubecost merupakan tools yang digunakan untuk tracing, monitoring biaya dari sebuah on-premises kubernetes cluster.</p><h2 id="installasi">Installasi</h2><p>Refrensi : https://www.kubecost.com/install#show-instructions</p><p>Installasi kubecost menggunakan helm, disini ketika melakukan installasi kubecost, secara otomatis akan terinstall prometheus dan grafana.</p><ol><li>Get helm values</li></ol><pre><code class="language-sh">helm repo add kubecost https://kubecost.github.io/cost-analyzer/
 helm show values kubecost kubecost/cost-analyzer -n kubecost &gt; values.yaml
 </code></pre><ol start="2"><li>Sesuaikan values</li></ol><p>Disini saya menyesuaikan mata uang yang digunakan dalam dashboard Kubecost</p><pre><code class="language-yaml">kubecostProductConfigs:
     currencyCode: IDR
@@ -1030,7 +1030,7 @@ helm show values kubecost kubecost/cost-analyzer -n kubecost &gt; values.yaml
 </code></pre><ol start="3"><li>Installasi</li></ol><pre><code class="language-sh">helm upgrade --install kubecost \
   --repo https://kubecost.github.io/cost-analyzer/ cost-analyzer \
   --namespace kubecost --create-namespace -f values.yaml
-</code></pre><p>Result, pastikan pod running semua.</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020241108195027.png" class="kg-image" alt="Install Kubecost" loading="lazy" width="1628" height="920"></figure><p>Url dapat diakses dengan nodeport :30003</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020241108195822.png" class="kg-image" alt="Install Kubecost" loading="lazy" width="3360" height="1854"></figure>]]></content:encoded></item><item><title><![CDATA[Docker Registry Mirror]]></title><description><![CDATA[Ketika sebuah ip terus"an pull ke registry docker, akan menyebabkan sebuah peringatan limit pull telah terpakai. Biasanya akan reset setelah 6 jam. Untuk menyiasati, dicoba riset install registry mirror di gns3.]]></description><link>https://twnb.nbtrisna.my.id/docker-registry-mirror-2/</link><guid isPermaLink="false">68523accaadfe60001337350</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Sun, 08 Jun 2025 04:04:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/d617f61e-753a-49ab-9b04-a47571df1336.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T040359Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=0f5aa313e8bd8cd451718101a115ccf648e51a253c81bcbbfa9d3863185072f9" medium="image"/><content:encoded><![CDATA[<img src="https://s3.nbtrisna.my.id/random-photo/d617f61e-753a-49ab-9b04-a47571df1336.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T040359Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=0f5aa313e8bd8cd451718101a115ccf648e51a253c81bcbbfa9d3863185072f9" alt="Docker Registry Mirror"><p>Refrensi :</p><ul><li>https://stackoverflow.com/questions/74595635/how-to-configure-containerd-to-use-a-registry-mirror</li><li>https://docs.docker.com/registry/recipes/mirror/</li><li>https://docs.docker.com/registry/deploying/#deploy-your-registry-using-a-compose-file</li><li>https://d7y.io/docs/setup/runtime/containerd/mirror/</li></ul><p>Ketika sebuah ip terus&quot;an pull ke registry docker, akan menyebabkan sebuah peringatan limit pull telah terpakai. Biasanya akan reset setelah 6 jam. Untuk menyiasati, dicoba riset install registry mirror di gns3.</p><h3 id="common-issue">Common issue</h3><ul><li>Tidak bisa login dengan auth htpasswd. syntax docker login bisa, hanya saja ketika pull tidak menggunakan registry-mirror</li><li>Hanya bisa 1 Registry per registry-mirror. Jadi ketika ingin cache image selain docker.io, harus membuat kembali docker-registry dengan port yang berbeda</li><li>Bisa untuk containerd, dan docker</li></ul><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230529004247.png" class="kg-image" alt="Docker Registry Mirror" loading="lazy" width="857" height="607"></figure><p>Simple topology</p>
+</code></pre><p>Result, pastikan pod running semua.</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020241108195027.png" class="kg-image" alt="Install Kubecost" loading="lazy" width="1628" height="920"></figure><p>Url dapat diakses dengan nodeport :30003</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020241108195822.png" class="kg-image" alt="Install Kubecost" loading="lazy" width="3360" height="1854"></figure>]]></content:encoded></item><item><title><![CDATA[Docker Registry Mirror]]></title><description><![CDATA[<h3 id="refrensi">Refrensi :</h3><ul><li>https://stackoverflow.com/questions/74595635/how-to-configure-containerd-to-use-a-registry-mirror</li><li>https://docs.docker.com/registry/recipes/mirror/</li><li>https://docs.docker.com/registry/deploying/#deploy-your-registry-using-a-compose-file</li><li>https://d7y.io/docs/setup/runtime/containerd/mirror/</li></ul><p>Ketika sebuah ip terus&quot;an pull ke registry docker, akan menyebabkan sebuah peringatan limit pull telah terpakai. Biasanya akan reset</p>]]></description><link>https://twnb.nbtrisna.my.id/docker-registry-mirror/</link><guid isPermaLink="false">6856077bdace4b00019e51fd</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Sun, 08 Jun 2025 01:14:00 GMT</pubDate><media:content url="https://photoby.nbtrisna.my.id/9239f368-b5a0-44d7-baa4-c06ae1572937.jpg" medium="image"/><content:encoded><![CDATA[<h3 id="refrensi">Refrensi :</h3><ul><li>https://stackoverflow.com/questions/74595635/how-to-configure-containerd-to-use-a-registry-mirror</li><li>https://docs.docker.com/registry/recipes/mirror/</li><li>https://docs.docker.com/registry/deploying/#deploy-your-registry-using-a-compose-file</li><li>https://d7y.io/docs/setup/runtime/containerd/mirror/</li></ul><img src="https://photoby.nbtrisna.my.id/9239f368-b5a0-44d7-baa4-c06ae1572937.jpg" alt="Docker Registry Mirror"><p>Ketika sebuah ip terus&quot;an pull ke registry docker, akan menyebabkan sebuah peringatan limit pull telah terpakai. Biasanya akan reset setelah 6 jam. Untuk menyiasati, dicoba riset install registry mirror di gns3.</p><h3 id="common-issue">Common issue</h3><ul><li>Tidak bisa login dengan auth htpasswd. syntax docker login bisa, hanya saja ketika pull tidak menggunakan registry-mirror</li><li>Hanya bisa 1 Registry per registry-mirror. Jadi ketika ingin cache image selain docker.io, harus membuat kembali docker-registry dengan port yang berbeda</li><li>Bisa untuk containerd, dan docker</li></ul><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230529004247.png" class="kg-image" alt="Docker Registry Mirror" loading="lazy" width="857" height="607"></figure><p>Simple topology</p>
 <!--kg-card-begin: html-->
 <table>
 <thead>
@@ -1149,7 +1149,205 @@ server = &quot;https://registry.k8s.io&quot;
       config_path = &quot;/etc/containerd/certs.d&quot; # enable
 </code></pre><p>Restart containerd &amp; try pull registry.k8s.io</p><pre><code class="language-sh">sudo systemctl restart containerd.io
 sudo crictl pull registry.k8s.io/kube-proxy:v1.27.2
-</code></pre>]]></content:encoded></item><item><title><![CDATA[BGP Virtual IP]]></title><description><![CDATA[Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm. ]]></description><link>https://twnb.nbtrisna.my.id/bgp-virtual-ip/</link><guid isPermaLink="false">68523c58aadfe60001337383</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Sat, 07 Jun 2025 04:11:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/c756208e-5119-459b-9656-62d3b05bbbcb.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T041050Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=0f300afb47ea16b79a5ffb38c4950f822576f83a3950ec7d6b29d4d5d5d9047c" medium="image"/><content:encoded><![CDATA[<img src="https://s3.nbtrisna.my.id/random-photo/c756208e-5119-459b-9656-62d3b05bbbcb.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T041050Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=0f300afb47ea16b79a5ffb38c4950f822576f83a3950ec7d6b29d4d5d5d9047c" alt="BGP Virtual IP"><p>Refrensi : </p><ul><li>https://docs.vultr.com/high-availability-on-vultr-with-floating-ip-and-bgp</li></ul><p>Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm. VirtualIP disini masih belum sempurna, karena beberapa kali pengetestan dan tuning buat pindah ke vm lain masih terdapat jeda yang sangat lumayan &gt; 1 menit.</p><h2 id="environment">environment</h2><p>Pakai OS Ubuntu 22.04 Server</p>
+</code></pre>]]></content:encoded></item><item><title><![CDATA[nginx-upstream ingress]]></title><description><![CDATA[Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.]]></description><link>https://twnb.nbtrisna.my.id/nginx-upstream-ingress/</link><guid isPermaLink="false">68560866dace4b00019e522b</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Sat, 07 Jun 2025 01:18:00 GMT</pubDate><media:content url="https://photoby.nbtrisna.my.id/970b8a66-2d6c-49e9-bbf7-b0b72a1d5c7e.jpg" medium="image"/><content:encoded><![CDATA[<img src="https://photoby.nbtrisna.my.id/970b8a66-2d6c-49e9-bbf7-b0b72a1d5c7e.jpg" alt="nginx-upstream ingress"><p>Refrensi : https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/</p><p>Untuk mengetahui values dari helm, bisa mengunjungi link <a href="https://artifacthub.io/packages/helm/?ref=dev.nbtrisna.my.id">ArtifactHub</a></p><p>Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan <code>Custom Resource Definitions</code> untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.</p><blockquote><code>controller.enableCustomResources</code>&#xA0;set to&#xA0;<code>false</code>&#xA0;and&#xA0;<code>controller.appprotect.enable</code>&#xA0;set to&#xA0;<code>false</code> and&#xA0;<code>controller.appprotectdos.enable</code>&#xA0;set to&#xA0;<code>false</code>), the installation of the CRDs can be skipped by specifying&#xA0;<code>--skip-crds</code>&#xA0;for the helm install command.</blockquote><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230621032858.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="955" height="213"></figure><p>Untuk disini saya akan menggunakan default setting yaitu dengan crd</p><pre><code class="language-sh">helm install nginx-ingress oci://ghcr.io/nginxinc/charts/nginx-ingress --version 3.1.1 --namespace nginx-ingress --create-namespace --set controller.ingressClass=nginx-ingress 
+</code></pre><p>Setelah installasi, secara otomatis CRD akan terdeploy juga</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230621035659.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1567" height="214"></figure><p>Verifikasi, Pastikan semua running dan coba untuk expos nginx-deployment dengan ingress-class nginx-ingress</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230621035741.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="937" height="211"></figure><pre><code class="language-sh">kubectl create ingress nginx-ingress --rule=&quot;nginx-ingress.ok/*=nginx:80&quot; --class nginx-ingress
+</code></pre><p>Works</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230621040351.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="938" height="230"></figure><h3 id="monitoring-using-servicemonitors">Monitoring using servicemonitors</h3><p>Create svc port <code>prometheus</code></p><pre><code class="language-yaml">kubectl edit svc -n nginx-ingress nginx-ingress
+---
+spec: 
+  ports:
+    - name: prometheus
+      port: 9113
+      protocol: TCP
+      targetPort: 9113
+</code></pre><p>Create service-monitors</p><pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ingress-nginx
+  namespace: nginx-ingress
+  labels:
+    release: nb
+    jobLabel: ingress-nginx
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: nginx-ingress
+      app.kubernetes.io/name: nginx-ingress
+  endpoints:
+  - port: prometheus 
+    scheme: http
+</code></pre><h1 id="virtualserver">VirtualServer</h1><p>Refrensi : https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#upstream</p><p>The VirtualServer resource defines load balancing configuration for a domain name, such as&#xA0;<code>example.com</code>. Virtual server ini dalam penerapannya memungkinkan dalam satu ingress memiliki 2 service berbeda dengan path yang berbeda juga. Misal <code>/coffe</code> -&gt; <code>svc:coffe:80</code> atau <code>/milk</code> -&gt; <code>svc:milk:8080</code></p><h2 id="basic-create-ingress-using-virtualserver">Basic Create Ingress Using VirtualServer</h2><p>Refrensi : https://github.com/nginxinc/kubernetes-ingress/tree/v3.1.1/examples/custom-resources/basic-configuration</p><p>Selain membuat ingress menggunakan kind <code>Ingress</code>, di nginx-ingress bisa memanfaatkan fitur VirtualServer.</p><blockquote>The VirtualServer and VirtualServerRoute resources are load balancing configurations recommended as an alternative to the Ingress resource.</blockquote><p>Dari dokumentasi, disini VIrtualServer dapat sebagai alternatif konfigurasi dari Ingress Resource.</p><p>Basic yaml file dari VIrtualServer</p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: 
+spec: 
+</code></pre><h3 id="basic-ingress">Basic ingress.</h3><ul><li>Expose svc nginx:80 -&gt; virtual-svc.nginx.local dengan VirtualServer</li></ul><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: nginx-test
+spec:
+  host: virtual-svc.nginx.local
+  upstreams:
+  - name: nginx
+    service: nginx
+    port: 80
+  routes:
+  - path: /
+    action:
+      pass: nginx # name dari upstreams
+</code></pre><p>Setelah apply coba cek</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624201239.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="999" height="572"></figure><p>Coba hit : `curl -v http://localhost:31105 -H &apos;Host: virtual-svc.nginx.local&apos;</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624201433.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1104" height="617"></figure><h1 id="virtualserver-separate-service-by-path">VirtualServer separate service by path</h1><p>Refrensi : https://github.com/nginxinc/kubernetes-ingress/tree/v3.1.1/examples/custom-resources/basic-configuration</p><p>Di virtualserver sama seperti k8s-ingress, kita dapat membuat 2 service dalam satu ingress dengan path yang berbeda. Misal <code>/coffe</code> -&gt; <code>svc:coffe:80</code> atau <code>/milk</code> -&gt; <code>svc:milk:8080</code></p><ol><li>Buat deployment coffe &amp; tea</li></ol><pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: coffee
+  template:
+    metadata:
+      labels:
+        app: coffee
+    spec:
+      containers:
+      - name: coffee
+        image: nginxdemos/nginx-hello:plain-text
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coffee-svc
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: coffee
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tea
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tea
+  template:
+    metadata:
+      labels:
+        app: tea
+    spec:
+      containers:
+      - name: tea
+        image: nginxdemos/nginx-hello:plain-text
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tea-svc
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: tea
+</code></pre><ol start="2"><li>Buat VirtualServer</li></ol><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: cafe-testing
+spec:
+  host: cafe.nginx.local
+  upstreams:
+  - name: tea
+    service: tea-svc
+    port: 80
+  - name: coffee
+    service: coffee-svc
+    port: 80
+  routes:
+  - path: /tea
+    action:
+      pass: tea
+  - path: /coffee
+    action:
+      pass: coffee
+</code></pre><ol start="3"><li>Verifikasi</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624204053.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1104" height="690"></figure><pre><code class="language-sh"># Testing curl
+curl http://localhost:31105/tea -H &apos;Host: cafe.nginx.local&apos;
+curl http://localhost:31105/coffe -H &apos;Host: cafe.nginx.local&apos;
+</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624204300.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="874" height="213"></figure><h1 id="mencoba-lbmethod">Mencoba lb_method</h1><p>Dilihat dari refrensi <a href="https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/?ref=dev.nbtrisna.my.id#upstream">berikut</a>, kita bisa menambahkan <code>lb-method</code> di upstream section. Untuk metode yang di support bisa ke refrensi <a href="https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/?ref=dev.nbtrisna.my.id#choosing-a-load-balancing-method">berikut</a></p><p>Defaul algortihm yang digunakan nginx-ingress adalah yang tertera dalam configmaps nginx-ingress. Hanya saja tidak ada data yaml yang terdefine di cm ingress.</p><pre><code class="language-sh">k get cm -n nginx-ingress nginx-ingress -o yaml
+</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624205128.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="684" height="342"></figure><p>Oke Gas dicoba.</p><p>Ketika tidak mendefinisikan algoritma lb di upstream, dicoba hit 5 kali dan hasilnya seperti berikut</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624205245.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1248" height="889"></figure>
+<!--kg-card-begin: html-->
+<table>
+<thead>
+<tr>
+<th>Pod Name</th>
+<th>Jumlah Hit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coffee-7dd75bc79b-9f8l7</td>
+<td>4</td>
+</tr>
+<tr>
+<td>coffee-7dd75bc79b-2grss</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<!--kg-card-end: html-->
+<p>Dari hasil hit, nginx memilih pod secara random selama hit.</p><p>Saya coba dengan <code>lb-method: roundrobin</code>, harusnya akan hit secara bergantian</p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: cafe-testing
+spec:
+  host: cafe-round.nginx.local
+  upstreams:
+  - name: tea
+    service: tea-svc
+    port: 80
+  - name: coffee
+    service: coffee-svc
+    port: 80
+    lb-method: round_robin # add spesific on coffe path
+  routes:
+  - path: /tea
+    action:
+      pass: tea
+  - path: /coffee
+    action:
+      pass: coffee
+
+</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624205607.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1248" height="889"></figure>
+<!--kg-card-begin: html-->
+<table>
+<thead>
+<tr>
+<th>Pod Name</th>
+<th>Jumlah Hit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coffee-7dd75bc79b-9f8l7</td>
+<td>5</td>
+</tr>
+<tr>
+<td>coffee-7dd75bc79b-2grss</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<!--kg-card-end: html-->
+<p>Yup hasilnya akan di loadbalance secara &quot;roundrobin&quot; ke masing&quot; pod. :)</p>]]></content:encoded></item><item><title><![CDATA[BGP Virtual IP]]></title><description><![CDATA[Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm. ]]></description><link>https://twnb.nbtrisna.my.id/bgp-virtual-ip/</link><guid isPermaLink="false">685607c2dace4b00019e520b</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Fri, 06 Jun 2025 01:16:00 GMT</pubDate><media:content url="https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg" medium="image"/><content:encoded><![CDATA[<img src="https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg" alt="BGP Virtual IP"><p>Refrensi : https://docs.vultr.com/high-availability-on-vultr-with-floating-ip-and-bgp</p><p>Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm. VirtualIP disini masih belum sempurna, karena beberapa kali pengetestan dan tuning buat pindah ke vm lain masih terdapat jeda yang sangat lumayan &gt; 1 menit.</p><h2 id="environment">environment</h2><p>Pakai OS Ubuntu 22.04 Server</p>
 <!--kg-card-begin: html-->
 <table>
 <thead>
@@ -1180,11 +1378,11 @@ sudo crictl pull registry.k8s.io/kube-proxy:v1.27.2
 <td></td>
 </tr>
 <tr>
-<td><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020240805124052.png" alt="BGP Virtual IP"></td>
+<td><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805124052.png" alt="BGP Virtual IP"></td>
 <td></td>
 </tr>
 <tr>
-<td><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020240805124110.png" alt="BGP Virtual IP"></td>
+<td><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805124110.png" alt="BGP Virtual IP"></td>
 <td></td>
 </tr>
 <tr>
@@ -1204,7 +1402,7 @@ sudo crictl pull registry.k8s.io/kube-proxy:v1.27.2
               - ::1/128
               - 10.10.11.100/32
 </code></pre><pre><code class="language-sh">sudo netplan apply 
-</code></pre><p>Pastikan interface <code>lo</code> memiliki virtualip</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020240805125133.png" class="kg-image" alt="BGP Virtual IP" loading="lazy" width="835" height="284"></figure><h3 id="config-rke-server-01">config rke-server-01</h3><pre><code class="language-sh">sudo vim /etc/bird/bird.conf
+</code></pre><p>Pastikan interface <code>lo</code> memiliki virtualip</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805125133.png" class="kg-image" alt="BGP Virtual IP" loading="lazy" width="835" height="284"></figure><h3 id="config-rke-server-01">config rke-server-01</h3><pre><code class="language-sh">sudo vim /etc/bird/bird.conf
 </code></pre><pre><code class="language-fonfig"># This is a minimal configuration file, which allows the bird daemon to start
 # but will not cause anything else to happen.
 #
@@ -1358,206 +1556,9 @@ protocol bgp uplink_2 {
 }  
 </code></pre><p>Enable service bgp</p><pre><code class="language-sh">sudo enable --now bird
 </code></pre><h2 id="verifikasi">Verifikasi</h2><ol><li>Check bgp session tiap vm</li></ol><pre><code class="language-sh">birdc show proto all 
-</code></pre><p>Pastikan bgp state udah Active</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020240805130136.png" class="kg-image" alt="BGP Virtual IP" loading="lazy" width="1109" height="980"></figure><ol start="2"><li>Ping vip dari baremetal</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020240805130200.png" class="kg-image" alt="BGP Virtual IP" loading="lazy" width="601" height="266"></figure><ol start="3"><li>Install nginx masing&quot;, dan ubah index dengan hostname. Dan curl dari baremetal</li></ol><pre><code class="language-sh">curl 10.10.11.100
-</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020240805132151.png" class="kg-image" alt="BGP Virtual IP" loading="lazy" width="1871" height="1047"></figure><p>Coba curl terus menerus, sambil matikan instance rke-3</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020240805132506.png" class="kg-image" alt="BGP Virtual IP" loading="lazy" width="1871" height="1047"></figure><p>Dan ip berpindah ke rke-2. perpindahan cukup lama, dan memang bgp sepertinya tidak bestpractice sebagai vrrp dibandingkan keepalive.</p>]]></content:encoded></item><item><title><![CDATA[nginx-upstream ingress]]></title><description><![CDATA[Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.]]></description><link>https://twnb.nbtrisna.my.id/nginx-upstream-ingress-2/</link><guid isPermaLink="false">68523b4caadfe60001337360</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Fri, 06 Jun 2025 04:06:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T040622Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87" medium="image"/><content:encoded><![CDATA[<img src="https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T040622Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87" alt="nginx-upstream ingress"><p>Refrensi : </p><ul><li>https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/</li></ul><p>Untuk mengetahui values dari helm, bisa mengunjungi link <a href="https://artifacthub.io/packages/helm/?ref=dev.nbtrisna.my.id">ArtifactHub</a></p><p>Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan <code>Custom Resource Definitions</code> untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.</p><blockquote><code>controller.enableCustomResources</code>&#xA0;set to&#xA0;<code>false</code>&#xA0;and&#xA0;<code>controller.appprotect.enable</code>&#xA0;set to&#xA0;<code>false</code> and&#xA0;<code>controller.appprotectdos.enable</code>&#xA0;set to&#xA0;<code>false</code>), the installation of the CRDs can be skipped by specifying&#xA0;<code>--skip-crds</code>&#xA0;for the helm install command.</blockquote><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621032858.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="955" height="213"></figure><p>Untuk disini saya akan menggunakan default setting yaitu dengan crd</p><pre><code class="language-sh">helm install nginx-ingress oci://ghcr.io/nginxinc/charts/nginx-ingress --version 3.1.1 --namespace nginx-ingress --create-namespace --set controller.ingressClass=nginx-ingress 
-</code></pre><p>Setelah installasi, secara otomatis CRD akan terdeploy juga</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621035659.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1567" height="214"></figure><p>Verifikasi, Pastikan semua running dan coba untuk expos nginx-deployment dengan ingress-class nginx-ingress</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621035741.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="937" height="211"></figure><pre><code class="language-sh">kubectl create ingress nginx-ingress --rule=&quot;nginx-ingress.ok/*=nginx:80&quot; --class nginx-ingress
-</code></pre><p>Works</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230621040351.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="938" height="230"></figure><h3 id="monitoring-using-servicemonitors">Monitoring using servicemonitors</h3><p>Create svc port <code>prometheus</code></p><pre><code class="language-yaml">kubectl edit svc -n nginx-ingress nginx-ingress
----
-spec: 
-  ports:
-    - name: prometheus
-      port: 9113
-      protocol: TCP
-      targetPort: 9113
-</code></pre><p>Create service-monitors</p><pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: ingress-nginx
-  namespace: nginx-ingress
-  labels:
-    release: nb
-    jobLabel: ingress-nginx
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/instance: nginx-ingress
-      app.kubernetes.io/name: nginx-ingress
-  endpoints:
-  - port: prometheus 
-    scheme: http
-</code></pre><h1 id="virtualserver">VirtualServer</h1><p>Refrensi : https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#upstream</p><p>The VirtualServer resource defines load balancing configuration for a domain name, such as&#xA0;<code>example.com</code>. Virtual server ini dalam penerapannya memungkinkan dalam satu ingress memiliki 2 service berbeda dengan path yang berbeda juga. Misal <code>/coffe</code> -&gt; <code>svc:coffe:80</code> atau <code>/milk</code> -&gt; <code>svc:milk:8080</code></p><h2 id="basic-create-ingress-using-virtualserver">Basic Create Ingress Using VirtualServer</h2><p>Refrensi : https://github.com/nginxinc/kubernetes-ingress/tree/v3.1.1/examples/custom-resources/basic-configuration</p><p>Selain membuat ingress menggunakan kind <code>Ingress</code>, di nginx-ingress bisa memanfaatkan fitur VirtualServer.</p><blockquote>The VirtualServer and VirtualServerRoute resources are load balancing configurations recommended as an alternative to the Ingress resource.</blockquote><p>Dari dokumentasi, disini VIrtualServer dapat sebagai alternatif konfigurasi dari Ingress Resource.</p><p>Basic yaml file dari VIrtualServer</p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: 
-spec: 
-</code></pre><h3 id="basic-ingress">Basic ingress.</h3><ul><li>Expose svc nginx:80 -&gt; virtual-svc.nginx.local dengan VirtualServer</li></ul><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: nginx-test
-spec:
-  host: virtual-svc.nginx.local
-  upstreams:
-  - name: nginx
-    service: nginx
-    port: 80
-  routes:
-  - path: /
-    action:
-      pass: nginx # name dari upstreams
-</code></pre><p>Setelah apply coba cek</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624201239.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="999" height="572"></figure><p>Coba hit : `curl -v http://localhost:31105 -H &apos;Host: virtual-svc.nginx.local&apos;</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624201433.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1104" height="617"></figure><h1 id="virtualserver-separate-service-by-path">VirtualServer separate service by path</h1><p>Refrensi : https://github.com/nginxinc/kubernetes-ingress/tree/v3.1.1/examples/custom-resources/basic-configuration</p><p>Di virtualserver sama seperti k8s-ingress, kita dapat membuat 2 service dalam satu ingress dengan path yang berbeda. Misal <code>/coffe</code> -&gt; <code>svc:coffe:80</code> atau <code>/milk</code> -&gt; <code>svc:milk:8080</code></p><ol><li>Buat deployment coffe &amp; tea</li></ol><pre><code class="language-yaml">apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: coffee
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: coffee
-  template:
-    metadata:
-      labels:
-        app: coffee
-    spec:
-      containers:
-      - name: coffee
-        image: nginxdemos/nginx-hello:plain-text
-        ports:
-        - containerPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: coffee-svc
-spec:
-  ports:
-  - port: 80
-    targetPort: 8080
-    protocol: TCP
-    name: http
-  selector:
-    app: coffee
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: tea
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: tea
-  template:
-    metadata:
-      labels:
-        app: tea
-    spec:
-      containers:
-      - name: tea
-        image: nginxdemos/nginx-hello:plain-text
-        ports:
-        - containerPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: tea-svc
-spec:
-  ports:
-  - port: 80
-    targetPort: 8080
-    protocol: TCP
-    name: http
-  selector:
-    app: tea
-</code></pre><ol start="2"><li>Buat VirtualServer</li></ol><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: cafe-testing
-spec:
-  host: cafe.nginx.local
-  upstreams:
-  - name: tea
-    service: tea-svc
-    port: 80
-  - name: coffee
-    service: coffee-svc
-    port: 80
-  routes:
-  - path: /tea
-    action:
-      pass: tea
-  - path: /coffee
-    action:
-      pass: coffee
-</code></pre><ol start="3"><li>Verifikasi</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624204053.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1104" height="690"></figure><pre><code class="language-sh"># Testing curl
-curl http://localhost:31105/tea -H &apos;Host: cafe.nginx.local&apos;
-curl http://localhost:31105/coffe -H &apos;Host: cafe.nginx.local&apos;
-</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624204300.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="874" height="213"></figure><h1 id="mencoba-lbmethod">Mencoba lb_method</h1><p>Dilihat dari refrensi <a href="https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/?ref=dev.nbtrisna.my.id#upstream">berikut</a>, kita bisa menambahkan <code>lb-method</code> di upstream section. Untuk metode yang di support bisa ke refrensi <a href="https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/?ref=dev.nbtrisna.my.id#choosing-a-load-balancing-method">berikut</a></p><p>Defaul algortihm yang digunakan nginx-ingress adalah yang tertera dalam configmaps nginx-ingress. Hanya saja tidak ada data yaml yang terdefine di cm ingress.</p><pre><code class="language-sh">k get cm -n nginx-ingress nginx-ingress -o yaml
-</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624205128.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="684" height="342"></figure><p>Oke Gas dicoba.</p><p>Ketika tidak mendefinisikan algoritma lb di upstream, dicoba hit 5 kali dan hasilnya seperti berikut</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624205245.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1248" height="889"></figure>
-<!--kg-card-begin: html-->
-<table>
-<thead>
-<tr>
-<th>Pod Name</th>
-<th>Jumlah Hit</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>coffee-7dd75bc79b-9f8l7</td>
-<td>4</td>
-</tr>
-<tr>
-<td>coffee-7dd75bc79b-2grss</td>
-<td>6</td>
-</tr>
-</tbody>
-</table>
-<!--kg-card-end: html-->
-<p>Dari hasil hit, nginx memilih pod secara random selama hit.</p><p>Saya coba dengan <code>lb-method: roundrobin</code>, harusnya akan hit secara bergantian</p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: cafe-testing
-spec:
-  host: cafe-round.nginx.local
-  upstreams:
-  - name: tea
-    service: tea-svc
-    port: 80
-  - name: coffee
-    service: coffee-svc
-    port: 80
-    lb-method: round_robin # add spesific on coffe path
-  routes:
-  - path: /tea
-    action:
-      pass: tea
-  - path: /coffee
-    action:
-      pass: coffee
-
-</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230624205607.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1248" height="889"></figure>
-<!--kg-card-begin: html-->
-<table>
-<thead>
-<tr>
-<th>Pod Name</th>
-<th>Jumlah Hit</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>coffee-7dd75bc79b-9f8l7</td>
-<td>5</td>
-</tr>
-<tr>
-<td>coffee-7dd75bc79b-2grss</td>
-<td>5</td>
-</tr>
-</tbody>
-</table>
-<!--kg-card-end: html-->
-<p>Yup hasilnya akan di loadbalance secara &quot;roundrobin&quot; ke masing&quot; pod. :)</p>]]></content:encoded></item><item><title><![CDATA[setup certificate win-server (standalone)]]></title><description><![CDATA[Intinya, untuk trafik TLS/SSL (Transport Layer Secure) dibutuhkan sebuah Certificate, biasanya terdiri dari CA Certificate, dan Client certifikate (Sertifikat yang akan dipakai)]]></description><link>https://twnb.nbtrisna.my.id/setup-certificate-win-server-standalone/</link><guid isPermaLink="false">68523becaadfe60001337375</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Thu, 05 Jun 2025 04:09:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/e84e1607-5b7a-4882-9def-25201db3ec4c.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T040838Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=a1320369af177998152f9dd5bc369bd216132b03063b369ec3fc730d1fcf77eb" medium="image"/><content:encoded><![CDATA[<img src="https://s3.nbtrisna.my.id/random-photo/e84e1607-5b7a-4882-9def-25201db3ec4c.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T040838Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=a1320369af177998152f9dd5bc369bd216132b03063b369ec3fc730d1fcf77eb" alt="setup certificate win-server (standalone)"><p>Refrensi : </p><ul><li>https://support.n4l.co.nz/s/article/How-to-install-Certificate-Authority-CA-server-and-create-certificates</li></ul><p>Intinya, untuk trafik TLS/SSL (Transport Layer Secure) dibutuhkan sebuah Certificate, biasanya terdiri dari CA Certificate, dan Client certifikate (Sertifikat yang akan dipakai)</p><p>Prosedurnya :</p><ul><li>CA Server akan membuat sebuah <code>ROOT CA</code>/ Certifikate tersebut harus diinstall di setiap server sebagai trusted root certifikate</li><li>Setelah itu, kita buat file request misal untuk web <code>helo.lks1.com</code>. Nanti nya akan kegenerate file .csr (certificate sign request). Nantinya si server CA akan diminta untuk menandatangani/Sign certifikate tersebut agar valid</li><li>Import file .csr, lalu akan di sign oleh CA Server, yang nantinya akan menjadi output .pfx/.crt</li><li>Certificate akan bisa digunakan untuk https.</li></ul><blockquote>Common issue</blockquote><p>Sering terjadi seperti <code>untrusted</code> padahal sudah <code>https</code>, itu bisa terjadi karena <code>ROOT_CA</code> tidak terimport secara sempurna di mesin Client. Contohnya,</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008155602.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1281" height="809"></figure><h2 id="install">Install</h2><ol><li>Lanjut pilih Role-based</li></ol><p>Add Role &amp; Features, Klik next di bagian <code>Before you begin</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008155717.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1372" height="803"></figure><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008155840.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1283" height="757"></figure><ol start="3"><li>di <code>Server Section</code> pilih server yang akan diinstall CA Server, Klik next</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008155936.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1285" height="753"></figure><ol start="4"><li>Pilih <code>Active Directory Certificate Services</code>, Klik next. Next di features bisa skip langsung next ke bagian <code>AD CS</code></li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160017.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1281" height="754"></figure><ol start="5"><li>Di section AD CS Klik <code>next</code>, di Role Services pilih <code>Certificate Authority</code></li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160137.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1284" height="758"></figure><ol start="6"><li>Klik next dan Install..</li></ol><h2 id="setup">Setup</h2><p>Setelah selesai install, biasanya akan ada notif untuk menyarankan setup seperti berikut, tinggal klik aja</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160331.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1276" height="405"></figure><ol><li>Credentials, bisa pake akun Administrator aja klik next.</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160406.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1282" height="756"></figure><ol start="2"><li>Role service bisa pilih <code>Certificate Authority</code>, klik next</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160446.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1284" height="750"></figure><ol start="3"><li>Karena win-server tidak dikonfigurasi domain, bisa langsung pilih <code>Standalone CA</code>. Poin positifnya, untuk CA Server tidak perlu di configurasi untuk ke internet</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160611.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1287" height="747"></figure><ol start="4"><li>Next, untuk CA Type, bisa pilih <code>ROOT CA</code></li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160720.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1287" height="750"></figure><ol start="5"><li>Private Key, bisa dibuat aja/Next aja</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160746.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1289" height="752"></figure><ol start="6"><li>Crypthograpy bisa next</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160819.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1293" height="752"></figure><ol start="7"><li>Di <code>CA Name</code>, bisa dikonfigurasi namanya untu <code>CN</code> nya apa. misal <code>ca.ngurah.local</code>/sesuaikan soal.</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008160916.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1288" height="755"></figure><ol start="8"><li>Validity period sesuaikan dengan soal/biarkan default</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008161000.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1277" height="751"></figure><ol start="9"><li>Di section <code>CA Database</code> bisa skip aja</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008161031.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1283" height="755"></figure><ol start="10"><li>Di section <code>Confirmation</code> bisa cek kembali konfigurasi, dan jika sudah langsung <code>Configure</code></li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008161138.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1273" height="746"></figure><p>Pastikan Result success. :) bisa di close aja.</p><h2 id="install-root-ca-di-all-server">Install Root CA di all server</h2><h3 id="export-root-ca-first">Export Root CA first</h3><ol><li>Cari <code>Certificate</code> di search</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008161420.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1284" height="755"></figure><ol start="2"><li>Klik <code>Certificates - Local Computer</code> &gt; <code>Personal</code> &gt; Certificate</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008161936.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1279" height="750"></figure><p>nanti akan muncul <code>ROOT CA</code> yang tadi telah dibuat, export root ca tersebut.</p><ol start="3"><li>Klik kanan di root ca yang udah dibuat tadi, pilih <code>All Tasks</code> &gt; <code>Export</code></li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008162117.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1277" height="752"></figure><ol start="4"><li>Klik Next</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008162215.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1283" height="751"></figure><ol start="4"><li>Di <code>Export Private keys</code> Bisa pilih <code>yes/no</code> tergantung ingin si certificate + privkey/ Certificate doang. Tergantung kebutuhan, tapi saran pilih <code>no</code> aja biar universal bisa windows bisa linux</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008162359.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1281" height="747"></figure><ol start="5"><li>Selanjutnya pilih next, sesuai soal</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008162433.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1280" height="750"></figure><ol start="6"><li>Di file section, tinggal pilih dimana letak certificate akan di export</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008162531.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1287" height="759"></figure><ol start="7"><li>Summary, kalo data udah bener, bisa langsung di finish</li></ol><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020231008162601.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1285" height="756"></figure>]]></content:encoded></item><item><title><![CDATA[nginx-upstream Transport Server]]></title><description><![CDATA[TransportServer resource memungkinkan untuk conifgurasi TCP, UDP dan TLS Passtrough melalui nginx-upstream. Fitur ini berfungsi jika installasi dengan CRD.]]></description><link>https://twnb.nbtrisna.my.id/nginx-upstream-transport-server-2/</link><guid isPermaLink="false">68523d74aadfe6000133739c</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Tue, 03 Jun 2025 04:16:00 GMT</pubDate><media:content url="https://s3.nbtrisna.my.id/random-photo/9cd0acc7-5b83-4606-afee-a7f5f5b504ba.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T041512Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=7eaf09130ed3a4fb888c7da284c89f5cf4a8dad7fe3fe657252fdb7bd6e59a6f" medium="image"/><content:encoded><![CDATA[<img src="https://s3.nbtrisna.my.id/random-photo/9cd0acc7-5b83-4606-afee-a7f5f5b504ba.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250618T041512Z&amp;X-Amz-Expires=604800&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=7eaf09130ed3a4fb888c7da284c89f5cf4a8dad7fe3fe657252fdb7bd6e59a6f" alt="nginx-upstream Transport Server"><p>Refrensi :</p><ul><li>https://docs.nginx.com/nginx-ingress-controller/configuration/transportserver-resource/</li></ul><p>TransportServer resource memungkinkan untuk conifgurasi TCP, UDP dan TLS Passtrough melalui nginx-upstream. Fitur ini berfungsi jika installasi dengan CRD.</p><h2 id="persyaratan">Persyaratan</h2><ul><li>Untuk tcp dan udp, perlu membuat globalresources terlebih dahulu. <a href="https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/globalconfiguration-resource?ref=dev.nbtrisna.my.id">Refrensi</a></li><li>Untuk TLS Passtrough, perlu menambahkan <code>-enable-tls-passthrough</code> di command line argument ingress-controller</li></ul><h2 id="simple-testing-access-ssh-to-pod-using-tcp-passtrough-port-22">Simple Testing, Access ssh to pod using tcp passtrough port 22</h2><p>Untuk mencoba saya membuat pod <code>openssh-server</code>. Nantinya akan expose port 22 dari container, dan coba akses mengggukana ip dari ingress-nginx.</p><p>Refrensi dari percobaan : https://stackoverflow.com/questions/68046576/exposing-tcp-service-using-nginx-ingress-controller-operator-on-openshift</p><ol><li>Create deployment + service openssh-server, expose port 22.</li></ol><pre><code class="language-yaml">apiVersion: apps/v1
+</code></pre><p>Pastikan bgp state udah Active</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805130136.png" class="kg-image" alt="BGP Virtual IP" loading="lazy" width="1109" height="980"></figure><ol start="2"><li>Ping vip dari baremetal</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805130200.png" class="kg-image" alt="BGP Virtual IP" loading="lazy" width="601" height="266"></figure><ol start="3"><li>Install nginx masing&quot;, dan ubah index dengan hostname. Dan curl dari baremetal</li></ol><pre><code class="language-sh">curl 10.10.11.100
+</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805132151.png" class="kg-image" alt="BGP Virtual IP" loading="lazy" width="1871" height="1047"></figure><p>Coba curl terus menerus, sambil matikan instance rke-3</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805132506.png" class="kg-image" alt="BGP Virtual IP" loading="lazy" width="1871" height="1047"></figure><p>Dan ip berpindah ke rke-2. perpindahan cukup lama, dan memang bgp sepertinya tidak bestpractice sebagai vrrp dibandingkan keepalive.</p>]]></content:encoded></item><item><title><![CDATA[setup certificate win-server (standalone)]]></title><description><![CDATA[Intinya, untuk trafik TLS/SSL (Transport Layer Secure) dibutuhkan sebuah Certificate, biasanya terdiri dari CA Certificate, dan Client certifikate (Sertifikat yang akan dipakai)
+]]></description><link>https://twnb.nbtrisna.my.id/setup-certificate-win-server-standalone/</link><guid isPermaLink="false">68560823dace4b00019e521e</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Thu, 05 Jun 2025 01:17:00 GMT</pubDate><media:content url="https://photoby.nbtrisna.my.id/945c1a6c-9e71-4193-9156-6d23162f9776.jpg" medium="image"/><content:encoded><![CDATA[<img src="https://photoby.nbtrisna.my.id/945c1a6c-9e71-4193-9156-6d23162f9776.jpg" alt="setup certificate win-server (standalone)"><p>Refrensi : https://support.n4l.co.nz/s/article/How-to-install-Certificate-Authority-CA-server-and-create-certificates</p><p>Intinya, untuk trafik TLS/SSL (Transport Layer Secure) dibutuhkan sebuah Certificate, biasanya terdiri dari CA Certificate, dan Client certifikate (Sertifikat yang akan dipakai)</p><p>Prosedurnya :</p><ul><li>CA Server akan membuat sebuah <code>ROOT CA</code>/ Certifikate tersebut harus diinstall di setiap server sebagai trusted root certifikate</li><li>Setelah itu, kita buat file request misal untuk web <code>helo.lks1.com</code>. Nanti nya akan kegenerate file .csr (certificate sign request). Nantinya si server CA akan diminta untuk menandatangani/Sign certifikate tersebut agar valid</li><li>Import file .csr, lalu akan di sign oleh CA Server, yang nantinya akan menjadi output .pfx/.crt</li><li>Certificate akan bisa digunakan untuk https.</li></ul><blockquote>Common issue</blockquote><p>Sering terjadi seperti <code>untrusted</code> padahal sudah <code>https</code>, itu bisa terjadi karena <code>ROOT_CA</code> tidak terimport secara sempurna di mesin Client. Contohnya,</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008155602.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1281" height="809"></figure><h2 id="install">Install</h2><ol><li>Lanjut pilih Role-based</li></ol><p>Add Role &amp; Features, Klik next di bagian <code>Before you begin</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008155717.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1372" height="803"></figure><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008155840.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1283" height="757"></figure><ol start="3"><li>di <code>Server Section</code> pilih server yang akan diinstall CA Server, Klik next</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008155936.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1285" height="753"></figure><ol start="4"><li>Pilih <code>Active Directory Certificate Services</code>, Klik next. Next di features bisa skip langsung next ke bagian <code>AD CS</code></li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008160017.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1281" height="754"></figure><ol start="5"><li>Di section AD CS Klik <code>next</code>, di Role Services pilih <code>Certificate Authority</code></li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008160137.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1284" height="758"></figure><ol start="6"><li>Klik next dan Install..</li></ol><h2 id="setup">Setup</h2><p>Setelah selesai install, biasanya akan ada notif untuk menyarankan setup seperti berikut, tinggal klik aja</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008160331.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1276" height="405"></figure><ol><li>Credentials, bisa pake akun Administrator aja klik next.</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008160406.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1282" height="756"></figure><ol start="2"><li>Role service bisa pilih <code>Certificate Authority</code>, klik next</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008160446.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1284" height="750"></figure><ol start="3"><li>Karena win-server tidak dikonfigurasi domain, bisa langsung pilih <code>Standalone CA</code>. Poin positifnya, untuk CA Server tidak perlu di configurasi untuk ke internet</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008160611.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1287" height="747"></figure><ol start="4"><li>Next, untuk CA Type, bisa pilih <code>ROOT CA</code></li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008160720.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1287" height="750"></figure><ol start="5"><li>Private Key, bisa dibuat aja/Next aja</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008160746.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1289" height="752"></figure><ol start="6"><li>Crypthograpy bisa next</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008160819.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1293" height="752"></figure><ol start="7"><li>Di <code>CA Name</code>, bisa dikonfigurasi namanya untu <code>CN</code> nya apa. misal <code>ca.ngurah.local</code>/sesuaikan soal.</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008160916.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1288" height="755"></figure><ol start="8"><li>Validity period sesuaikan dengan soal/biarkan default</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008161000.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1277" height="751"></figure><ol start="9"><li>Di section <code>CA Database</code> bisa skip aja</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008161031.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1283" height="755"></figure><ol start="10"><li>Di section <code>Confirmation</code> bisa cek kembali konfigurasi, dan jika sudah langsung <code>Configure</code></li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008161138.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1273" height="746"></figure><p>Pastikan Result success. :) bisa di close aja.</p><h2 id="install-root-ca-di-all-server">Install Root CA di all server</h2><h3 id="export-root-ca-first">Export Root CA first</h3><ol><li>Cari <code>Certificate</code> di search</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008161420.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1284" height="755"></figure><ol start="2"><li>Klik <code>Certificates - Local Computer</code> &gt; <code>Personal</code> &gt; Certificate</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008161936.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1279" height="750"></figure><p>nanti akan muncul <code>ROOT CA</code> yang tadi telah dibuat, export root ca tersebut.</p><ol start="3"><li>Klik kanan di root ca yang udah dibuat tadi, pilih <code>All Tasks</code> &gt; <code>Export</code></li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008162117.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1277" height="752"></figure><ol start="4"><li>Klik Next</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008162215.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1283" height="751"></figure><ol start="4"><li>Di <code>Export Private keys</code> Bisa pilih <code>yes/no</code> tergantung ingin si certificate + privkey/ Certificate doang. Tergantung kebutuhan, tapi saran pilih <code>no</code> aja biar universal bisa windows bisa linux</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008162359.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1281" height="747"></figure><ol start="5"><li>Selanjutnya pilih next, sesuai soal</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008162433.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1280" height="750"></figure><ol start="6"><li>Di file section, tinggal pilih dimana letak certificate akan di export</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008162531.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1287" height="759"></figure><ol start="7"><li>Summary, kalo data udah bener, bisa langsung di finish</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020231008162601.png" class="kg-image" alt="setup certificate win-server (standalone)" loading="lazy" width="1285" height="756"></figure>]]></content:encoded></item><item><title><![CDATA[nginx-upstream Transport Server]]></title><description><![CDATA[TransportServer resource memungkinkan untuk conifgurasi TCP, UDP dan TLS Passtrough melalui nginx-upstream. Fitur ini berfungsi jika installasi dengan CRD.]]></description><link>https://twnb.nbtrisna.my.id/nginx-upstream-transport-server/</link><guid isPermaLink="false">685608a7dace4b00019e5239</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Tue, 03 Jun 2025 01:19:00 GMT</pubDate><media:content url="https://photoby.nbtrisna.my.id/57b51ded-ccf3-4a5c-a32c-7b219e769ea9.jpg" medium="image"/><content:encoded><![CDATA[<img src="https://photoby.nbtrisna.my.id/57b51ded-ccf3-4a5c-a32c-7b219e769ea9.jpg" alt="nginx-upstream Transport Server"><p>Refrensi :</p><ul><li>https://docs.nginx.com/nginx-ingress-controller/configuration/transportserver-resource/</li></ul><p>TransportServer resource memungkinkan untuk conifgurasi TCP, UDP dan TLS Passtrough melalui nginx-upstream. Fitur ini berfungsi jika installasi dengan CRD.</p><h2 id="persyaratan">Persyaratan</h2><ul><li>Untuk tcp dan udp, perlu membuat globalresources terlebih dahulu. <a href="https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/globalconfiguration-resource?ref=dev.nbtrisna.my.id">Refrensi</a></li><li>Untuk TLS Passtrough, perlu menambahkan <code>-enable-tls-passthrough</code> di command line argument ingress-controller</li></ul><h2 id="simple-testing-access-ssh-to-pod-using-tcp-passtrough-port-22">Simple Testing, Access ssh to pod using tcp passtrough port 22</h2><p>Untuk mencoba saya membuat pod <code>openssh-server</code>. Nantinya akan expose port 22 dari container, dan coba akses mengggukana ip dari ingress-nginx.</p><p>Refrensi dari percobaan : https://stackoverflow.com/questions/68046576/exposing-tcp-service-using-nginx-ingress-controller-operator-on-openshift</p><ol><li>Create deployment + service openssh-server, expose port 22.</li></ol><pre><code class="language-yaml">apiVersion: apps/v1
 kind: Deployment
 metadata:
   creationTimestamp: null
@@ -1599,7 +1600,7 @@ spec:
     app: ssh-server
   type: ClusterIP
 			
-</code></pre><p>Hit port 2222. (Default container)</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230705050341.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="745" height="204"></figure><p>Hit port 22 pakai clusterIP</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230705050432.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="677" height="149"></figure><ol start="2"><li>Buat <code>GlobalConfiguration</code></li></ol><p>GlobalConfiguration berfungsi untuk membuat listen port 2250 di ingress-controler. Nantinya port 2250 berfungsi untuk meneruskan port 22 dari deployment <code>ssh-test</code></p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1alpha1
+</code></pre><p>Hit port 2222. (Default container)</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230705050341.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="745" height="204"></figure><p>Hit port 22 pakai clusterIP</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230705050432.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="677" height="149"></figure><ol start="2"><li>Buat <code>GlobalConfiguration</code></li></ol><p>GlobalConfiguration berfungsi untuk membuat listen port 2250 di ingress-controler. Nantinya port 2250 berfungsi untuk meneruskan port 22 dari deployment <code>ssh-test</code></p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1alpha1
 kind: GlobalConfiguration
 metadata:
   name: nginx-ingress-config
@@ -1609,7 +1610,7 @@ spec:
   - name: ssh-tcp
     port: 2250 # port yang akan di expose
     protocol: TCP
-</code></pre><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230705051345.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="948" height="126"></figure><p>Setelah apply global-config, edit deployment nginx-ingress, tambahkan <code>-global-configuration=&lt;namespace&gt;/name</code> di command section.</p><pre><code class="language-yaml">kubectl edit deployments.apps -n nginx-ingress nginx-ingress-controller
+</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230705051345.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="948" height="126"></figure><p>Setelah apply global-config, edit deployment nginx-ingress, tambahkan <code>-global-configuration=&lt;namespace&gt;/name</code> di command section.</p><pre><code class="language-yaml">kubectl edit deployments.apps -n nginx-ingress nginx-ingress-controller
 ---
 spec:
   containers:
@@ -1630,7 +1631,7 @@ spec:
     port: 22
   action:
     pass: ssh-app
-</code></pre><h2 id="verifikasi">Verifikasi</h2><p>Pastikan transportserver sudah valid</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230705052139.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="723" height="77"></figure><p>Coba hit port 2250 sesuai dari <code>port listeners</code> yang dibuat. Dicoba terlebih dahulu dengan IP Port <code>ingress-controller</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230705052338.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="1070" height="157"></figure><p>Coba hit dengan <code>ClusterIP</code> nginx-controller</p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230705052444.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="838" height="103"></figure><p>Hal tersebut tidak bisa, karena belum mapping port 2250 ke service dari <code>nginx-ingress</code>. Selanjutnya dicoba menambahkan port 2250</p><pre><code class="language-yaml">kubectl edit svc -n nginx-ingress nginx-ingress-controller
+</code></pre><h2 id="verifikasi">Verifikasi</h2><p>Pastikan transportserver sudah valid</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230705052139.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="723" height="77"></figure><p>Coba hit port 2250 sesuai dari <code>port listeners</code> yang dibuat. Dicoba terlebih dahulu dengan IP Port <code>ingress-controller</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230705052338.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="1070" height="157"></figure><p>Coba hit dengan <code>ClusterIP</code> nginx-controller</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230705052444.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="838" height="103"></figure><p>Hal tersebut tidak bisa, karena belum mapping port 2250 ke service dari <code>nginx-ingress</code>. Selanjutnya dicoba menambahkan port 2250</p><pre><code class="language-yaml">kubectl edit svc -n nginx-ingress nginx-ingress-controller
 ---
 spec:
   ports:
@@ -1648,4 +1649,4 @@ spec:
     port: 2250 # tambahkan port 2250
     protocol: TCP
     targetPort: 2250
-</code></pre><p>Setelah diedit, bisa di hit menggunakan <code>ClusterIP</code> maupun <code>IPLoadbalancer</code></p><figure class="kg-card kg-image-card"><img src="https://s3.nbtrisna.my.id/obsidian-image//Pasted%20image%2020230705052822.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="892" height="274"></figure>]]></content:encoded></item></channel></rss>
+</code></pre><p>Setelah diedit, bisa di hit menggunakan <code>ClusterIP</code> maupun <code>IPLoadbalancer</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230705052822.png" class="kg-image" alt="nginx-upstream Transport Server" loading="lazy" width="892" height="274"></figure>]]></content:encoded></item></channel></rss>

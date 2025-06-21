@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 
-    <title>BGP Virtual IP</title>
+    <title>nginx-upstream ingress</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -48,26 +48,26 @@
         document.documentElement.className = `has-${textColor}-text`;
     </script>
 
-    <meta name="description" content="Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm.">
+    <meta name="description" content="Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.">
     <link rel="icon" href="https://twnb.nbtrisna.my.id/content/images/size/w256h256/2023/12/Logo-CHannel-1.png" type="image/png">
-    <link rel="canonical" href="https://twnb.nbtrisna.my.id/bgp-virtual-ip/">
+    <link rel="canonical" href="https://twnb.nbtrisna.my.id/nginx-upstream-ingress/">
     <meta name="referrer" content="no-referrer-when-downgrade">
     
     <meta property="og:site_name" content="twnb">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="BGP Virtual IP">
-    <meta property="og:description" content="Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm.">
-    <meta property="og:url" content="https://twnb.nbtrisna.my.id/bgp-virtual-ip/">
-    <meta property="og:image" content="https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg">
-    <meta property="article:published_time" content="2025-06-06T01:16:00.000Z">
-    <meta property="article:modified_time" content="2025-06-21T01:16:32.000Z">
+    <meta property="og:title" content="nginx-upstream ingress">
+    <meta property="og:description" content="Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.">
+    <meta property="og:url" content="https://twnb.nbtrisna.my.id/nginx-upstream-ingress/">
+    <meta property="og:image" content="https://photoby.nbtrisna.my.id/970b8a66-2d6c-49e9-bbf7-b0b72a1d5c7e.jpg">
+    <meta property="article:published_time" content="2025-06-07T01:18:00.000Z">
+    <meta property="article:modified_time" content="2025-06-21T01:19:00.000Z">
     <meta property="article:tag" content="catatan">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="BGP Virtual IP">
-    <meta name="twitter:description" content="Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm.">
-    <meta name="twitter:url" content="https://twnb.nbtrisna.my.id/bgp-virtual-ip/">
-    <meta name="twitter:image" content="https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg">
+    <meta name="twitter:title" content="nginx-upstream ingress">
+    <meta name="twitter:description" content="Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.">
+    <meta name="twitter:url" content="https://twnb.nbtrisna.my.id/nginx-upstream-ingress/">
+    <meta name="twitter:image" content="https://photoby.nbtrisna.my.id/970b8a66-2d6c-49e9-bbf7-b0b72a1d5c7e.jpg">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="I Gusti Ngurah Bagus Trisna Andika">
     <meta name="twitter:label2" content="Filed under">
@@ -100,19 +100,19 @@
         "url": "https://twnb.nbtrisna.my.id/author/ngurah/",
         "sameAs": []
     },
-    "headline": "BGP Virtual IP",
-    "url": "https://twnb.nbtrisna.my.id/bgp-virtual-ip/",
-    "datePublished": "2025-06-06T01:16:00.000Z",
-    "dateModified": "2025-06-21T01:16:32.000Z",
+    "headline": "nginx-upstream ingress",
+    "url": "https://twnb.nbtrisna.my.id/nginx-upstream-ingress/",
+    "datePublished": "2025-06-07T01:18:00.000Z",
+    "dateModified": "2025-06-21T01:19:00.000Z",
     "image": {
         "@type": "ImageObject",
-        "url": "https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg",
+        "url": "https://photoby.nbtrisna.my.id/970b8a66-2d6c-49e9-bbf7-b0b72a1d5c7e.jpg",
         "width": 1200,
         "height": 800
     },
     "keywords": "catatan",
-    "description": "Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm. ",
-    "mainEntityOfPage": "https://twnb.nbtrisna.my.id/bgp-virtual-ip/"
+    "description": "Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.",
+    "mainEntityOfPage": "https://twnb.nbtrisna.my.id/nginx-upstream-ingress/"
 }
     </script>
 
@@ -352,238 +352,226 @@
         <header class="gh-article-header gh-canvas">
 
                 <a class="gh-article-tag" href="https://twnb.nbtrisna.my.id/tag/catatan/">catatan</a>
-            <h1 class="gh-article-title is-title">BGP Virtual IP</h1>
-                <p class="gh-article-excerpt is-body">Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm. </p>
+            <h1 class="gh-article-title is-title">nginx-upstream ingress</h1>
+                <p class="gh-article-excerpt is-body">Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.</p>
 
 
                 <figure class="gh-article-image">
         <img
-            srcset="https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg 320w,
-                    https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg 600w,
-                    https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg 960w,
-                    https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg 1200w,
-                    https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg 2000w"
+            srcset="https://photoby.nbtrisna.my.id/970b8a66-2d6c-49e9-bbf7-b0b72a1d5c7e.jpg 320w,
+                    https://photoby.nbtrisna.my.id/970b8a66-2d6c-49e9-bbf7-b0b72a1d5c7e.jpg 600w,
+                    https://photoby.nbtrisna.my.id/970b8a66-2d6c-49e9-bbf7-b0b72a1d5c7e.jpg 960w,
+                    https://photoby.nbtrisna.my.id/970b8a66-2d6c-49e9-bbf7-b0b72a1d5c7e.jpg 1200w,
+                    https://photoby.nbtrisna.my.id/970b8a66-2d6c-49e9-bbf7-b0b72a1d5c7e.jpg 2000w"
             sizes="(max-width: 1200px) 100vw, 1120px"
-            src="https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg"
-            alt="BGP Virtual IP"
+            src="https://photoby.nbtrisna.my.id/970b8a66-2d6c-49e9-bbf7-b0b72a1d5c7e.jpg"
+            alt="nginx-upstream ingress"
         >
-            <figcaption><b><strong style="white-space: pre-wrap;">Photo by nbtrisna</strong></b><span style="white-space: pre-wrap;"> The gentle sway of penjor guides the way, a serene journey through Bali's heart.</span></figcaption>
+            <figcaption><b><strong style="white-space: pre-wrap;">Photo by nbtrisna</strong></b><span style="white-space: pre-wrap;"> Grey hair framed by light, contemplating the blur of city life through a quiet window pane.</span></figcaption>
     </figure>
 
         </header>
 
         <section class="gh-content gh-canvas is-body">
-            <p>Refrensi : https://docs.vultr.com/high-availability-on-vultr-with-floating-ip-and-bgp</p><p>Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm. VirtualIP disini masih belum sempurna, karena beberapa kali pengetestan dan tuning buat pindah ke vm lain masih terdapat jeda yang sangat lumayan &gt; 1 menit.</p><h2 id="environment">environment</h2><p>Pakai OS Ubuntu 22.04 Server</p>
+            <p>Refrensi : https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/</p><p>Untuk mengetahui values dari helm, bisa mengunjungi link <a href="https://artifacthub.io/packages/helm/?ref=dev.nbtrisna.my.id">ArtifactHub</a></p><p>Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan <code>Custom Resource Definitions</code> untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.</p><blockquote><code>controller.enableCustomResources</code>&nbsp;set to&nbsp;<code>false</code>&nbsp;and&nbsp;<code>controller.appprotect.enable</code>&nbsp;set to&nbsp;<code>false</code> and&nbsp;<code>controller.appprotectdos.enable</code>&nbsp;set to&nbsp;<code>false</code>), the installation of the CRDs can be skipped by specifying&nbsp;<code>--skip-crds</code>&nbsp;for the helm install command.</blockquote><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230621032858.png" class="kg-image" alt="Pasted image 20230621032858" loading="lazy" width="955" height="213"></figure><p>Untuk disini saya akan menggunakan default setting yaitu dengan crd</p><pre><code class="language-sh">helm install nginx-ingress oci://ghcr.io/nginxinc/charts/nginx-ingress --version 3.1.1 --namespace nginx-ingress --create-namespace --set controller.ingressClass=nginx-ingress 
+</code></pre><p>Setelah installasi, secara otomatis CRD akan terdeploy juga</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230621035659.png" class="kg-image" alt="Pasted image 20230621035659" loading="lazy" width="1567" height="214"></figure><p>Verifikasi, Pastikan semua running dan coba untuk expos nginx-deployment dengan ingress-class nginx-ingress</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230621035741.png" class="kg-image" alt="Pasted image 20230621035741" loading="lazy" width="937" height="211"></figure><pre><code class="language-sh">kubectl create ingress nginx-ingress --rule="nginx-ingress.ok/*=nginx:80" --class nginx-ingress
+</code></pre><p>Works</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230621040351.png" class="kg-image" alt="Pasted image 20230621040351" loading="lazy" width="938" height="230"></figure><h3 id="monitoring-using-servicemonitors">Monitoring using servicemonitors</h3><p>Create svc port <code>prometheus</code></p><pre><code class="language-yaml">kubectl edit svc -n nginx-ingress nginx-ingress
+---
+spec: 
+  ports:
+    - name: prometheus
+      port: 9113
+      protocol: TCP
+      targetPort: 9113
+</code></pre><p>Create service-monitors</p><pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ingress-nginx
+  namespace: nginx-ingress
+  labels:
+    release: nb
+    jobLabel: ingress-nginx
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: nginx-ingress
+      app.kubernetes.io/name: nginx-ingress
+  endpoints:
+  - port: prometheus 
+    scheme: http
+</code></pre><h1 id="virtualserver">VirtualServer</h1><p>Refrensi : https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#upstream</p><p>The VirtualServer resource defines load balancing configuration for a domain name, such as&nbsp;<code>example.com</code>. Virtual server ini dalam penerapannya memungkinkan dalam satu ingress memiliki 2 service berbeda dengan path yang berbeda juga. Misal <code>/coffe</code> -&gt; <code>svc:coffe:80</code> atau <code>/milk</code> -&gt; <code>svc:milk:8080</code></p><h2 id="basic-create-ingress-using-virtualserver">Basic Create Ingress Using VirtualServer</h2><p>Refrensi : https://github.com/nginxinc/kubernetes-ingress/tree/v3.1.1/examples/custom-resources/basic-configuration</p><p>Selain membuat ingress menggunakan kind <code>Ingress</code>, di nginx-ingress bisa memanfaatkan fitur VirtualServer.</p><blockquote>The VirtualServer and VirtualServerRoute resources are load balancing configurations recommended as an alternative to the Ingress resource.</blockquote><p>Dari dokumentasi, disini VIrtualServer dapat sebagai alternatif konfigurasi dari Ingress Resource.</p><p>Basic yaml file dari VIrtualServer</p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: 
+spec: 
+</code></pre><h3 id="basic-ingress">Basic ingress.</h3><ul><li>Expose svc nginx:80 -&gt; virtual-svc.nginx.local dengan VirtualServer</li></ul><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: nginx-test
+spec:
+  host: virtual-svc.nginx.local
+  upstreams:
+  - name: nginx
+    service: nginx
+    port: 80
+  routes:
+  - path: /
+    action:
+      pass: nginx # name dari upstreams
+</code></pre><p>Setelah apply coba cek</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624201239.png" class="kg-image" alt="Pasted image 20230624201239" loading="lazy" width="999" height="572"></figure><p>Coba hit : `curl -v http://localhost:31105 -H 'Host: virtual-svc.nginx.local'</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624201433.png" class="kg-image" alt="Pasted image 20230624201433" loading="lazy" width="1104" height="617"></figure><h1 id="virtualserver-separate-service-by-path">VirtualServer separate service by path</h1><p>Refrensi : https://github.com/nginxinc/kubernetes-ingress/tree/v3.1.1/examples/custom-resources/basic-configuration</p><p>Di virtualserver sama seperti k8s-ingress, kita dapat membuat 2 service dalam satu ingress dengan path yang berbeda. Misal <code>/coffe</code> -&gt; <code>svc:coffe:80</code> atau <code>/milk</code> -&gt; <code>svc:milk:8080</code></p><ol><li>Buat deployment coffe &amp; tea</li></ol><pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: coffee
+  template:
+    metadata:
+      labels:
+        app: coffee
+    spec:
+      containers:
+      - name: coffee
+        image: nginxdemos/nginx-hello:plain-text
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coffee-svc
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: coffee
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tea
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tea
+  template:
+    metadata:
+      labels:
+        app: tea
+    spec:
+      containers:
+      - name: tea
+        image: nginxdemos/nginx-hello:plain-text
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tea-svc
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: tea
+</code></pre><ol start="2"><li>Buat VirtualServer</li></ol><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: cafe-testing
+spec:
+  host: cafe.nginx.local
+  upstreams:
+  - name: tea
+    service: tea-svc
+    port: 80
+  - name: coffee
+    service: coffee-svc
+    port: 80
+  routes:
+  - path: /tea
+    action:
+      pass: tea
+  - path: /coffee
+    action:
+      pass: coffee
+</code></pre><ol start="3"><li>Verifikasi</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624204053.png" class="kg-image" alt="Pasted image 20230624204053" loading="lazy" width="1104" height="690"></figure><pre><code class="language-sh"># Testing curl
+curl http://localhost:31105/tea -H 'Host: cafe.nginx.local'
+curl http://localhost:31105/coffe -H 'Host: cafe.nginx.local'
+</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624204300.png" class="kg-image" alt="Pasted image 20230624204300" loading="lazy" width="874" height="213"></figure><h1 id="mencoba-lbmethod">Mencoba lb_method</h1><p>Dilihat dari refrensi <a href="https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/?ref=dev.nbtrisna.my.id#upstream">berikut</a>, kita bisa menambahkan <code>lb-method</code> di upstream section. Untuk metode yang di support bisa ke refrensi <a href="https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/?ref=dev.nbtrisna.my.id#choosing-a-load-balancing-method">berikut</a></p><p>Defaul algortihm yang digunakan nginx-ingress adalah yang tertera dalam configmaps nginx-ingress. Hanya saja tidak ada data yaml yang terdefine di cm ingress.</p><pre><code class="language-sh">k get cm -n nginx-ingress nginx-ingress -o yaml
+</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624205128.png" class="kg-image" alt="Pasted image 20230624205128" loading="lazy" width="684" height="342"></figure><p>Oke Gas dicoba.</p><p>Ketika tidak mendefinisikan algoritma lb di upstream, dicoba hit 5 kali dan hasilnya seperti berikut</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624205245.png" class="kg-image" alt="Pasted image 20230624205245" loading="lazy" width="1248" height="889"></figure>
 <!--kg-card-begin: html-->
 <table>
 <thead>
 <tr>
-<th>VM Hostname</th>
-<th>IP</th>
+<th>Pod Name</th>
+<th>Jumlah Hit</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>rke-server-01</td>
-<td>10.10.11.10</td>
+<td>coffee-7dd75bc79b-9f8l7</td>
+<td>4</td>
 </tr>
 <tr>
-<td>rke-server-02</td>
-<td>10.10.11.11</td>
-</tr>
-<tr>
-<td>rke-server-03</td>
-<td>10.10.11.12</td>
-</tr>
-<tr>
-<td>vip-rke</td>
-<td>10.10.11.100</td>
-</tr>
-<tr>
-<td>Kondisi awalnya terlihat kalau tidak terdapat ip <code>10.10.11.100</code> di dhcp-leases.</td>
-<td></td>
-</tr>
-<tr>
-<td><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805124052.png" alt="Pasted image 20240805124052"></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805124110.png" alt="Pasted image 20240805124110"></td>
-<td></td>
-</tr>
-<tr>
-<td>Di ping juga pastinya engga mau, karena belum di setup</td>
-<td></td>
+<td>coffee-7dd75bc79b-2grss</td>
+<td>6</td>
 </tr>
 </tbody>
 </table>
 <!--kg-card-end: html-->
-<h2 id="setup">Setup</h2><blockquote>Exec on all node</blockquote><ol><li>Install bird</li></ol><pre><code class="language-sh">sudo apt install bird
-</code></pre><ol start="2"><li>Add virtual ip di interface loopback.</li></ol><pre><code class="language-sh">sudo vim /etc/netplan/xx.yaml
-</code></pre><pre><code class="language-yaml">network:
-    ethernets:
-        lo:
-            addresses:
-              - 127.0.0.1/8
-              - ::1/128
-              - 10.10.11.100/32
-</code></pre><pre><code class="language-sh">sudo netplan apply 
-</code></pre><p>Pastikan interface <code>lo</code> memiliki virtualip</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805125133.png" class="kg-image" alt="Pasted image 20240805125133" loading="lazy" width="835" height="284"></figure><h3 id="config-rke-server-01">config rke-server-01</h3><pre><code class="language-sh">sudo vim /etc/bird/bird.conf
-</code></pre><pre><code class="language-fonfig"># This is a minimal configuration file, which allows the bird daemon to start
-# but will not cause anything else to happen.
-#
-# Please refer to the documentation in the bird-doc package or BIRD User's
-# Guide on http://bird.network.cz/ for more information on configuring BIRD and
-# adding routing protocols.
+<p>Dari hasil hit, nginx memilih pod secara random selama hit.</p><p>Saya coba dengan <code>lb-method: roundrobin</code>, harusnya akan hit secara bergantian</p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: cafe-testing
+spec:
+  host: cafe-round.nginx.local
+  upstreams:
+  - name: tea
+    service: tea-svc
+    port: 80
+  - name: coffee
+    service: coffee-svc
+    port: 80
+    lb-method: round_robin # add spesific on coffe path
+  routes:
+  - path: /tea
+    action:
+      pass: tea
+  - path: /coffee
+    action:
+      pass: coffee
 
-# Change this into your BIRD router ID. It's a world-wide unique identification
-# of your router, usually one of router's IPv4 addresses.
-router id 10.10.11.10;
-
-# The Kernel protocol is not a real routing protocol. Instead of communicating
-# with other routers in the network, it performs synchronization of BIRD's
-# routing tables with the OS kernel.
-protocol kernel {
-        scan time 60;
-        import none;
-#       export all;   # Actually insert routes into the kernel routing table
-}
-
-# The Device protocol is not a real routing protocol. It doesn't generate any
-# routes and it only serves as a module for getting information about network
-# interfaces from the kernel. 
-protocol device {
-        scan time 60;
-}
-
-protocol direct {
-        interface "lo";
-}
-
-protocol bgp uplink_1 {
-    local as 64512;
-    source address 10.10.11.10;
-    import none;
-    export all;
-    graceful restart on;
-    neighbor 10.10.11.11 as 64512;
-}
-
-
-protocol bgp uplink_2 {
-    local as 64512;
-    source address 10.10.11.10;
-    import none;
-    export all;
-    graceful restart on;
-    neighbor 10.10.11.12 as 64512;
-}
-</code></pre><p>Enable bird</p><pre><code class="language-sh">sudo enable --now bird
-</code></pre><h3 id="config-rke-server-02">config rke-server-02</h3><pre><code class="language-sh">sudo vim /etc/bird/bird.conf
-</code></pre><pre><code># This is a minimal configuration file, which allows the bird daemon to start
-# but will not cause anything else to happen.
-#
-# Please refer to the documentation in the bird-doc package or BIRD User's
-# Guide on http://bird.network.cz/ for more information on configuring BIRD and
-# adding routing protocols.
-
-# Change this into your BIRD router ID. It's a world-wide unique identification
-# of your router, usually one of router's IPv4 addresses.
-router id 10.10.11.11;
-
-# The Kernel protocol is not a real routing protocol. Instead of communicating
-# with other routers in the network, it performs synchronization of BIRD's
-# routing tables with the OS kernel.
-protocol kernel {
-        scan time 60;
-        import none;
-#       export all;   # Actually insert routes into the kernel routing table
-}
-
-# The Device protocol is not a real routing protocol. It doesn't generate any
-# routes and it only serves as a module for getting information about network
-# interfaces from the kernel. 
-protocol device {
-        scan time 60;
-}
-
-protocol direct {
-        interface "lo";
-}
-
-protocol bgp uplink_1 {
-    local as 64512;
-    source address 10.10.11.11;
-    import none;
-    export all;
-    graceful restart on; 
-    neighbor 10.10.11.10 as 64512;
-}
-
-
-protocol bgp uplink_2 {
-    local as 64512;
-    source address 10.10.11.11;
-    import none;
-    export all;
-    graceful restart on;
-    neighbor 10.10.11.12 as 64512;
-}  
-</code></pre><p>Enable service bird</p><pre><code class="language-sh">sudo systemctl enable --now bird
-</code></pre><h3 id="config-rke-server-03">config rke-server-03</h3><pre><code class="language-sh">sudo vim /etc/bird/bird.conf
-</code></pre><pre><code class="language-cfg"># This is a minimal configuration file, which allows the bird daemon to start
-# but will not cause anything else to happen.
-#
-# Please refer to the documentation in the bird-doc package or BIRD User's
-# Guide on http://bird.network.cz/ for more information on configuring BIRD and
-# adding routing protocols.
-
-# Change this into your BIRD router ID. It's a world-wide unique identification
-# of your router, usually one of router's IPv4 addresses.
-router id 10.10.11.12;
-
-# The Kernel protocol is not a real routing protocol. Instead of communicating
-# with other routers in the network, it performs synchronization of BIRD's
-# routing tables with the OS kernel.
-protocol kernel {
-        scan time 60;
-        import none;
-#       export all;   # Actually insert routes into the kernel routing table
-}
-
-# The Device protocol is not a real routing protocol. It doesn't generate any
-# routes and it only serves as a module for getting information about network
-# interfaces from the kernel. 
-protocol device {
-        scan time 60;
-}
-
-protocol direct {
-        interface "lo";
-}
-
-protocol bgp uplink_1 {
-    local as 64512;
-    source address 10.10.11.12;
-    import none;
-    export all;
-    graceful restart on; 
-    neighbor 10.10.11.10 as 64512;
-}
-
-
-protocol bgp uplink_2 {
-    local as 64512;
-    source address 10.10.11.12;
-    import none;
-    export all;
-    graceful restart on;
-    neighbor 10.10.11.11 as 64512;
-}  
-</code></pre><p>Enable service bgp</p><pre><code class="language-sh">sudo enable --now bird
-</code></pre><h2 id="verifikasi">Verifikasi</h2><ol><li>Check bgp session tiap vm</li></ol><pre><code class="language-sh">birdc show proto all 
-</code></pre><p>Pastikan bgp state udah Active</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805130136.png" class="kg-image" alt="Pasted image 20240805130136" loading="lazy" width="1109" height="980"></figure><ol start="2"><li>Ping vip dari baremetal</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805130200.png" class="kg-image" alt="Pasted image 20240805130200" loading="lazy" width="601" height="266"></figure><ol start="3"><li>Install nginx masing", dan ubah index dengan hostname. Dan curl dari baremetal</li></ol><pre><code class="language-sh">curl 10.10.11.100
-</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805132151.png" class="kg-image" alt="Pasted image 20240805132151" loading="lazy" width="1871" height="1047"></figure><p>Coba curl terus menerus, sambil matikan instance rke-3</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805132506.png" class="kg-image" alt="Pasted image 20240805132506" loading="lazy" width="1871" height="1047"></figure><p>Dan ip berpindah ke rke-2. perpindahan cukup lama, dan memang bgp sepertinya tidak bestpractice sebagai vrrp dibandingkan keepalive.</p>
+</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624205607.png" class="kg-image" alt="Pasted image 20230624205607" loading="lazy" width="1248" height="889"></figure>
+<!--kg-card-begin: html-->
+<table>
+<thead>
+<tr>
+<th>Pod Name</th>
+<th>Jumlah Hit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coffee-7dd75bc79b-9f8l7</td>
+<td>5</td>
+</tr>
+<tr>
+<td>coffee-7dd75bc79b-2grss</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<!--kg-card-end: html-->
+<p>Yup hasilnya akan di loadbalance secara "roundrobin" ke masing" pod. :)</p>
         </section>
 
     </article>

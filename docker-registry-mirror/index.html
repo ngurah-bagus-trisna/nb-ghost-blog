@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 
-    <title>BGP Virtual IP</title>
+    <title>Docker Registry Mirror</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -48,26 +48,39 @@
         document.documentElement.className = `has-${textColor}-text`;
     </script>
 
-    <meta name="description" content="Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm.">
     <link rel="icon" href="https://twnb.nbtrisna.my.id/content/images/size/w256h256/2023/12/Logo-CHannel-1.png" type="image/png">
-    <link rel="canonical" href="https://twnb.nbtrisna.my.id/bgp-virtual-ip/">
+    <link rel="canonical" href="https://twnb.nbtrisna.my.id/docker-registry-mirror/">
     <meta name="referrer" content="no-referrer-when-downgrade">
     
     <meta property="og:site_name" content="twnb">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="BGP Virtual IP">
-    <meta property="og:description" content="Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm.">
-    <meta property="og:url" content="https://twnb.nbtrisna.my.id/bgp-virtual-ip/">
-    <meta property="og:image" content="https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg">
-    <meta property="article:published_time" content="2025-06-06T01:16:00.000Z">
-    <meta property="article:modified_time" content="2025-06-21T01:16:32.000Z">
+    <meta property="og:title" content="Docker Registry Mirror">
+    <meta property="og:description" content="Refrensi :
+
+ * https://stackoverflow.com/questions/74595635/how-to-configure-containerd-to-use-a-registry-mirror
+ * https://docs.docker.com/registry/recipes/mirror/
+ * https://docs.docker.com/registry/deploying/#deploy-your-registry-using-a-compose-file
+ * https://d7y.io/docs/setup/runtime/containerd/mirror/
+
+Ketika sebuah ip terus&quot;an pull ke registry docker, akan menyebabkan sebuah peringatan limit pull telah terpakai. Biasanya akan reset setelah">
+    <meta property="og:url" content="https://twnb.nbtrisna.my.id/docker-registry-mirror/">
+    <meta property="og:image" content="https://photoby.nbtrisna.my.id/9239f368-b5a0-44d7-baa4-c06ae1572937.jpg">
+    <meta property="article:published_time" content="2025-06-08T01:14:00.000Z">
+    <meta property="article:modified_time" content="2025-06-21T01:15:04.000Z">
     <meta property="article:tag" content="catatan">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="BGP Virtual IP">
-    <meta name="twitter:description" content="Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm.">
-    <meta name="twitter:url" content="https://twnb.nbtrisna.my.id/bgp-virtual-ip/">
-    <meta name="twitter:image" content="https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg">
+    <meta name="twitter:title" content="Docker Registry Mirror">
+    <meta name="twitter:description" content="Refrensi :
+
+ * https://stackoverflow.com/questions/74595635/how-to-configure-containerd-to-use-a-registry-mirror
+ * https://docs.docker.com/registry/recipes/mirror/
+ * https://docs.docker.com/registry/deploying/#deploy-your-registry-using-a-compose-file
+ * https://d7y.io/docs/setup/runtime/containerd/mirror/
+
+Ketika sebuah ip terus&quot;an pull ke registry docker, akan menyebabkan sebuah peringatan limit pull telah terpakai. Biasanya akan reset setelah">
+    <meta name="twitter:url" content="https://twnb.nbtrisna.my.id/docker-registry-mirror/">
+    <meta name="twitter:image" content="https://photoby.nbtrisna.my.id/9239f368-b5a0-44d7-baa4-c06ae1572937.jpg">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="I Gusti Ngurah Bagus Trisna Andika">
     <meta name="twitter:label2" content="Filed under">
@@ -100,19 +113,19 @@
         "url": "https://twnb.nbtrisna.my.id/author/ngurah/",
         "sameAs": []
     },
-    "headline": "BGP Virtual IP",
-    "url": "https://twnb.nbtrisna.my.id/bgp-virtual-ip/",
-    "datePublished": "2025-06-06T01:16:00.000Z",
-    "dateModified": "2025-06-21T01:16:32.000Z",
+    "headline": "Docker Registry Mirror",
+    "url": "https://twnb.nbtrisna.my.id/docker-registry-mirror/",
+    "datePublished": "2025-06-08T01:14:00.000Z",
+    "dateModified": "2025-06-21T01:15:04.000Z",
     "image": {
         "@type": "ImageObject",
-        "url": "https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg",
+        "url": "https://photoby.nbtrisna.my.id/9239f368-b5a0-44d7-baa4-c06ae1572937.jpg",
         "width": 1200,
         "height": 800
     },
     "keywords": "catatan",
-    "description": "Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm. ",
-    "mainEntityOfPage": "https://twnb.nbtrisna.my.id/bgp-virtual-ip/"
+    "description": "Refrensi :\n\n * https://stackoverflow.com/questions/74595635/how-to-configure-containerd-to-use-a-registry-mirror\n * https://docs.docker.com/registry/recipes/mirror/\n * https://docs.docker.com/registry/deploying/#deploy-your-registry-using-a-compose-file\n * https://d7y.io/docs/setup/runtime/containerd/mirror/\n\nKetika sebuah ip terus&quot;an pull ke registry docker, akan menyebabkan sebuah peringatan limit pull telah terpakai. Biasanya akan reset setelah 6 jam. Untuk menyiasati, dicoba riset install re",
+    "mainEntityOfPage": "https://twnb.nbtrisna.my.id/docker-registry-mirror/"
 }
     </script>
 
@@ -352,238 +365,146 @@
         <header class="gh-article-header gh-canvas">
 
                 <a class="gh-article-tag" href="https://twnb.nbtrisna.my.id/tag/catatan/">catatan</a>
-            <h1 class="gh-article-title is-title">BGP Virtual IP</h1>
-                <p class="gh-article-excerpt is-body">Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm. </p>
+            <h1 class="gh-article-title is-title">Docker Registry Mirror</h1>
 
 
                 <figure class="gh-article-image">
         <img
-            srcset="https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg 320w,
-                    https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg 600w,
-                    https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg 960w,
-                    https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg 1200w,
-                    https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg 2000w"
+            srcset="https://photoby.nbtrisna.my.id/9239f368-b5a0-44d7-baa4-c06ae1572937.jpg 320w,
+                    https://photoby.nbtrisna.my.id/9239f368-b5a0-44d7-baa4-c06ae1572937.jpg 600w,
+                    https://photoby.nbtrisna.my.id/9239f368-b5a0-44d7-baa4-c06ae1572937.jpg 960w,
+                    https://photoby.nbtrisna.my.id/9239f368-b5a0-44d7-baa4-c06ae1572937.jpg 1200w,
+                    https://photoby.nbtrisna.my.id/9239f368-b5a0-44d7-baa4-c06ae1572937.jpg 2000w"
             sizes="(max-width: 1200px) 100vw, 1120px"
-            src="https://photoby.nbtrisna.my.id/8623c526-6ba6-4628-96f5-849a93399c17.jpg"
-            alt="BGP Virtual IP"
+            src="https://photoby.nbtrisna.my.id/9239f368-b5a0-44d7-baa4-c06ae1572937.jpg"
+            alt="Docker Registry Mirror"
         >
-            <figcaption><b><strong style="white-space: pre-wrap;">Photo by nbtrisna</strong></b><span style="white-space: pre-wrap;"> The gentle sway of penjor guides the way, a serene journey through Bali's heart.</span></figcaption>
+            <figcaption><b><strong style="white-space: pre-wrap;">Photo by nbtrisna</strong></b><span style="white-space: pre-wrap;"> Steel and concrete quietude: a moment of urban stillness where journeys pause, awaiting the city's next breath.</span></figcaption>
     </figure>
 
         </header>
 
         <section class="gh-content gh-canvas is-body">
-            <p>Refrensi : https://docs.vultr.com/high-availability-on-vultr-with-floating-ip-and-bgp</p><p>Jadi goals riset ini adalah bagaimana caranya membuat sebuah virtual ip yang bisa di reach oleh network kvm. VirtualIP disini masih belum sempurna, karena beberapa kali pengetestan dan tuning buat pindah ke vm lain masih terdapat jeda yang sangat lumayan &gt; 1 menit.</p><h2 id="environment">environment</h2><p>Pakai OS Ubuntu 22.04 Server</p>
+            <h3 id="refrensi">Refrensi :</h3><ul><li>https://stackoverflow.com/questions/74595635/how-to-configure-containerd-to-use-a-registry-mirror</li><li>https://docs.docker.com/registry/recipes/mirror/</li><li>https://docs.docker.com/registry/deploying/#deploy-your-registry-using-a-compose-file</li><li>https://d7y.io/docs/setup/runtime/containerd/mirror/</li></ul><p>Ketika sebuah ip terus"an pull ke registry docker, akan menyebabkan sebuah peringatan limit pull telah terpakai. Biasanya akan reset setelah 6 jam. Untuk menyiasati, dicoba riset install registry mirror di gns3.</p><h3 id="common-issue">Common issue</h3><ul><li>Tidak bisa login dengan auth htpasswd. syntax docker login bisa, hanya saja ketika pull tidak menggunakan registry-mirror</li><li>Hanya bisa 1 Registry per registry-mirror. Jadi ketika ingin cache image selain docker.io, harus membuat kembali docker-registry dengan port yang berbeda</li><li>Bisa untuk containerd, dan docker</li></ul><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230529004247.png" class="kg-image" alt="Pasted image 20230529004247" loading="lazy" width="857" height="607"></figure><p>Simple topology</p>
 <!--kg-card-begin: html-->
 <table>
 <thead>
 <tr>
-<th>VM Hostname</th>
+<th>hostname</th>
 <th>IP</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>rke-server-01</td>
-<td>10.10.11.10</td>
+<td>regis-server</td>
+<td>192.168.122.10/24</td>
 </tr>
 <tr>
-<td>rke-server-02</td>
-<td>10.10.11.11</td>
-</tr>
-<tr>
-<td>rke-server-03</td>
-<td>10.10.11.12</td>
-</tr>
-<tr>
-<td>vip-rke</td>
-<td>10.10.11.100</td>
-</tr>
-<tr>
-<td>Kondisi awalnya terlihat kalau tidak terdapat ip <code>10.10.11.100</code> di dhcp-leases.</td>
-<td></td>
-</tr>
-<tr>
-<td><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805124052.png" alt="Pasted image 20240805124052"></td>
-<td></td>
-</tr>
-<tr>
-<td><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805124110.png" alt="Pasted image 20240805124110"></td>
-<td></td>
-</tr>
-<tr>
-<td>Di ping juga pastinya engga mau, karena belum di setup</td>
-<td></td>
+<td>docker-client</td>
+<td>192.168.122.11/24</td>
 </tr>
 </tbody>
 </table>
 <!--kg-card-end: html-->
-<h2 id="setup">Setup</h2><blockquote>Exec on all node</blockquote><ol><li>Install bird</li></ol><pre><code class="language-sh">sudo apt install bird
-</code></pre><ol start="2"><li>Add virtual ip di interface loopback.</li></ol><pre><code class="language-sh">sudo vim /etc/netplan/xx.yaml
-</code></pre><pre><code class="language-yaml">network:
-    ethernets:
-        lo:
-            addresses:
-              - 127.0.0.1/8
-              - ::1/128
-              - 10.10.11.100/32
-</code></pre><pre><code class="language-sh">sudo netplan apply 
-</code></pre><p>Pastikan interface <code>lo</code> memiliki virtualip</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805125133.png" class="kg-image" alt="Pasted image 20240805125133" loading="lazy" width="835" height="284"></figure><h3 id="config-rke-server-01">config rke-server-01</h3><pre><code class="language-sh">sudo vim /etc/bird/bird.conf
-</code></pre><pre><code class="language-fonfig"># This is a minimal configuration file, which allows the bird daemon to start
-# but will not cause anything else to happen.
-#
-# Please refer to the documentation in the bird-doc package or BIRD User's
-# Guide on http://bird.network.cz/ for more information on configuring BIRD and
-# adding routing protocols.
+<h2 id="setup-registry-server">Setup registry server</h2><p>Metode yang dipakai adalah yang paling simple, menggunakan docker compose</p><p>Create self-signed certificate (For https)</p><pre><code class="language-sh">mkdir -p registry/{cert,auth,data}
+cd registry
 
-# Change this into your BIRD router ID. It's a world-wide unique identification
-# of your router, usually one of router's IPv4 addresses.
-router id 10.10.11.10;
+openssl req \
+  -newkey rsa:4096 -nodes -sha256 -keyout certs/domain.key \
+  -addext "subjectAltName = DNS:registry.ngurah.local" \
+  -x509 -days 365 -out certs/ca.crt
 
-# The Kernel protocol is not a real routing protocol. Instead of communicating
-# with other routers in the network, it performs synchronization of BIRD's
-# routing tables with the OS kernel.
-protocol kernel {
-        scan time 60;
-        import none;
-#       export all;   # Actually insert routes into the kernel routing table
+sudo mkdir -p /etc/docker/certs.d/registry.ngurah.local:5000
+sudo cp certs/ca.crt /etc/docker/certs.d/registry.ngurah.local:5000/
+</code></pre><p>Or create letsencrypt certificate using dns challange.</p><pre><code class="language-sh">certbot certonly --preferred-challenges=dns --dns-cloudflare \
+--server https://acme-v02.api.letsencrypt.org/directory \
+--dns-cloudflare-credentials ~/.cloudflare.ini \
+--agree-tos -d registry.ngurahbagus.my.id
+</code></pre><p>Create User &amp; auth</p><pre><code class="language-sh">docker run \
+  --entrypoint htpasswd \
+  httpd:2 -Bbn ngurah wait &gt; auth/htpasswd
+</code></pre><p>Create docker compose (if self-signed certificate)</p><pre><code class="language-yaml">version: '2'
+services:
+  registry:
+    restart: always
+    image: registry:2
+    ports:
+      - 5000:5000
+    volumes:
+      - /home/ubuntu/registry/data:/var/lib/registry
+      - /home/ubuntu/registry/certs:/certs
+      - /home/ubuntu/registry/auth:/auth
+      - ./config.yml:/etc/docker/registry/config.yml
+</code></pre><p>Create docker compose (if using lets-encrypt)</p><pre><code class="language-yaml">ersion: '2'
+services:
+  registry:
+    restart: always
+    image: registry:2
+    ports:
+      - 5000:5000
+    volumes:
+      - ./data:/var/lib/registry
+      - /etc/letsencrypt/live/example.com/fullchain.pem:/etc/letsencrypt/live/example.com/fullchain.pem
+      - /etc/letsencrypt/live/example.com/privkey.pem:/etc/letsencrypt/live/example.com/privkey.pem
+      - ./auth:/auth
+      - ./config.yml:/etc/docker/registry/config.yml
+</code></pre><p>Create config.yml</p><pre><code class="language-yaml">version: 0.1
+log:
+  fields:
+    service: registry
+storage:
+  cache:
+    blobdescriptor: inmemory
+  filesystem:
+    rootdirectory: /var/lib/registry
+http:
+  addr: :5000
+  host: https://example.com
+  headers:
+    X-Content-Type-Options: [nosniff]
+  tls:
+    certificate: # your certificate
+    key: # your cert key
+
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3
+proxy:
+  remoteurl: https://registry.k8s.io # mirroring k8s.io
+
+</code></pre><p>Running docker container</p><pre><code class="language-sh">docker-compose up -d
+</code></pre><p>Try login</p><pre><code class="language-sh">docker login registry.ngurah.local:5000
+---
+Login Succeeded # Berhasil
+</code></pre><h2 id="setup-mirror-registry-client-docker">Setup mirror registry client Docker</h2><blockquote>Using Docker-client first</blockquote><p>Setup insecure registry</p><pre><code class="language-sh"># Skip if you not using self-signed cert
+sudo mkdir -p /etc/docker/certs.d/registry.ngurah.local:5000
+sudo cp ca.crt /etc/docker/certs.d/registry.ngurah.local:5000/
+</code></pre><p>Configure mirror,</p><pre><code class="language-sh">sudo vi /etc/docker/daemon.json
+---
+{
+  "registry-mirrors": ["https://registry.ngurah.local:5000"]
 }
+</code></pre><p>Restart docker, &amp; try pull private image using credentials on registry-server</p><pre><code class="language-sh">sudo systemctl restart docker
+docker pull hello-world 
 
-# The Device protocol is not a real routing protocol. It doesn't generate any
-# routes and it only serves as a module for getting information about network
-# interfaces from the kernel. 
-protocol device {
-        scan time 60;
-}
+# Check registry catalog
+curl https://example.com:5000/v2/_catalog
+---
+{"repositories":["kube-proxy","library/hello-world"]} # makesure image availible
+</code></pre><p>Sekarang image akan tercache di registry server</p><h2 id="setup-mirror-registry-client-containerd">Setup mirror registry client containerd</h2><p>Setup mirror first</p><pre><code class="language-sh">mkdir /etc/containerd/certs.d/registry.k8s.io
+sudo vi /etc/containerd/certs.d/registry.k8s.io/hosts.toml
+---
+server = "https://registry.k8s.io"
 
-protocol direct {
-        interface "lo";
-}
-
-protocol bgp uplink_1 {
-    local as 64512;
-    source address 10.10.11.10;
-    import none;
-    export all;
-    graceful restart on;
-    neighbor 10.10.11.11 as 64512;
-}
-
-
-protocol bgp uplink_2 {
-    local as 64512;
-    source address 10.10.11.10;
-    import none;
-    export all;
-    graceful restart on;
-    neighbor 10.10.11.12 as 64512;
-}
-</code></pre><p>Enable bird</p><pre><code class="language-sh">sudo enable --now bird
-</code></pre><h3 id="config-rke-server-02">config rke-server-02</h3><pre><code class="language-sh">sudo vim /etc/bird/bird.conf
-</code></pre><pre><code># This is a minimal configuration file, which allows the bird daemon to start
-# but will not cause anything else to happen.
-#
-# Please refer to the documentation in the bird-doc package or BIRD User's
-# Guide on http://bird.network.cz/ for more information on configuring BIRD and
-# adding routing protocols.
-
-# Change this into your BIRD router ID. It's a world-wide unique identification
-# of your router, usually one of router's IPv4 addresses.
-router id 10.10.11.11;
-
-# The Kernel protocol is not a real routing protocol. Instead of communicating
-# with other routers in the network, it performs synchronization of BIRD's
-# routing tables with the OS kernel.
-protocol kernel {
-        scan time 60;
-        import none;
-#       export all;   # Actually insert routes into the kernel routing table
-}
-
-# The Device protocol is not a real routing protocol. It doesn't generate any
-# routes and it only serves as a module for getting information about network
-# interfaces from the kernel. 
-protocol device {
-        scan time 60;
-}
-
-protocol direct {
-        interface "lo";
-}
-
-protocol bgp uplink_1 {
-    local as 64512;
-    source address 10.10.11.11;
-    import none;
-    export all;
-    graceful restart on; 
-    neighbor 10.10.11.10 as 64512;
-}
-
-
-protocol bgp uplink_2 {
-    local as 64512;
-    source address 10.10.11.11;
-    import none;
-    export all;
-    graceful restart on;
-    neighbor 10.10.11.12 as 64512;
-}  
-</code></pre><p>Enable service bird</p><pre><code class="language-sh">sudo systemctl enable --now bird
-</code></pre><h3 id="config-rke-server-03">config rke-server-03</h3><pre><code class="language-sh">sudo vim /etc/bird/bird.conf
-</code></pre><pre><code class="language-cfg"># This is a minimal configuration file, which allows the bird daemon to start
-# but will not cause anything else to happen.
-#
-# Please refer to the documentation in the bird-doc package or BIRD User's
-# Guide on http://bird.network.cz/ for more information on configuring BIRD and
-# adding routing protocols.
-
-# Change this into your BIRD router ID. It's a world-wide unique identification
-# of your router, usually one of router's IPv4 addresses.
-router id 10.10.11.12;
-
-# The Kernel protocol is not a real routing protocol. Instead of communicating
-# with other routers in the network, it performs synchronization of BIRD's
-# routing tables with the OS kernel.
-protocol kernel {
-        scan time 60;
-        import none;
-#       export all;   # Actually insert routes into the kernel routing table
-}
-
-# The Device protocol is not a real routing protocol. It doesn't generate any
-# routes and it only serves as a module for getting information about network
-# interfaces from the kernel. 
-protocol device {
-        scan time 60;
-}
-
-protocol direct {
-        interface "lo";
-}
-
-protocol bgp uplink_1 {
-    local as 64512;
-    source address 10.10.11.12;
-    import none;
-    export all;
-    graceful restart on; 
-    neighbor 10.10.11.10 as 64512;
-}
-
-
-protocol bgp uplink_2 {
-    local as 64512;
-    source address 10.10.11.12;
-    import none;
-    export all;
-    graceful restart on;
-    neighbor 10.10.11.11 as 64512;
-}  
-</code></pre><p>Enable service bgp</p><pre><code class="language-sh">sudo enable --now bird
-</code></pre><h2 id="verifikasi">Verifikasi</h2><ol><li>Check bgp session tiap vm</li></ol><pre><code class="language-sh">birdc show proto all 
-</code></pre><p>Pastikan bgp state udah Active</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805130136.png" class="kg-image" alt="Pasted image 20240805130136" loading="lazy" width="1109" height="980"></figure><ol start="2"><li>Ping vip dari baremetal</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805130200.png" class="kg-image" alt="Pasted image 20240805130200" loading="lazy" width="601" height="266"></figure><ol start="3"><li>Install nginx masing", dan ubah index dengan hostname. Dan curl dari baremetal</li></ol><pre><code class="language-sh">curl 10.10.11.100
-</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805132151.png" class="kg-image" alt="Pasted image 20240805132151" loading="lazy" width="1871" height="1047"></figure><p>Coba curl terus menerus, sambil matikan instance rke-3</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020240805132506.png" class="kg-image" alt="Pasted image 20240805132506" loading="lazy" width="1871" height="1047"></figure><p>Dan ip berpindah ke rke-2. perpindahan cukup lama, dan memang bgp sepertinya tidak bestpractice sebagai vrrp dibandingkan keepalive.</p>
+[host."https://example:5000"]
+  capabilities = ["pull", "resolve"]
+</code></pre><p>Konfigurasi /etc/containerd/config.toml untuk membaca registry di certs.d</p><pre><code class="language-yaml">    [plugins."io.containerd.grpc.v1.cri".registry] 
+      config_path = "/etc/containerd/certs.d" # enable
+</code></pre><p>Restart containerd &amp; try pull registry.k8s.io</p><pre><code class="language-sh">sudo systemctl restart containerd.io
+sudo crictl pull registry.k8s.io/kube-proxy:v1.27.2
+</code></pre>
         </section>
 
     </article>
