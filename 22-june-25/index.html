@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 
-    <title>Membuat VM Ubuntu di hyper-v</title>
+    <title>22-June-25</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -48,45 +48,32 @@
         document.documentElement.className = `has-${textColor}-text`;
     </script>
 
+    <meta name="description" content="Learn IAM Roles, EC2 Instance Profile &amp; Provisioning VPC using Iaac (Terraform)">
     <link rel="icon" href="https://twnb.nbtrisna.my.id/content/images/size/w256h256/2023/12/Logo-CHannel-1.png" type="image/png">
-    <link rel="canonical" href="https://twnb.nbtrisna.my.id/blog-membuat-vm-di-hyper-v/">
+    <link rel="canonical" href="https://twnb.nbtrisna.my.id/22-june-25/">
     <meta name="referrer" content="no-referrer-when-downgrade">
     
     <meta property="og:site_name" content="twnb">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Membuat VM Ubuntu di hyper-v">
-    <meta property="og:description" content="Home-lab #2
-
-Untuk membuat virtual-machine/VM di hyper-v, dapat menggunakan aplikasi hyper-v manager
-
-
-Preparation
-
- 1. Membuat switch External. Switch external disini berfungsi untuk vm agar dapat mengakses internet local. Jadi disini interface network dari VM akan terkoneksi langsung dengan physical interface dari hyper-v host atau komputer tempat menjalankan. Jadi nantinya,">
-    <meta property="og:url" content="https://twnb.nbtrisna.my.id/blog-membuat-vm-di-hyper-v/">
-    <meta property="og:image" content="https://twnb.nbtrisna.my.id/content/images/2024/02/Screenshot-2024-02-01-213843.png">
-    <meta property="article:published_time" content="2024-02-01T14:31:56.000Z">
-    <meta property="article:modified_time" content="2024-02-01T14:39:22.000Z">
-    <meta property="article:tag" content="catatan">
+    <meta property="og:title" content="22-June-25">
+    <meta property="og:description" content="Learn IAM Roles, EC2 Instance Profile &amp; Provisioning VPC using Iaac (Terraform)">
+    <meta property="og:url" content="https://twnb.nbtrisna.my.id/22-june-25/">
+    <meta property="og:image" content="https://photoby.nbtrisna.my.id/1e929f06-0136-4b70-8924-cd9e66ff281b.jpg">
+    <meta property="article:published_time" content="2025-06-22T13:08:10.000Z">
+    <meta property="article:modified_time" content="2025-06-22T13:08:10.000Z">
+    <meta property="article:tag" content="daily-notes">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Membuat VM Ubuntu di hyper-v">
-    <meta name="twitter:description" content="Home-lab #2
-
-Untuk membuat virtual-machine/VM di hyper-v, dapat menggunakan aplikasi hyper-v manager
-
-
-Preparation
-
- 1. Membuat switch External. Switch external disini berfungsi untuk vm agar dapat mengakses internet local. Jadi disini interface network dari VM akan terkoneksi langsung dengan physical interface dari hyper-v host atau komputer tempat menjalankan. Jadi nantinya,">
-    <meta name="twitter:url" content="https://twnb.nbtrisna.my.id/blog-membuat-vm-di-hyper-v/">
-    <meta name="twitter:image" content="https://twnb.nbtrisna.my.id/content/images/2024/02/Screenshot-2024-02-01-213843.png">
+    <meta name="twitter:title" content="22-June-25">
+    <meta name="twitter:description" content="Learn IAM Roles, EC2 Instance Profile &amp; Provisioning VPC using Iaac (Terraform)">
+    <meta name="twitter:url" content="https://twnb.nbtrisna.my.id/22-june-25/">
+    <meta name="twitter:image" content="https://photoby.nbtrisna.my.id/1e929f06-0136-4b70-8924-cd9e66ff281b.jpg">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="I Gusti Ngurah Bagus Trisna Andika">
     <meta name="twitter:label2" content="Filed under">
-    <meta name="twitter:data2" content="catatan">
+    <meta name="twitter:data2" content="daily-notes">
     <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="607">
+    <meta property="og:image:height" content="800">
     
     <script type="application/ld+json">
 {
@@ -113,19 +100,19 @@ Preparation
         "url": "https://twnb.nbtrisna.my.id/author/ngurah/",
         "sameAs": []
     },
-    "headline": "Membuat VM Ubuntu di hyper-v",
-    "url": "https://twnb.nbtrisna.my.id/blog-membuat-vm-di-hyper-v/",
-    "datePublished": "2024-02-01T14:31:56.000Z",
-    "dateModified": "2024-02-01T14:39:22.000Z",
+    "headline": "22-June-25",
+    "url": "https://twnb.nbtrisna.my.id/22-june-25/",
+    "datePublished": "2025-06-22T13:08:10.000Z",
+    "dateModified": "2025-06-22T13:08:10.000Z",
     "image": {
         "@type": "ImageObject",
-        "url": "https://twnb.nbtrisna.my.id/content/images/2024/02/Screenshot-2024-02-01-213843.png",
+        "url": "https://photoby.nbtrisna.my.id/1e929f06-0136-4b70-8924-cd9e66ff281b.jpg",
         "width": 1200,
-        "height": 607
+        "height": 800
     },
-    "keywords": "catatan",
-    "description": "Home-lab #2\n\nUntuk membuat virtual-machine/VM di hyper-v, dapat menggunakan aplikasi hyper-v manager\n\n\nPreparation\n\n 1. Membuat switch External. Switch external disini berfungsi untuk vm agar dapat mengakses internet local. Jadi disini interface network dari VM akan terkoneksi langsung dengan physical interface dari hyper-v host atau komputer tempat menjalankan. Jadi nantinya, vm akan mendapat IP dari DHCP router\n\nBuka hyper-v manager, di menu sebelah kanan, pilih Virtual Switch Manager &gt; Extern",
-    "mainEntityOfPage": "https://twnb.nbtrisna.my.id/blog-membuat-vm-di-hyper-v/"
+    "keywords": "daily-notes",
+    "description": "Learn IAM Roles, EC2 Instance Profile &amp; Provisioning VPC using Iaac (Terraform)",
+    "mainEntityOfPage": "https://twnb.nbtrisna.my.id/22-june-25/"
 }
     </script>
 
@@ -323,7 +310,7 @@ Preparation
     <link rel="preconnect" href="https://fonts.bunny.net"><link rel="stylesheet" href="https://fonts.bunny.net/css?family=noto-sans:400,700|space-mono:400,700"><style>:root {--gh-font-heading: Noto Sans;--gh-font-body: Space Mono;}</style>
 
 </head>
-<body class="post-template tag-catatan gh-font-heading-noto-sans gh-font-body-space-mono has-sans-title has-sans-body">
+<body class="post-template tag-daily-notes gh-font-heading-noto-sans gh-font-body-space-mono has-sans-title has-sans-body">
 
 <div class="gh-viewport">
     
@@ -360,31 +347,219 @@ Preparation
 
 <main class="gh-main">
 
-    <article class="gh-article post tag-catatan">
+    <article class="gh-article post tag-daily-notes">
 
         <header class="gh-article-header gh-canvas">
 
-                <a class="gh-article-tag" href="https://twnb.nbtrisna.my.id/tag/catatan/">catatan</a>
-            <h1 class="gh-article-title is-title">Membuat VM Ubuntu di hyper-v</h1>
+                <a class="gh-article-tag" href="https://twnb.nbtrisna.my.id/tag/daily-notes/">daily-notes</a>
+            <h1 class="gh-article-title is-title">22-June-25</h1>
+                <p class="gh-article-excerpt is-body">Learn IAM Roles, EC2 Instance Profile &amp; Provisioning VPC using Iaac (Terraform)</p>
 
 
                 <figure class="gh-article-image">
         <img
-            srcset="/content/images/size/w320/2024/02/Screenshot-2024-02-01-213843.png 320w,
-                    /content/images/size/w600/2024/02/Screenshot-2024-02-01-213843.png 600w,
-                    /content/images/size/w960/2024/02/Screenshot-2024-02-01-213843.png 960w,
-                    /content/images/size/w1200/2024/02/Screenshot-2024-02-01-213843.png 1200w,
-                    /content/images/size/w2000/2024/02/Screenshot-2024-02-01-213843.png 2000w"
+            srcset="https://photoby.nbtrisna.my.id/1e929f06-0136-4b70-8924-cd9e66ff281b.jpg 320w,
+                    https://photoby.nbtrisna.my.id/1e929f06-0136-4b70-8924-cd9e66ff281b.jpg 600w,
+                    https://photoby.nbtrisna.my.id/1e929f06-0136-4b70-8924-cd9e66ff281b.jpg 960w,
+                    https://photoby.nbtrisna.my.id/1e929f06-0136-4b70-8924-cd9e66ff281b.jpg 1200w,
+                    https://photoby.nbtrisna.my.id/1e929f06-0136-4b70-8924-cd9e66ff281b.jpg 2000w"
             sizes="(max-width: 1200px) 100vw, 1120px"
-            src="/content/images/size/w1200/2024/02/Screenshot-2024-02-01-213843.png"
-            alt="Membuat VM Ubuntu di hyper-v"
+            src="https://photoby.nbtrisna.my.id/1e929f06-0136-4b70-8924-cd9e66ff281b.jpg"
+            alt="22-June-25"
         >
+            <figcaption><b><strong style="white-space: pre-wrap;">Photo by nbtrisna</strong></b><span style="white-space: pre-wrap;"> Steaming trays and quiet hum, a monochrome glimpse into the daily ritual of sustenance.</span></figcaption>
     </figure>
 
         </header>
 
         <section class="gh-content gh-canvas is-body">
-            <blockquote>Home-lab #2</blockquote><p>Untuk membuat virtual-machine/VM di hyper-v, dapat menggunakan aplikasi hyper-v manager</p><h3 id="preparation">Preparation</h3><ol><li>Membuat switch <em>External. </em>Switch external disini berfungsi untuk vm agar dapat mengakses internet local. Jadi disini interface network dari VM akan terkoneksi langsung dengan physical interface dari hyper-v host atau komputer tempat menjalankan. Jadi nantinya, vm akan mendapat IP dari DHCP router</li></ol><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/01/image-4.png" class="kg-image" alt="" loading="lazy" width="927" height="515" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/01/image-4.png 600w, https://twnb.nbtrisna.my.id/content/images/2024/01/image-4.png 927w" sizes="(min-width: 720px) 720px"></figure><p>Buka hyper-v manager, di menu sebelah kanan, pilih <em>Virtual Switch Manager</em> <em>&gt; External &gt; Create Virtual Switch</em></p><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/01/image-5.png" class="kg-image" alt="" loading="lazy" width="1098" height="653" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/01/image-5.png 600w, https://twnb.nbtrisna.my.id/content/images/size/w1000/2024/01/image-5.png 1000w, https://twnb.nbtrisna.my.id/content/images/2024/01/image-5.png 1098w" sizes="(min-width: 720px) 720px"></figure><ol start="2"><li>Sesuaikan nama dari switch, interface yang akan menjadi external network, dan jika sudah sesuai klik <em>OK </em>Untuk membuat virtual switch</li></ol><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/01/image-6.png" class="kg-image" alt="" loading="lazy" width="722" height="687" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/01/image-6.png 600w, https://twnb.nbtrisna.my.id/content/images/2024/01/image-6.png 722w" sizes="(min-width: 720px) 720px"></figure><h3 id="provisioning-vm-ubuntu-server-2204">Provisioning VM Ubuntu Server 22.04</h3><ol><li>Unduh iso ubuntu-server di link <a href="https://ubuntu.com/download/server?ref=dev.nbtrisna.my.id" rel="noreferrer">berikut</a></li></ol><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/02/image.png" class="kg-image" alt="" loading="lazy" width="1318" height="732" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/02/image.png 600w, https://twnb.nbtrisna.my.id/content/images/size/w1000/2024/02/image.png 1000w, https://twnb.nbtrisna.my.id/content/images/2024/02/image.png 1318w" sizes="(min-width: 720px) 720px"></figure><ol start="2"><li>Jika iso ubuntu sudah terunduh, selanjutnya buka hyper-v manager, di menu "Actions" sebelah kanan klik <em>New &gt; Virtual Machine</em></li></ol><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/02/image-1.png" class="kg-image" alt="" loading="lazy" width="1444" height="665" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/02/image-1.png 600w, https://twnb.nbtrisna.my.id/content/images/size/w1000/2024/02/image-1.png 1000w, https://twnb.nbtrisna.my.id/content/images/2024/02/image-1.png 1444w" sizes="(min-width: 720px) 720px"></figure><ol start="3"><li>Nantinya akan muncul popup wizard setup virtual machine yang akan di provisioing. Selanjutnya bisa klik <em>Next</em></li></ol><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/02/image-2.png" class="kg-image" alt="" loading="lazy" width="704" height="533" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/02/image-2.png 600w, https://twnb.nbtrisna.my.id/content/images/2024/02/image-2.png 704w"></figure><ol start="4"><li>Selanjutnya masukan nama virtual machine, dan  klik next. </li></ol><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/02/image-3.png" class="kg-image" alt="" loading="lazy" width="704" height="533" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/02/image-3.png 600w, https://twnb.nbtrisna.my.id/content/images/2024/02/image-3.png 704w"></figure><ol start="5"><li>Untuk menu berikutnya, disini saya memilih VM generasi ke 2 yang telah menggunakan UEFI-Based Firmware. Jika sudah, klik next</li></ol><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/02/image-5.png" class="kg-image" alt="" loading="lazy" width="704" height="533" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/02/image-5.png 600w, https://twnb.nbtrisna.my.id/content/images/2024/02/image-5.png 704w"></figure><ol start="6"><li>Di menu <em>Assign Memory</em>, sesuaikan jumlah memory yang akan dibutuhkan oleh VM. Secara default, vm dalam Hyper-v menggunakan <em>Dynamic Memory</em> yaitu memory dalam vm akan berubah secara dinamis tergantung load yang dijalankan dalam VM. Jika sudah diatur, klik <em>Next</em></li></ol><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/02/image-6.png" class="kg-image" alt="" loading="lazy" width="704" height="533" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/02/image-6.png 600w, https://twnb.nbtrisna.my.id/content/images/2024/02/image-6.png 704w"></figure><ol start="7"><li>Di menu <em>Configure Networking</em>, disini pilih connection dengan switch yang tadi dibuat. Jika sudah klik next</li></ol><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/02/image-7.png" class="kg-image" alt="" loading="lazy" width="704" height="533" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/02/image-7.png 600w, https://twnb.nbtrisna.my.id/content/images/2024/02/image-7.png 704w"></figure><ol start="8"><li>Di menu <em>Connect Virtual Hard Disk, </em>pilih <em>Create a virtual hard disk. </em>Sesuaikan size dari disk VM. Disini saya memilih 30GB. Jika sudah, klik <em>Next</em></li></ol><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/02/image-8.png" class="kg-image" alt="" loading="lazy" width="704" height="533" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/02/image-8.png 600w, https://twnb.nbtrisna.my.id/content/images/2024/02/image-8.png 704w"></figure><ol start="9"><li>Di menu <em>Summary</em>, jika dirasa tidak ada perubahan, klik <em>Finish. </em></li></ol><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/02/image-10.png" class="kg-image" alt="" loading="lazy" width="704" height="533" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/02/image-10.png 600w, https://twnb.nbtrisna.my.id/content/images/2024/02/image-10.png 704w"></figure><p>Hyper-v akan membuat disk, dan VM dalam kondisi Off.</p><blockquote>Step tambahan!!!</blockquote><p>Karena disini menggunakan VM generasi 2, perlu menonaktifkan secure boot, jika ingin booting ke ubuntu. </p><ol><li>Klik kanan di list VM, klik <em>Settings..</em></li></ol><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/02/image-11.png" class="kg-image" alt="" loading="lazy" width="1266" height="667" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/02/image-11.png 600w, https://twnb.nbtrisna.my.id/content/images/size/w1000/2024/02/image-11.png 1000w, https://twnb.nbtrisna.my.id/content/images/2024/02/image-11.png 1266w" sizes="(min-width: 720px) 720px"></figure><ol start="2"><li>Pilih menu <em>Security &gt; </em>Unchecklist <em>Enable Secure boot</em></li></ol><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/02/image-12.png" class="kg-image" alt="" loading="lazy" width="722" height="687" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/02/image-12.png 600w, https://twnb.nbtrisna.my.id/content/images/2024/02/image-12.png 722w" sizes="(min-width: 720px) 720px"></figure><p>Disini juga secara default VM akan menggunakan semua vcpu yang ada dalam Hyper-v Host. Untuk membatasi vcpu bisa ke menu <em>Processor &gt; </em>Sesuaikan <em>Number of virtual processor</em></p><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/02/image-13.png" class="kg-image" alt="" loading="lazy" width="722" height="687" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/02/image-13.png 600w, https://twnb.nbtrisna.my.id/content/images/2024/02/image-13.png 722w" sizes="(min-width: 720px) 720px"></figure><p>Jika sudah, Klik <em>Apply. </em></p><p>Kembali ke hyper-v manager, untuk menyalakan VM, bisa dengan <em>Klik kanan list VM &gt; Start, </em>Atau dengan <em>Pilih VM &gt; Sebelah kanan Start</em></p><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/02/image-14.png" class="kg-image" alt="" loading="lazy" width="1266" height="667" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/02/image-14.png 600w, https://twnb.nbtrisna.my.id/content/images/size/w1000/2024/02/image-14.png 1000w, https://twnb.nbtrisna.my.id/content/images/2024/02/image-14.png 1266w" sizes="(min-width: 720px) 720px"></figure><p>Untuk mengakses VM, bisa dengan memilih <em>Connect.. </em>Dan menyalakan VM dengan klik <em>Start</em></p><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/02/image-15.png" class="kg-image" alt="" loading="lazy" width="642" height="504" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/02/image-15.png 600w, https://twnb.nbtrisna.my.id/content/images/2024/02/image-15.png 642w"></figure><p>VM Sudah start, dan bisa melanjutkan setup hingga selesai</p><figure class="kg-card kg-image-card"><img src="https://twnb.nbtrisna.my.id/content/images/2024/02/image-16.png" class="kg-image" alt="" loading="lazy" width="1026" height="872" srcset="https://twnb.nbtrisna.my.id/content/images/size/w600/2024/02/image-16.png 600w, https://twnb.nbtrisna.my.id/content/images/size/w1000/2024/02/image-16.png 1000w, https://twnb.nbtrisna.my.id/content/images/2024/02/image-16.png 1026w" sizes="(min-width: 720px) 720px"></figure><hr>
+            <h2 id="aws-iam-roles-ec2-instance-profiles">AWS IAM Roles &amp; EC2 Instance Profiles</h2><blockquote>Application that run on EC2 Instance must include AWS credentials in AWS API request. You could have developers to uplaod credentials directly to instances, but developer need to check again the credential can securely access AWS API and update each amaszon credential when time will come. It's painfull workflow.</blockquote><p>Instead you can add should use IAM role to manage temporary credentials for application that run on EC2 instance. When use a role, you don't have to distribute long-term credentials (like sign-in credentials or access keys).</p><p>Reference :</p><ul><li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html?ref=dev.nbtrisna.my.id">Use IAM role to grant permissiont to application running on EC2 Instances</a></li><li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html?ref=dev.nbtrisna.my.id">Instance Metadata Services</a></li></ul><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622091858.png" class="kg-image" alt="Pasted image 20250622091858" loading="lazy" width="621" height="296"></figure><blockquote><strong>Real world usecase :</strong> A web server running on EC2 needs to fetch secrets on AWS System Manager Parameter Store (SSM) and upload logs to S3 bucket-without embedding long-lived api keys in your AMI</blockquote><p><strong>Skenario</strong> : Design IAM Role <code>WebServerRole</code> that allows only <code>ssm:GetParameter</code>, <code>s3:PutObject</code>.</p><h3 id="create-role-webserverrole-with-policy-allows-ssmgetparameter-s3putobject-to-one-bucket-prefix">Create role <code>WebServerRole</code>, with policy allows <code>ssm:GetParameter</code>, <code>s3:PutObject</code> to one bucket prefix</h3><h4 id="s3-bukcet">S3 Bukcet</h4><blockquote>Amazon S3 is an object storage service that offers industry-leading scalability, data availability, security, and performance</blockquote><p>To create bucket first navigate to <code>S3</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622095240.png" class="kg-image" alt="Pasted image 20250622095240" loading="lazy" width="2040" height="1030"></figure><p>Click <code>Create S3</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622095313.png" class="kg-image" alt="Pasted image 20250622095313" loading="lazy" width="2676" height="632"></figure><p>Begin to setup new bucket</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622095618.png" class="kg-image" alt="Pasted image 20250622095618" loading="lazy" width="3254" height="1834"></figure><blockquote>Bucket name must uniqe becaus after a bucket is created, the name of that bucket cannot be used by another AWS account in any AWS Region until the bucket is deleted</blockquote><p>Leave everything with default configuration, and click <code>Create Bucket</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622095729.png" class="kg-image" alt="Pasted image 20250622095729" loading="lazy" width="3254" height="1834"></figure><p>Bucket created.</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622101907.png" class="kg-image" alt="Pasted image 20250622101907" loading="lazy" width="3266" height="972"></figure><h4 id="role">Role</h4><p>Create an IAM Role <code>WebServerRole</code> that's allows only <code>ssm:GetParameter</code>, <code>s3:PutObject</code>.</p><p>Create policy first, with name <code>GetParameterPutObject</code>. Navigate to <code>Identity and Access Management (IAM) &gt; Policies &gt; Create Policies</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622102313.png" class="kg-image" alt="Pasted image 20250622102313" loading="lazy" width="3262" height="794"></figure><p>We configure policy to allow GetParameter on spesific parameter store path on any region</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622102635.png" class="kg-image" alt="Pasted image 20250622102635" loading="lazy" width="3260" height="1776"></figure><p>Then we add allow <code>S3:PutObject</code> to spesific bucket we created</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622102829.png" class="kg-image" alt="Pasted image 20250622102829" loading="lazy" width="2776" height="1620"></figure><p>Review all, when seems correct, begin to create policy</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622103010.png" class="kg-image" alt="Pasted image 20250622103010" loading="lazy" width="3268" height="1772"></figure><p>Policy created</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622103047.png" class="kg-image" alt="Pasted image 20250622103047" loading="lazy" width="3270" height="872"></figure><p>Then we assign new policy to role <code>WebServerRole</code>. Navigate to <code>Identity and Access Management (IAM) &gt; Roles &gt; Create Role</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622102055.png" class="kg-image" alt="Pasted image 20250622102055" loading="lazy" width="3268" height="1204"></figure><p>Configure trusted entity type to Aws Service, and select EC2. <em>Because this role attached to EC2 Instances</em></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622103240.png" class="kg-image" alt="Pasted image 20250622103240" loading="lazy" width="3260" height="1260"></figure><p>We need to checklist policy we want to attached to role</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622103338.png" class="kg-image" alt="Pasted image 20250622103338" loading="lazy" width="2748" height="968"></figure><p>Review again, if all corrected, begin to create role</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622103432.png" class="kg-image" alt="Pasted image 20250622103432" loading="lazy" width="2762" height="1670"></figure><p>Role <code>WebServerRole</code> created.</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622104414.png" class="kg-image" alt="Pasted image 20250622104414" loading="lazy" width="3262" height="820"></figure><h4 id="test-launch-instance-and-attach-webserverrole">Test, launch instance and attach <code>WebServerRole</code></h4><p>When provisioning instance, we need to attach <code>WebServerRole</code> in IAM Profile by access to <code>Advanced Details &gt; IAM Instance Profile</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622104706.png" class="kg-image" alt="Pasted image 20250622104706" loading="lazy" width="2036" height="712"></figure><p>Check role attached using IMDSv2</p><pre><code class="language-sh">TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
+
+curl -H "X-aws-ec2-metadata-token: $TOKEN" \
+  http://169.254.169.254/latest/meta-data/iam/security-credentials/
+</code></pre><p>Result, successfuly to attach role <code>WebServerRole</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622105547.png" class="kg-image" alt="Pasted image 20250622105547" loading="lazy" width="1420" height="160"></figure><p>Trying to get parameter, <code>nb-test</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622105949.png" class="kg-image" alt="Pasted image 20250622105949" loading="lazy" width="3106" height="640"></figure><pre><code class="language-sh">aws ssm get-parameter
+</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622110111.png" class="kg-image" alt="Pasted image 20250622110111" loading="lazy" width="1536" height="424"></figure><p>How about <code>delete-parameter</code></p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622110155.png" class="kg-image" alt="Pasted image 20250622110155" loading="lazy" width="3276" height="182"></figure><p>Denied, because doesn't have policy <code>ssm:DeleteParameter</code></p><p>Try to put <code>helo</code> on S3 Bucket</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622110652.png" class="kg-image" alt="Pasted image 20250622110652" loading="lazy" width="1458" height="140"></figure><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622110703.png" class="kg-image" alt="Pasted image 20250622110703" loading="lazy" width="2734" height="772"></figure><h2 id="daily-quest-5-%E2%80%9Cterraforming-the-multi-tier-vpc%E2%80%9D">Daily Quest #5: “Terraforming the Multi-Tier VPC”</h2><blockquote>Terraform is infrastructure as a code tool. Allow user to create anything resources using a declarative code typically HashiCorp Configuration Language (HCL). This can make infrastructure more flexible using code instead of accessing console again-and again.</blockquote><p>Reference :</p><ul><li><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs?ref=dev.nbtrisna.my.id">AWS Providers Terraform</a></li><li><a href="https://developer.hashicorp.com/terraform/tutorials/aws-get-started?ref=dev.nbtrisna.my.id">https://developer.hashicorp.com/terraform/tutorials/aws-get-started</a></li></ul><p>Infrastructure as Code (IaC) tools allow you to manage infrastructure with configuration files rather than through a graphical user interface. IaC allows you to build, change, and manage your infrastructure in a safe, consistent, and repeatable way by defining resource configurations that you can version, reuse, and share.</p><p>So in this section, i want to create IaaC base from <a href="https://twnb.nbtrisna.my.id/21-june-25/?ref=dev.nbtrisna.my.id">this article</a> section <em>Daily Quest #3: AWS Networking &amp; VPC Deep Dive</em></p><h2 id="setup-opentofu">Setup OpenTofu</h2><blockquote>Opentofu is opensource alternative for terraform.</blockquote><p>Reference :</p><ul><li>https://opentofu.org/docs/intro/install/</li></ul><p>I'm using <em>Ubuntu</em> os so i prefer to chose <code>deb</code> install method</p><pre><code class="language-sh">curl --proto '=https' --tlsv1.2 -fsSL https://get.opentofu.org/install-opentofu.sh -o install-opentofu.sh
+
+chmod +x install-opentofu.sh
+
+./install-opentofu.sh --install-method deb
+
+# verify install
+tofu version
+</code></pre><p>Result</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622151825.png" class="kg-image" alt="Pasted image 20250622151825" loading="lazy" width="308" height="132"></figure><h3 id="setup-vpc">Setup VPC</h3><ol><li>Create file <code>main.tf</code> with AWS provider and region</li></ol><pre><code class="language-tf">terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~&gt; 5.0"
+    }
+  }
+}
+
+# Configure the AWS Provider
+provider "aws" {
+  region = "ap-southeast-1"
+}
+</code></pre><ol start="2"><li>Setup variable.</li></ol><p>On terraform, input variable let you customize aspects of modules without altering the module's own source code. This function allows to share modules accrost different terraform configuration. Create file called <code>variable.tf</code>. <a href="https://opentofu.org/docs/language/values/variables/?ref=dev.nbtrisna.my.id#declaring-an-input-variable">Reference</a></p><pre><code class="language-tf">variable "vpc_cidr" {
+  type = string
+}
+
+variable "subnet" {
+  type = map(object({
+    subnet_range      = string
+    availability_zone = string
+    type              = string
+  }))
+}
+
+variable "natgw_name" {
+  type = string
+}
+
+variable "route_tables" {
+  type = map(
+    object({
+      cidr_source       = string
+      route_destination = string
+    })
+  )
+}
+</code></pre><p>Then setup <code>main.tf</code></p><pre><code class="language-tf">terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~&gt; 5.0"
+    }
+  }
+}
+
+# Configure the AWS Provider
+provider "aws" {
+  region = "ap-southeast-1"
+}
+
+resource "aws_vpc" "nb-chatgpt-vpc" {
+  cidr_block = var.vpc_cidr
+  tags = {
+    "Name" = "nb-chatgpt-vpc"
+  }
+}
+
+resource "aws_subnet" "nb-subnet" {
+  vpc_id   = aws_vpc.nb-chatgpt-vpc.id
+  for_each = var.subnet
+
+  cidr_block        = each.value.subnet_range
+  availability_zone = each.value.availability_zone
+  tags = {
+    "Name" = each.key
+    "Type" = each.value.type
+  }
+}
+
+resource "aws_internet_gateway" "nb-inet-gw" {
+  vpc_id = aws_vpc.nb-chatgpt-vpc.id
+
+  tags = {
+    Name = "nb-inet-gw"
+  }
+}
+
+resource "aws_eip" "nb-eip-nat-gw" {
+  tags = {
+    "Name" = "nb-eip-nat-gw"
+  }
+}
+
+locals {
+  public_subnet_ids = [
+    for key, subnet in var.subnet : aws_subnet.nb-subnet[key].id
+    if subnet.type == "public"
+  ]
+  private_subnet_ids = [
+    for key, subnet in var.subnet : aws_subnet.nb-subnet[key].id
+    if subnet.type == "private"
+  ]
+}
+
+resource "aws_nat_gateway" "nb-nat-gw" {
+  depends_on        = [aws_eip.nb-eip-nat-gw]
+  allocation_id     = aws_eip.nb-eip-nat-gw.id
+  subnet_id         = local.public_subnet_ids[0]
+  connectivity_type = "public"
+  tags = {
+    "Name" : var.natgw_name
+  }
+}
+
+resource "aws_route_table" "net-public" {
+  for_each = var.route_tables
+  vpc_id   = aws_vpc.nb-chatgpt-vpc.id
+
+  route {
+    cidr_block     = each.value.cidr_source
+    gateway_id     = each.value.route_destination == "igw" ? aws_internet_gateway.nb-inet-gw.id : null
+    nat_gateway_id = each.value.route_destination == "nat" ? aws_nat_gateway.nb-nat-gw.id : null
+  }
+}
+
+resource "aws_route_table_association" "public" {
+  subnet_id      = aws_subnet.nb-subnet["public-net"].id
+  route_table_id = aws_route_table.net-public["public"].id
+}
+
+resource "aws_route_table_association" "private" {
+  subnet_id      = aws_subnet.nb-subnet["private-net"].id
+  route_table_id = aws_route_table.net-public["private"].id
+}
+
+output "vpc_id" {
+  value = aws_vpc.nb-chatgpt-vpc.id
+}
+
+output "public_subnet_id" {
+  value = local.public_subnet_ids
+}
+
+output "private_subnet_id" {
+  value = local.private_subnet_ids
+}
+
+output "nat_gateway_public_ip" {
+  value = aws_nat_gateway.nb-nat-gw.public_ip
+}
+</code></pre><p>Then setup all value for variable in <code>dev.tfvars</code></p><pre><code class="language-sh">vpc_cidr = "10.0.0.0/16"
+subnet = {
+  "public-net" = {
+    subnet_range      = "10.0.1.0/24"
+    availability_zone = "ap-southeast-1c"
+    type              = "public"
+  },
+  "private-net" = {
+    subnet_range      = "10.0.2.0/24"
+    availability_zone = "ap-southeast-1c"
+    type              = "private"
+  }
+}
+
+natgw_name = "nb-natgw"
+
+route_tables = {
+  "private" = {
+    cidr_source       = "0.0.0.0/0"
+    route_destination = "nat"
+  },
+  "public" = {
+    cidr_source       = "0.0.0.0/0"
+    route_destination = "igw"
+  }
+}
+
+</code></pre><p>Then Init, plan, apply</p><pre><code class="language-sh">tofu init
+tofu plan -var-file=dev.tfvars
+
+# if everything correct, apply to create resources
+tofu apply
+</code></pre><p>Result</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622193558.png" class="kg-image" alt="Pasted image 20250622193558" loading="lazy" width="504" height="240"></figure><h3 id="testing">Testing</h3><p>Create 2 ec2 instances</p><p><strong>Instance : public-net</strong>, Attach public subnet, and attach elastic-ip for access. Access to instances, check public_ip,</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622194131.png" class="kg-image" alt="Pasted image 20250622194131" loading="lazy" width="2348" height="1482"></figure><p><em>public-net</em> instance using same as <em>public_ipv4</em> attached to instance.</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622194500.png" class="kg-image" alt="Pasted image 20250622194500" loading="lazy" width="1468" height="468"></figure><p>Then access <em>private-net</em> instances from <em>public-net</em>. Makesure public ip using nat gateway address.</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250622194835.png" class="kg-image" alt="Pasted image 20250622194835" loading="lazy" width="1236" height="476"></figure><p>Using nat-gateway address.</p>
         </section>
 
     </article>
@@ -397,35 +572,6 @@ Preparation
                 <div class="gh-container-inner gh-inner">
                     <h2 class="gh-container-title">Read more</h2>
                     <div class="gh-feed">
-                            <article class="gh-card post no-image">
-    <a class="gh-card-link" href="/22-june-25/">
-            <figure class="gh-card-image">
-                <img
-                    srcset="https://photoby.nbtrisna.my.id/1e929f06-0136-4b70-8924-cd9e66ff281b.jpg 160w,
-                            https://photoby.nbtrisna.my.id/1e929f06-0136-4b70-8924-cd9e66ff281b.jpg 320w,
-                            https://photoby.nbtrisna.my.id/1e929f06-0136-4b70-8924-cd9e66ff281b.jpg 600w,
-                            https://photoby.nbtrisna.my.id/1e929f06-0136-4b70-8924-cd9e66ff281b.jpg 960w,
-                            https://photoby.nbtrisna.my.id/1e929f06-0136-4b70-8924-cd9e66ff281b.jpg 1200w,
-                            https://photoby.nbtrisna.my.id/1e929f06-0136-4b70-8924-cd9e66ff281b.jpg 2000w"
-                    sizes="320px"
-                    src="https://photoby.nbtrisna.my.id/1e929f06-0136-4b70-8924-cd9e66ff281b.jpg"
-                    alt="22-June-25"
-                    loading="lazy"
-                >
-            </figure>
-        <div class="gh-card-wrapper">
-            <h3 class="gh-card-title is-title">22-June-25</h3>
-                <p class="gh-card-excerpt is-body">Learn IAM Roles, EC2 Instance Profile &amp; Provisioning VPC using Iaac (Terraform)</p>
-            <footer class="gh-card-meta">
-<!--
-             -->
-                    <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
-                    <time class="gh-card-date" datetime="2025-06-22">22 Jun 2025</time>
-                <!--
-         --></footer>
-        </div>
-    </a>
-</article>
                             <article class="gh-card post no-image">
     <a class="gh-card-link" href="/21-june-25/">
             <figure class="gh-card-image">
@@ -508,6 +654,35 @@ Preparation
              -->
                     <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
                     <time class="gh-card-date" datetime="2025-06-19">19 Jun 2025</time>
+                <!--
+         --></footer>
+        </div>
+    </a>
+</article>
+                            <article class="gh-card post no-image">
+    <a class="gh-card-link" href="/18-june-25/">
+            <figure class="gh-card-image">
+                <img
+                    srcset="https://photoby.nbtrisna.my.id/e7be8378-6c86-473e-b6fd-b78721e50f15.jpg 160w,
+                            https://photoby.nbtrisna.my.id/e7be8378-6c86-473e-b6fd-b78721e50f15.jpg 320w,
+                            https://photoby.nbtrisna.my.id/e7be8378-6c86-473e-b6fd-b78721e50f15.jpg 600w,
+                            https://photoby.nbtrisna.my.id/e7be8378-6c86-473e-b6fd-b78721e50f15.jpg 960w,
+                            https://photoby.nbtrisna.my.id/e7be8378-6c86-473e-b6fd-b78721e50f15.jpg 1200w,
+                            https://photoby.nbtrisna.my.id/e7be8378-6c86-473e-b6fd-b78721e50f15.jpg 2000w"
+                    sizes="320px"
+                    src="https://photoby.nbtrisna.my.id/e7be8378-6c86-473e-b6fd-b78721e50f15.jpg"
+                    alt="18-June-25"
+                    loading="lazy"
+                >
+            </figure>
+        <div class="gh-card-wrapper">
+            <h3 class="gh-card-title is-title">18-June-25</h3>
+                <p class="gh-card-excerpt is-body">Performance optimization in ci/cd pipeline focus on faster build &amp; test for example using feature like caching, and pararel jobs</p>
+            <footer class="gh-card-meta">
+<!--
+             -->
+                    <span class="gh-card-author">By I Gusti Ngurah Bagus Trisna Andika</span>
+                    <time class="gh-card-date" datetime="2025-06-18">18 Jun 2025</time>
                 <!--
          --></footer>
         </div>
