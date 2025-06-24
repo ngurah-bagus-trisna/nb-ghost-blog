@@ -60,7 +60,7 @@
     <meta property="og:url" content="https://twnb.nbtrisna.my.id/24-june-25/">
     <meta property="og:image" content="https://photoby.nbtrisna.my.id/ba96ce4c-f7b8-429c-9b7f-cd9ea6ac6482.jpg">
     <meta property="article:published_time" content="2025-06-24T15:43:34.000Z">
-    <meta property="article:modified_time" content="2025-06-24T15:43:34.000Z">
+    <meta property="article:modified_time" content="2025-06-24T15:46:32.000Z">
     <meta property="article:tag" content="daily-notes">
     
     <meta name="twitter:card" content="summary_large_image">
@@ -103,7 +103,7 @@
     "headline": "24-June-25",
     "url": "https://twnb.nbtrisna.my.id/24-june-25/",
     "datePublished": "2025-06-24T15:43:34.000Z",
-    "dateModified": "2025-06-24T15:43:34.000Z",
+    "dateModified": "2025-06-24T15:46:32.000Z",
     "image": {
         "@type": "ImageObject",
         "url": "https://photoby.nbtrisna.my.id/ba96ce4c-f7b8-429c-9b7f-cd9ea6ac6482.jpg",
@@ -373,7 +373,7 @@
         </header>
 
         <section class="gh-content gh-canvas is-body">
-            <h3 id="daily-quest-7-rds-serverless-foundationspart-2">Daily Quest #7: RDS &amp; Serverless Foundations - Part 2</h3><blockquote>AWS have service called <code>Lambda</code> for serverless application. Lambda can run code without provisioning or managing servers. Lambda runs your code on a high-availibilty compute infrastructure and manage all the computing resources, including servers and operating systems maintenance, capacity provisioning, automatic scaling &amp; loging.</blockquote><p>Reference :</p><ul><li>https://docs.aws.amazon.com/lambda/latest/dg/welcome.html</li></ul><p>All source code stored :</p><p>When using lambda, you are responsible only for code. Lambda mange the compute and other resources to run your code. In this journey, i want to create lambda for reporting access to database RDS and run simple <code>SELECT NOW();</code>, then put to S3 bucket by serializing result to JSON.</p><p>This is a squel to yersterday's article, about <a href="https://twnb.nbtrisna.my.id/22-june-25/?ref=dev.nbtrisna.my.id">RDS &amp; Serverless Foundations</a>. You may want to visit that article before continue</p><ol><li>Create bucket resource in <code>s3.tf</code></li></ol><p>This terraform resources, provisoning bucket called <code>nb-quest-reports</code> and attach public_access_block to deny all acl, policy &amp; securing access to bucket</p><pre><code class="language-hcl">resource "aws_s3_bucket" "nb-quest-reports" {
+            <h3 id="daily-quest-7-rds-serverless-foundationspart-2">Daily Quest #7: RDS &amp; Serverless Foundations - Part 2</h3><blockquote>AWS have service called <code>Lambda</code> for serverless application. Lambda can run code without provisioning or managing servers. Lambda runs your code on a high-availibilty compute infrastructure and manage all the computing resources, including servers and operating systems maintenance, capacity provisioning, automatic scaling &amp; loging.</blockquote><p>Reference :</p><ul><li>https://docs.aws.amazon.com/lambda/latest/dg/welcome.html</li></ul><p>All source code stored : <a href="https://github.com/ngurah-bagus-trisna/aws-vpc-iaac?ref=dev.nbtrisna.my.id">https://github.com/ngurah-bagus-trisna/aws-vpc-iaac</a></p><p>When using lambda, you are responsible only for code. Lambda mange the compute and other resources to run your code. In this journey, i want to create lambda for reporting access to database RDS and run simple <code>SELECT NOW();</code>, then put to S3 bucket by serializing result to JSON.</p><p>This is a squel to yersterday's article, about <a href="https://twnb.nbtrisna.my.id/22-june-25/?ref=dev.nbtrisna.my.id">RDS &amp; Serverless Foundations</a>. You may want to visit that article before continue</p><ol><li>Create bucket resource in <code>s3.tf</code></li></ol><p>This terraform resources, provisoning bucket called <code>nb-quest-reports</code> and attach public_access_block to deny all acl, policy &amp; securing access to bucket</p><pre><code class="language-hcl">resource "aws_s3_bucket" "nb-quest-reports" {
   bucket = "nb-quest-reports"
   tags = {
     "Name" = "nb-quest-report"
