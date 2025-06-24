@@ -1,4 +1,229 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[twnb]]></title><description><![CDATA[Tech with Ngurah Bagus]]></description><link>https://twnb.nbtrisna.my.id/</link><image><url>https://twnb.nbtrisna.my.id/favicon.png</url><title>twnb</title><link>https://twnb.nbtrisna.my.id/</link></image><generator>Ghost 5.125</generator><lastBuildDate>Tue, 24 Jun 2025 02:09:13 GMT</lastBuildDate><atom:link href="https://twnb.nbtrisna.my.id/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[23-June-25]]></title><description><![CDATA[Learn Provisioning Infrastructure Using Terraform on AWS for EC2 and RDS.]]></description><link>https://twnb.nbtrisna.my.id/23-june-25/</link><guid isPermaLink="false">685986ebdace4b00019e526c</guid><category><![CDATA[daily-notes]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Mon, 23 Jun 2025 16:56:41 GMT</pubDate><media:content url="https://photoby.nbtrisna.my.id/f360beaa-fa84-4e16-8898-e5485cb673bd.jpg" medium="image"/><content:encoded><![CDATA[<h2 id="daily-quest-7-rds-serverless-foundations">Daily Quest #7: RDS &amp; Serverless Foundations</h2><blockquote>Amazon RDS (Relational Database Service) is a web service that makes it easier to setup, operate, and scale a relational database in the AWS Cloud. AWS have feature to run code without provisioning and managing server. It&apos;s callled Lambda for serverless services. So today i learn to provisioning infrastructure App Server on EC2, MySQL RDS, and reporting using lambda write result an S3 Bucket</blockquote><img src="https://photoby.nbtrisna.my.id/f360beaa-fa84-4e16-8898-e5485cb673bd.jpg" alt="23-June-25"><p>Reference :</p><ul><li>https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html</li><li>https://docs.aws.amazon.com/lambda/latest/dg/welcome.html</li></ul><p><strong>Skenario :</strong> Build VPC and IAM mastery by standing up a private RDS database and a serverless reporting Lambda&#x2014;glued together with least-privilege IAM.</p><p>All source code stored in :</p><ul><li>https://github.com/ngurah-bagus-trisna/aws-vpc-iaac</li></ul><ol><li>Create <code>provider.tf</code></li></ol><p>This file store about provider/extention for resources needed. In this i&apos;m using provider from <code>hashicorp/aws</code></p><pre><code class="language-tf file:provider.tf">terraform {
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[twnb]]></title><description><![CDATA[Tech with Ngurah Bagus]]></description><link>https://twnb.nbtrisna.my.id/</link><image><url>https://twnb.nbtrisna.my.id/favicon.png</url><title>twnb</title><link>https://twnb.nbtrisna.my.id/</link></image><generator>Ghost 5.125</generator><lastBuildDate>Tue, 24 Jun 2025 15:43:39 GMT</lastBuildDate><atom:link href="https://twnb.nbtrisna.my.id/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[24-June-25]]></title><description><![CDATA[Continue learn about AWS Lambda & Provisioning Lambda Function On AWS Using Terraform ]]></description><link>https://twnb.nbtrisna.my.id/24-june-25/</link><guid isPermaLink="false">685ac733dace4b00019e527b</guid><category><![CDATA[daily-notes]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Tue, 24 Jun 2025 15:43:34 GMT</pubDate><media:content url="https://photoby.nbtrisna.my.id/ba96ce4c-f7b8-429c-9b7f-cd9ea6ac6482.jpg" medium="image"/><content:encoded><![CDATA[<h3 id="daily-quest-7-rds-serverless-foundationspart-2">Daily Quest #7: RDS &amp; Serverless Foundations - Part 2</h3><blockquote>AWS have service called <code>Lambda</code> for serverless application. Lambda can run code without provisioning or managing servers. Lambda runs your code on a high-availibilty compute infrastructure and manage all the computing resources, including servers and operating systems maintenance, capacity provisioning, automatic scaling &amp; loging.</blockquote><img src="https://photoby.nbtrisna.my.id/ba96ce4c-f7b8-429c-9b7f-cd9ea6ac6482.jpg" alt="24-June-25"><p>Reference :</p><ul><li>https://docs.aws.amazon.com/lambda/latest/dg/welcome.html</li></ul><p>All source code stored :</p><p>When using lambda, you are responsible only for code. Lambda mange the compute and other resources to run your code. In this journey, i want to create lambda for reporting access to database RDS and run simple <code>SELECT NOW();</code>, then put to S3 bucket by serializing result to JSON.</p><p>This is a squel to yersterday&apos;s article, about <a href="https://twnb.nbtrisna.my.id/22-june-25/?ref=dev.nbtrisna.my.id">RDS &amp; Serverless Foundations</a>. You may want to visit that article before continue</p><ol><li>Create bucket resource in <code>s3.tf</code></li></ol><p>This terraform resources, provisoning bucket called <code>nb-quest-reports</code> and attach public_access_block to deny all acl, policy &amp; securing access to bucket</p><pre><code class="language-hcl">resource &quot;aws_s3_bucket&quot; &quot;nb-quest-reports&quot; {
+  bucket = &quot;nb-quest-reports&quot;
+  tags = {
+    &quot;Name&quot; = &quot;nb-quest-report&quot;
+  }
+}
+
+resource &quot;aws_s3_bucket_public_access_block&quot; &quot;nb-quest-deny-access&quot; {
+  bucket = aws_s3_bucket.nb-quest-reports.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+</code></pre><ol start="2"><li>Define IAM policy for lambda, allowing to access <code>ssm:GetParameter</code>, and <code>s3:PutObject</code>. Write into <code>lambda.tf</code></li></ol><p>First create an <code>aws_iam_poicy</code> called <code>lambdaPolicy</code>, that allows following actions :</p><ul><li>Put object to AWS S3 storage</li><li>Allow get parameter from AWS System Manager</li><li>Allow get secret from AWS Secrets Manager.</li></ul><p>After policy created, create role with effect <code>Allows</code> only Lambda service can use this role. Then attach new policy to role.</p><pre><code class="language-hcl">resource &quot;aws_iam_policy&quot; &quot;lambda-policy&quot; {
+  name        = &quot;lambdaPolicy&quot;
+  path        = &quot;/&quot;
+  description = &quot;Allow write to S3 and read System Parameter&quot;
+
+  policy = jsonencode({
+    &quot;Version&quot; = &quot;2012-10-17&quot;,
+    &quot;Statement&quot; = [
+      {
+        &quot;Sid&quot;    = &quot;AllowPutObject&quot;,
+        &quot;Effect&quot; = &quot;Allow&quot;,
+        &quot;Action&quot; = [
+          &quot;s3:PutObject&quot;
+        ],
+        &quot;Resource&quot; = [
+          &quot;*&quot;
+        ]
+      },
+      {
+        &quot;Sid&quot;    = &quot;AllowGetParameterSSM&quot;,
+        &quot;Effect&quot; = &quot;Allow&quot;,
+        &quot;Action&quot; = [
+          &quot;ssm:GetParameter&quot;
+        ],
+        &quot;Resource&quot; = [
+          &quot;*&quot;
+        ]
+      },
+      {
+        &quot;Sid&quot;    = &quot;AllowGetSecretValue&quot;,
+        &quot;Effect&quot; = &quot;Allow&quot;,
+        &quot;Action&quot; = [
+          &quot;secretsmanager:GetSecretValue&quot;
+        ],
+        &quot;Resource&quot; = [
+          &quot;*&quot;
+        ]
+      },
+      {
+        &quot;Sid&quot;: &quot;AllowManageENI&quot;,
+        &quot;Effect&quot;: &quot;Allow&quot;,
+        &quot;Action&quot;: [
+          &quot;ec2:CreateNetworkInterface&quot;,
+          &quot;ec2:DescribeNetworkInterfaces&quot;,
+          &quot;ec2:DeleteNetworkInterface&quot;
+        ],
+        &quot;Resource&quot;: &quot;*&quot;
+      },
+      {
+        &quot;Sid&quot;: &quot;AllowCloudWatchLogs&quot;,
+        &quot;Effect&quot;: &quot;Allow&quot;,
+        &quot;Action&quot;: [
+          &quot;logs:CreateLogGroup&quot;,
+          &quot;logs:CreateLogStream&quot;,
+          &quot;logs:PutLogEvents&quot;
+        ],
+        &quot;Resource&quot;: &quot;*&quot;
+      }
+    ]
+    }
+  )
+}
+
+resource &quot;aws_iam_role&quot; &quot;reporting_lambda_role&quot; {
+  depends_on = [aws_iam_policy.lambda-policy]
+  name       = &quot;ReportingLambdaRole&quot;
+  assume_role_policy = jsonencode({
+    Version = &quot;2012-10-17&quot;,
+    Statement = [
+      {
+        Effect = &quot;Allow&quot;
+        Principal = {
+          Service = &quot;lambda.amazonaws.com&quot;
+        },
+        Action = &quot;sts:AssumeRole&quot;
+      }
+    ]
+  })
+}
+
+resource &quot;aws_iam_role_policy_attachment&quot; &quot;lambda_policy_attachment&quot; {
+  depends_on = [
+    aws_iam_policy.lambda-policy,
+    aws_iam_role.reporting_lambda_role
+  ]
+  role       = aws_iam_role.reporting_lambda_role.name
+  policy_arn = aws_iam_policy.lambda-policy.arn
+}
+
+resource &quot;aws_lambda_function&quot; &quot;db_to_s3_lambda&quot; {
+  depends_on = [
+    aws_db_instance.nb-db,
+    aws_s3_bucket.nb-quest-reports,
+    aws_iam_role_policy_attachment.lambda_policy_attachment
+  ]
+  function_name    = &quot;dbToS3Lambda&quot;
+  handler          = &quot;app.lambda_handler&quot;
+  runtime          = &quot;python3.12&quot;
+  filename         = &quot;${path.module}/lambda.zip&quot;
+  role             = aws_iam_role.reporting_lambda_role.arn
+  source_code_hash = filebase64sha256(&quot;${path.module}/lambda.zip&quot;)
+  timeout          = 10
+
+  vpc_config {
+    subnet_ids = [aws_subnet.nb-subnet[&quot;private-net-1&quot;].id]
+    security_group_ids = [aws_security_group.rds-sg.id, aws_security_group.web-sg.id]
+  }
+  
+  environment {
+    variables = {
+      SECRET_NAME = aws_db_instance.nb-db.master_user_secret[0].secret_arn
+      BUCKET_NAME = aws_s3_bucket.nb-quest-reports.id
+      DB_HOST     = aws_db_instance.nb-db.address
+      DB_USER     = aws_db_instance.nb-db.username
+      DB_NAME     = aws_db_instance.nb-db.db_name
+    }
+  }
+}
+</code></pre><ol start="3"><li>Create Lambda function.</li></ol><p>In this section i use python to create function with the following action :</p><ul><li>Read DB credentials (from Env / SSM / Secrets Manager)</li><li>Connect to the RDS endpoint</li><li>Run a simple <code>SELECT NOW();</code> query</li><li>Serialize the result to JSON and <code>PUT</code> it into your S3 bucket</li></ul><pre><code class="language-py">import boto3
+import pymysql
+import os
+import json
+import time
+from datetime import datetime
+from botocore.exceptions import ClientError
+
+def lambda_handler(event, context):
+    print(&quot;&#x1F680; Lambda started.&quot;)
+
+    # Step 1: Load env vars
+    try:
+        secret_name = os.environ[&apos;SECRET_NAME&apos;]
+        bucket_name = os.environ[&apos;BUCKET_NAME&apos;]
+        db_host = os.environ[&apos;DB_HOST&apos;]
+        db_user = os.environ[&apos;DB_USER&apos;]
+        db_name = os.environ[&apos;DB_NAME&apos;]
+        print(f&quot;&#x2705; Env vars loaded:\n  DB_HOST={db_host}\n  DB_USER={db_user}\n  DB_NAME={db_name}\n  BUCKET={bucket_name}&quot;)
+    except KeyError as e:
+        print(f&quot;&#x274C; Missing environment variable: {str(e)}&quot;)
+        return {&quot;statusCode&quot;: 500, &quot;body&quot;: &quot;Missing environment variable&quot;}
+
+    # Step 2: Get DB password from Secrets Manager
+    try:
+        secrets_client = boto3.client(&apos;secretsmanager&apos;)
+        print(&quot;&#x1F50D; Fetching password from Secrets Manager...&quot;)
+        start_time = time.time()
+        secret_value = secrets_client.get_secret_value(SecretId=secret_name)
+        password = json.loads(secret_value[&apos;SecretString&apos;])[&apos;password&apos;]
+        print(f&quot;&#x2705; Password fetched in {round(time.time() - start_time, 2)}s&quot;)
+    except ClientError as e:
+        print(f&quot;&#x274C; Failed to get secret: {e.response[&apos;Error&apos;][&apos;Message&apos;]}&quot;)
+        return {&quot;statusCode&quot;: 500, &quot;body&quot;: &quot;Failed to get DB password&quot;}
+    except Exception as e:
+        print(f&quot;&#x274C; Unexpected error getting secret: {str(e)}&quot;)
+        return {&quot;statusCode&quot;: 500, &quot;body&quot;: &quot;Error while retrieving secret&quot;}
+
+    # Step 3: Connect to DB
+    try:
+        print(&quot;&#x1F50C; Connecting to DB...&quot;)
+        start_time = time.time()
+        conn = pymysql.connect(
+            host=db_host,
+            user=db_user,
+            password=password,
+            db=db_name,
+            connect_timeout=5
+        )
+        print(f&quot;&#x2705; Connected to DB in {round(time.time() - start_time, 2)}s&quot;)
+    except Exception as e:
+        print(f&quot;&#x274C; DB connection failed: {str(e)}&quot;)
+        return {&quot;statusCode&quot;: 500, &quot;body&quot;: &quot;Failed to connect to database&quot;}
+
+    # Step 4: Run SELECT NOW()
+    try:
+        print(&quot;&#x1F4E1; Executing query...&quot;)
+        start_time = time.time()
+        with conn.cursor() as cursor:
+            cursor.execute(&quot;SELECT NOW();&quot;)
+            result = cursor.fetchone()
+        conn.close()
+        print(f&quot;&#x2705; Query result: {result[0]} in {round(time.time() - start_time, 2)}s&quot;)
+    except Exception as e:
+        print(f&quot;&#x274C; Query failed: {str(e)}&quot;)
+        return {&quot;statusCode&quot;: 500, &quot;body&quot;: &quot;DB query failed&quot;}
+
+    # Step 5: Upload to S3
+    try:
+        print(&quot;&#x2601;&#xFE0F; Uploading to S3...&quot;)
+        start_time = time.time()
+        s3_client = boto3.client(&apos;s3&apos;)
+        payload = json.dumps({&quot;timestamp&quot;: str(result[0])})
+        filename = f&quot;timestamp_{datetime.utcnow().isoformat()}.json&quot;
+
+        s3_client.put_object(
+            Bucket=bucket_name,
+            Key=filename,
+            Body=payload
+        )
+        print(f&quot;&#x2705; Uploaded to S3: {filename} in {round(time.time() - start_time, 2)}s&quot;)
+    except Exception as e:
+        print(f&quot;&#x274C; Failed to upload to S3: {str(e)}&quot;)
+        return {&quot;statusCode&quot;: 500, &quot;body&quot;: &quot;S3 upload failed&quot;}
+
+    return {
+        &quot;statusCode&quot;: 200,
+        &quot;body&quot;: f&quot;Saved to S3 as {filename}&quot;
+    }
+</code></pre><ol start="4"><li>Plan + Provisioning to AWS</li></ol><pre><code class="language-sh">tofu plan 
+tofu apply
+</code></pre><h3 id="result">Result</h3><p>Test in AWS Lambda dashboard</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250624151837.png" class="kg-image" alt="24-June-25" loading="lazy" width="1490" height="555"></figure><p>Done fetch data from DB to S3 Storage</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250624145529.png" class="kg-image" alt="24-June-25" loading="lazy" width="1505" height="435"></figure><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250624145649.png" class="kg-image" alt="24-June-25" loading="lazy" width="494" height="113"></figure>]]></content:encoded></item><item><title><![CDATA[23-June-25]]></title><description><![CDATA[Learn Provisioning Infrastructure Using Terraform on AWS for EC2 and RDS.]]></description><link>https://twnb.nbtrisna.my.id/23-june-25/</link><guid isPermaLink="false">685986ebdace4b00019e526c</guid><category><![CDATA[daily-notes]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Mon, 23 Jun 2025 16:56:41 GMT</pubDate><media:content url="https://photoby.nbtrisna.my.id/f360beaa-fa84-4e16-8898-e5485cb673bd.jpg" medium="image"/><content:encoded><![CDATA[<h2 id="daily-quest-7-rds-serverless-foundations">Daily Quest #7: RDS &amp; Serverless Foundations</h2><blockquote>Amazon RDS (Relational Database Service) is a web service that makes it easier to setup, operate, and scale a relational database in the AWS Cloud. AWS have feature to run code without provisioning and managing server. It&apos;s callled Lambda for serverless services. So today i learn to provisioning infrastructure App Server on EC2, MySQL RDS, and reporting using lambda write result an S3 Bucket</blockquote><img src="https://photoby.nbtrisna.my.id/f360beaa-fa84-4e16-8898-e5485cb673bd.jpg" alt="23-June-25"><p>Reference :</p><ul><li>https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html</li><li>https://docs.aws.amazon.com/lambda/latest/dg/welcome.html</li></ul><p><strong>Skenario :</strong> Build VPC and IAM mastery by standing up a private RDS database and a serverless reporting Lambda&#x2014;glued together with least-privilege IAM.</p><p>All source code stored in :</p><ul><li>https://github.com/ngurah-bagus-trisna/aws-vpc-iaac</li></ul><ol><li>Create <code>provider.tf</code></li></ol><p>This file store about provider/extention for resources needed. In this i&apos;m using provider from <code>hashicorp/aws</code></p><pre><code class="language-tf file:provider.tf">terraform {
   required_providers {
     aws = {
       source  = &quot;hashicorp/aws&quot;
@@ -1626,202 +1851,4 @@ server = &quot;https://registry.k8s.io&quot;
       config_path = &quot;/etc/containerd/certs.d&quot; # enable
 </code></pre><p>Restart containerd &amp; try pull registry.k8s.io</p><pre><code class="language-sh">sudo systemctl restart containerd.io
 sudo crictl pull registry.k8s.io/kube-proxy:v1.27.2
-</code></pre>]]></content:encoded></item><item><title><![CDATA[nginx-upstream ingress]]></title><description><![CDATA[Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.]]></description><link>https://twnb.nbtrisna.my.id/nginx-upstream-ingress/</link><guid isPermaLink="false">68560866dace4b00019e522b</guid><category><![CDATA[catatan]]></category><dc:creator><![CDATA[I Gusti Ngurah Bagus Trisna Andika]]></dc:creator><pubDate>Sat, 07 Jun 2025 01:18:00 GMT</pubDate><media:content url="https://photoby.nbtrisna.my.id/970b8a66-2d6c-49e9-bbf7-b0b72a1d5c7e.jpg" medium="image"/><content:encoded><![CDATA[<img src="https://photoby.nbtrisna.my.id/970b8a66-2d6c-49e9-bbf7-b0b72a1d5c7e.jpg" alt="nginx-upstream ingress"><p>Refrensi : https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/</p><p>Untuk mengetahui values dari helm, bisa mengunjungi link <a href="https://artifacthub.io/packages/helm/?ref=dev.nbtrisna.my.id">ArtifactHub</a></p><p>Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan <code>Custom Resource Definitions</code> untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut.</p><blockquote><code>controller.enableCustomResources</code>&#xA0;set to&#xA0;<code>false</code>&#xA0;and&#xA0;<code>controller.appprotect.enable</code>&#xA0;set to&#xA0;<code>false</code> and&#xA0;<code>controller.appprotectdos.enable</code>&#xA0;set to&#xA0;<code>false</code>), the installation of the CRDs can be skipped by specifying&#xA0;<code>--skip-crds</code>&#xA0;for the helm install command.</blockquote><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230621032858.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="955" height="213"></figure><p>Untuk disini saya akan menggunakan default setting yaitu dengan crd</p><pre><code class="language-sh">helm install nginx-ingress oci://ghcr.io/nginxinc/charts/nginx-ingress --version 3.1.1 --namespace nginx-ingress --create-namespace --set controller.ingressClass=nginx-ingress 
-</code></pre><p>Setelah installasi, secara otomatis CRD akan terdeploy juga</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230621035659.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1567" height="214"></figure><p>Verifikasi, Pastikan semua running dan coba untuk expos nginx-deployment dengan ingress-class nginx-ingress</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230621035741.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="937" height="211"></figure><pre><code class="language-sh">kubectl create ingress nginx-ingress --rule=&quot;nginx-ingress.ok/*=nginx:80&quot; --class nginx-ingress
-</code></pre><p>Works</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230621040351.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="938" height="230"></figure><h3 id="monitoring-using-servicemonitors">Monitoring using servicemonitors</h3><p>Create svc port <code>prometheus</code></p><pre><code class="language-yaml">kubectl edit svc -n nginx-ingress nginx-ingress
----
-spec: 
-  ports:
-    - name: prometheus
-      port: 9113
-      protocol: TCP
-      targetPort: 9113
-</code></pre><p>Create service-monitors</p><pre><code class="language-yaml">apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: ingress-nginx
-  namespace: nginx-ingress
-  labels:
-    release: nb
-    jobLabel: ingress-nginx
-spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/instance: nginx-ingress
-      app.kubernetes.io/name: nginx-ingress
-  endpoints:
-  - port: prometheus 
-    scheme: http
-</code></pre><h1 id="virtualserver">VirtualServer</h1><p>Refrensi : https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#upstream</p><p>The VirtualServer resource defines load balancing configuration for a domain name, such as&#xA0;<code>example.com</code>. Virtual server ini dalam penerapannya memungkinkan dalam satu ingress memiliki 2 service berbeda dengan path yang berbeda juga. Misal <code>/coffe</code> -&gt; <code>svc:coffe:80</code> atau <code>/milk</code> -&gt; <code>svc:milk:8080</code></p><h2 id="basic-create-ingress-using-virtualserver">Basic Create Ingress Using VirtualServer</h2><p>Refrensi : https://github.com/nginxinc/kubernetes-ingress/tree/v3.1.1/examples/custom-resources/basic-configuration</p><p>Selain membuat ingress menggunakan kind <code>Ingress</code>, di nginx-ingress bisa memanfaatkan fitur VirtualServer.</p><blockquote>The VirtualServer and VirtualServerRoute resources are load balancing configurations recommended as an alternative to the Ingress resource.</blockquote><p>Dari dokumentasi, disini VIrtualServer dapat sebagai alternatif konfigurasi dari Ingress Resource.</p><p>Basic yaml file dari VIrtualServer</p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: 
-spec: 
-</code></pre><h3 id="basic-ingress">Basic ingress.</h3><ul><li>Expose svc nginx:80 -&gt; virtual-svc.nginx.local dengan VirtualServer</li></ul><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: nginx-test
-spec:
-  host: virtual-svc.nginx.local
-  upstreams:
-  - name: nginx
-    service: nginx
-    port: 80
-  routes:
-  - path: /
-    action:
-      pass: nginx # name dari upstreams
-</code></pre><p>Setelah apply coba cek</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624201239.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="999" height="572"></figure><p>Coba hit : `curl -v http://localhost:31105 -H &apos;Host: virtual-svc.nginx.local&apos;</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624201433.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1104" height="617"></figure><h1 id="virtualserver-separate-service-by-path">VirtualServer separate service by path</h1><p>Refrensi : https://github.com/nginxinc/kubernetes-ingress/tree/v3.1.1/examples/custom-resources/basic-configuration</p><p>Di virtualserver sama seperti k8s-ingress, kita dapat membuat 2 service dalam satu ingress dengan path yang berbeda. Misal <code>/coffe</code> -&gt; <code>svc:coffe:80</code> atau <code>/milk</code> -&gt; <code>svc:milk:8080</code></p><ol><li>Buat deployment coffe &amp; tea</li></ol><pre><code class="language-yaml">apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: coffee
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: coffee
-  template:
-    metadata:
-      labels:
-        app: coffee
-    spec:
-      containers:
-      - name: coffee
-        image: nginxdemos/nginx-hello:plain-text
-        ports:
-        - containerPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: coffee-svc
-spec:
-  ports:
-  - port: 80
-    targetPort: 8080
-    protocol: TCP
-    name: http
-  selector:
-    app: coffee
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: tea
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: tea
-  template:
-    metadata:
-      labels:
-        app: tea
-    spec:
-      containers:
-      - name: tea
-        image: nginxdemos/nginx-hello:plain-text
-        ports:
-        - containerPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: tea-svc
-spec:
-  ports:
-  - port: 80
-    targetPort: 8080
-    protocol: TCP
-    name: http
-  selector:
-    app: tea
-</code></pre><ol start="2"><li>Buat VirtualServer</li></ol><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: cafe-testing
-spec:
-  host: cafe.nginx.local
-  upstreams:
-  - name: tea
-    service: tea-svc
-    port: 80
-  - name: coffee
-    service: coffee-svc
-    port: 80
-  routes:
-  - path: /tea
-    action:
-      pass: tea
-  - path: /coffee
-    action:
-      pass: coffee
-</code></pre><ol start="3"><li>Verifikasi</li></ol><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624204053.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1104" height="690"></figure><pre><code class="language-sh"># Testing curl
-curl http://localhost:31105/tea -H &apos;Host: cafe.nginx.local&apos;
-curl http://localhost:31105/coffe -H &apos;Host: cafe.nginx.local&apos;
-</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624204300.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="874" height="213"></figure><h1 id="mencoba-lbmethod">Mencoba lb_method</h1><p>Dilihat dari refrensi <a href="https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/?ref=dev.nbtrisna.my.id#upstream">berikut</a>, kita bisa menambahkan <code>lb-method</code> di upstream section. Untuk metode yang di support bisa ke refrensi <a href="https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/?ref=dev.nbtrisna.my.id#choosing-a-load-balancing-method">berikut</a></p><p>Defaul algortihm yang digunakan nginx-ingress adalah yang tertera dalam configmaps nginx-ingress. Hanya saja tidak ada data yaml yang terdefine di cm ingress.</p><pre><code class="language-sh">k get cm -n nginx-ingress nginx-ingress -o yaml
-</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624205128.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="684" height="342"></figure><p>Oke Gas dicoba.</p><p>Ketika tidak mendefinisikan algoritma lb di upstream, dicoba hit 5 kali dan hasilnya seperti berikut</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624205245.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1248" height="889"></figure>
-<!--kg-card-begin: html-->
-<table>
-<thead>
-<tr>
-<th>Pod Name</th>
-<th>Jumlah Hit</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>coffee-7dd75bc79b-9f8l7</td>
-<td>4</td>
-</tr>
-<tr>
-<td>coffee-7dd75bc79b-2grss</td>
-<td>6</td>
-</tr>
-</tbody>
-</table>
-<!--kg-card-end: html-->
-<p>Dari hasil hit, nginx memilih pod secara random selama hit.</p><p>Saya coba dengan <code>lb-method: roundrobin</code>, harusnya akan hit secara bergantian</p><pre><code class="language-yaml">apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: cafe-testing
-spec:
-  host: cafe-round.nginx.local
-  upstreams:
-  - name: tea
-    service: tea-svc
-    port: 80
-  - name: coffee
-    service: coffee-svc
-    port: 80
-    lb-method: round_robin # add spesific on coffe path
-  routes:
-  - path: /tea
-    action:
-      pass: tea
-  - path: /coffee
-    action:
-      pass: coffee
-
-</code></pre><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020230624205607.png" class="kg-image" alt="nginx-upstream ingress" loading="lazy" width="1248" height="889"></figure>
-<!--kg-card-begin: html-->
-<table>
-<thead>
-<tr>
-<th>Pod Name</th>
-<th>Jumlah Hit</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>coffee-7dd75bc79b-9f8l7</td>
-<td>5</td>
-</tr>
-<tr>
-<td>coffee-7dd75bc79b-2grss</td>
-<td>5</td>
-</tr>
-</tbody>
-</table>
-<!--kg-card-end: html-->
-<p>Yup hasilnya akan di loadbalance secara &quot;roundrobin&quot; ke masing&quot; pod. :)</p>]]></content:encoded></item></channel></rss>
+</code></pre>]]></content:encoded></item></channel></rss>
