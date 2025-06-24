@@ -60,7 +60,7 @@
     <meta property="og:url" content="https://twnb.nbtrisna.my.id/23-june-25/">
     <meta property="og:image" content="https://photoby.nbtrisna.my.id/f360beaa-fa84-4e16-8898-e5485cb673bd.jpg">
     <meta property="article:published_time" content="2025-06-23T16:56:41.000Z">
-    <meta property="article:modified_time" content="2025-06-23T16:56:41.000Z">
+    <meta property="article:modified_time" content="2025-06-24T02:09:11.000Z">
     <meta property="article:tag" content="daily-notes">
     
     <meta name="twitter:card" content="summary_large_image">
@@ -103,7 +103,7 @@
     "headline": "23-June-25",
     "url": "https://twnb.nbtrisna.my.id/23-june-25/",
     "datePublished": "2025-06-23T16:56:41.000Z",
-    "dateModified": "2025-06-23T16:56:41.000Z",
+    "dateModified": "2025-06-24T02:09:11.000Z",
     "image": {
         "@type": "ImageObject",
         "url": "https://photoby.nbtrisna.my.id/f360beaa-fa84-4e16-8898-e5485cb673bd.jpg",
@@ -373,7 +373,7 @@
         </header>
 
         <section class="gh-content gh-canvas is-body">
-            <h2 id="daily-quest-7-rds-serverless-foundations">Daily Quest #7: RDS &amp; Serverless Foundations</h2><blockquote>Amazon RDS (Relational Database Service) is a web service that makes it easier to setup, operate, and scale a relational database in the AWS Cloud. AWS have feature to run code without provisioning and managing server. It's callled Lambda for serverless services. So today i learn to provisioning infrastructure App Server on EC2, MySQL RDS, and reporting using lambda write result an S3 Bucket</blockquote><p>Reference :</p><ul><li>https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html</li><li>https://docs.aws.amazon.com/lambda/latest/dg/welcome.html</li></ul><p><strong>Skenario :</strong> Build VPC and IAM mastery by standing up a private RDS database and a serverless reporting Lambda—glued together with least-privilege IAM.</p><p>All source code stored in :</p><ul><li>https://github.com/ngurah-bagus-trisna/aws-vpc-iaac</li></ul><ol><li>Create <code>provider.tf</code></li></ol><p>This file store about provider/extention for resources needed. In this i'm using provider from <code>hashicorp/aws</code></p><pre><code class="language-tf">terraform {
+            <h2 id="daily-quest-7-rds-serverless-foundations">Daily Quest #7: RDS &amp; Serverless Foundations</h2><blockquote>Amazon RDS (Relational Database Service) is a web service that makes it easier to setup, operate, and scale a relational database in the AWS Cloud. AWS have feature to run code without provisioning and managing server. It's callled Lambda for serverless services. So today i learn to provisioning infrastructure App Server on EC2, MySQL RDS, and reporting using lambda write result an S3 Bucket</blockquote><p>Reference :</p><ul><li>https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html</li><li>https://docs.aws.amazon.com/lambda/latest/dg/welcome.html</li></ul><p><strong>Skenario :</strong> Build VPC and IAM mastery by standing up a private RDS database and a serverless reporting Lambda—glued together with least-privilege IAM.</p><p>All source code stored in :</p><ul><li>https://github.com/ngurah-bagus-trisna/aws-vpc-iaac</li></ul><ol><li>Create <code>provider.tf</code></li></ol><p>This file store about provider/extention for resources needed. In this i'm using provider from <code>hashicorp/aws</code></p><pre><code class="language-tf file:provider.tf">terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -386,7 +386,7 @@
 provider "aws" {
   region = "ap-southeast-1"
 }
-</code></pre><ol start="2"><li>Create <code>variable.tf</code> for mapping variable and data type for value stored on variable.</li></ol><pre><code class="language-tf">variable "vpc_cidr" {
+</code></pre><ol start="2"><li>Create <code>variable.tf</code> for mapping variable and data type for value stored on variable.</li></ol><pre><code class="language-tf file:variable.tf">variable "vpc_cidr" {
   type = string
 }
 
@@ -426,7 +426,7 @@ variable "instance" {
     subnet        = string
   }))
 }
-</code></pre><ol start="3"><li>Create <code>vpc.tf</code> file. This file contain VPC (Virtual Private Cloud) infrasturcture resource want to create. Resources i want to create :</li></ol><ul><li>VPC with subnet <code>10.0.0.0/16</code></li><li>1 Public subnet, with range ip <code>10.0.1.0/24</code></li><li>3 Private subnet, with range ip <code>10.0.2.0/24, 10.0.3.0/24, 10.0.4.0/24</code> with different availibilty zone</li><li>1 AWS Nat Gateway for Private Subnet</li><li>1 AWS ElasticIP for eggress Nat Gateway</li><li>1 AWS Internet Gateway, for public subnet</li><li>2 Routing, each for public subnet and private subnet</li><li>2 Security group, one for ingress port <code>22</code>, and second to ingress <code>rds</code>/database subnet</li></ul><pre><code class="language-tf">resource "aws_vpc" "nb-chatgpt-vpc" {
+</code></pre><ol start="3"><li>Create <code>vpc.tf</code> file. This file contain VPC (Virtual Private Cloud) infrasturcture resource want to create. Resources i want to create :</li></ol><ul><li>VPC with subnet <code>10.0.0.0/16</code></li><li>1 Public subnet, with range ip <code>10.0.1.0/24</code></li><li>3 Private subnet, with range ip <code>10.0.2.0/24, 10.0.3.0/24, 10.0.4.0/24</code> with different availibilty zone</li><li>1 AWS Nat Gateway for Private Subnet</li><li>1 AWS ElasticIP for eggress Nat Gateway</li><li>1 AWS Internet Gateway, for public subnet</li><li>2 Routing, each for public subnet and private subnet</li><li>2 Security group, one for ingress port <code>22</code>, and second to ingress <code>rds</code>/database subnet</li></ul><pre><code class="language-tf file:vpc.tf">resource "aws_vpc" "nb-chatgpt-vpc" {
   cidr_block = var.vpc_cidr
   tags = {
     "Name" = "nb-chatgpt-vpc"
@@ -467,7 +467,7 @@ resource "aws_eip" "nb-eip-nat-gw" {
 resource "aws_nat_gateway" "nb-nat-gw" {
   depends_on        = [aws_eip.nb-eip-nat-gw]
   allocation_id     = aws_eip.nb-eip-nat-gw.id
-  subnet_id         = aws_subnet.nb-subnet["private-net-1"].id
+  subnet_id         = aws_subnet.nb-subnet["public-net"].id
   connectivity_type = "public"
   tags = {
     "Name" : var.natgw_name
@@ -539,7 +539,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow-access-ssh" {
   from_port         = 22
   ip_protocol       = "tcp"
 }
-</code></pre><ol start="4"><li>Create <code>rds.tf</code> for RDS / Database infrastructure.</li></ol><p>First i create resource <code>aws_db_subnet_group</code> for mapping subnet allowed access from rds, and tell what subnet using for instance_db. Second i create security group for accessing rds from private subnet. Last i created resource <code>aws_db_instance</code> for provisioning one RDS</p><pre><code class="language-tf">resource "aws_db_subnet_group" "nb-db-subnet" {
+</code></pre><ol start="4"><li>Create <code>rds.tf</code> for RDS / Database infrastructure.</li></ol><p>First i create resource <code>aws_db_subnet_group</code> for mapping subnet allowed access from rds, and tell what subnet using for instance_db. Second i create security group for accessing rds from private subnet. Last i created resource <code>aws_db_instance</code> for provisioning one RDS</p><pre><code class="language-tf file:rds.tf">resource "aws_db_subnet_group" "nb-db-subnet" {
   depends_on = [aws_subnet.nb-subnet]
   name       = "nb-db-subnet"
   subnet_ids = [
@@ -586,7 +586,7 @@ resource "aws_db_instance" "nb-db" {
   db_subnet_group_name   = aws_db_subnet_group.nb-db-subnet.name
   skip_final_snapshot    = true
 }
-</code></pre><ol start="5"><li>Create EC2 Instance for public-web</li></ol><p>First create <code>aws_network_interface</code> for instance created. Then provisioning instance with <code>aws_instance</code> resources.</p><pre><code class="language-tf">
+</code></pre><ol start="5"><li>Create EC2 Instance for public-web</li></ol><p>First create <code>aws_network_interface</code> for instance created. Then provisioning instance with <code>aws_instance</code> resources.</p><pre><code class="language-tf file:ec2.tf">
 resource "aws_network_interface" "instance-interface" {
   depends_on      = [aws_subnet.nb-subnet]
   for_each        = var.instance
@@ -615,7 +615,7 @@ resource "aws_instance" "nb-instance" {
     "Name" = "Instance - ${each.key}"
   }
 }
-</code></pre><ol start="6"><li>Create value file called <code>dev.tfvars</code> for storing all value needed in terraform file</li></ol><pre><code class="language-tf">vpc_cidr = "10.0.0.0/16"
+</code></pre><ol start="6"><li>Create value file called <code>dev.tfvars</code> for storing all value needed in terraform file</li></ol><pre><code class="language-tf file:dev.tfvars">vpc_cidr = "10.0.0.0/16"
 subnet = {
   "public-net" = {
     subnet_range      = "10.0.1.0/24"
@@ -659,9 +659,12 @@ instance = {
     subnet        = "public-net"
   }
 }
-</code></pre><h2 id="result">Result</h2><p><s>For today, i only test to hit RDS from public instance.</s></p><pre><code class="language-sh"># installing mysql-client
+</code></pre><h2 id="result">Result</h2><p>For today, i only test to hit RDS from private instance.</p><pre><code class="language-sh"># installing mysql-client
+sudo apt install mysql-client
 
-</code></pre><p>Still problem in conection in private-subnet, continuing tomorrow. </p><p>Thankyou :(</p>
+# testing to login rds
+mysql -h &lt;endpoint-rds&gt; -u &lt;user&gt; -p
+</code></pre><p>Result, can connect to rds from private subnet.</p><figure class="kg-card kg-image-card"><img src="https://img.nbtrisna.my.id/Pasted%20image%2020250624090557.png" class="kg-image" alt="Pasted image 20250624090557" loading="lazy" width="1212" height="251"></figure>
         </section>
 
     </article>
