@@ -1,0 +1,299 @@
+---
+const { currentPath = '/' } = Astro.props;
+
+interface NavItem { label: string; href: string; slug: string; }
+
+const navItems: NavItem[] = [
+  { label: 'Home', href: '/', slug: 'home' },
+  { label: 'Daily Notes', href: '/tag/daily-notes/', slug: 'daily-notes' },
+  { label: 'Blog', href: '/tag/catatan/', slug: 'blog' },
+  { label: 'About', href: '/about/', slug: 'about' },
+];
+
+function isCurrent(item: NavItem): boolean {
+  if (item.href === '/') return currentPath === '/';
+  return currentPath.startsWith(item.href);
+}
+---
+
+<header id="gh-navigation" class="gh-navigation is-left-logo gh-outer nav-transparent">
+  <div class="gh-navigation-inner gh-inner">
+    <div class="gh-navigation-brand">
+      <a class="gh-navigation-logo is-title" href="/">
+        <img src="/content/images/2024/08/logo-Primary-1.png" alt="twnb">
+      </a>
+      <button class="gh-search gh-icon-button search-toggle" aria-label="Search this site" data-open-search>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+      </button>
+      <button class="gh-burger gh-icon-button" aria-label="Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg>
+      </button>
+    </div>
+
+    <nav class="gh-navigation-menu">
+      <ul class="nav">
+        {navItems.map(item => (
+          <li class={`nav-${item.slug}${isCurrent(item) ? ' nav-current' : ''}`}>
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="gh-navigation-actions">
+      <button class="gh-search gh-icon-button search-toggle" aria-label="Search this site" data-open-search>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="search-overlay" id="search-overlay">
+  <div class="search-modal">
+    <div class="search-header">
+      <div class="search-input-wrap">
+        <svg class="search-input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        <input class="search-input" id="search-input" type="text" placeholder="Search articles..." autocomplete="off">
+      </div>
+      <button class="search-close" id="search-close" aria-label="Close search">&times;</button>
+    </div>
+    <div class="search-results" id="search-results">
+      <p class="search-empty">Start typing to search...</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .nav-transparent {
+    background-color: transparent !important;
+    transition: background-color 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .nav-transparent.scrolled {
+    background-color: var(--background-color, #151515) !important;
+    box-shadow: 0 1px 0 var(--color-border, rgba(255,255,255,0.08));
+  }
+
+  .gh-navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  }
+
+  /* Search overlay */
+  .search-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 15vh;
+    backdrop-filter: blur(8px);
+  }
+
+  .search-overlay.open {
+    display: flex;
+  }
+
+  .search-modal {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 24px;
+  }
+
+  .search-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .search-input-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 12px 16px;
+    transition: border-color 0.2s;
+  }
+
+  .search-input-wrap:focus-within {
+    border-color: var(--ghost-accent-color, #b6bdff);
+  }
+
+  .search-input-icon {
+    flex-shrink: 0;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .search-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1.6rem;
+    font-family: var(--gh-font-body, 'Space Mono'), monospace;
+  }
+
+  .search-input::placeholder {
+    color: rgba(255,255,255,0.4);
+  }
+
+  .search-close {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.6);
+    font-size: 2.4rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    line-height: 1;
+  }
+
+  .search-close:hover {
+    color: #fff;
+  }
+
+  .search-results {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  .search-empty {
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 40px 0;
+    font-size: 1.4rem;
+  }
+
+  .search-results mark {
+    background: var(--ghost-accent-color, #b6bdff);
+    color: #151515;
+    padding: 0 2px;
+    border-radius: 2px;
+  }
+
+  .search-result-item {
+    display: block;
+    padding: 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.15s;
+    margin-bottom: 4px;
+  }
+
+  .search-result-item:hover {
+    background: rgba(255,255,255,0.06);
+  }
+
+  .search-result-title {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .search-result-excerpt {
+    color: rgba(255,255,255,0.5);
+    font-size: 1.3rem;
+    line-height: 1.4;
+  }
+</style>
+
+<script>
+  // Search logic
+  function initSearch() {
+    const overlay = document.getElementById('search-overlay');
+    const input = document.getElementById('search-input') as HTMLInputElement | null;
+    const results = document.getElementById('search-results');
+    const closeBtn = document.getElementById('search-close');
+    if (!overlay || !input || !results || !closeBtn) return;
+
+    function open() {
+      overlay!.classList.add('open');
+      setTimeout(() => input!.focus(), 100);
+    }
+
+    function close() {
+      overlay!.classList.remove('open');
+      input!.value = '';
+      results!.innerHTML = '<p class="search-empty">Start typing to search...</p>';
+    }
+
+    document.querySelectorAll('[data-open-search]').forEach(btn => {
+      btn.addEventListener('click', open);
+    });
+
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+    });
+
+    let debounceTimer;
+    function getPagefind() {
+      return window.Pagefind || null;
+    }
+
+    input.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      const query = input.value.trim();
+      if (!query) {
+        results.innerHTML = '<p class="search-empty">Start typing to search...</p>';
+        return;
+      }
+      debounceTimer = setTimeout(async () => {
+        const pf = getPagefind();
+        if (!pf) {
+          results.innerHTML = '<p class="search-empty">Search available after <code>npm run build</code>.</p>';
+          return;
+        }
+        results.innerHTML = '<p class="search-empty">Searching...</p>';
+        const search = await pf.search(query);
+        if (!search || search.results.length === 0) {
+          results.innerHTML = '<p class="search-empty">No results found.</p>';
+          return;
+        }
+        const html = [];
+        for (const r of search.results.slice(0, 10)) {
+          const data = await r.data();
+          html.push('<a class="search-result-item" href="' + data.url + '"><div class="search-result-title">' + (data.meta?.title || data.url) + '</div><div class="search-result-excerpt">' + (data.excerpt || '') + '</div></a>');
+        }
+        results.innerHTML = html.join('');
+      }, 250);
+    });
+  }
+
+  initSearch();
+</script>
+
+<script>
+  // Navbar transparent on scroll
+  (function() {
+    var nav = document.getElementById('gh-navigation');
+    if (!nav) return;
+
+    function onScroll() {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }
+
+    nav.classList.add('nav-transparent');
+    nav.classList.remove('scrolled');
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>

@@ -1,0 +1,55 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PostCard from '../components/PostCard.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  author: string;
+  authorSlug: string;
+  posts: CollectionEntry<'posts'>[];
+}
+
+const { author, authorSlug, posts } = Astro.props;
+const title = `${author} - twnb`;
+---
+
+<BaseLayout
+  title={title}
+  bodyClass="author-template"
+  canonicalURL={new URL(`/author/${authorSlug}/`, Astro.site).href}
+>
+  <Header currentPath={`/author/${authorSlug}/`} />
+
+  <main class="gh-main">
+    <div class="gh-archive author gh-outer">
+      <div class="gh-archive-inner gh-inner">
+        <img
+          class="gh-article-image"
+          src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&s=250"
+          alt={author}
+          loading="lazy"
+        >
+        <div class="gh-archive-wrapper">
+          <h2 class="gh-article-title is-title">{author}</h2>
+          <div class="gh-author-meta">
+            <span>{posts.length} post{posts.length !== 1 ? 's' : ''}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="gh-container is-grid gh-outer">
+      <div class="gh-container-inner gh-inner">
+        <main class="gh-main">
+          <div class="gh-feed">
+            {posts.map(post => <PostCard post={post} />)}
+          </div>
+        </main>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

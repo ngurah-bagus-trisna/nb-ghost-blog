@@ -1,0 +1,34 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  bodyClass?: string;
+  currentPath?: string;
+}
+
+const { title, bodyClass = 'page-template', currentPath = '/' } = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  bodyClass={bodyClass}
+  canonicalURL={new URL(currentPath, Astro.site).href}
+>
+  <Header currentPath={currentPath} />
+
+  <main class="gh-main">
+    <article class="gh-article post no-image">
+      <header class="gh-article-header gh-canvas">
+        <h1 class="gh-article-title is-title">{title}</h1>
+      </header>
+      <section class="gh-content gh-canvas is-body">
+        <slot />
+      </section>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import HomeLayout from '../layouts/HomeLayout.astro';
+
+const allPosts = await getCollection('posts');
+const sorted = allPosts
+  .filter(p => p.data.published)
+  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
+
+const pageSize = 16;
+const page1Posts = sorted.slice(0, pageSize);
+const totalPages = Math.ceil(sorted.length / pageSize);
+
+// Top 5 posts with featured images for the hero slideshow
+const heroPosts = sorted.filter(p => p.data.featuredImage).slice(0, 5);
+---
+
+<HomeLayout
+  posts={page1Posts}
+  currentPage={1}
+  totalPages={totalPages}
+  heroPosts={heroPosts}
+  showPreloader={true}
+/>

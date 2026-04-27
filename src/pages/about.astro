@@ -1,0 +1,12 @@
+---
+import { getEntry, render } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+
+const page = await getEntry('pages', 'about');
+const rendered = page ? await render(page) : null;
+const { Content } = rendered || {};
+---
+
+<PageLayout title="Hi Saya Ngurah Bagus :)" currentPath="/about/">
+  {Content && <Content />}
+</PageLayout>

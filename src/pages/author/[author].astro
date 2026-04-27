@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import AuthorLayout from '../../layouts/AuthorLayout.astro';
+
+export async function getStaticPaths() {
+  return [{ params: { author: 'ngurah' }, props: { author: 'ngurah' } }];
+}
+
+const { author } = Astro.props;
+
+const allPosts = await getCollection('posts');
+const posts = allPosts
+  .filter(p => p.data.authorSlug === author)
+  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
+
+const authorName = posts[0]?.data.author || 'I Gusti Ngurah Bagus Trisna Andika';
+---
+
+<AuthorLayout author={authorName} authorSlug={author} posts={posts} />

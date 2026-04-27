@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Page not found" bodyClass="error-template" noIndex>
+  <Header currentPath={Astro.url.pathname} />
+
+  <main class="gh-main">
+    <section class="error-content error-404 js-error-container">
+      <section class="error-details">
+        <section class="error-message">
+          <h1 class="error-code">404</h1>
+          <h2 class="error-description">Page not found</h2>
+          <a class="error-link" href="/">Go to the front page →</a>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,79 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PostCard from '../components/PostCard.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+  relatedPosts: CollectionEntry<'posts'>[];
+}
+
+const { post, relatedPosts } = Astro.props;
+const { data } = post;
+
+const dateStr = data.published.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+
+const tags = data.tags || [];
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.excerpt || ''}
+  ogImage={data.featuredImage}
+  ogType="article"
+  canonicalURL={new URL(`/${data.slug}/`, Astro.site).href}
+  bodyClass="post-template"
+  publishedTime={data.published.toISOString()}
+  modifiedTime={data.updated?.toISOString()}
+  tags={tags}
+>
+  <Header currentPath={`/${data.slug}/`} />
+
+  <main class="gh-main">
+    <article class:list={["gh-article", "post", { "no-image": !data.featuredImage }]}>
+      <header class="gh-article-header gh-canvas">
+        {tags.length > 0 && (
+          <div class="gh-article-tag">
+            {tags.map(tag => (
+              <a href={`/tag/${tag}/`}>{tag}</a>
+            ))}
+          </div>
+        )}
+        <h1 class="gh-article-title is-title">{data.title}</h1>
+        <div class="gh-article-meta">
+          <div class="gh-article-meta-wrapper">
+            <span class="gh-article-author-name">{data.author}</span>
+            <div class="gh-article-meta-content">
+              <time datetime={data.published.toISOString()}>{dateStr}</time>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="gh-content gh-canvas is-body">
+        <slot />
+      </section>
+    </article>
+
+    {relatedPosts.length > 0 && (
+      <section class="gh-container is-grid gh-outer">
+        <div class="gh-container-inner gh-inner">
+          <h2 class="gh-container-title">Read more</h2>
+          <div class="gh-feed">
+            {relatedPosts.slice(0, 4).map(p => (
+              <PostCard post={p} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+  </main>
+
+  <Footer />
+</BaseLayout>

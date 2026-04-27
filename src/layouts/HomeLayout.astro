@@ -1,0 +1,67 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PostCard from '../components/PostCard.astro';
+import HeroSlideshow from '../components/HeroSlideshow.astro';
+import Preloader from '../components/Preloader.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  posts: CollectionEntry<'posts'>[];
+  currentPage?: number;
+  totalPages?: number;
+  heroPosts?: CollectionEntry<'posts'>[];
+  showPreloader?: boolean;
+}
+
+const { posts, currentPage = 1, totalPages = 1, heroPosts, showPreloader = false } = Astro.props;
+
+const title = currentPage > 1
+  ? `twnb - Page ${currentPage}`
+  : 'Tech with Ngurah Bagus: IT Notes, Tutorials, and My Journey';
+---
+
+<BaseLayout
+  title={title}
+  bodyClass="home-template"
+  canonicalURL={new URL(currentPage > 1 ? `/page/${currentPage}/` : '/', Astro.site).href}
+>
+  <Header currentPath="/" />
+
+  {showPreloader && <Preloader />}
+
+  {heroPosts && heroPosts.length > 0 && <HeroSlideshow posts={heroPosts} />}
+
+  <section class="gh-container is-grid no-image gh-outer">
+    <div class="gh-container-inner gh-inner">
+      <h2 class="gh-container-title">Latest</h2>
+      <main class="gh-main">
+        <div class="gh-feed">
+          {posts.map(post => <PostCard post={post} />)}
+        </div>
+      </main>
+    </div>
+  </section>
+
+  {totalPages > 1 && (
+    <div class="gh-container gh-outer">
+      <div class="gh-container-inner gh-inner">
+        <div class="gh-more" style="display:block;text-align:center;padding:2rem 0;">
+          {currentPage > 1 ? (
+            <a href={currentPage === 2 ? '/' : `/page/${currentPage - 1}/`}>
+              ← Newer Posts
+            </a>
+          ) : null}
+          {currentPage < totalPages ? (
+            <a href={`/page/${currentPage + 1}/`} style={currentPage > 1 ? 'margin-left:2rem' : ''}>
+              Older Posts →
+            </a>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  )}
+
+  <Footer />
+</BaseLayout>

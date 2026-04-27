@@ -1,0 +1,213 @@
+<div class="preloader" id="preloader">
+  <div class="preloader-bg">
+    <div class="preloader-glitch preloader-glitch-1"></div>
+    <div class="preloader-glitch preloader-glitch-2"></div>
+    <div class="preloader-glitch preloader-glitch-3"></div>
+    <div class="preloader-scanline"></div>
+  </div>
+  <div class="preloader-text-wrap">
+    <span class="preloader-cursor">_</span>
+    <span class="preloader-text" id="preloader-text"></span>
+  </div>
+</div>
+
+<style is:global>
+  .preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    background: #0a0a0a;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+
+  .preloader.preloader-done {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .preloader-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .preloader-glitch {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    animation: glitchFlash 0.15s infinite;
+  }
+
+  .preloader-glitch-1 {
+    background: rgba(182, 189, 255, 0.03);
+    animation-delay: 0s;
+    clip-path: inset(20% 0 60% 0);
+  }
+
+  .preloader-glitch-2 {
+    background: rgba(255, 255, 255, 0.02);
+    animation-delay: 0.07s;
+    clip-path: inset(40% 0 30% 0);
+  }
+
+  .preloader-glitch-3 {
+    background: rgba(182, 189, 255, 0.04);
+    animation-delay: 0.13s;
+    clip-path: inset(70% 0 10% 0);
+  }
+
+  @keyframes glitchFlash {
+    0%, 90%, 100% { opacity: 0; }
+    45% { opacity: 0.8; }
+    55% { opacity: 0.6; }
+    70% { opacity: 0; }
+    85% { opacity: 0.3; }
+  }
+
+  .preloader-scanline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(182, 189, 255, 0.06);
+    animation: scanlineGlitch 3s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes scanlineGlitch {
+    0% { top: -2px; }
+    100% { top: 100%; }
+  }
+
+  .preloader-text-wrap {
+    position: relative;
+    z-index: 2;
+    padding: 0 max(4vmin, 40px) 8% max(4vmin, 40px);
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+  }
+
+  .preloader-text {
+    font-family: var(--gh-font-body, 'Space Mono'), monospace;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    color: var(--ghost-accent-color, #b6bdff);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+    min-height: 1.3em;
+  }
+
+  .preloader-cursor {
+    font-family: var(--gh-font-body, 'Space Mono'), monospace;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    color: var(--ghost-accent-color, #b6bdff);
+    font-weight: 400;
+    animation: cursorBlink 0.8s step-end infinite;
+  }
+
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @media (max-width: 640px) {
+    .preloader-text-wrap {
+      padding-bottom: 20%;
+    }
+    .preloader-text,
+    .preloader-cursor {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    var el = document.getElementById('preloader');
+    if (!el) return;
+
+    // Skip if already shown this session
+    if (sessionStorage.getItem('_preloader_done')) {
+      el.style.display = 'none';
+      return;
+    }
+
+    var textEl = document.getElementById('preloader-text');
+    var cursorEl = el.querySelector('.preloader-cursor');
+    if (!textEl) { el.style.display = 'none'; return; }
+
+    var phrase1 = 'Welcome';
+    var phrase2 = 'Tech with Ngurah Bagus';
+    var typeMs = 70;
+    var delMs = 35;
+
+    function type(text, speed, cb) {
+      var i = 0;
+      var iv = setInterval(function() {
+        if (i < text.length) {
+          textEl.textContent += text[i];
+          i++;
+        } else {
+          clearInterval(iv);
+          if (cb) cb();
+        }
+      }, speed);
+    }
+
+    function del(count, speed, cb) {
+      var iv = setInterval(function() {
+        if (count > 0) {
+          textEl.textContent = textEl.textContent.slice(0, -1);
+          count--;
+        } else {
+          clearInterval(iv);
+          if (cb) cb();
+        }
+      }, speed);
+    }
+
+    function wait(ms, cb) {
+      setTimeout(cb, ms);
+    }
+
+    function start() {
+      wait(400, function() {
+        // Type Welcome
+        type(phrase1, typeMs, function() {
+          wait(1200, function() {
+            // Delete Welcome
+            del(phrase1.length, delMs, function() {
+              wait(300, function() {
+                // Type final phrase
+                type(phrase2, typeMs, function() {
+                  wait(800, function() {
+                    // Hide cursor
+                    if (cursorEl) {
+                      cursorEl.style.animation = 'none';
+                      cursorEl.style.opacity = '0';
+                    }
+                    wait(600, function() {
+                      // Fade out
+                      el.classList.add('preloader-done');
+                      sessionStorage.setItem('_preloader_done', '1');
+                      wait(800, function() {
+                        el.style.display = 'none';
+                      });
+                    });
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    }
+
+    start();
+  })();
+</script>

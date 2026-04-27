@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+const { post } = Astro.props;
+const { data } = post;
+
+const dateStr = data.published.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<article class:list={["gh-card", "post", { "no-image": !data.featuredImage }]}>
+  <a class="gh-card-link" href={`/${data.slug}/`}>
+    {data.featuredImage && (
+      <figure class="gh-card-image">
+        <img
+          src={data.featuredImage}
+          alt={data.title}
+          loading="lazy"
+        >
+      </figure>
+    )}
+    <div class="gh-card-wrapper">
+      <h3 class="gh-card-title is-title">{data.title}</h3>
+      {data.excerpt && (
+        <p class="gh-card-excerpt is-body">{data.excerpt}</p>
+      )}
+      <footer class="gh-card-meta">
+        <span class="gh-card-author">By {data.author}</span>
+        <time class="gh-card-date" datetime={data.published.toISOString()}>{dateStr}</time>
+      </footer>
+    </div>
+  </a>
+</article>

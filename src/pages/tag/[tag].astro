@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import TagLayout from '../../layouts/TagLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  const tagSet = new Set<string>();
+  posts.forEach(p => p.data.tags.forEach(t => tagSet.add(t)));
+  // Exclude 'about' tag — it's not a real content tag
+  tagSet.delete('about');
+  return Array.from(tagSet).map(tag => ({ params: { tag }, props: { tag } }));
+}
+
+const { tag } = Astro.props;
+
+const allPosts = await getCollection('posts');
+const posts = allPosts
+  .filter(p => p.data.tags.includes(tag))
+  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
+---
+
+<TagLayout tag={tag} posts={posts} />

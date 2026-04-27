@@ -1,0 +1,36 @@
+{
+  "name": "nb-ghost-blog",
+  "version": "1.0.0",
+  "description": "Tech with Ngurah Bagus - IT Notes and Tutorials",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "convert": "tsx scripts/convert.mts",
+    "postbuild": "npx pagefind --site dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngurah-bagus-trisna/nb-ghost-blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ngurah-bagus-trisna/nb-ghost-blog/issues"
+  },
+  "homepage": "https://github.com/ngurah-bagus-trisna/nb-ghost-blog#readme",
+  "dependencies": {
+    "@astrojs/cloudflare": "^13.2.1",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
+    "astro": "^6.1.9"
+  },
+  "devDependencies": {
+    "cheerio": "^1.2.0",
+    "pagefind": "^1.5.2",
+    "tsx": "^4.21.0",
+    "turndown": "^7.2.4"
+  }
+}

@@ -1,0 +1,288 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  posts: CollectionEntry<'posts'>[];
+}
+
+const { posts } = Astro.props;
+const slides = posts.slice(0, 5);
+const slideCount = slides.length;
+const slideDuration = 5000;
+---
+
+<div class="hero-slideshow" id="hero-slideshow" data-duration={String(slideDuration)}>
+  {slides.map((post, i) => (
+    <div
+      class="hero-slide"
+      class:list={["hero-slide", { active: i === 0 }]}
+      data-index={i}
+    >
+      <div class="hero-bg" style={`background-image: url(${post.data.featuredImage})`}></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <a href={`/${post.data.slug}/`} class="hero-link">
+          <h2 class="hero-title">{post.data.title}</h2>
+          {post.data.excerpt && (
+            <p class="hero-excerpt">{post.data.excerpt}</p>
+          )}
+          <span class="hero-read">Read article &rarr;</span>
+        </a>
+      </div>
+    </div>
+  ))}
+
+  {slideCount > 1 && (
+    <div class="hero-dots" aria-label="Slide navigation">
+      {slides.map((_, i) => (
+        <button
+          class="hero-dot"
+          class:list={["hero-dot", { active: i === 0 }]}
+          data-index={i}
+          aria-label={`Go to slide ${i + 1}: ${slides[i].data.title}`}
+        ></button>
+      ))}
+    </div>
+  )}
+</div>
+
+<style>
+  .hero-slideshow {
+    position: relative;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background: var(--background-color, #151515);
+    margin-top: 0;
+  }
+
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+  }
+
+  .hero-slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+  }
+
+  .hero-slide.active .hero-bg {
+    animation: heroZoom 6s ease-in-out forwards;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.3) 100%),
+      linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 60%);
+    z-index: 2;
+  }
+
+  .hero-content {
+    position: absolute;
+    bottom: 14%;
+    left: max(4vmin, 40px);
+    max-width: 640px;
+    z-index: 3;
+  }
+
+  .hero-link {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+  }
+
+  .hero-link:hover {
+    opacity: 0.92;
+  }
+
+  .hero-title {
+    font-family: var(--gh-font-heading, 'Noto Sans'), sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5em;
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  }
+
+  .hero-excerpt {
+    font-family: var(--gh-font-body, 'Space Mono'), monospace;
+    font-size: clamp(1.3rem, 1.5vw, 1.6rem);
+    line-height: 1.5;
+    color: rgba(255,255,255,0.8);
+    margin: 0 0 1.2em;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .hero-read {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    border-bottom: 2px solid var(--ghost-accent-color, #b6bdff);
+    padding-bottom: 4px;
+    transition: border-color 0.2s;
+  }
+
+  .hero-link:hover .hero-read {
+    border-color: #fff;
+  }
+
+  .hero-dots {
+    position: absolute;
+    bottom: 10%;
+    right: max(4vmin, 40px);
+    z-index: 3;
+    display: flex;
+    gap: 10px;
+  }
+
+  .hero-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.6);
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .hero-dot.active {
+    background: #fff;
+    border-color: #fff;
+  }
+
+  .hero-dot:hover {
+    border-color: #fff;
+  }
+
+  @media (max-width: 640px) {
+    .hero-slideshow {
+      height: 100vh;
+      height: 100dvh;
+    }
+    .hero-content {
+      bottom: 20%;
+      left: 24px;
+      right: 24px;
+      max-width: none;
+    }
+    .hero-dots {
+      bottom: 8%;
+      right: 24px;
+    }
+    .hero-title {
+      font-size: 1.8rem;
+    }
+    .hero-excerpt {
+      font-size: 1.2rem;
+    }
+  }
+</style>
+
+<style is:global>
+  @keyframes heroZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.08); }
+  }
+</style>
+
+<script>
+  function initHero() {
+    const container = document.getElementById('hero-slideshow');
+    if (!container) return;
+
+    const slides = container.querySelectorAll<HTMLElement>('.hero-slide');
+    const dots = container.querySelectorAll<HTMLElement>('.hero-dot');
+    if (slides.length < 2) return;
+
+    let current = 0;
+    let timer = null;
+    let paused = false;
+
+    function show(index) {
+      slides.forEach((s) => {
+        s.classList.remove('active');
+        s.style.zIndex = '0';
+        // Reset bg animation
+        const bg = s.querySelector('.hero-bg');
+        if (bg) {
+          bg.style.animation = 'none';
+          bg.offsetHeight;
+          bg.style.animation = '';
+        }
+      });
+      dots.forEach((d) => d.classList.remove('active'));
+
+      const next = ((index % slides.length) + slides.length) % slides.length;
+      slides[next].classList.add('active');
+      slides[next].style.zIndex = '1';
+      dots[next]?.classList.add('active');
+      current = next;
+    }
+
+    function next() {
+      show(current + 1);
+    }
+
+    function startTimer() {
+      stopTimer();
+      const dur = parseInt(container.dataset.duration || '5000');
+      timer = setInterval(next, dur);
+    }
+
+    function stopTimer() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const idx = parseInt(dot.dataset.index || '0');
+        show(idx);
+        startTimer();
+      });
+    });
+
+    container.addEventListener('mouseenter', () => { paused = true; stopTimer(); });
+    container.addEventListener('mouseleave', () => { paused = false; startTimer(); });
+
+    let touchStartX = 0;
+    container.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      stopTimer();
+    });
+    container.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) show(current + (dx > 0 ? -1 : 1));
+      startTimer();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (paused) return;
+      if (e.key === 'ArrowLeft') { show(current - 1); startTimer(); }
+      if (e.key === 'ArrowRight') { show(current + 1); startTimer(); }
+    });
+
+    startTimer();
+  }
+
+  initHero();
+  document.addEventListener('astro:after-swap', initHero);
+</script>
