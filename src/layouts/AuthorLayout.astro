@@ -23,20 +23,11 @@ const title = `${author} - twnb`;
   <Header currentPath={`/author/${authorSlug}/`} />
 
   <main class="gh-main">
-    <div class="gh-archive author gh-outer">
-      <div class="gh-archive-inner gh-inner">
-        <img
-          class="gh-article-image"
-          src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&s=250"
-          alt={author}
-          loading="lazy"
-        >
-        <div class="gh-archive-wrapper">
-          <h2 class="gh-article-title is-title">{author}</h2>
-          <div class="gh-author-meta">
-            <span>{posts.length} post{posts.length !== 1 ? 's' : ''}</span>
-          </div>
-        </div>
+    <div class="section-hero">
+      <div class="section-hero-overlay"></div>
+      <div class="section-hero-content">
+        <h1 class="section-hero-title">{author}</h1>
+        <span class="section-hero-count">{posts.length} post{posts.length !== 1 ? 's' : ''}</span>
       </div>
     </div>
 
@@ -53,3 +44,59 @@ const title = `${author} - twnb`;
 
   <Footer />
 </BaseLayout>
+
+<style>
+  .section-hero {
+    position: relative;
+    height: 40vh;
+    min-height: 260px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  }
+
+  .section-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 70%),
+      linear-gradient(to right, rgba(0,0,0,0.3) 0%, transparent 60%);
+    z-index: 1;
+  }
+
+  .section-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 max(4vmin, 40px) max(4vmin, 40px);
+    max-width: 800px;
+  }
+
+  .section-hero-title {
+    font-family: var(--gh-font-heading, 'Noto Sans'), sans-serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0 0 0.3em;
+  }
+
+  .section-hero-count {
+    font-size: 1.3rem;
+    color: var(--ghost-accent-color, #b6bdff);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 640px) {
+    .section-hero {
+      height: 30vh;
+      min-height: 200px;
+    }
+    .section-hero-content {
+      padding: 0 24px 24px;
+    }
+  }
+</style>

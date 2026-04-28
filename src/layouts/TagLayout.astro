@@ -2,8 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import PostCard from '../components/PostCard.astro';
-import { getTagDescription } from '../utils/tags';
+import { getTagDescription, getTagBgImage } from '../utils/tags';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -14,6 +13,7 @@ interface Props {
 const { tag, posts } = Astro.props;
 const title = `${tag} - twnb`;
 const description = getTagDescription(tag);
+const bgImage = getTagBgImage(tag);
 ---
 
 <BaseLayout
@@ -24,30 +24,216 @@ const description = getTagDescription(tag);
   <Header currentPath={`/tag/${tag}/`} />
 
   <main class="gh-main">
-    <div class="gh-archive gh-outer">
-      <div class="gh-archive-inner gh-inner">
-        <div class="gh-archive-wrapper">
-          <h2 class="gh-article-title is-title">{tag}</h2>
-          {description && (
-            <p class="gh-article-excerpt">{description}</p>
-          )}
-          <div class="gh-author-meta">
-            <span>{posts.length} post{posts.length !== 1 ? 's' : ''}</span>
-          </div>
-        </div>
-      </div>
+    <div class="tag-bg" style={bgImage ? `background-image: url(${bgImage})` : ''}></div>
+    <div class="tag-bg-overlay"></div>
+
+    <div class="tag-header">
+      <h1 class="tag-header-title">{tag}</h1>
+      {description && <p class="tag-header-desc">{description}</p>}
+      <span class="tag-header-count">{posts.length} post{posts.length !== 1 ? 's' : ''}</span>
     </div>
 
-    <section class="gh-container is-grid gh-outer">
-      <div class="gh-container-inner gh-inner">
-        <main class="gh-main">
-          <div class="gh-feed">
-            {posts.map(post => <PostCard post={post} />)}
-          </div>
-        </main>
+    <div class="tag-gallery-wrap">
+      <div class="tag-gallery">
+        {posts.map((post, i) => {
+          const d = post.data;
+          const img = d.featuredImage;
+          const dateStr = d.published.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+          return (
+            <a href={`/${d.slug}/`} class="tag-gallery-card" style={`animation-delay: ${i * 0.07}s`}>
+              <div class="tag-gallery-img">
+                {img ? (
+                  <img src={img} alt={d.title} loading="lazy" />
+                ) : (
+                  <div class="tag-gallery-img-placeholder"></div>
+                )}
+              </div>
+              <div class="tag-gallery-body">
+                <h3 class="tag-gallery-title">{d.title}</h3>
+                {d.excerpt && <p class="tag-gallery-excerpt">{d.excerpt}</p>}
+                <span class="tag-gallery-date">{dateStr}</span>
+              </div>
+            </a>
+          );
+        })}
       </div>
-    </section>
+    </div>
   </main>
 
   <Footer />
 </BaseLayout>
+
+<style is:global>
+  /* Background — fixed full-screen */
+  .tag-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    background-color: #1a1a2e;
+    background-image: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  }
+
+  .tag-bg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.3) 100%);
+  }
+
+  /* Header — fixed bottom-left */
+  .tag-header {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    padding: 0 max(4vmin, 40px) max(6vmin, 48px);
+    max-width: 500px;
+  }
+
+  .tag-header-title {
+    font-family: var(--gh-font-heading, 'Noto Sans'), sans-serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0 0 0.3em;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  }
+
+  .tag-header-desc {
+    font-size: clamp(1.3rem, 1.5vw, 1.6rem);
+    color: rgba(255,255,255,0.7);
+    margin: 0 0 0.6em;
+    line-height: 1.4;
+  }
+
+  .tag-header-count {
+    font-size: 1.2rem;
+    color: var(--ghost-accent-color, #b6bdff);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Gallery — scrollable, cards reveal on scroll */
+  .tag-gallery-wrap {
+    position: relative;
+    z-index: 2;
+    padding: 120px max(4vmin, 40px) 200px;
+  }
+
+  .tag-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Card */
+  .tag-gallery-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+    text-decoration: none;
+    opacity: 0;
+    animation: tagCardIn 0.55s ease forwards;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  @keyframes tagCardIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .tag-gallery-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  .tag-gallery-img {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .tag-gallery-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+
+  .tag-gallery-card:hover .tag-gallery-img img {
+    transform: scale(1.05);
+  }
+
+  .tag-gallery-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(182,189,255,0.1), rgba(182,189,255,0.04));
+  }
+
+  .tag-gallery-body {
+    padding: 16px 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tag-gallery-title {
+    font-family: var(--gh-font-heading, 'Noto Sans'), sans-serif;
+    font-size: 1.5rem;
+    font-weight: 650;
+    line-height: 1.25;
+    color: #fff;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .tag-gallery-excerpt {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.6);
+    margin: 0 0 12px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .tag-gallery-date {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.35);
+    font-weight: 500;
+  }
+
+  @media (max-width: 991px) {
+    .tag-gallery {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .tag-gallery {
+      grid-template-columns: 1fr;
+    }
+    .tag-gallery-wrap {
+      padding: 100px 20px 150px;
+    }
+    .tag-header {
+      padding: 0 24px 32px;
+      max-width: none;
+    }
+  }
+</style>
+

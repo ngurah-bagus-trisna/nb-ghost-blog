@@ -20,6 +20,7 @@ const dateStr = data.published.toLocaleDateString('en-US', {
 });
 
 const tags = data.tags || [];
+const hasHero = !!data.featuredImage;
 ---
 
 <BaseLayout
@@ -36,12 +37,32 @@ const tags = data.tags || [];
   <Header currentPath={`/${data.slug}/`} />
 
   <main class="gh-main">
-    <article class:list={["gh-article", "post", { "no-image": !data.featuredImage }]}>
-      <header class="gh-article-header gh-canvas">
+    {hasHero ? (
+      <div class="post-hero">
+        <div class="post-hero-bg" style={`background-image: url(${data.featuredImage})`}></div>
+        <div class="post-hero-overlay"></div>
+        <div class="post-hero-content">
+          {tags.length > 0 && (
+            <div class="post-hero-tags">
+              {tags.map(tag => (
+                <a class="post-hero-tag" href={`/tag/${tag}/`}>{tag}</a>
+              ))}
+            </div>
+          )}
+          <h1 class="post-hero-title">{data.title}</h1>
+          <div class="post-hero-meta">
+            <span>{data.author}</span>
+            <span class="post-hero-sep">&middot;</span>
+            <time datetime={data.published.toISOString()}>{dateStr}</time>
+          </div>
+        </div>
+      </div>
+    ) : (
+      <header class="post-header-plain">
         {tags.length > 0 && (
-          <div class="gh-article-tag">
+          <div class="post-header-tags">
             {tags.map(tag => (
-              <a href={`/tag/${tag}/`}>{tag}</a>
+              <a class="post-header-tag" href={`/tag/${tag}/`}>{tag}</a>
             ))}
           </div>
         )}
@@ -55,11 +76,11 @@ const tags = data.tags || [];
           </div>
         </div>
       </header>
+    )}
 
-      <section class="gh-content gh-canvas is-body">
-        <slot />
-      </section>
-    </article>
+    <section class="gh-content gh-canvas is-body">
+      <slot />
+    </section>
 
     {relatedPosts.length > 0 && (
       <section class="gh-container is-grid gh-outer">
@@ -77,3 +98,131 @@ const tags = data.tags || [];
 
   <Footer />
 </BaseLayout>
+
+<style>
+  .post-hero {
+    position: relative;
+    height: 55vh;
+    min-height: 360px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    margin-bottom: clamp(40px, 5vw, 64px);
+  }
+
+  .post-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .post-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.3) 100%),
+      linear-gradient(to right, rgba(0,0,0,0.35) 0%, transparent 60%);
+    z-index: 1;
+  }
+
+  .post-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 max(4vmin, 40px) max(4vmin, 40px);
+    max-width: 800px;
+  }
+
+  .post-hero-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .post-hero-tag {
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ghost-accent-color, #b6bdff);
+    text-decoration: none;
+    padding: 4px 0;
+  }
+
+  .post-hero-tag:hover {
+    color: #fff;
+  }
+
+  .post-hero-tag + .post-hero-tag::before {
+    content: ' · ';
+    color: rgba(255,255,255,0.4);
+    margin-right: 8px;
+  }
+
+  .post-hero-title {
+    font-family: var(--gh-font-heading, 'Noto Sans'), sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0 0 0.6em;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  }
+
+  .post-hero-meta {
+    font-size: 1.4rem;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+  }
+
+  .post-hero-sep {
+    margin: 0 8px;
+    opacity: 0.5;
+  }
+
+  /* Plain header for posts without hero image */
+  .post-header-plain {
+    padding: 140px max(4vmin, 40px) 0;
+    margin: 0 auto 40px;
+    max-width: var(--container-width, 1320px);
+  }
+
+  .post-header-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+
+  .post-header-tag {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ghost-accent-color, #b6bdff);
+    text-decoration: none;
+  }
+
+  .post-header-tag:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 640px) {
+    .post-hero {
+      height: 45vh;
+      min-height: 280px;
+    }
+    .post-hero-content {
+      padding: 0 24px 24px;
+    }
+    .post-hero-title {
+      font-size: 2rem;
+    }
+    .post-header-plain {
+      padding-top: 110px;
+    }
+  }
+</style>

@@ -2,6 +2,7 @@ export interface TagMeta {
   slug: string;
   name: string;
   description: string;
+  bgImage?: string;
 }
 
 export const tagMeta: Record<string, TagMeta> = {
@@ -9,11 +10,13 @@ export const tagMeta: Record<string, TagMeta> = {
     slug: 'daily-notes',
     name: 'daily-notes',
     description: 'everyday - consistent',
+    bgImage: 'https://photoby.nbtrisna.my.id/b20033d5-91a6-4daf-842c-1ef0007c42f0.jpg',
   },
   'catatan': {
     slug: 'catatan',
     name: 'catatan',
     description: 'test - write',
+    bgImage: 'https://photoby.nbtrisna.my.id/5d2de8cf-569e-4274-85ca-77fe1921bea8.jpg',
   },
   'linux': {
     slug: 'linux',
@@ -25,10 +28,14 @@ export const tagMeta: Record<string, TagMeta> = {
     name: 'kvm',
     description: 'Virtualization with KVM',
   },
+};
+
+export const pageMeta: Record<string, TagMeta> = {
   'about': {
     slug: 'about',
-    name: 'about',
+    name: 'About',
     description: '',
+    bgImage: '',
   },
 };
 
@@ -36,6 +43,10 @@ export function getTagDescription(tag: string): string {
   return tagMeta[tag]?.description || '';
 }
 
-export function getTagName(tag: string): string {
-  return tagMeta[tag]?.name || tag;
+export function getTagBgImage(tag: string): string | undefined {
+  return tagMeta[tag]?.bgImage || undefined;
+}
+
+export function getPageBgImage(page: string): string | undefined {
+  return pageMeta[page]?.bgImage || undefined;
 }

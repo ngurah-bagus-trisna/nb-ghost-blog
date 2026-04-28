@@ -7,9 +7,10 @@ interface Props {
   title: string;
   bodyClass?: string;
   currentPath?: string;
+  bgImage?: string;
 }
 
-const { title, bodyClass = 'page-template', currentPath = '/' } = Astro.props;
+const { title, bodyClass = 'page-template', currentPath = '/', bgImage } = Astro.props;
 ---
 
 <BaseLayout
@@ -20,15 +21,65 @@ const { title, bodyClass = 'page-template', currentPath = '/' } = Astro.props;
   <Header currentPath={currentPath} />
 
   <main class="gh-main">
-    <article class="gh-article post no-image">
-      <header class="gh-article-header gh-canvas">
-        <h1 class="gh-article-title is-title">{title}</h1>
-      </header>
-      <section class="gh-content gh-canvas is-body">
-        <slot />
-      </section>
-    </article>
+    <div class="section-hero" style={bgImage ? `background-image: url(${bgImage}); background-size: cover; background-position: center;` : ''}>
+      <div class="section-hero-overlay"></div>
+      <div class="section-hero-content">
+        <h1 class="section-hero-title">{title}</h1>
+      </div>
+    </div>
+
+    <section class="gh-content gh-canvas is-body" style="padding-top: clamp(40px, 5vw, 64px); padding-bottom: 6vw;">
+      <slot />
+    </section>
   </main>
 
   <Footer />
 </BaseLayout>
+
+<style>
+  .section-hero {
+    position: relative;
+    height: 40vh;
+    min-height: 260px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  }
+
+  .section-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 70%),
+      linear-gradient(to right, rgba(0,0,0,0.3) 0%, transparent 60%);
+    z-index: 1;
+  }
+
+  .section-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 max(4vmin, 40px) max(4vmin, 40px);
+    max-width: 800px;
+  }
+
+  .section-hero-title {
+    font-family: var(--gh-font-heading, 'Noto Sans'), sans-serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .section-hero {
+      height: 30vh;
+      min-height: 200px;
+    }
+    .section-hero-content {
+      padding: 0 24px 24px;
+    }
+  }
+</style>

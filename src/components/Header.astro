@@ -1,4 +1,8 @@
 ---
+interface Props {
+  currentPath?: string;
+}
+
 const { currentPath = '/' } = Astro.props;
 
 interface NavItem { label: string; href: string; slug: string; }
@@ -52,17 +56,14 @@ function isCurrent(item: NavItem): boolean {
 <div class="search-overlay" id="search-overlay">
   <div class="search-modal">
     <div class="search-header">
-      <div class="search-input-wrap">
-        <svg class="search-input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-        <input class="search-input" id="search-input" type="text" placeholder="Search articles..." autocomplete="off">
-      </div>
       <button class="search-close" id="search-close" aria-label="Close search">&times;</button>
     </div>
-    <div class="search-results" id="search-results">
-      <p class="search-empty">Start typing to search...</p>
-    </div>
+    <div id="pagefind-search"></div>
   </div>
 </div>
+
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js" is:inline></script>
 
 <style>
   .nav-transparent {
@@ -83,17 +84,17 @@ function isCurrent(item: NavItem): boolean {
     z-index: 100;
   }
 
-  /* Search overlay */
   .search-overlay {
     position: fixed;
     inset: 0;
     z-index: 9999;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0,0,0,0.88);
     display: none;
     align-items: flex-start;
     justify-content: center;
-    padding-top: 15vh;
-    backdrop-filter: blur(8px);
+    padding: 12vh 24px 0;
+    backdrop-filter: blur(12px);
+    overflow-y: auto;
   }
 
   .search-overlay.open {
@@ -102,56 +103,19 @@ function isCurrent(item: NavItem): boolean {
 
   .search-modal {
     width: 100%;
-    max-width: 640px;
-    margin: 0 24px;
+    max-width: 600px;
   }
 
   .search-header {
     display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-
-  .search-input-wrap {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 12px;
-    padding: 12px 16px;
-    transition: border-color 0.2s;
-  }
-
-  .search-input-wrap:focus-within {
-    border-color: var(--ghost-accent-color, #b6bdff);
-  }
-
-  .search-input-icon {
-    flex-shrink: 0;
-    color: rgba(255,255,255,0.4);
-  }
-
-  .search-input {
-    flex: 1;
-    background: none;
-    border: none;
-    outline: none;
-    color: #fff;
-    font-size: 1.6rem;
-    font-family: var(--gh-font-body, 'Space Mono'), monospace;
-  }
-
-  .search-input::placeholder {
-    color: rgba(255,255,255,0.4);
+    justify-content: flex-end;
+    margin-bottom: 12px;
   }
 
   .search-close {
     background: none;
     border: none;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.5);
     font-size: 2.4rem;
     cursor: pointer;
     padding: 4px 8px;
@@ -161,128 +125,50 @@ function isCurrent(item: NavItem): boolean {
   .search-close:hover {
     color: #fff;
   }
-
-  .search-results {
-    max-height: 60vh;
-    overflow-y: auto;
-  }
-
-  .search-empty {
-    color: rgba(255,255,255,0.4);
-    text-align: center;
-    padding: 40px 0;
-    font-size: 1.4rem;
-  }
-
-  .search-results mark {
-    background: var(--ghost-accent-color, #b6bdff);
-    color: #151515;
-    padding: 0 2px;
-    border-radius: 2px;
-  }
-
-  .search-result-item {
-    display: block;
-    padding: 16px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.15s;
-    margin-bottom: 4px;
-  }
-
-  .search-result-item:hover {
-    background: rgba(255,255,255,0.06);
-  }
-
-  .search-result-title {
-    color: #fff;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  .search-result-excerpt {
-    color: rgba(255,255,255,0.5);
-    font-size: 1.3rem;
-    line-height: 1.4;
-  }
 </style>
 
 <script>
-  // Search logic
-  function initSearch() {
-    const overlay = document.getElementById('search-overlay');
-    const input = document.getElementById('search-input') as HTMLInputElement | null;
-    const results = document.getElementById('search-results');
-    const closeBtn = document.getElementById('search-close');
-    if (!overlay || !input || !results || !closeBtn) return;
+  (function() {
+    var overlay = document.getElementById('search-overlay');
+    var closeBtn = document.getElementById('search-close');
+    if (!overlay || !closeBtn) return;
+
+    var pagefindUI = null;
 
     function open() {
-      overlay!.classList.add('open');
-      setTimeout(() => input!.focus(), 100);
+      overlay.classList.add('open');
+      if (!pagefindUI) {
+        var el = document.getElementById('pagefind-search');
+        if (el && window.PagefindUI) {
+          pagefindUI = new window.PagefindUI({
+            element: '#pagefind-search',
+            showSubResults: true,
+            showImages: false,
+          });
+        }
+      }
     }
-
     function close() {
-      overlay!.classList.remove('open');
-      input!.value = '';
-      results!.innerHTML = '<p class="search-empty">Start typing to search...</p>';
+      overlay.classList.remove('open');
     }
 
-    document.querySelectorAll('[data-open-search]').forEach(btn => {
+    document.querySelectorAll('[data-open-search]').forEach(function(btn) {
       btn.addEventListener('click', open);
     });
-
     closeBtn.addEventListener('click', close);
-    overlay.addEventListener('click', (e) => {
+    overlay.addEventListener('click', function(e) {
       if (e.target === overlay) close();
     });
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && overlay.classList.contains('open')) close();
     });
-
-    let debounceTimer;
-    function getPagefind() {
-      return window.Pagefind || null;
-    }
-
-    input.addEventListener('input', () => {
-      clearTimeout(debounceTimer);
-      const query = input.value.trim();
-      if (!query) {
-        results.innerHTML = '<p class="search-empty">Start typing to search...</p>';
-        return;
-      }
-      debounceTimer = setTimeout(async () => {
-        const pf = getPagefind();
-        if (!pf) {
-          results.innerHTML = '<p class="search-empty">Search available after <code>npm run build</code>.</p>';
-          return;
-        }
-        results.innerHTML = '<p class="search-empty">Searching...</p>';
-        const search = await pf.search(query);
-        if (!search || search.results.length === 0) {
-          results.innerHTML = '<p class="search-empty">No results found.</p>';
-          return;
-        }
-        const html = [];
-        for (const r of search.results.slice(0, 10)) {
-          const data = await r.data();
-          html.push('<a class="search-result-item" href="' + data.url + '"><div class="search-result-title">' + (data.meta?.title || data.url) + '</div><div class="search-result-excerpt">' + (data.excerpt || '') + '</div></a>');
-        }
-        results.innerHTML = html.join('');
-      }, 250);
-    });
-  }
-
-  initSearch();
+  })();
 </script>
 
 <script>
-  // Navbar transparent on scroll
   (function() {
     var nav = document.getElementById('gh-navigation');
     if (!nav) return;
-
     function onScroll() {
       if (window.scrollY > 50) {
         nav.classList.add('scrolled');
@@ -290,9 +176,6 @@ function isCurrent(item: NavItem): boolean {
         nav.classList.remove('scrolled');
       }
     }
-
-    nav.classList.add('nav-transparent');
-    nav.classList.remove('scrolled');
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   })();
