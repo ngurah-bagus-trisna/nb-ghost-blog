@@ -1,13 +1,161 @@
-<footer class="gh-footer gh-outer">
-  <div class="gh-footer-inner gh-inner">
-    <div class="gh-footer-bar">
-      <span class="gh-footer-logo is-title">
-        <img src="/content/images/2024/08/logo-Primary-1.png" alt="twnb">
-      </span>
-      <nav class="gh-footer-menu"></nav>
-      <div class="gh-footer-copyright">
-        Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>
+<footer class="site-footer">
+  <div class="sf-inner">
+    <div class="sf-grid">
+      <!-- Brand -->
+      <div class="sf-col sf-brand">
+        <a href="/" class="sf-logo">
+          <img src="/content/images/2024/08/logo-Primary-1.png" alt="twnb" width="40" height="40">
+          <span class="sf-logo-text">twnb</span>
+        </a>
+        <p class="sf-tagline">Tech with Ngurah Bagus — IT notes, tutorials, and personal journey.</p>
       </div>
+
+      <!-- Quick Links -->
+      <div class="sf-col">
+        <h4 class="sf-heading">Links</h4>
+        <ul class="sf-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/tag/daily-notes/">Daily Notes</a></li>
+          <li><a href="/tag/catatan/">Blog</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+      </div>
+
+      <!-- Tags -->
+      <div class="sf-col">
+        <h4 class="sf-heading">Tags</h4>
+        <ul class="sf-links">
+          <li><a href="/tag/daily-notes/">daily-notes</a></li>
+          <li><a href="/tag/catatan/">catatan</a></li>
+          <li><a href="/tag/linux/">linux</a></li>
+          <li><a href="/tag/kvm/">kvm</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="sf-bottom">
+      <span>&copy; {new Date().getFullYear()} Ngurah Bagus</span>
+      <span class="sf-sep">&middot;</span>
+      <span>Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a></span>
     </div>
   </div>
 </footer>
+
+<style is:global>
+  .site-footer {
+    position: relative;
+    z-index: 2;
+    background: var(--background-color, #151515);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: clamp(48px, 8vw, 80px) max(4vmin, 40px) 0;
+    margin-top: 0;
+  }
+
+  .sf-inner {
+    max-width: var(--container-width, 1320px);
+    margin: 0 auto;
+  }
+
+  .sf-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: clamp(32px, 5vw, 64px);
+    padding-bottom: clamp(32px, 5vw, 48px);
+  }
+
+  .sf-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    margin-bottom: 12px;
+  }
+
+  .sf-logo img {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+  }
+
+  .sf-logo-text {
+    font-family: var(--gh-font-heading, 'Noto Sans'), sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+
+  .sf-tagline {
+    font-size: 1.3rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    max-width: 320px;
+    margin: 0;
+  }
+
+  .sf-heading {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 16px;
+  }
+
+  .sf-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sf-links a {
+    font-size: 1.35rem;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .sf-links a:hover {
+    color: #fff;
+  }
+
+  .sf-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 1.25rem;
+    color: rgba(255,255,255,0.35);
+    flex-wrap: wrap;
+  }
+
+  .sf-bottom a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+  }
+
+  .sf-bottom a:hover {
+    color: #fff;
+  }
+
+  .sf-sep {
+    opacity: 0.3;
+  }
+
+  @media (max-width: 768px) {
+    .sf-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .sf-tagline {
+      max-width: none;
+    }
+  }
+</style>

@@ -91,8 +91,9 @@ const slideDuration = 5000;
 
   .hero-content {
     position: absolute;
-    bottom: 14%;
+    bottom: max(6vmin, 48px);
     left: max(4vmin, 40px);
+    right: max(4vmin, 40px);
     max-width: 640px;
     z-index: 3;
   }
@@ -146,7 +147,7 @@ const slideDuration = 5000;
 
   .hero-dots {
     position: absolute;
-    bottom: 10%;
+    bottom: max(6vmin, 48px);
     right: max(4vmin, 40px);
     z-index: 3;
     display: flex;
@@ -179,13 +180,13 @@ const slideDuration = 5000;
       height: 100dvh;
     }
     .hero-content {
-      bottom: 20%;
+      bottom: 40px;
       left: 24px;
       right: 24px;
       max-width: none;
     }
     .hero-dots {
-      bottom: 8%;
+      bottom: 40px;
       right: 24px;
     }
     .hero-title {

@@ -27,7 +27,7 @@ function isCurrent(item: NavItem): boolean {
         <img src="/content/images/2024/08/logo-Primary-1.png" alt="twnb">
       </a>
       <button class="gh-search gh-icon-button search-toggle" aria-label="Search this site" data-open-search>
-        <img src="/assets/images/search.svg" alt="Search" width="20" height="20">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffffff" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>
       </button>
       <button class="gh-burger gh-icon-button" aria-label="Menu">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path></svg>
@@ -47,7 +47,7 @@ function isCurrent(item: NavItem): boolean {
 
     <div class="gh-navigation-actions">
       <button class="gh-search gh-icon-button search-toggle" aria-label="Search this site" data-open-search>
-        <img src="/assets/images/search.svg" alt="Search" width="20" height="20">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffffff" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>
       </button>
     </div>
   </div>
@@ -66,6 +66,12 @@ function isCurrent(item: NavItem): boolean {
 <script src="/pagefind/pagefind-ui.js" is:inline></script>
 
 <style>
+  .nav-transparent,
+  .nav-transparent :is(a, button, span),
+  .gh-navigation {
+    color: #fff !important;
+  }
+
   .nav-transparent {
     background-color: transparent !important;
     transition: background-color 0.35s ease, box-shadow 0.35s ease;
@@ -84,11 +90,22 @@ function isCurrent(item: NavItem): boolean {
     z-index: 100;
   }
 
-  .gh-search img {
+  .search-toggle,
+  .search-toggle:hover,
+  .search-toggle:focus,
+  .search-toggle:focus-visible,
+  .search-toggle:active {
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    color: #fff !important;
+  }
+
+  .search-toggle svg {
     display: block;
-    background: none;
-    border: none;
-    outline: none;
+    width: 20px;
+    height: 20px;
   }
 
   .search-overlay {
