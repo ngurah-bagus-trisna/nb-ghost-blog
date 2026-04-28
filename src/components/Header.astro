@@ -262,3 +262,22 @@ function isCurrent(item: NavItem): boolean {
     onScroll();
   })();
 </script>
+
+<script>
+  // Burger menu toggle
+  (function() {
+    var burger = document.querySelector('.gh-burger');
+    var nav = document.getElementById('gh-navigation');
+    if (!burger || !nav) return;
+
+    burger.addEventListener('click', function() {
+      nav.classList.toggle('is-open');
+    });
+
+    nav.querySelectorAll('.nav a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        nav.classList.remove('is-open');
+      });
+    });
+  })();
+</script>

@@ -183,6 +183,24 @@ const defaultImage = `${siteUrl}/content/images/2023/12/Banner-2.png`;
     /* Smooth scroll */
     html { scroll-behavior: smooth; }
 
+    /* Global responsive fixes */
+    body { overflow-x: hidden; }
+    *, *::before, *::after { box-sizing: border-box; }
+    img { max-width: 100%; height: auto; }
+    table { display: block; max-width: 100%; overflow-x: auto; }
+    pre { max-width: 100%; overflow-x: auto; white-space: pre-wrap; word-break: break-word; }
+    iframe { max-width: 100%; }
+    @media (max-width: 640px) {
+      .gh-content { font-size: 1.55rem; }
+      .gh-outer { padding-left: 16px; padding-right: 16px; }
+      .gh-inner { padding-left: 0; padding-right: 0; }
+      .gh-navigation-inner { gap: 24px; }
+      .gh-navigation-logo { font-size: 2rem; }
+      .gh-card-title { font-size: 1.55rem; }
+      .gh-card-excerpt { font-size: 1.3rem; }
+      .gh-feed { gap: 24px; }
+    }
+
   </style>
 </head>
 
