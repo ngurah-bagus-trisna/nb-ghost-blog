@@ -126,6 +126,63 @@ function isCurrent(item: NavItem): boolean {
   .search-close:hover {
     color: #fff;
   }
+
+  /* Pagefind UI dark theme overrides */
+  #pagefind-search {
+    --pagefind-ui-primary: #fff;
+    --pagefind-ui-text: rgba(255,255,255,0.9);
+    --pagefind-ui-background: rgba(255,255,255,0.04);
+    --pagefind-ui-border: rgba(255,255,255,0.12);
+    --pagefind-ui-tag: rgba(255,255,255,0.06);
+    --pagefind-ui-font: var(--gh-font-body, 'Space Mono'), monospace;
+  }
+
+  #pagefind-search input {
+    background: rgba(255,255,255,0.06) !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    color: #fff !important;
+    border-radius: 10px !important;
+    padding: 12px 16px !important;
+    font-size: 1.5rem !important;
+  }
+
+  #pagefind-search input::placeholder {
+    color: rgba(255,255,255,0.35) !important;
+  }
+
+  #pagefind-search input:focus {
+    border-color: var(--ghost-accent-color, #b6bdff) !important;
+  }
+
+  #pagefind-search .pagefind-ui__result-title {
+    color: #fff !important;
+  }
+
+  #pagefind-search .pagefind-ui__result-excerpt {
+    color: rgba(255,255,255,0.65) !important;
+  }
+
+  #pagefind-search .pagefind-ui__result-link {
+    color: var(--ghost-accent-color, #b6bdff) !important;
+  }
+
+  #pagefind-search mark,
+  #pagefind-search .pagefind-ui__result-excerpt mark {
+    background: var(--ghost-accent-color, #b6bdff) !important;
+    color: #151515 !important;
+    padding: 1px 4px !important;
+    border-radius: 3px !important;
+  }
+
+  #pagefind-search .pagefind-ui__message {
+    color: rgba(255,255,255,0.5) !important;
+  }
+
+  #pagefind-search .pagefind-ui__button {
+    background: rgba(255,255,255,0.08) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+  }
 </style>
 
 <script>
