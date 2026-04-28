@@ -104,7 +104,8 @@ const primaryTag = tags[0] || null;
   <Footer />
 
   <!-- JSON-LD Article + BreadcrumbList -->
-  <script type="application/ld+json" set:html={JSON.stringify({
+  <script type="application/ld+json">
+    {JSON.stringify({
     '@context': 'https://schema.org',
     '@graph': [
       {
@@ -144,7 +145,8 @@ const primaryTag = tags[0] || null;
         ],
       },
     ],
-  })} />
+  })}
+  </script>
 </BaseLayout>
 
 <style>

@@ -1,0 +1,246 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  bgImage?: string;
+}
+
+const { bgImage } = Astro.props;
+const siteUrl = Astro.site?.href.replace(/\/$/, '') || 'https://twnb.nbtrisna.my.id';
+const name = 'I Gusti Ngurah Bagus Trisna Andika';
+const shortName = 'Bagus Trisna';
+const role = 'Cloud Engineer / Network Engineer';
+---
+
+<BaseLayout
+  title={`About — ${shortName}`}
+  description={`${shortName} — Cloud Engineer specializing in Kubernetes, Linux, and infrastructure automation.`}
+  bodyClass="page-template page-about"
+  canonicalURL={new URL('/about/', Astro.site).href}
+  ogType="profile"
+>
+  <Header currentPath="/about/" />
+
+  <main class="gh-main">
+    <!-- Fixed background -->
+    <div class="ab-bg" style={bgImage ? `background-image: url(${bgImage})` : ''}></div>
+    <div class="ab-bg-overlay"></div>
+
+    <!-- Fixed header text -->
+    <div class="ab-hero-text">
+      <h1 class="ab-hero-name">{shortName}</h1>
+      <p class="ab-hero-role">{role}</p>
+      <div class="ab-hero-links">
+        <a href="https://github.com/ngurah-bagus-trisna" target="_blank" rel="noopener" class="ab-social-link">GitHub</a>
+        <a href="/rss.xml" class="ab-social-link">RSS</a>
+        <a href="mailto:ngurahbagustrisna@example.com" class="ab-social-link">Email</a>
+      </div>
+    </div>
+
+    <!-- Scrollable content -->
+    <div class="ab-content">
+      <div class="ab-section">
+        <div class="ab-card">
+          <h2 class="ab-card-title">About Me</h2>
+          <p class="ab-card-text">Selamat datang di Tech with Ngurah Bagus! Saya adalah seorang penggemar teknologi dan melalui blog ini, saya berbagi catatan, tutorial, dan perjalanan saya di dunia IT.</p>
+          <p class="ab-card-text">Berbasis di Indonesia, saya fokus pada infrastruktur cloud, otomatisasi, dan virtualisasi. Saya percaya pada pembelajaran berkelanjutan dan berbagi pengetahuan dengan komunitas.</p>
+        </div>
+      </div>
+
+      <div class="ab-section">
+        <h2 class="ab-section-title">Experience</h2>
+        <div class="ab-timeline">
+          <div class="ab-timeline-item">
+            <div class="ab-timeline-dot"></div>
+            <div class="ab-timeline-card">
+              <div class="ab-timeline-date">2022 — Saat Ini</div>
+              <h3 class="ab-timeline-role">Cloud Engineer</h3>
+              <p class="ab-timeline-company">Boer Technology</p>
+              <ul class="ab-timeline-skills">
+                <li>Kubernetes Administration</li>
+                <li>Linux Administration</li>
+                <li>Containerized Applications</li>
+                <li>Basic OpenStack</li>
+                <li>Monitoring — Grafana, Prometheus, Loki, VictoriaMetrics</li>
+                <li>KVM Virtualization</li>
+              </ul>
+            </div>
+          </div>
+          <div class="ab-timeline-item">
+            <div class="ab-timeline-dot"></div>
+            <div class="ab-timeline-card">
+              <div class="ab-timeline-date">Sebelumnya</div>
+              <h3 class="ab-timeline-role">Network Engineer</h3>
+              <p class="ab-timeline-company">Biznet (PT. Supra Primatama Nusantara)</p>
+              <ul class="ab-timeline-skills">
+                <li>Network Operational Access (NOA) — troubleshooting &amp; installing fiber optic for 100+ customers</li>
+                <li>Network Operational Distribution (NOD) — fiber maintenance, monitoring, drop points</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ab-section">
+        <h2 class="ab-section-title">Certifications</h2>
+        <div class="ab-certs">
+          <div class="ab-cert-card">
+            <div class="ab-cert-icon">🎓</div>
+            <h3 class="ab-cert-name">CKA</h3>
+            <p class="ab-cert-desc">Certified Kubernetes Administrator</p>
+            <p class="ab-cert-from">The Linux Foundation</p>
+          </div>
+          <div class="ab-cert-card">
+            <div class="ab-cert-icon">☁️</div>
+            <h3 class="ab-cert-name">Cloud Engineer Bootcamp</h3>
+            <p class="ab-cert-desc">Linux, Ansible, Kubernetes, Ceph, OpenStack</p>
+            <p class="ab-cert-from">Adinusa</p>
+          </div>
+          <div class="ab-cert-card">
+            <div class="ab-cert-icon">📡</div>
+            <h3 class="ab-cert-name">MTCNA</h3>
+            <p class="ab-cert-desc">MikroTik Certified Network Associate</p>
+            <p class="ab-cert-from">MikroTik</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ab-section">
+        <h2 class="ab-section-title">Skills &amp; Tools</h2>
+        <div class="ab-tags">
+          <span class="ab-tag">Kubernetes</span>
+          <span class="ab-tag">Linux</span>
+          <span class="ab-tag">Docker</span>
+          <span class="ab-tag">Terraform</span>
+          <span class="ab-tag">Ansible</span>
+          <span class="ab-tag">Grafana</span>
+          <span class="ab-tag">Prometheus</span>
+          <span class="ab-tag">OpenStack</span>
+          <span class="ab-tag">KVM</span>
+          <span class="ab-tag">AWS</span>
+          <span class="ab-tag">CI/CD</span>
+          <span class="ab-tag">GitHub Actions</span>
+          <span class="ab-tag">Git</span>
+          <span class="ab-tag">Networking</span>
+          <span class="ab-tag">MikroTik</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+
+  <script type="application/ld+json">
+    {JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name,
+      givenName: 'Ngurah Bagus',
+      familyName: 'Trisna Andika',
+      jobTitle: role,
+      url: `${siteUrl}/about/`,
+      sameAs: ['https://github.com/ngurah-bagus-trisna'],
+      knowsAbout: ['Kubernetes','Linux','Docker','Terraform','Ansible','Grafana','Prometheus','OpenStack','KVM','AWS','CI/CD','Networking','MikroTik'],
+    })}
+  </script>
+</BaseLayout>
+
+<style is:global>
+  /* Fixed background */
+  .ab-bg {
+    position: fixed; inset: 0; z-index: 0;
+    background-size: cover; background-position: center;
+    background-color: #0d1117; transform: translateZ(0); will-change: transform;
+    background-image: linear-gradient(135deg, #0d1117 0%, #161b22 40%, #1a1a2e 100%);
+  }
+  .ab-bg-overlay {
+    position: fixed; inset: 0; z-index: 1;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 55%, rgba(0,0,0,0.35) 100%);
+  }
+
+  /* Fixed header text — bottom-left */
+  .ab-hero-text {
+    position: fixed; bottom: 0; left: 0; z-index: 3;
+    padding: 0 max(4vmin,40px) max(6vmin,48px); max-width: 600px;
+  }
+  .ab-hero-name {
+    font-family: var(--gh-font-heading,'Noto Sans'),sans-serif;
+    font-size: clamp(2.8rem,5.5vw,5rem); font-weight: 700; line-height: 1.1;
+    letter-spacing: -0.025em; color: #fff; margin: 0 0 0.15em;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.5);
+  }
+  .ab-hero-role {
+    font-size: clamp(1.3rem,1.8vw,1.6rem); color: var(--ghost-accent-color,#b6bdff);
+    font-weight: 500; margin: 0 0 0.8em; letter-spacing: 0.02em;
+  }
+  .ab-hero-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .ab-social-link {
+    font-size: 1.35rem; color: rgba(255,255,255,0.55); text-decoration: none;
+    border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; padding-bottom: 2px;
+  }
+  .ab-social-link:hover { color: #fff; border-color: var(--ghost-accent-color,#b6bdff); }
+
+  /* Scrollable content */
+  .ab-content {
+    position: relative; z-index: 2;
+    margin-top: 100vh;
+    background: var(--background-color,#151515);
+    padding-top: clamp(40px,6vw,64px);
+    padding-bottom: 12vw;
+  }
+
+  /* Ensure footer renders above fixed bg */
+  .gh-footer { position: relative; z-index: 2; background: var(--background-color,#151515); }
+
+  /* Sections */
+  .ab-section { padding: 0 max(4vmin,40px); margin: 0 auto clamp(48px,7vw,80px); max-width: 900px; }
+  .ab-section:last-child { margin-bottom: 0; }
+  .ab-section-title {
+    font-size: 1.9rem; font-weight: 700; color: #fff; margin: 0 0 1em;
+    letter-spacing: -0.01em;
+  }
+
+  /* Glass card */
+  .ab-card {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px; padding: clamp(28px,5vw,40px); backdrop-filter: blur(8px);
+  }
+  .ab-card-title { font-size: 1.7rem; font-weight: 700; color: #fff; margin: 0 0 0.6em; }
+  .ab-card-text { font-size: 1.4rem; color: rgba(255,255,255,0.7); line-height: 1.7; margin: 0 0 1em; }
+  .ab-card-text:last-child { margin-bottom: 0; }
+
+  /* Timeline */
+  .ab-timeline { position: relative; padding-left: 28px; }
+  .ab-timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: rgba(255,255,255,0.1); }
+  .ab-timeline-item { position: relative; margin-bottom: 28px; }
+  .ab-timeline-item:last-child { margin-bottom: 0; }
+  .ab-timeline-dot { position: absolute; left: -28px; top: 8px; width: 15px; height: 15px; border-radius: 50%; background: var(--ghost-accent-color,#b6bdff); border: 3px solid var(--background-color,#151515); }
+  .ab-timeline-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 24px 28px; }
+  .ab-timeline-date { font-size: 1.2rem; color: var(--ghost-accent-color,#b6bdff); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .ab-timeline-role { font-size: 1.55rem; color: #fff; font-weight: 650; margin: 0 0 4px; }
+  .ab-timeline-company { font-size: 1.25rem; color: rgba(255,255,255,0.5); margin: 0 0 10px; }
+  .ab-timeline-skills { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .ab-timeline-skills li { font-size: 1.15rem; color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); padding: 3px 10px; border-radius: 6px; }
+
+  /* Certs */
+  .ab-certs { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .ab-cert-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 28px 24px; text-align: center; transition: border-color 0.3s; }
+  .ab-cert-card:hover { border-color: var(--ghost-accent-color,#b6bdff); }
+  .ab-cert-icon { font-size: 2.2rem; margin-bottom: 10px; }
+  .ab-cert-name { font-size: 1.45rem; color: #fff; font-weight: 650; margin: 0 0 6px; }
+  .ab-cert-desc { font-size: 1.2rem; color: rgba(255,255,255,0.6); margin: 0 0 6px; line-height: 1.4; }
+  .ab-cert-from { font-size: 1.1rem; color: var(--ghost-accent-color,#b6bdff); font-weight: 500; }
+
+  /* Tags */
+  .ab-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .ab-tag { font-size: 1.3rem; color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); padding: 8px 18px; border-radius: 100px; transition: all 0.25s; }
+  .ab-tag:hover { background: rgba(182,189,255,0.12); border-color: var(--ghost-accent-color,#b6bdff); color: #fff; }
+
+  @media (max-width: 768px) {
+    .ab-certs { grid-template-columns: 1fr; }
+    .ab-hero-name { font-size: 2.4rem; }
+    .ab-section { padding: 0 24px; margin-bottom: 48px; }
+  }
+</style>

@@ -1,4 +1,6 @@
 ---
+import ClientRouter from 'astro/components/ClientRouter.astro';
+
 export interface Props {
   title: string;
   description?: string;
@@ -104,10 +106,13 @@ const defaultImage = `${siteUrl}/content/images/2023/12/Banner-2.png`;
       </>
   }
 
+  <ClientRouter />
+
   <link rel="alternate" type="application/rss+xml" title={siteTitle} href={`${siteUrl}/rss.xml`}>
 
   <!-- JSON-LD WebSite + Organization -->
-  <script type="application/ld+json" set:html={JSON.stringify({
+  <script type="application/ld+json">
+    {JSON.stringify({
     '@context': 'https://schema.org',
     '@graph': [
       {
@@ -133,7 +138,8 @@ const defaultImage = `${siteUrl}/content/images/2023/12/Banner-2.png`;
         founder: { '@type': 'Person', name: publisherName },
       },
     ],
-  })} />
+  })}
+  </script>
 
   <style is:global>
     /* Terminal code blocks */
@@ -180,10 +186,34 @@ const defaultImage = `${siteUrl}/content/images/2023/12/Banner-2.png`;
 
     /* Smooth scroll */
     html { scroll-behavior: smooth; }
+
+    /* View Transitions */
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+    ::view-transition-old(root) {
+      animation: fadeOut 0.25s ease forwards;
+    }
+    ::view-transition-new(root) {
+      animation: fadeIn 0.35s ease forwards;
+    }
+    @keyframes fadeOut {
+      to { opacity: 0; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
   </style>
 </head>
 
-<body class={`${bodyClass} gh-font-heading-noto-sans gh-font-body-space-mono has-sans-title has-sans-body`}>
+<body class={`${bodyClass} gh-font-heading-noto-sans gh-font-body-space-mono has-sans-title has-sans-body`} transition:animate="fade">
   <div class="gh-viewport">
     <slot />
   </div>

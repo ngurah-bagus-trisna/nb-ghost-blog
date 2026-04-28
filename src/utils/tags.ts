@@ -35,7 +35,7 @@ export const pageMeta: Record<string, TagMeta> = {
     slug: 'about',
     name: 'About',
     description: '',
-    bgImage: '',
+    bgImage: 'https://photoby.nbtrisna.my.id/ae996721-496f-4e34-86ef-0102698a36e0.jpg',
   },
 };
 

@@ -1,14 +1,8 @@
 ---
-import { getEntry, render } from 'astro:content';
-import PageLayout from '../layouts/PageLayout.astro';
+import AboutLayout from '../layouts/AboutLayout.astro';
 import { getPageBgImage } from '../utils/tags';
 
-const page = await getEntry('pages', 'about');
-const rendered = page ? await render(page) : null;
-const { Content } = rendered || {};
 const bgImage = getPageBgImage('about');
 ---
 
-<PageLayout title="Hi Saya Ngurah Bagus :)" currentPath="/about/" bgImage={bgImage}>
-  {Content && <Content />}
-</PageLayout>
+<AboutLayout bgImage={bgImage} />

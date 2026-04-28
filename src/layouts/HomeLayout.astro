@@ -4,16 +4,14 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostCard from '../components/PostCard.astro';
 import HeroSlideshow from '../components/HeroSlideshow.astro';
-import Preloader from '../components/Preloader.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
   posts: CollectionEntry<'posts'>[];
   heroPosts?: CollectionEntry<'posts'>[];
-  showPreloader?: boolean;
 }
 
-const { posts, heroPosts, showPreloader = false } = Astro.props;
+const { posts, heroPosts } = Astro.props;
 const title = 'Tech with Ngurah Bagus: IT Notes, Tutorials, and My Journey';
 ---
 
@@ -23,8 +21,6 @@ const title = 'Tech with Ngurah Bagus: IT Notes, Tutorials, and My Journey';
   canonicalURL={new URL('/', Astro.site).href}
 >
   <Header currentPath="/" />
-
-  {showPreloader && <Preloader />}
 
   {heroPosts && heroPosts.length > 0 && <HeroSlideshow posts={heroPosts} />}
 
@@ -42,7 +38,8 @@ const title = 'Tech with Ngurah Bagus: IT Notes, Tutorials, and My Journey';
   <Footer />
 
   {/* JSON-LD CollectionPage */}
-  <script type="application/ld+json" set:html={JSON.stringify({
+  <script type="application/ld+json">
+    {JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     '@id': `${new URL('/', Astro.site).href}#collection`,
@@ -50,5 +47,6 @@ const title = 'Tech with Ngurah Bagus: IT Notes, Tutorials, and My Journey';
     description: 'Latest articles and tutorials on Linux, KVM, AWS, Kubernetes, and DevOps.',
     url: new URL('/', Astro.site).href,
     isPartOf: { '@id': `${new URL('/', Astro.site).href}#website` },
-  })} />
+  })}
+  </script>
 </BaseLayout>
