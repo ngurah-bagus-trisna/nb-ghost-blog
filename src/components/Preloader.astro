@@ -23,207 +23,59 @@
 
 <style is:global>
   .preloader {
-    position: fixed;
-    inset: 0;
-    z-index: 999999;
-    background: #0a0a0a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    position: fixed; inset: 0; z-index: 999999; background: #0a0a0a;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
     transition: opacity 0.6s ease, visibility 0.6s ease;
   }
-
-  .preloader.preloader-done {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  .preloader-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-  }
-
-  .preloader-glitch {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    animation: glitchFlash 0.15s infinite;
-  }
-
-  .preloader-glitch-1 {
-    background: rgba(182, 189, 255, 0.03);
-    animation-delay: 0s;
-    clip-path: inset(20% 0 60% 0);
-  }
-
-  .preloader-glitch-2 {
-    background: rgba(255, 255, 255, 0.02);
-    animation-delay: 0.07s;
-    clip-path: inset(40% 0 30% 0);
-  }
-
-  .preloader-glitch-3 {
-    background: rgba(182, 189, 255, 0.04);
-    animation-delay: 0.13s;
-    clip-path: inset(70% 0 10% 0);
-  }
-
-  @keyframes glitchFlash {
-    0%, 90%, 100% { opacity: 0; }
-    45% { opacity: 0.8; }
-    55% { opacity: 0.6; }
-    70% { opacity: 0; }
-    85% { opacity: 0.3; }
-  }
-
-  .preloader-scanline {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: rgba(182, 189, 255, 0.06);
-    animation: scanlineGlitch 3s linear infinite;
-    pointer-events: none;
-  }
-
-  @keyframes scanlineGlitch {
-    0% { top: -2px; }
-    100% { top: 100%; }
-  }
-
-  .preloader-stage {
-    position: relative;
-    z-index: 2;
-    text-align: left;
-    padding: 0 max(4vmin, 40px);
-  }
-
-  .preloader-ascii {
-    font-family: var(--gh-font-body, 'Space Mono'), monospace;
-    font-size: clamp(0.55rem, 1.2vw, 0.85rem);
-    color: var(--ghost-accent-color, #b6bdff);
-    line-height: 1.1;
-    margin: 0 0 2rem;
-    opacity: 0;
-    animation: fadeInAscii 0.5s ease forwards;
-    animation-delay: 0.2s;
-    white-space: pre;
-    overflow: hidden;
-  }
-
-  @keyframes fadeInAscii {
-    0% { opacity: 0; transform: translateY(8px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  .preloader-text-wrap {
-    display: flex;
-    align-items: baseline;
-    gap: 0;
-  }
-
-  .preloader-text {
-    font-family: var(--gh-font-body, 'Space Mono'), monospace;
-    font-size: clamp(2.4rem, 4vw, 4rem);
-    color: var(--ghost-accent-color, #b6bdff);
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    line-height: 1.2;
-    min-height: 1.2em;
-  }
-
-  .preloader-cursor {
-    font-family: var(--gh-font-body, 'Space Mono'), monospace;
-    font-size: clamp(2.4rem, 4vw, 4rem);
-    color: var(--ghost-accent-color, #b6bdff);
-    font-weight: 400;
-    animation: cursorBlink 0.7s step-end infinite;
-  }
-
-  @keyframes cursorBlink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
-
-  @media (max-width: 640px) {
-    .preloader-ascii {
-      font-size: 0.5rem;
-    }
-    .preloader-text,
-    .preloader-cursor {
-      font-size: 1.8rem;
-    }
-  }
+  .preloader.preloader-done { opacity: 0; visibility: hidden; pointer-events: none; }
+  .preloader-bg { position: absolute; inset: 0; overflow: hidden; }
+  .preloader-glitch { position: absolute; inset: 0; opacity: 0; animation: glitchFlash 0.15s infinite; }
+  .preloader-glitch-1 { background: rgba(182,189,255,0.03); animation-delay: 0s; clip-path: inset(20% 0 60% 0); }
+  .preloader-glitch-2 { background: rgba(255,255,255,0.02); animation-delay: 0.07s; clip-path: inset(40% 0 30% 0); }
+  .preloader-glitch-3 { background: rgba(182,189,255,0.04); animation-delay: 0.13s; clip-path: inset(70% 0 10% 0); }
+  @keyframes glitchFlash { 0%,90%,100%{opacity:0} 45%{opacity:.8} 55%{opacity:.6} 70%{opacity:0} 85%{opacity:.3} }
+  .preloader-scanline { position: absolute; left: 0; right: 0; height: 2px; background: rgba(182,189,255,0.06); animation: scanlineGlitch 3s linear infinite; pointer-events: none; }
+  @keyframes scanlineGlitch { 0%{top:-2px} 100%{top:100%} }
+  .preloader-stage { position: relative; z-index: 2; text-align: left; padding: 0 max(4vmin,40px); }
+  .preloader-ascii { font-family: var(--gh-font-body,'Space Mono'),monospace; font-size: clamp(0.55rem,1.2vw,0.85rem); color: var(--ghost-accent-color,#b6bdff); line-height: 1.1; margin: 0 0 2rem; opacity: 0; animation: fadeInAscii 0.5s ease forwards; animation-delay: 0.2s; white-space: pre; overflow: hidden; }
+  @keyframes fadeInAscii { 0%{opacity:0;transform:translateY(8px)} 100%{opacity:1;transform:translateY(0)} }
+  .preloader-text-wrap { display: flex; align-items: baseline; gap: 0; }
+  .preloader-text { font-family: var(--gh-font-body,'Space Mono'),monospace; font-size: clamp(2.4rem,4vw,4rem); color: var(--ghost-accent-color,#b6bdff); font-weight: 700; letter-spacing: 0.02em; line-height: 1.2; min-height: 1.2em; }
+  .preloader-cursor { font-family: var(--gh-font-body,'Space Mono'),monospace; font-size: clamp(2.4rem,4vw,4rem); color: var(--ghost-accent-color,#b6bdff); font-weight: 400; animation: cursorBlink 0.7s step-end infinite; }
+  @keyframes cursorBlink { 0%,100%{opacity:1} 50%{opacity:0} }
+  @media(max-width:640px){ .preloader-ascii{font-size:0.5rem} .preloader-text,.preloader-cursor{font-size:1.8rem} }
 </style>
 
 <script>
   (function() {
+    var KEY = '_preloader_v2';
     var el = document.getElementById('preloader');
     if (!el) return;
-
-    if (sessionStorage.getItem('_preloader_done')) {
-      el.style.display = 'none';
-      return;
-    }
+    if (sessionStorage.getItem(KEY)) { el.style.display = 'none'; return; }
 
     var textEl = document.getElementById('preloader-text');
     var cursorEl = el.querySelector('.preloader-cursor');
     if (!textEl) { el.style.display = 'none'; return; }
 
-    var phrase1 = 'Welcome';
-    var phrase2 = 'Tech with Ngurah Bagus';
-    var typeMs = 45;
-    var delMs = 22;
+    var p1 = 'Welcome', p2 = 'Tech with Ngurah Bagus';
+    var tms = 45, dms = 22;
 
-    function type(text, speed, cb) {
-      var i = 0;
-      var iv = setInterval(function() {
-        if (i < text.length) {
-          textEl.textContent += text[i];
-          i++;
-        } else {
-          clearInterval(iv);
-          if (cb) cb();
-        }
-      }, speed);
-    }
-
-    function del(count, speed, cb) {
-      var iv = setInterval(function() {
-        if (count > 0) {
-          textEl.textContent = textEl.textContent.slice(0, -1);
-          count--;
-        } else {
-          clearInterval(iv);
-          if (cb) cb();
-        }
-      }, speed);
-    }
-
-    function wait(ms, cb) {
-      setTimeout(cb, ms);
-    }
+    function type(t, s, cb) { var i=0,iv=setInterval(function(){if(i<t.length){textEl.textContent+=t[i];i++}else{clearInterval(iv);if(cb)cb()}},s); }
+    function del(n, s, cb) { var iv=setInterval(function(){if(n>0){textEl.textContent=textEl.textContent.slice(0,-1);n--}else{clearInterval(iv);if(cb)cb()}},s); }
+    function wait(ms, cb) { setTimeout(cb, ms); }
 
     wait(300, function() {
-      type(phrase1, typeMs, function() {
+      type(p1, tms, function() {
         wait(700, function() {
-          del(phrase1.length, delMs, function() {
+          del(p1.length, dms, function() {
             wait(200, function() {
-              type(phrase2, typeMs, function() {
+              type(p2, tms, function() {
                 wait(500, function() {
-                  if (cursorEl) {
-                    cursorEl.style.animation = 'none';
-                    cursorEl.style.opacity = '0';
-                  }
+                  if (cursorEl) { cursorEl.style.animation = 'none'; cursorEl.style.opacity = '0'; }
                   wait(400, function() {
                     el.classList.add('preloader-done');
-                    sessionStorage.setItem('_preloader_done', '1');
-                    wait(600, function() {
-                      el.style.display = 'none';
-                    });
+                    sessionStorage.setItem(KEY, '1');
+                    wait(600, function() { el.style.display = 'none'; });
                   });
                 });
               });

@@ -8,16 +8,48 @@ import Footer from '../components/Footer.astro';
   <Header currentPath={Astro.url.pathname} />
 
   <main class="gh-main">
-    <section class="error-content error-404 js-error-container">
-      <section class="error-details">
-        <section class="error-message">
-          <h1 class="error-code">404</h1>
-          <h2 class="error-description">Page not found</h2>
-          <a class="error-link" href="/">Go to the front page →</a>
-        </section>
-      </section>
-    </section>
+    <div class="e404">
+      <div class="e404-bg"></div>
+      <div class="e404-card">
+        <div class="e404-code">404</div>
+        <h1 class="e404-title">Page not found</h1>
+        <p class="e404-desc">The page you're looking for doesn't exist or has been moved.</p>
+        <a href="/" class="e404-link">Go back home &rarr;</a>
+      </div>
+    </div>
   </main>
 
   <Footer />
 </BaseLayout>
+
+<style is:global>
+  .e404 {
+    position: relative; min-height: 100vh; min-height: 100dvh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; background: #0a0a0a;
+  }
+  .e404-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(182,189,255,0.04) 0%, transparent 70%);
+  }
+  .e404-card {
+    position: relative; z-index: 1; text-align: center;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px; backdrop-filter: blur(12px);
+    padding: clamp(40px,6vw,64px) clamp(32px,5vw,56px); max-width: 480px; margin: 0 24px;
+  }
+  .e404-code {
+    font-family: var(--gh-font-body,'Space Mono'),monospace;
+    font-size: clamp(6rem,12vw,10rem); font-weight: 700;
+    color: var(--ghost-accent-color,#b6bdff); line-height: 1;
+    margin-bottom: 0.15em; letter-spacing: -0.03em;
+  }
+  .e404-title { font-size: 1.8rem; color: #fff; margin: 0 0 0.5em; font-weight: 600; }
+  .e404-desc { font-size: 1.4rem; color: rgba(255,255,255,0.5); margin: 0 0 1.8em; line-height: 1.5; }
+  .e404-link {
+    display: inline-block; font-size: 1.5rem; font-weight: 600; color: #fff;
+    border-bottom: 2px solid var(--ghost-accent-color,#b6bdff); padding-bottom: 4px;
+    text-decoration: none; transition: border-color 0.2s;
+  }
+  .e404-link:hover { border-color: #fff; }
+</style>
