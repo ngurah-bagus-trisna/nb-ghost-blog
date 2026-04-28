@@ -1,0 +1,74 @@
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+</div>
+
+<style is:global>
+  .lightbox {
+    position: fixed; inset: 0; z-index: 99999;
+    background: rgba(0,0,0,0.92);
+    display: none; align-items: center; justify-content: center;
+    backdrop-filter: blur(8px);
+    cursor: zoom-out; padding: 40px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-img {
+    max-width: 90vw; max-height: 90vh;
+    object-fit: contain; border-radius: 6px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    transition: opacity 0.25s; opacity: 0;
+  }
+  .lightbox-img.loaded { opacity: 1; }
+  .lightbox-close {
+    position: absolute; top: 20px; right: 28px;
+    background: none; border: none; color: #fff;
+    font-size: 3rem; cursor: pointer; z-index: 1;
+    line-height: 1; opacity: 0.6; transition: opacity 0.2s;
+  }
+  .lightbox-close:hover { opacity: 1; }
+  @media (max-width: 640px) {
+    .lightbox { padding: 16px; }
+    .lightbox-close { top: 8px; right: 12px; font-size: 2.4rem; }
+  }
+</style>
+
+<script>
+  (function() {
+    var lb = document.getElementById('lightbox');
+    var img = document.getElementById('lightbox-img');
+    var close = document.getElementById('lightbox-close');
+    if (!lb || !img || !close) return;
+
+    function open(src, alt) {
+      img.src = src;
+      img.alt = alt || '';
+      img.classList.remove('loaded');
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      img.onload = function() { img.classList.add('loaded'); };
+      if (img.complete) img.classList.add('loaded');
+    }
+
+    function shut() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(function() { img.src = ''; }, 200);
+    }
+
+    document.querySelectorAll('.gh-content img').forEach(function(el) {
+      el.style.cursor = 'zoom-in';
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        open(el.src, el.alt);
+      });
+    });
+
+    close.addEventListener('click', shut);
+    lb.addEventListener('click', function(e) {
+      if (e.target === lb) shut();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && lb.classList.contains('open')) shut();
+    });
+  })();
+</script>

@@ -3,6 +3,8 @@ import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostCard from '../components/PostCard.astro';
+import ImageLightbox from '../components/ImageLightbox.astro';
+import TableOfContents from '../components/TableOfContents.astro';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -83,25 +85,31 @@ const primaryTag = tags[0] || null;
       </header>
     )}
 
-    <section class="gh-content gh-canvas is-body">
-      <slot />
-    </section>
+    <div class="post-body-wrap">
+      <div class="post-body-main">
+        <section class="gh-content gh-canvas is-body">
+          <slot />
+        </section>
 
-    {relatedPosts.length > 0 && (
-      <section class="gh-container is-grid gh-outer">
-        <div class="gh-container-inner gh-inner">
-          <h2 class="gh-container-title">Read more</h2>
-          <div class="gh-feed">
-            {relatedPosts.slice(0, 4).map(p => (
-              <PostCard post={p} />
-            ))}
-          </div>
-        </div>
-      </section>
-    )}
+        {relatedPosts.length > 0 && (
+          <section class="gh-container is-grid gh-outer">
+            <div class="gh-container-inner gh-inner">
+              <h2 class="gh-container-title">Read more</h2>
+              <div class="gh-feed">
+                {relatedPosts.slice(0, 4).map(p => (
+                  <PostCard post={p} />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+      </div>
+      <TableOfContents />
+    </div>
   </main>
 
   <Footer />
+  <ImageLightbox />
 
   <!-- JSON-LD Article + BreadcrumbList -->
   <script type="application/ld+json">
@@ -258,6 +266,26 @@ const primaryTag = tags[0] || null;
 
   .post-header-tag:hover {
     opacity: 0.8;
+  }
+
+  .post-body-wrap {
+    display: flex;
+    gap: 40px;
+    max-width: var(--container-width, 1320px);
+    margin: 0 auto;
+    padding: 0 max(4vmin, 40px);
+    align-items: flex-start;
+  }
+
+  .post-body-main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 1199px) {
+    .post-body-wrap {
+      flex-direction: column;
+    }
   }
 
   @media (max-width: 640px) {
