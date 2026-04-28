@@ -21,6 +21,10 @@ const dateStr = data.published.toLocaleDateString('en-US', {
 
 const tags = data.tags || [];
 const hasHero = !!data.featuredImage;
+
+const siteUrl = Astro.site?.href.replace(/\/$/, '') || 'https://twnb.nbtrisna.my.id';
+const articleUrl = new URL(`/${data.slug}/`, Astro.site).href;
+const primaryTag = tags[0] || null;
 ---
 
 <BaseLayout
@@ -33,6 +37,7 @@ const hasHero = !!data.featuredImage;
   publishedTime={data.published.toISOString()}
   modifiedTime={data.updated?.toISOString()}
   tags={tags}
+  author={data.author}
 >
   <Header currentPath={`/${data.slug}/`} />
 
@@ -97,6 +102,49 @@ const hasHero = !!data.featuredImage;
   </main>
 
   <Footer />
+
+  <!-- JSON-LD Article + BreadcrumbList -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BlogPosting',
+        '@id': `${articleUrl}#article`,
+        headline: data.title,
+        description: data.excerpt || '',
+        url: articleUrl,
+        datePublished: data.published.toISOString(),
+        dateModified: (data.updated || data.published).toISOString(),
+        author: {
+          '@type': 'Person',
+          '@id': `${siteUrl}/#person`,
+          name: data.author,
+        },
+        image: data.featuredImage || undefined,
+        publisher: {
+          '@id': `${siteUrl}/#organization`,
+        },
+        keywords: tags.join(', '),
+        inLanguage: 'id',
+        isPartOf: {
+          '@id': `${siteUrl}/#website`,
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+          ...(primaryTag ? [{
+            '@type': 'ListItem' as const,
+            position: 2,
+            name: primaryTag,
+            item: `${siteUrl}/tag/${primaryTag}/`,
+          }] : []),
+          { '@type': 'ListItem', position: primaryTag ? 3 : 2, name: data.title },
+        ],
+      },
+    ],
+  })} />
 </BaseLayout>
 
 <style>

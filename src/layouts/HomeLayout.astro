@@ -40,4 +40,15 @@ const title = 'Tech with Ngurah Bagus: IT Notes, Tutorials, and My Journey';
   </section>
 
   <Footer />
+
+  {/* JSON-LD CollectionPage */}
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${new URL('/', Astro.site).href}#collection`,
+    name: title,
+    description: 'Latest articles and tutorials on Linux, KVM, AWS, Kubernetes, and DevOps.',
+    url: new URL('/', Astro.site).href,
+    isPartOf: { '@id': `${new URL('/', Astro.site).href}#website` },
+  })} />
 </BaseLayout>

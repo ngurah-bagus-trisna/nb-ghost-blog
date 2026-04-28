@@ -9,8 +9,8 @@ export async function GET(context: APIContext) {
     .sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
 
   return rss({
-    title: 'twnb',
-    description: 'Tech with Ngurah Bagus',
+    title: 'twnb — Tech with Ngurah Bagus',
+    description: 'IT notes, tutorials, and personal journey. Linux, KVM, AWS, Kubernetes, and DevOps guides.',
     site: context.site?.href || 'https://twnb.nbtrisna.my.id',
     items: sorted.map(post => ({
       title: post.data.title,
@@ -20,6 +20,9 @@ export async function GET(context: APIContext) {
       categories: post.data.tags,
       author: post.data.author,
     })),
-    customData: '<language>id</language>',
+    customData: `<language>id</language>
+    <copyright>© ${new Date().getFullYear()} I Gusti Ngurah Bagus Trisna Andika</copyright>
+    <managingEditor>${sorted[0]?.data.author || 'I Gusti Ngurah Bagus Trisna Andika'}</managingEditor>
+    <webMaster>${sorted[0]?.data.author || 'I Gusti Ngurah Bagus Trisna Andika'}</webMaster>`,
   });
 }

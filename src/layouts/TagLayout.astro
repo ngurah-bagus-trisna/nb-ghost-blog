@@ -61,6 +61,17 @@ const bgImage = getTagBgImage(tag);
   </main>
 
   <Footer />
+
+  {/* JSON-LD CollectionPage */}
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${new URL(`/tag/${tag}/`, Astro.site).href}#collection`,
+    name: `${tag} — twnb`,
+    description: description || `Posts tagged with ${tag}`,
+    url: new URL(`/tag/${tag}/`, Astro.site).href,
+    isPartOf: { '@id': `${new URL('/', Astro.site).href}#website` },
+  })} />
 </BaseLayout>
 
 <style is:global>
