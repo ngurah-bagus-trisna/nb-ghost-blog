@@ -103,6 +103,7 @@ const bgImage = getTagBgImage(tag);
     z-index: 3;
     padding: 0 max(4vmin, 40px) max(6vmin, 48px);
     max-width: 500px;
+    transition: opacity 0.4s ease;
   }
 
   .tag-header-title {
@@ -261,4 +262,21 @@ const bgImage = getTagBgImage(tag);
     }
   }
 </style>
+
+<script>
+  (function() {
+    var header = document.querySelector('.tag-header');
+    if (!header) return;
+
+    function fade() {
+      var scroll = window.scrollY;
+      var vh = window.innerHeight;
+      var opacity = Math.max(0, 1 - (scroll / (vh * 0.6)));
+      header.style.opacity = String(opacity);
+    }
+
+    window.addEventListener('scroll', fade, { passive: true });
+    fade();
+  })();
+</script>
 

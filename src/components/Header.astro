@@ -93,15 +93,31 @@ function isCurrent(item: NavItem): boolean {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   }
 
-  /* Search button */
+  /* Search button — kill all backgrounds */
   .search-toggle,
   .search-toggle:hover,
   .search-toggle:focus,
-  .search-toggle:active {
-    background: transparent !important; border: 0 !important;
-    outline: 0 !important; box-shadow: none !important; color: #fff !important;
+  .search-toggle:focus-visible,
+  .search-toggle:active,
+  .search-toggle:focus-within {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    outline-offset: 0 !important;
+    box-shadow: none !important;
+    color: #fff !important;
+    -webkit-tap-highlight-color: transparent !important;
   }
-  .search-toggle svg { display: block; width: 20px; height: 20px; }
+  .search-toggle::before,
+  .search-toggle::after {
+    display: none !important;
+    background: transparent !important;
+  }
+  .search-toggle svg {
+    display: block; width: 20px; height: 20px;
+    background: transparent !important;
+  }
 
   /* Burger button */
   .burger-btn {

@@ -10,10 +10,11 @@
   @media (min-width: 1200px) {
     .toc-sidebar {
       display: block; width: 220px; flex-shrink: 0;
+      position: sticky; top: 200px;
+      align-self: flex-start;
     }
   }
   .toc-inner {
-    position: sticky; top: 100px;
     padding-left: 24px; border-left: 1px solid rgba(255,255,255,0.08);
   }
   .toc-title {
