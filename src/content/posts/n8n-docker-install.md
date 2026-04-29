@@ -6,7 +6,7 @@ tags:
 author: "I Gusti Ngurah Bagus Trisna Andika"
 authorSlug: ngurah
 slug: "n8n-docker-install"
-featuredImage: "/content/images/2025/05/n8n-twnb-1.png"
+featuredImage: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=1200&q=80"
 excerpt: "n8n adalah alat otomatisasi alur kerja (workflow automation) yang kuat dan fleksibel. Ini memungkinkan untuk menghubungkan berbagai aplikasi dan service, otomasi tugas, dan membangun alur kerja yang..."
 ---
 

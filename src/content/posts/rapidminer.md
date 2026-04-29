@@ -6,7 +6,7 @@ tags:
 author: "I Gusti Ngurah Bagus Trisna Andika"
 authorSlug: ngurah
 slug: "rapidminer"
-featuredImage: "/content/images/2024/11/Rapidminer-twnb.png"
+featuredImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80"
 excerpt: "Refrensi : https://docs.rapidminer.com/9.9/studio/installation/ RapidMiner merupakan salah satu tools yang dipakai dalam data mining. RapidMiner memiliki kurang lebih 500 operator data mining,..."
 ---
 

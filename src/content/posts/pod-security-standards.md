@@ -5,7 +5,7 @@ tags: []
 author: "I Gusti Ngurah Bagus Trisna Andika"
 authorSlug: ngurah
 slug: "pod-security-standards"
-featuredImage: "/content/images/2024/09/pss-1.png"
+featuredImage: "https://images.unsplash.com/photo-1614064641938-3c7034b0cbf5?w=1200&q=80"
 excerpt: "Refrensi : https://kubernetes.io/docs/concepts/security/pod-security-standards Dalam pembuatan pod dalam kubernetes, secara default semua user akan dapat membuat sebuah pod yang dapat mengkases..."
 ---
 

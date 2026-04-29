@@ -8,7 +8,7 @@ tags:
 author: "I Gusti Ngurah Bagus Trisna Andika"
 authorSlug: ngurah
 slug: "setup-rke-2-ha-2"
-featuredImage: "/content/images/2025/01/RKE-twnb.png"
+featuredImage: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=1200&q=80"
 excerpt: "Jadi di lab kubernetes saya pribadi menggunakan rke2/rke-goverment sebagai cluster utama. Alasan dipilihnya rke2 karena kemudahanya provisioning, dan tidak perlu banyak setup"
 ---
 

@@ -6,7 +6,7 @@ tags: []
 author: "I Gusti Ngurah Bagus Trisna Andika"
 authorSlug: ngurah
 slug: "loxilb-k8s-ebpf-loadbalancer"
-featuredImage: "/content/images/2024/08/loxilb.png"
+featuredImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80"
 excerpt: "Loxilb adalah aplikasi loadbalancer hyper-scale untuk cloud-native, menggunakan teknologi eBPF dengan berabasis golang. Didesain untuk on-premises, edge, dan public cloud Kubernetes Cluster..."
 ---
 

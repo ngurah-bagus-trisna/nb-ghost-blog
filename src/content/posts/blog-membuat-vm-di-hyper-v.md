@@ -7,7 +7,7 @@ tags:
 author: "I Gusti Ngurah Bagus Trisna Andika"
 authorSlug: ngurah
 slug: "blog-membuat-vm-di-hyper-v"
-featuredImage: "/content/images/2024/02/Screenshot-2024-02-01-213843.png"
+featuredImage: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=1200&q=80"
 excerpt: "Home-lab #2 Untuk membuat virtual-machine/VM di hyper-v, dapat menggunakan aplikasi hyper-v manager Preparation 1. Membuat switch External. Switch external disini berfungsi untuk vm agar dapat..."
 ---
 

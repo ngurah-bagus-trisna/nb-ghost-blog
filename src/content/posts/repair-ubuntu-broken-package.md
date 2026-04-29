@@ -6,7 +6,7 @@ tags: []
 author: "I Gusti Ngurah Bagus Trisna Andika"
 authorSlug: ngurah
 slug: "repair-ubuntu-broken-package"
-featuredImage: "/content/images/2024/08/recovery-mode.webp"
+featuredImage: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=1200&q=80"
 excerpt: "Hampir install ulang karena ubuntu broken setelah install package tambahan buat jalanin suatu aplikasi. Booting ga bisa, terminal ga bisa. Disini saya coba buat masuk ke recovery mode Awalnya Saya..."
 ---
 

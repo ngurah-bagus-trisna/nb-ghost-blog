@@ -6,7 +6,7 @@ tags:
 author: "I Gusti Ngurah Bagus Trisna Andika"
 authorSlug: ngurah
 slug: "blog-enable-hyperv"
-featuredImage: "/content/images/2024/01/Screenshot-2024-01-30-194954.png"
+featuredImage: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=1200&q=80"
 excerpt: "Home-lab series #1 Lab sehari-hari sebelum saya migrasi full windows, dengan alasan \"Malas dualboot\" adalah menggunakan KVM (Kernel-based Virtual Machine). Alternatif di windows sendiri Microsoft..."
 ---
 

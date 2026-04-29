@@ -5,6 +5,7 @@ tags: []
 author: "I Gusti Ngurah Bagus Trisna Andika"
 authorSlug: ngurah
 slug: "wireguard-manual-install"
+featuredImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80"
 excerpt: "Refrensi : https://www.digitalocean.com/community/tutorials/how-to-set-up-wireguard-on-ubuntu-22-04 Install wireguard apt install wireguard Create private key wg genkey | sudo tee..."
 ---
 
