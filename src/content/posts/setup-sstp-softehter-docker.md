@@ -8,7 +8,7 @@ author: "I Gusti Ngurah Bagus Trisna Andika"
 authorSlug: ngurah
 slug: "setup-sstp-softehter-docker"
 featuredImage: "https://images.unsplash.com/photo-1603985529862-9e12198c9a60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3wwfDF8c2VhcmNofDJ8fFZQTnxlbnwwfHx8fDE3MjIxMTIyMDN8MA&ixlib=rb-4.0.3&q=80&w=2000"
-excerpt: "Setup 1. Create docker-compose version: '3' services: softether: image: softethervpn/vpnserver:stable cap_add: - NET_ADMIN restart: always container_name: vpn-softether ports: - 8443:443 volumes: -..."
+excerpt: "A softether VPN can be hosted on docker"
 ---
 
 ## Setup

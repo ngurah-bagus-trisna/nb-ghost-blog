@@ -21,6 +21,23 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    syntaxHighlight: false,
+    shikiConfig: {
+      theme: 'dracula',
+      langs: [
+        'sh', 'bash', 'shell', 'json', 'yaml', 'javascript', 'typescript',
+        'python', 'dockerfile', 'go', 'hcl', 'c', 'sql', 'nginx', 'xml', 'toml', 'ini',
+      ],
+      langAlias: {
+        cfg: 'ini',
+        cnf: 'ini',
+        conf: 'ini',
+        fonfig: 'ini',
+        shellsession: 'sh',
+        tf: 'hcl',
+        tfvars: 'hcl',
+        vim: 'ini',
+        terraform: 'hcl',
+      },
+    },
   },
 });
