@@ -164,6 +164,7 @@ const role = 'Cloud Engineer / Network Engineer';
   .ab-hero-text {
     position: fixed; bottom: 0; left: 0; z-index: 3;
     padding: 0 max(4vmin,40px) max(6vmin,48px); max-width: 600px;
+    transition: opacity 0.4s ease;
   }
   .ab-hero-name {
     font-family: var(--gh-font-heading,'Noto Sans'),sans-serif;
@@ -244,3 +245,16 @@ const role = 'Cloud Engineer / Network Engineer';
     .ab-section { padding: 0 24px; margin-bottom: 48px; }
   }
 </style>
+
+<script>
+  (function() {
+    var header = document.querySelector('.ab-hero-text');
+    if (!header) return;
+    function fade() {
+      var vh = window.innerHeight;
+      header.style.opacity = String(Math.max(0, 1 - (window.scrollY / (vh * 0.6))));
+    }
+    window.addEventListener('scroll', fade, { passive: true });
+    fade();
+  })();
+</script>
