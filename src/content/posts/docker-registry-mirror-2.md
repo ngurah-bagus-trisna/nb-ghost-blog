@@ -7,7 +7,7 @@ tags:
 author: "I Gusti Ngurah Bagus Trisna Andika"
 authorSlug: ngurah
 slug: "docker-registry-mirror-2"
-featuredImage: "https://s3.nbtrisna.my.id/random-photo/d617f61e-753a-49ab-9b04-a47571df1336.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250618T040359Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0f5aa313e8bd8cd451718101a115ccf648e51a253c81bcbbfa9d3863185072f9"
+featuredImage: "https://photoby.nbtrisna.my.id/fc30ed18-cb00-4ef5-92ea-3ccab41d631b.jpg"
 excerpt: "Ketika sebuah ip terus\"an pull ke registry docker, akan menyebabkan sebuah peringatan limit pull telah terpakai. Biasanya akan reset setelah 6 jam. Untuk menyiasati, dicoba riset install registry..."
 ---
 

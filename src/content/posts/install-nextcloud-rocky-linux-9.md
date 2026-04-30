@@ -6,7 +6,7 @@ tags: []
 author: "I Gusti Ngurah Bagus Trisna Andika"
 authorSlug: ngurah
 slug: "install-nextcloud-rocky-linux-9"
-featuredImage: "https://images.unsplash.com/photo-1614064641938-3c7034b0cbf5?w=1200&q=80"
+featuredImage: "https://photoby.nbtrisna.my.id/9c45173d-476c-4ea3-9269-ba0892b0c408.jpg"
 excerpt: "Dalam rangka mengatasi storage g-drive yang di limit hanya 15Gb(Yang Free), maka ada ide buat storage server kecil\"an di minipc bekas dapet dari facebook marketplace. OS yang dipilih untuk servernya..."
 ---
 

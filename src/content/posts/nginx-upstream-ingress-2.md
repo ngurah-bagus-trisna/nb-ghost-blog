@@ -7,7 +7,7 @@ tags:
 author: "I Gusti Ngurah Bagus Trisna Andika"
 authorSlug: ngurah
 slug: "nginx-upstream-ingress-2"
-featuredImage: "https://s3.nbtrisna.my.id/random-photo/5ab62662-919a-486e-a910-048b61f090ec.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=njs1ITImKx98TVOMqLnx%2F20250618%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250618T040622Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=d1383f96ed3e533382dccd0f8f4ad73075f22bed107fecced05571c865a02b87"
+featuredImage: "https://photoby.nbtrisna.my.id/6e69b768-bf64-4e66-a649-293af61076aa.jpg"
 excerpt: "Berbeda dengan k8s-ingress, by default ingress-nginx memerlukan Custom Resource Definitions untuk bisa up. Jika memang tidak memerlukan CRD, bisa skip dengan set beberapa values berikut."
 ---
 
