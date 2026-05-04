@@ -31,7 +31,7 @@ const primaryTag = tags[0] || null;
 
 <BaseLayout
   title={data.title}
-  description={data.excerpt || ''}
+  description={data.excerpt || undefined}
   ogImage={data.featuredImage}
   ogType="article"
   canonicalURL={new URL(`/${data.slug}/`, Astro.site).href}

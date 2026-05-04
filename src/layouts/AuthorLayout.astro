@@ -13,10 +13,13 @@ interface Props {
 
 const { author, authorSlug, posts } = Astro.props;
 const title = `${author} - twnb`;
+const description = `Articles by ${author} on Tech with Ngurah Bagus — IT notes, tutorials, and personal journey.`;
+const siteUrl = Astro.site?.href.replace(/\/$/, '') || 'https://twnb.nbtrisna.my.id';
 ---
 
 <BaseLayout
   title={title}
+  description={description}
   bodyClass="author-template"
   canonicalURL={new URL(`/author/${authorSlug}/`, Astro.site).href}
 >
@@ -43,6 +46,17 @@ const title = `${author} - twnb`;
   </main>
 
   <Footer />
+
+  <!-- JSON-LD Person -->
+  <script type="application/ld+json">
+    {JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': `${siteUrl}/#person`,
+    name: author,
+    url: new URL(`/author/${authorSlug}/`, Astro.site).href,
+  })}
+  </script>
 </BaseLayout>
 
 <style>

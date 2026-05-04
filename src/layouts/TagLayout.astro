@@ -18,6 +18,7 @@ const bgImage = getTagBgImage(tag);
 
 <BaseLayout
   title={title}
+  description={description || undefined}
   bodyClass="tag-template"
   canonicalURL={new URL(`/tag/${tag}/`, Astro.site).href}
 >
