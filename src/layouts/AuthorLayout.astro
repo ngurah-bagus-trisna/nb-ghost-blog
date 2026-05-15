@@ -47,14 +47,25 @@ const siteUrl = Astro.site?.href.replace(/\/$/, '') || 'https://twnb.nbtrisna.my
 
   <Footer />
 
-  <!-- JSON-LD Person -->
+  <!-- JSON-LD Person + BreadcrumbList -->
   <script type="application/ld+json">
     {JSON.stringify({
     '@context': 'https://schema.org',
-    '@type': 'Person',
-    '@id': `${siteUrl}/#person`,
-    name: author,
-    url: new URL(`/author/${authorSlug}/`, Astro.site).href,
+    '@graph': [
+      {
+        '@type': 'Person',
+        '@id': `${siteUrl}/#person`,
+        name: author,
+        url: new URL(`/author/${authorSlug}/`, Astro.site).href,
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+          { '@type': 'ListItem', position: 2, name: author, item: `${new URL(`/author/${authorSlug}/`, Astro.site).href}` },
+        ],
+      },
+    ],
   })}
   </script>
 </BaseLayout>

@@ -136,14 +136,25 @@ const role = 'Cloud Engineer / Network Engineer';
   <script type="application/ld+json">
     {JSON.stringify({
       '@context': 'https://schema.org',
-      '@type': 'Person',
-      name,
-      givenName: 'Ngurah Bagus',
-      familyName: 'Trisna Andika',
-      jobTitle: role,
-      url: `${siteUrl}/about/`,
-      sameAs: ['https://github.com/ngurah-bagus-trisna'],
-      knowsAbout: ['Kubernetes','Linux','Docker','Terraform','Ansible','Grafana','Prometheus','OpenStack','KVM','AWS','CI/CD','Networking','MikroTik'],
+      '@graph': [
+        {
+          '@type': 'Person',
+          name,
+          givenName: 'Ngurah Bagus',
+          familyName: 'Trisna Andika',
+          jobTitle: role,
+          url: `${siteUrl}/about/`,
+          sameAs: ['https://github.com/ngurah-bagus-trisna'],
+          knowsAbout: ['Kubernetes','Linux','Docker','Terraform','Ansible','Grafana','Prometheus','OpenStack','KVM','AWS','CI/CD','Networking','MikroTik'],
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+            { '@type': 'ListItem', position: 2, name: 'About', item: `${siteUrl}/about/` },
+          ],
+        },
+      ],
     })}
   </script>
 </BaseLayout>

@@ -38,16 +38,26 @@ const title = 'Tech with Ngurah Bagus: IT Notes, Tutorials, and My Journey';
 
   <Footer />
 
-  {/* JSON-LD CollectionPage */}
+  {/* JSON-LD CollectionPage + BreadcrumbList */}
   <script type="application/ld+json">
     {JSON.stringify({
     '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    '@id': `${new URL('/', Astro.site).href}#collection`,
-    name: title,
-    description: 'Latest articles and tutorials on Linux, KVM, AWS, Kubernetes, and DevOps.',
-    url: new URL('/', Astro.site).href,
-    isPartOf: { '@id': `${new URL('/', Astro.site).href}#website` },
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': `${new URL('/', Astro.site).href}#collection`,
+        name: title,
+        description: 'Latest articles and tutorials on Linux, KVM, AWS, Kubernetes, and DevOps.',
+        url: new URL('/', Astro.site).href,
+        isPartOf: { '@id': `${new URL('/', Astro.site).href}#website` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+        ],
+      },
+    ],
   })}
   </script>
 </BaseLayout>

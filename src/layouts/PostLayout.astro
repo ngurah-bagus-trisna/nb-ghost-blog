@@ -129,7 +129,12 @@ const primaryTag = tags[0] || null;
           '@id': `${siteUrl}/#person`,
           name: data.author,
         },
-        image: data.featuredImage || undefined,
+        image: data.featuredImage ? {
+          '@type': 'ImageObject',
+          url: data.featuredImage,
+          width: 1200,
+          height: 630,
+        } : undefined,
         publisher: {
           '@id': `${siteUrl}/#organization`,
         },

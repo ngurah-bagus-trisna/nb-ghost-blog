@@ -1,5 +1,25 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { readFileSync, readdirSync } from 'node:fs';
+import { join, basename } from 'node:path';
+
+function buildDateMap() {
+  const postsDir = join(process.cwd(), 'src/content/posts');
+  const files = readdirSync(postsDir).filter(f => f.endsWith('.md'));
+  const map = new Map();
+  for (const file of files) {
+    const content = readFileSync(join(postsDir, file), 'utf-8');
+    const slugMatch = content.match(/^slug:\s*["']?([^"'\n]+)/m);
+    const updatedMatch = content.match(/^updated:\s*(.+)/m);
+    const publishedMatch = content.match(/^published:\s*(.+)/m);
+    const dateStr = updatedMatch?.[1]?.trim() || publishedMatch?.[1]?.trim();
+    const slug = slugMatch?.[1]?.trim()?.replace(/["']/g, '') || basename(file, '.md');
+    if (dateStr) map.set(slug, new Date(dateStr).toISOString());
+  }
+  return map;
+}
+
+const dateMap = buildDateMap();
 
 export default defineConfig({
   site: 'https://twnb.nbtrisna.my.id',
@@ -10,13 +30,21 @@ export default defineConfig({
       changefreq: 'weekly',
       priority: 0.7,
       serialize(item) {
-        if (item.url === 'https://twnb.nbtrisna.my.id/') {
-          return { ...item, changefreq: 'daily', priority: 1.0 };
+        const url = item.url;
+        const siteUrl = 'https://twnb.nbtrisna.my.id';
+        const lastmod = new Date().toISOString();
+
+        if (url === `${siteUrl}/`) {
+          return { ...item, changefreq: 'daily', priority: 1.0, lastmod };
         }
-        if (item.url.includes('/tag/') || item.url.includes('/author/') || item.url === 'https://twnb.nbtrisna.my.id/about/') {
-          return { ...item, changefreq: 'weekly', priority: 0.5 };
+        if (url.includes('/tag/') || url.includes('/author/') || url === `${siteUrl}/about/`) {
+          return { ...item, changefreq: 'weekly', priority: 0.5, lastmod };
         }
-        return { ...item, changefreq: 'monthly', priority: 0.8 };
+
+        // Post pages — use frontmatter date
+        const slug = url.replace(siteUrl, '').replace(/\/$/, '').split('/').pop();
+        const postDate = slug ? dateMap.get(slug) : undefined;
+        return { ...item, changefreq: 'monthly', priority: 0.8, lastmod: postDate || lastmod };
       },
     }),
   ],

@@ -63,16 +63,27 @@ const bgImage = getTagBgImage(tag);
 
   <Footer />
 
-  {/* JSON-LD CollectionPage */}
+  {/* JSON-LD CollectionPage + BreadcrumbList */}
   <script type="application/ld+json">
     {JSON.stringify({
     '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    '@id': `${new URL(`/tag/${tag}/`, Astro.site).href}#collection`,
-    name: `${tag} — twnb`,
-    description: description || `Posts tagged with ${tag}`,
-    url: new URL(`/tag/${tag}/`, Astro.site).href,
-    isPartOf: { '@id': `${new URL('/', Astro.site).href}#website` },
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': `${new URL(`/tag/${tag}/`, Astro.site).href}#collection`,
+        name: `${tag} — twnb`,
+        description: description || `Posts tagged with ${tag}`,
+        url: new URL(`/tag/${tag}/`, Astro.site).href,
+        isPartOf: { '@id': `${new URL('/', Astro.site).href}#website` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${new URL('/', Astro.site).href}` },
+          { '@type': 'ListItem', position: 2, name: tag, item: `${new URL(`/tag/${tag}/`, Astro.site).href}` },
+        ],
+      },
+    ],
   })}
   </script>
 </BaseLayout>

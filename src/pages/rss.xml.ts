@@ -12,6 +12,7 @@ export async function GET(context: APIContext) {
     title: 'twnb — Tech with Ngurah Bagus',
     description: 'IT notes, tutorials, and personal journey. Linux, KVM, AWS, Kubernetes, and DevOps guides.',
     site: context.site?.href || 'https://twnb.nbtrisna.my.id',
+    image: 'https://twnb.nbtrisna.my.id/content/images/2024/08/logo-Primary-1.png',
     items: sorted.map(post => ({
       title: post.data.title,
       description: post.data.excerpt || '',
